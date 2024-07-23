@@ -13,7 +13,7 @@
             <img src="assets/images/logo.png" class="logo-img" alt="Logo de la pagina">
         </div>
 
-        <div class="login-forms text-center" id="invitation-code-container">
+        <div class="login-forms text-center">
             <div class="player-login text-center" id="invitation-code-container">
                 <h2 class="text-light">Acceso a Escape Room</h2>
                 <form class="mt-4" id="invitation-code-form" method="post">
@@ -38,10 +38,11 @@
                         <select class="form-control form-control-lg" id="gender">
                             <option value="male">Masculino</option>
                             <option value="female">Femenino</option>
-                            <option value="female">Otro</option>
+                            <option value="other">Otro</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">¡Empezar a Jugar!</button>
+                    <button type="button" class="btn btn-secondary btn-block btn-lg mt-2" onclick="goBack()">Volver</button>
                 </form>
             </div>
 
@@ -55,14 +56,14 @@
                         <input type="password" class="form-control form-control-lg" id="login-password" placeholder="Contraseña">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Ingresar</button>
+                    <button type="button" class="btn btn-secondary btn-block btn-lg mt-2" onclick="goBack()">Volver</button>
                 </form>
             </div>  
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="./public/assets/js/main.js"></script>
+        <script src="./assets/js/main.js"></script>
     </div>
 </body>
 </html>
-
