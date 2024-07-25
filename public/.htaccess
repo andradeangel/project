@@ -1,5 +1,6 @@
 RewriteEngine On
+
+# Sólo redirigir a index.php si no es un archivo o directorio real
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/public/test_connection\.php$
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php [QSA,L]
