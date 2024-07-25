@@ -29,10 +29,10 @@
                 <h2 class="text-light">Datos del jugador</h2>
                 <form class="mt-3" id="personal-data-form" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg" id="name" placeholder="Nombre">
+                        <input type="text" class="form-control form-control-lg" id="name" placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control form-control-lg" id="age" placeholder="Edad">
+                        <input type="number" class="form-control form-control-lg" id="age" placeholder="Edad" required>
                     </div>
                     <div class="form-group">
                         <select class="form-control form-control-lg" id="gender">
@@ -50,10 +50,10 @@
                 <h2 class="text-light">Inicio de Sesión</h2>
                 <form id="login-form" class="mt-4">
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="login-email" placeholder="Correo Electrónico">
+                        <input type="text" class="form-control form-control-lg" id="login-id" placeholder="Número de identificación" required>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="login-password" placeholder="Contraseña">
+                        <input type="password" class="form-control form-control-lg" id="login-password" placeholder="Contraseña" required>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block btn-lg">Ingresar</button>
                     <button type="button" class="btn btn-secondary btn-block btn-lg mt-2" onclick="goBack()">Volver</button>

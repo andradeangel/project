@@ -30,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('login-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        const email = document.getElementById('login-email').value;
+        const id = document.getElementById('login-id').value;
         const password = document.getElementById('login-password').value;
         // Aquí puedes agregar la lógica para manejar el inicio de sesión
-        console.log('Correo:', email);
+        console.log('CI:', id);
         console.log('Contraseña:', password);
         // Verificar las credenciales y redirigir según el tipo de usuario
-        if (email && password) {
+        if (id && password) {
             alert('Inicio de sesión exitoso.');
             // Redirigir a la página de administración o gestión de juegos
             // window.location.href = 'admin.html'; // Ejemplo de redirección
