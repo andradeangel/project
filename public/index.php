@@ -16,18 +16,22 @@
         <div class="login-forms text-center">
             <div class="player-login text-center" id="invitation-code-container">
                 <h2 class="text-light">Acceso a Escape Room</h2>
-                <form class="mt-4" id="invitation-code-form" method="post">
+                <form class="mt-4" id="invitation-code-form" method="POST">
+                    <?php
+                        include("../src/controllers/EventoController.php");
+                        include("../src/config/database.php");
+                    ?>
                     <div class="form-group">
-                        <input type="text" class="form-control form-control-lg text-center" id="invitation-code" placeholder="Ingresa tu código de acceso" required>
+                        <input type="text" class="form-control form-control-lg text-center" name="codigoAccess" id="invitation-code" placeholder="Ingresa tu código de acceso" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block btn-lg">Ingresar</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" name="btnAccess" >Ingresar</button>
                 </form>
                 <p class="text-light mt-3" id="login-link">¿Eres Administrador o Game Master? <a href="#" class="text-info" onclick="showLoginForm()">Inicia sesión</a></p>
             </div>
 
             <div id="personal-data-container" class="d-none">
                 <h2 class="text-light">Datos del jugador</h2>
-                <form class="mt-3" id="personal-data-form" method="post">
+                <form class="mt-3" id="personal-data-form" method="get" action="">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-lg" id="name" placeholder="Nombre" required>
                     </div>
