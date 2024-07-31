@@ -27,7 +27,7 @@ if(isset($_POST["btnLogin"])) {
             if(password_verify($password, $usuario['password'])) {
                 $_SESSION['user_id'] = $usuario['id'];
                 $_SESSION['user_role'] = $usuario['rol'];
-                header("Location: ../views/panel.php");
+                header("Location: ../views/eventos.php");
                 exit();
             } else {
                 $_SESSION['error'] = "Credenciales inválidas. Por favor, intente de nuevo.";

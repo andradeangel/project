@@ -29,11 +29,12 @@ h2 {
     background-color: #a60000;
     border-color: #fff;
 }
+
 .btn-primary:focus,
 .btn-primary:active,
 .btn-primary:visited {
-    background-color: #f80103;
-    border-color: #a60000;  
+    background-color: #f80103 !important;
+    border-color: #a60000 !important;  
 }
 
 #login-link a {
@@ -43,11 +44,93 @@ h2 {
 .d-none {
     display: none;
 }
+
 .logo-img {
     position: absolute;
-    top: 80px; /* Ajusta según tu diseño */
-    left: 50%; /* Centra horizontalmente */
+    top: 80px;
+    left: 50%;
     transform: translateX(-50%);
-    width: 200px; /* Ajusta el tamaño según tus necesidades */
-    z-index: 1; /* Asegura que esté por encima de otros elementos */
+    width: 200px;
+    z-index: 1;
+}
+
+/* Estilos para la barra de navegación */
+.navbar .custom-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .brand-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.navbar .panel-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.navbar .welcome-text {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+}
+
+.navbar .user-role {
+    font-size: 0.7rem;
+    color: #a0a0a0;
+}
+
+/* Estilos para las pestañas de navegación */
+.navbar .custom-nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.navbar .custom-nav-link:hover {
+    background-color: #495057 !important;
+    color: #ffffff !important;
+}
+
+/* Estilo para la pestaña activa */
+.navbar .custom-nav-link.active {
+    background-color: #f80103 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto hover para la pestaña activa */
+.navbar .custom-nav-link.active:hover {
+    background-color: #a60000 !important;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.navbar .custom-logout-btn {
+    transition: background-color 0.3s, color 0.3s;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.navbar .custom-logout-btn:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+/* Estilos responsivos */
+@media (max-width: 991px) {
+    .navbar .custom-logout-btn {
+        margin-top: 10px;
+    }
+    
+    .navbar-collapse {
+        background-color: #343a40;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
 }
