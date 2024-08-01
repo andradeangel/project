@@ -1,12 +1,13 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
-        header("Location: login.php");
-        exit();
-    }
+session_start();
+if(!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-    require_once("../database.php");
-    require_once("../models/eventosModel.php");
+require_once("../database.php");
+require_once("../models/eventosModel.php");
+require_once("../controllers/eventosController.php");
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -16,8 +17,6 @@
     <title>Panel de Control</title>
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 
@@ -56,22 +55,153 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="eventos" role="tabpanel" aria-labelledby="nav-eventos-tab">
-                        <h2>Eventos</h2>
-                        <!-- Contenido de la pestaña Eventos -->
-                    </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2>Eventos</h2>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearEventoModal">
+                        Crear Evento
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nombre
+                                    <a href="?orderBy=e.nombre&orderDir=<?php echo $orderBy == 'e.nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'e.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
+                                    Código
+                                    <a href="?orderBy=e.codigo&orderDir=<?php echo $orderBy == 'e.codigo' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'e.codigo' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
+                                    Fecha Inicio
+                                    <a href="?orderBy=e.fechaInicio&orderDir=<?php echo $orderBy == 'e.fechaInicio' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'e.fechaInicio' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
+                                    Fecha Fin
+                                    <a href="?orderBy=e.fechaFin&orderDir=<?php echo $orderBy == 'e.fechaFin' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'e.fechaFin' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
+                                    Estado
+                                    <a href="?orderBy=es.estado&orderDir=<?php echo $orderBy == 'es.estado' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'es.estado' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
+                                    Sprint
+                                    <a href="?orderBy=s.nombre&orderDir=<?php echo $orderBy == 's.nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 's.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($eventos as $evento): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($evento['nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($evento['codigo']); ?></td>
+                                <td><?php echo formatDate($evento['fechaInicio']); ?></td>
+                                <td><?php echo formatDate($evento['fechaFin']); ?></td>
+                                <td><?php echo htmlspecialchars($evento['estado_nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($evento['sprint_nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal para crear evento -->
+    <div class="modal fade" id="crearEventoModal" tabindex="-1" aria-labelledby="crearEventoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearEventoModalLabel">Crear Nuevo Evento</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearEventoForm">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="codigo" class="form-label">Código</label>
+                            <input type="text" class="form-control" id="codigo" name="codigo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                            <input type="datetime-local" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaFin" class="form-label">Fecha de Finalización</label>
+                            <input type="datetime-local" class="form-control" id="fechaFin" name="fechaFin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="sprint" class="form-label">Sprint</label>
+                            <select class="form-select" id="sprint" name="sprint" required>
+                                <?php foreach ($sprints as $sprint): ?>
+                                    <option value="<?php echo $sprint['id']; ?>"><?php echo htmlspecialchars($sprint['nombre']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="crearEventoBtn">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
     function confirmarCerrarSesion() {
         if (confirm("¿Está seguro de que desea cerrar sesión?")) {
             window.location.href = "/";
         }
     }
+
+    document.getElementById('crearEventoBtn').addEventListener('click', function() {
+        var form = document.getElementById('crearEventoForm');
+        var formData = new FormData(form);
+
+        fetch('eventos.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Evento creado con éxito');
+                location.reload(); // Recargar la página para mostrar el nuevo evento
+            } else {
+                alert('Error al crear el evento: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al crear el evento');
+        });
+    });
     </script>
 </body>
 </html>
