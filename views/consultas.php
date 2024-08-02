@@ -8,6 +8,10 @@ if (!isset($_SESSION['user_id'])) {
 require_once("../database.php");
 require_once("../controllers/consultasController.php");
 
+// Obtener datos del usuario desde la sesión
+$nombre_usuario = isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : 'Usuario';
+$rol_usuario = isset($_SESSION['rol_usuario']) ? $_SESSION['rol_usuario'] : 'Rol';
+
 $consultasController = new ConsultasController();
 $resultado = [];
 $error = "";
@@ -132,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php if (!empty($resultado)): ?>
                             <div class="mt-3">
                                 <h3>Resultados</h3>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-dark">
                                     <thead>
                                         <tr>
                                             <?php foreach ($resultado[0] as $key => $value): ?>

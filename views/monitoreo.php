@@ -1,24 +1,24 @@
 <?php
-session_start();
-if(!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+    session_start();
+    if(!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
 
-require_once("../database.php");
-require_once("../controllers/monitoreoController.php");
+    require_once("../database.php");    
+    require_once("../controllers/monitoreoController.php");
 
-$controller = new MonitoreoController($conexion);
-$eventosEnProceso = $controller->getEventosEnProceso();
+    $controller = new MonitoreoController($conexion);
+    $eventosEnProceso = $controller->getEventosEnProceso();
 
-function formatearFecha($fecha) {
-    $datetime = new DateTime($fecha);
-    return $datetime->format('d/m/y H:i');
-}
+    function formatearFecha($fecha) {
+        $datetime = new DateTime($fecha);
+        return $datetime->format('d/m/y H:i');
+    }
 
-// Asumiendo que tienes estas variables definidas en algún lugar
-$nombre_usuario = $_SESSION['nombre_usuario'] ?? 'Usuario';
-$rol_usuario = $_SESSION['rol_usuario'] ?? 'Rol no definido';
+    // Asumiendo que tienes estas variables definidas en algún lugar
+    $nombre_usuario = $_SESSION['nombre_usuario'] ?? 'Usuario';
+    $rol_usuario = $_SESSION['rol_usuario'] ?? 'Rol no definido';
 ?>  
 <!DOCTYPE html> 
 <html lang="es">

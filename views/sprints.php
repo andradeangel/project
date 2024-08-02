@@ -99,7 +99,7 @@
                                 <button class="btn btn-sm btn-danger" onclick="deleteSprint(<?php echo $sprint['id']; ?>)">
                                     <i class="fas fa-trash"></i>
                                 </button>
-                            </td>   
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
