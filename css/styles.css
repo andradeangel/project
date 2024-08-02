@@ -6,7 +6,7 @@ body {
 h2 {
     color: #ffffff;
     font-size: 2em;
-    margin-top: 20px;
+    
 }
 
 .form-control {
@@ -52,6 +52,18 @@ h2 {
     transform: translateX(-50%);
     width: 200px;
     z-index: 1;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.fijarHeader{
+    padding-top: 75px; /* Adjust this value based on your navbar height */
 }
 
 /* Estilos para la barra de navegación */
@@ -119,6 +131,11 @@ h2 {
     background-color: #dc3545 !important;
     border-color: #dc3545 !important;
     color: #ffffff !important;
+}
+
+.card {
+    background-color: #8B0000; /* Rojo oscuro */
+    color: white; /* Texto blanco para mejor contraste */
 }
 
 /* Estilos responsivos */

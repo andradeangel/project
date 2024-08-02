@@ -18,10 +18,11 @@ require_once("../controllers/eventosController.php");
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo">
             <div class="brand-text">
@@ -55,7 +56,7 @@ require_once("../controllers/eventosController.php");
     <div class="container mt-4">
         <div class="row">
             <div class="col-12">
-                <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3 fijarHeader">
                     <h2>Eventos</h2>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearEventoModal">
                         Crear Evento
@@ -102,6 +103,7 @@ require_once("../controllers/eventosController.php");
                                     </a>
                                 </th>
                                 <th>Descripción</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,6 +116,14 @@ require_once("../controllers/eventosController.php");
                                 <td><?php echo htmlspecialchars($evento['estado_nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['sprint_nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning" onclick="editEvent(<?php echo $sprint['id']; ?>)">
+                                    <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" onclick="deleteEvent(<?php echo $sprint['id']; ?>)">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -159,7 +169,7 @@ require_once("../controllers/eventosController.php");
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
                         </div>
                     </form>
                 </div>
@@ -174,34 +184,47 @@ require_once("../controllers/eventosController.php");
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
-    function confirmarCerrarSesion() {
-        if (confirm("¿Está seguro de que desea cerrar sesión?")) {
-            window.location.href = "/";
-        }
-    }
-
-    document.getElementById('crearEventoBtn').addEventListener('click', function() {
-        var form = document.getElementById('crearEventoForm');
-        var formData = new FormData(form);
-
-        fetch('eventos.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Evento creado con éxito');
-                location.reload(); // Recargar la página para mostrar el nuevo evento
-            } else {
-                alert('Error al crear el evento: ' + data.message);
+        function confirmarCerrarSesion() {
+            if (confirm("¿Está seguro de que desea cerrar sesión?")) {
+                window.location.href = "/";
             }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Ocurrió un error al crear el evento');
+        }
+
+        document.getElementById('crearEventoBtn').addEventListener('click', function() {
+            var form = document.getElementById('crearEventoForm');
+            if (form.checkValidity()) {
+                var formData = new FormData(form);
+
+                fetch('eventos.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Evento creado con éxito');
+                        location.reload(); // Recargar la página para mostrar el nuevo evento
+                    } else {
+                        alert('Error al crear el evento: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al crear el evento');
+                });
+            } else {
+                alert('Por favor, complete todos los campos requeridos.');
+            }
         });
-    });
+        document.getElementById('crearEventoForm').addEventListener('submit', function(event) {
+    var fechaInicio = new Date(document.getElementById('fechaInicio').value);
+    var fechaFin = new Date(document.getElementById('fechaFin').value);
+
+    if (fechaFin < fechaInicio) {
+        event.preventDefault();
+        alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
+    }
+});
     </script>
 </body>
 </html>

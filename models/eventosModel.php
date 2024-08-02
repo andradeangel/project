@@ -22,13 +22,19 @@
                 return $result->fetch_all(MYSQLI_ASSOC);
             }
             
-        function crearEvento($conexion, $nombre, $codigo, $fechaInicio, $fechaFin, $sprint, $descripcion) {
+            function crearEvento($conexion, $nombre, $codigo, $fechaInicio, $fechaFin, $sprint, $descripcion) {
+                // Validate dates
+                if (strtotime($fechaFin) < strtotime($fechaInicio)) {
+                    return false;
+                }
+            
                 $sql = "INSERT INTO eventos (nombre, codigo, fechaInicio, fechaFin, sprint, descripcion) 
                         VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conexion->prepare($sql);
                 $stmt->bind_param("ssssss", $nombre, $codigo, $fechaInicio, $fechaFin, $sprint, $descripcion);
                 return $stmt->execute();
-        }
+            }   
+            
         
         function obtenerEventos($conexion, $orderBy = 'e.fechaInicio', $orderDir = 'DESC') {
                 $allowedColumns = ['e.nombre', 'e.codigo', 'es.estado', 's.nombre', 'e.fechaInicio', 'e.fechaFin'];
