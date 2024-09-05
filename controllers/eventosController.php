@@ -15,13 +15,12 @@ function formatDate($date) {
 // Manejar la creación de nuevos eventos
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
-    $codigo = $_POST['codigo'];
     $fechaInicio = $_POST['fechaInicio'];
     $fechaFin = $_POST['fechaFin'];
     $sprint = $_POST['sprint'];
     $descripcion = $_POST['descripcion'];
 
-    $resultado = crearEvento($conexion, $nombre, $codigo, $fechaInicio, $fechaFin, $sprint, $descripcion);
+    $resultado = crearEvento($conexion, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion);
 
     header('Content-Type: application/json');
     if ($resultado) {
