@@ -149,7 +149,7 @@ require_once("../controllers/eventosController.php");
                         </div>
                         <div class="mb-3">
                             <label for="codigo" class="form-label">Código</label>
-                            <input type="text" class="form-control" id="codigo" name="codigo" required>
+                            <input type="text" class="form-control" id="codigo" name="codigo" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
@@ -216,11 +216,21 @@ require_once("../controllers/eventosController.php");
                 alert('Por favor, complete todos los campos requeridos.');
             }
         });
-        document.getElementById('crearEventoForm').addEventListener('submit', function(event) {
-    var fechaInicio = new Date(document.getElementById('fechaInicio').value);
-    var fechaFin = new Date(document.getElementById('fechaFin').value);
+        // Función para generar un código aleatorio
+        function generarCodigoEvento() {
+            return 'EV-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        }
 
-    if (fechaFin < fechaInicio) {
+        // Generar código automáticamente al abrir el modal
+        document.getElementById('crearEventoModal').addEventListener('show.bs.modal', function (event) {
+            document.getElementById('codigo').value = generarCodigoEvento();
+        });
+
+        document.getElementById('crearEventoForm').addEventListener('submit', function(event) {
+        var fechaInicio = new Date(document.getElementById('fechaInicio').value);
+        var fechaFin = new Date(document.getElementById('fechaFin').value);
+
+        if (fechaFin < fechaInicio) {
         event.preventDefault();
         alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
     }
