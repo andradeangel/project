@@ -134,8 +134,9 @@ h2 {
 }
 
 .card {
-    background-color: #8B0000; /* Rojo oscuro */
-    color: white; /* Texto blanco para mejor contraste */
+    background-color: hsl(0, 100%, 94%);
+    color: rgb(0, 0, 0);
+    border: 3px solid #ff4f4f; /* Borde grueso de color rojo */
 }
 
 /* Estilos responsivos */

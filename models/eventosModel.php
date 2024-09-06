@@ -1,8 +1,8 @@
 <?php
         $user_id = $_SESSION['user_id'];
-        $sql = "SELECT usuarios.nombres, usuarios.rol, rol.rol AS nombre_rol 
+        $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
                 FROM usuarios 
-                JOIN rol ON usuarios.rol = rol.id 
+                JOIN rol ON usuarios.idRol = rol.id 
                 WHERE usuarios.id = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("i", $user_id);
@@ -62,7 +62,7 @@
                 $ultimoCodigo = obtenerUltimoCodigo($conexion);
                 $nuevoCodigo = generarSiguienteCodigo($ultimoCodigo);
             
-                $sql = "INSERT INTO eventos (nombre, codigo, fechaInicio, fechaFin, sprint, descripcion) 
+                $sql = "INSERT INTO eventos (nombre, codigo, fechaInicio, fechaFin, idSprint, descripcion) 
                         VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conexion->prepare($sql);
                 $stmt->bind_param("ssssss", $nombre, $nuevoCodigo, $fechaInicio, $fechaFin, $sprint, $descripcion);
@@ -79,8 +79,8 @@
                         es.estado AS estado_nombre,
                         s.nombre AS sprint_nombre, e.descripcion
                         FROM eventos e
-                        LEFT JOIN estado es ON e.estado = es.id
-                        LEFT JOIN sprint s ON e.sprint = s.id
+                        LEFT JOIN estado es ON e.idEstado = es.id
+                        LEFT JOIN sprint s ON e.idSprint = s.id
                         ORDER BY {$orderBy} {$orderDir}";
                 
                 $result = $conexion->query($sql);

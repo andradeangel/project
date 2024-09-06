@@ -7,7 +7,7 @@ class MonitoreoModel {
     }
 
     public function getEventosEnProceso() {
-        $query = "SELECT nombre, codigo, fechaInicio, fechaFin, estado FROM eventos WHERE estado = 2";
+        $query = "SELECT nombre, codigo, fechaInicio, fechaFin, idEstado FROM eventos WHERE idEstado = 2";
         $resultado = $this->conexion->query($query);
         
         if ($resultado) {
