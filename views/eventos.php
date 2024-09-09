@@ -176,7 +176,51 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Modal para editar evento -->
+<div class="modal fade" id="editarEventoModal" tabindex="-1" aria-labelledby="editarEventoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarEventoModalLabel">Editar Evento</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editarEventoForm">
+                    <input type="hidden" id="editarEventoId" name="id">
+                    <div class="mb-3">
+                        <label for="editarNombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editarNombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarFechaInicio" class="form-label">Fecha de Inicio</label>
+                        <input type="datetime-local" class="form-control" id="editarFechaInicio" name="fechaInicio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarFechaFin" class="form-label">Fecha de Finalización</label>
+                        <input type="datetime-local" class="form-control" id="editarFechaFin" name="fechaFin" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarSprint" class="form-label">Sprint</label>
+                        <select class="form-select" id="editarSprint" name="sprint" required>
+                            <?php foreach ($sprints as $sprint): ?>
+                                <option value="<?php echo $sprint['id']; ?>"><?php echo htmlspecialchars($sprint['nombre']); ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editarDescripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="editarDescripcion" name="descripcion" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="editarEventoBtn">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
@@ -223,15 +267,7 @@
             document.getElementById('codigo').value = generarCodigoEvento();
         });
 
-        document.getElementById('crearEventoForm').addEventListener('submit', function(event) {
-        var fechaInicio = new Date(document.getElementById('fechaInicio').value);
-        var fechaFin = new Date(document.getElementById('fechaFin').value);
-
-            if (fechaFin < fechaInicio) {
-                event.preventDefault();
-                alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
-            }
-        });
+        
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

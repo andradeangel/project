@@ -31,7 +31,7 @@
             })
         });
     });
-    
+
     $(document).on('click', '.delete-btn', function() {
         var id = $(this).data('id');
         if (confirm('¿Está seguro de que desea eliminar este evento?')) {
@@ -57,39 +57,50 @@
             });
         }
     });
-    
+
     $('#crearEventoBtn').on('click', function() {
         var form = document.getElementById('crearEventoForm');
         if (form.checkValidity()) {
+            var fechaInicio = new Date(document.getElementById('fechaInicio').value);
+            var fechaFin = new Date(document.getElementById('fechaFin').value);
+    
+            if (fechaFin < fechaInicio) {
+                alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
+                return;
+            }
+    
             var formData = new FormData(form);
             formData.append('accion', 'crear');
-        
-            fetch('eventos.php', {
+    
+            $.ajax({
+                url: 'eventos.php',
                 method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Evento creado con éxito');
-                    location.reload();
-                } else {
-                    alert('Error al crear el evento: ' + data.message);
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        alert('Evento creado con éxito');
+                        location.reload();
+                    } else {
+                        alert('Error al crear el evento: ' + response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('Ocurrió un error al crear el evento');
                 }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Ocurrió un error al crear el evento');
             });
         } else {
             alert('Por favor, complete todos los campos requeridos.');
         }
     });
-    
+
     $('#editarEventoBtn').on('click', function() {
         var formData = new FormData($('#editarEventoForm')[0]);
         formData.append('accion', 'editar');
-    
+
         $.ajax({
             url: 'eventos.php',
             method: 'POST',
@@ -109,30 +120,4 @@
                 alert('Error al actualizar el evento');
             }
         });
-    });
-    
-    $('.delete-btn').on('click', function() {
-        var id = $(this).data('id');
-        if (confirm('¿Está seguro de que desea eliminar este evento?')) {
-            $.ajax({
-                url: 'eventos.php',
-                method: 'POST',
-                data: {
-                    id: id,
-                    accion: 'eliminar'
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert('Evento eliminado con éxito');
-                        location.reload();
-                    } else {
-                        alert('Error al eliminar el evento: ' + response.message);
-                    }
-                },
-                error: function() {
-                    alert('Error al eliminar el evento');
-                }
-            });
-        }
     });
