@@ -1,13 +1,13 @@
 <?php
-session_start();
-if(!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+    session_start();
+    if(!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
 
-require_once("../database.php");
-require_once("../models/eventosModel.php");
-require_once("../controllers/eventosController.php");
+    require_once("../database.php");
+    require_once("../models/eventosModel.php");
+    require_once("../controllers/eventosController.php");
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -117,10 +117,10 @@ require_once("../controllers/eventosController.php");
                                 <td><?php echo htmlspecialchars($evento['sprint_nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="editEvent(<?php echo $sprint['id']; ?>)">
+                                    <button class="btn btn-sm btn-warning edit-btn" data-id="<?php echo $evento['id']; ?>)">
                                     <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-danger" onclick="deleteEvent(<?php echo $sprint['id']; ?>)">
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $evento['id']; ?>)">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
@@ -212,6 +212,7 @@ require_once("../controllers/eventosController.php");
                 alert('Por favor, complete todos los campos requeridos.');
             }
         });
+
         // Función para generar un código aleatorio
         function generarCodigoEvento() {
             return 'EV-' + Math.random().toString(36).substr(2, 6).toUpperCase();
@@ -226,11 +227,17 @@ require_once("../controllers/eventosController.php");
         var fechaInicio = new Date(document.getElementById('fechaInicio').value);
         var fechaFin = new Date(document.getElementById('fechaFin').value);
 
-        if (fechaFin < fechaInicio) {
-        event.preventDefault();
-        alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
-    }
-});
+            if (fechaFin < fechaInicio) {
+                event.preventDefault();
+                alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/eventos.js"></script>
+    <script>
+        console.log('Página de eventos cargada');
     </script>
 </body>
 </html>

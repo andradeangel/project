@@ -8,9 +8,20 @@ if (!isset($_SESSION['user_id'])) {
 require_once("../database.php");
 require_once("../controllers/consultasController.php");
 
-// Obtener datos del usuario desde la sesión
-$nombre_usuario = isset($_SESSION['nombre_usuario']) ? $_SESSION['nombre_usuario'] : 'Usuario';
-$rol_usuario = isset($_SESSION['rol_usuario']) ? $_SESSION['rol_usuario'] : 'Rol';
+// Obtener el nombre de usuario y rol
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+        FROM usuarios 
+        JOIN rol ON usuarios.idRol = rol.id 
+        WHERE usuarios.id = ?";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
+$nombre_usuario = $user['nombres'];
+$rol_usuario = $user['nombre_rol'];
 
 $consultasController = new ConsultasController();
 $resultado = [];

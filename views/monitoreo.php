@@ -5,8 +5,25 @@
         exit();
     }
 
-    require_once("../database.php");    
+    require_once("../database.php");
+    require_once("../models/eventosModel.php");
+    require_once("../models/monitoreoModel.php");
     require_once("../controllers/monitoreoController.php");
+
+    // Obtener el nombre de usuario y rol
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+            FROM usuarios 
+            JOIN rol ON usuarios.idRol = rol.id 
+            WHERE usuarios.id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    $nombre_usuario = $user['nombres'];
+    $rol_usuario = $user['nombre_rol'];
 
     $controller = new MonitoreoController($conexion);
     $eventosEnProceso = $controller->getEventosEnProceso();
@@ -15,11 +32,7 @@
         $datetime = new DateTime($fecha);
         return $datetime->format('d/m/y H:i');
     }
-
-    // Asumiendo que tienes estas variables definidas en algún lugar
-    $nombre_usuario = $_SESSION['nombre_usuario'] ?? 'Usuario';
-    $rol_usuario = $_SESSION['rol_usuario'] ?? 'Rol no definido';
-?>  
+?>
 <!DOCTYPE html> 
 <html lang="es">
 <head>
