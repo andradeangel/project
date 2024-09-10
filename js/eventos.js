@@ -48,11 +48,12 @@
                         alert('Evento eliminado con éxito');
                         location.reload();
                     } else {
-                        alert('Error al eliminar el evento: ' + response.message);
+                        alert(response.message);
                     }
                 },
-                error: function() {
-                    alert('Error al eliminar el evento');
+                error: function(xhr, status, error) {
+                    console.error('Error en la solicitud AJAX:', error);
+                    alert('Error al eliminar el evento: ' + error);
                 }
             });
         }

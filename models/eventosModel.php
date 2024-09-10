@@ -109,7 +109,12 @@
         if ($success) {
             return ["success" => true, "message" => "Evento eliminado con éxito"];
         } else {
-            return ["success" => false, "message" => "Error al eliminar el evento: " . $stmt->error];
+            // Verificar si el error es debido a una restricción de clave foránea
+            if ($conexion->error == 1451) {
+                return ["success" => false, "message" => "No se puede eliminar el evento porque hay jugadores registrados en él."];
+            } else {
+                return ["success" => false, "message" => "Error al eliminar el evento: " . $stmt->error];
+            }
         }
     }
             
