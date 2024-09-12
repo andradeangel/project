@@ -36,8 +36,12 @@ class SprintModel {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("sssssss", $data['nombre'], $data['juego1'], $data['juego2'], 
                           $data['juego3'], $data['juego4'], $data['juego5'], $data['juego6']);
-        $stmt->execute();
-        return $this->db->insert_id;
+        $success = $stmt->execute();
+        if ($success) {
+            return ["success" => true, "message" => "Sprint creado con éxito", "id" => $this->db->insert_id];
+        } else {
+            return ["success" => false, "message" => "Error al crear el sprint: " . $stmt->error];
+        }
     }
 
     public function updateSprint($id, $data) {
@@ -47,14 +51,24 @@ class SprintModel {
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("sssssssi", $data['nombre'], $data['juego1'], $data['juego2'], 
                           $data['juego3'], $data['juego4'], $data['juego5'], $data['juego6'], $id);
-        return $stmt->execute();
+        $success = $stmt->execute();
+        if ($success) {
+            return ["success" => true, "message" => "Sprint actualizado con éxito"];
+        } else {
+            return ["success" => false, "message" => "Error al actualizar el sprint: " . $stmt->error];
+        }
     }
 
     public function deleteSprint($id) {
         $query = "DELETE FROM sprint WHERE id = ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        $success = $stmt->execute();
+        if ($success) {
+            return ["success" => true, "message" => "Sprint eliminado con éxito"];
+        } else {
+            return ["success" => false, "message" => "Error al eliminar el sprint: " . $this->db->error];
+        }
     }
 
     public function getAllJuegos() {

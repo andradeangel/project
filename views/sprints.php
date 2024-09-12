@@ -10,9 +10,16 @@
     require_once("../models/sprintsModel.php");
     require_once("../controllers/sprintsController.php");
 
+
     $controller = new SprintController($conexion);
     $sprints = $controller->getAllSprints();
     $juegos = $controller->getAllJuegos();
+
+    // Obtener nombre de usuario y rol (asumiendo que están definidos en eventosModel.php)
+    $user_id = $_SESSION['user_id'];
+    $user = obtenerUsuario($conexion, $user_id);
+    $nombre_usuario = $user['nombres'];
+    $rol_usuario = $user['nombre_rol'];
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -93,10 +100,10 @@
                             <td><?php echo htmlspecialchars($sprint['juego5']); ?></td>
                             <td><?php echo htmlspecialchars($sprint['juego6']); ?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning" onclick="editSprint(<?php echo $sprint['id']; ?>)">
+                                <button class="btn btn-sm btn-warning edit-btn" data-id="<?php echo $sprint['id']; ?>">
                                     <i class="fas fa-edit"></i>
                                 </button>
-                                <button class="btn btn-sm btn-danger" onclick="deleteSprint(<?php echo $sprint['id']; ?>)">
+                                <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $sprint['id']; ?>">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </td>
@@ -108,34 +115,121 @@
         </div>
     </div>
 
-    <!-- Modal para añadir/editar sprint -->
+    <!-- Modal para editar sprint -->
     <div class="modal fade" id="sprintModal" tabindex="-1" aria-labelledby="sprintModalLabel" aria-hidden="true">
-        <!-- ... (el contenido del modal permanece igual) ... -->
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="sprintModalLabel">Editar Sprint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editSprintForm">
+                        <input type="hidden" id="sprintId" name="id">
+                        <div class="mb-3">
+                            <label for="sprintNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="sprintNombre" name="nombre" required>
+                        </div>
+                        <?php for ($i = 1; $i <= 6; $i++): ?>
+                        <div class="mb-3">
+                            <label for="juego<?php echo $i; ?>" class="form-label">Juego <?php echo $i; ?></label>
+                            <select class="form-select" id="juego<?php echo $i; ?>" name="juego<?php echo $i; ?>">
+                                <?php foreach ($juegos as $juego): ?>
+                                    <option value="<?php echo $juego['id']; ?>"><?php echo htmlspecialchars($juego['nombre']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php endfor; ?>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveSprintBtn">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script>
-    function confirmarCerrarSesion() {
-        if (confirm("¿Está seguro de que desea cerrar sesión?")) {
-            window.location.href = "/";
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../js/sprints.js"></script><script>
+        function confirmarCerrarSesion() {
+            if (confirm("¿Está seguro de que desea cerrar sesión?")) {
+                window.location.href = "/";
+            }
         }
-    }
 
-    function editSprint(id) {
-        // Aquí deberías cargar los datos del sprint y mostrarlos en el modal
-        $('#sprintId').val(id);
-        $('#sprintModal').modal('show');
-    }
-
-    function deleteSprint(id) {
-        if (confirm("¿Está seguro de que desea eliminar este sprint?")) {
-            // Aquí deberías hacer una llamada AJAX para eliminar el sprint
+        function editSprint(id) {
+            $.ajax({
+                url: '../controllers/sprintsController.php',
+                type: 'POST',
+                data: {action: 'get', id: id},
+                dataType: 'json',
+                success: function(sprint) {
+                    $('#sprintId').val(sprint.id);
+                    $('#sprintNombre').val(sprint.nombre);
+                    $('#juego1').val(sprint.idJuego1);
+                    $('#juego2').val(sprint.idJuego2);
+                    $('#juego3').val(sprint.idJuego3);
+                    $('#juego4').val(sprint.idJuego4);
+                    $('#juego5').val(sprint.idJuego5);
+                    $('#juego6').val(sprint.idJuego6);
+                    $('#sprintModal').modal('show');
+                }
+            });
         }
-    }
 
-    function saveSprint() {
-        // Aquí deberías hacer una llamada AJAX para guardar o actualizar el sprint
-        $('#sprintModal').modal('hide');
-    }
+        function deleteSprint(id) {
+            if (confirm("¿Está seguro de que desea eliminar este sprint?")) {
+                $.ajax({
+                    url: '../controllers/sprintsController.php',
+                    type: 'POST',
+                    data: {action: 'delete', id: id},
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            alert('Error al eliminar el sprint');
+                        }
+                    }
+                });
+            }
+        }
+
+        function saveSprint() {
+            var formData = {
+                action: $('#sprintId').val() ? 'update' : 'create',
+                id: $('#sprintId').val(),
+                nombre: $('#sprintNombre').val(),
+                juego1: $('#juego1').val(),
+                juego2: $('#juego2').val(),
+                juego3: $('#juego3').val(),
+                juego4: $('#juego4').val(),
+                juego5: $('#juego5').val(),
+                juego6: $('#juego6').val()
+            };
+
+            $.ajax({
+                url: '../controllers/sprintsController.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#sprintModal').modal('hide');
+                        location.reload();
+                    } else {
+                        alert('Error al guardar el sprint');
+                    }
+                }
+            });
+
+            function confirmarCerrarSesion() {
+                if (confirm("¿Está seguro de que desea cerrar sesión?")) {
+                    window.location.href = "/";
+                }
+            }
+        }
     </script>
 </body>
 </html>

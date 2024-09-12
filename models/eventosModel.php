@@ -117,7 +117,19 @@
             }
         }
     }
-            
+
+    function obtenerUsuario($conexion, $user_id) {
+        $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+                FROM usuarios 
+                JOIN rol ON usuarios.idRol = rol.id 
+                WHERE usuarios.id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+    
     function obtenerEventos($conexion, $orderBy = 'e.fechaInicio', $orderDir = 'DESC') {
         $allowedColumns = ['e.nombre', 'e.codigo', 'es.estado', 's.nombre', 'e.fechaInicio', 'e.fechaFin'];
         $orderBy = in_array($orderBy, $allowedColumns) ? $orderBy : 'e.fechaInicio';
