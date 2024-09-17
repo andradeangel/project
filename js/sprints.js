@@ -57,6 +57,20 @@ $(document).ready(function() {
         }
     });
 
+    // Manejar el clic en el icono de ordenamiento
+    $('#sortNombre').on('click', function(e) {
+        e.preventDefault();
+        var currentSort = $(this).data('sort');
+        var newSort = currentSort === 'asc' ? 'desc' : 'asc';
+        $(this).data('sort', newSort);
+        
+        // Cambiar el icono
+        $(this).find('i').removeClass('fa-sort fa-sort-up fa-sort-down')
+               .addClass(newSort === 'asc' ? 'fa-sort-up' : 'fa-sort-down');
+        
+        loadSprints('nombre', newSort);
+    });
+
     $('#crearSprintBtn').on('click', function() {
         var form = document.getElementById('crearSprintForm');
         if (form.checkValidity()) {
@@ -112,6 +126,32 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#saveNewSprintBtn').on('click', function() {
+        var formData = $('#createSprintForm').serialize();
+        formData += '&accion=crear';
+
+        $.ajax({
+            url: '../controllers/sprintsController.php',
+            method: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    alert('Sprint creado con éxito');
+                    $('#createSprintModal').modal('hide');
+                    location.reload();
+                } else {
+                    alert('Error al crear el sprint: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error en la solicitud AJAX:', error);
+                alert('Error al crear el sprint');
+            }
+        });
+    });
+
     // Manejar el guardado de cambios
     $('#saveSprintBtn').on('click', function() {
         var formData = $('#editSprintForm').serialize();

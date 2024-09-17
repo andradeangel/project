@@ -2,6 +2,16 @@
     require_once("../database.php");
     require_once("../models/sprintsModel.php");
 
+    // Habilitar el registro de errores
+    ini_set('display_errors', 1);
+    ini_set('log_errors', 1);
+    error_reporting(E_ALL);
+
+    // Registrar la solicitud recibida
+    error_log("Método de la solicitud: " . $_SERVER['REQUEST_METHOD']);
+    error_log("Datos GET: " . print_r($_GET, true));
+    error_log("Datos POST: " . print_r($_POST, true));
+
     class SprintController {
         private $model;
 
@@ -34,12 +44,10 @@
         }
     }
 
-    $model = new SprintModel($conexion);
-
+    //$model = new SprintModel($conexion);
+    $controller = new SprintController($conexion);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller = new SprintController($conexion);
-        
         $accion = $_POST['accion'] ?? '';
         $resultado = ['success' => false, 'message' => 'Acción no válida'];
     
@@ -48,12 +56,28 @@
     
         try {
             switch ($accion) {
+                case 'listar':
+                    $sortBy = $_GET['sortBy'] ?? 'nombre';
+                    $sortOrder = $_GET['sortOrder'] ?? 'asc';
+                    error_log("Ordenando por: $sortBy, Orden: $sortOrder");
+                    $sprints = $controller->getAllSprints($sortBy, $sortOrder);
+                    $resultado = ['success' => true, 'data' => $sprints];
+                    break;
                 case 'eliminar':
                     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
                     $resultado = $controller->deleteSprint($id);
                     break;
                 case 'crear':
-                    $resultado = $controller->createSprint($_POST);
+                    $data = [
+                        'nombre' => $_POST['nombre'],
+                        'juego1' => $_POST['juego1'],
+                        'juego2' => $_POST['juego2'],
+                        'juego3' => $_POST['juego3'],
+                        'juego4' => $_POST['juego4'],
+                        'juego5' => $_POST['juego5'],
+                        'juego6' => $_POST['juego6'],
+                    ];
+                    $resultado = $controller->createSprint($data);
                     break;
                 case 'obtener':
                     $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
@@ -88,9 +112,8 @@
         header('Content-Type: application/json');
         echo json_encode($resultado);   
         exit;
-    
-
-        $sprints = $model->getAllSprints();
-        $juegos = $model->getAllJuegos();
     }
+    // Si llegamos aquí, significa que no se manejó la solicitud
+    header('HTTP/1.1 400 Bad Request');
+    echo json_encode(['success' => false, 'message' => 'Solicitud no válida']);
 ?>

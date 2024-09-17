@@ -118,7 +118,7 @@
                                 <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
                                 <td>
                                     <button class="btn btn-sm bg-primary edit-btn" data-id="<?php echo $evento['id']; ?>)">
-                                    <i class="fas fa-edit"></i>
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                     <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $evento['id']; ?>">
                                         <i class="fas fa-trash"></i>

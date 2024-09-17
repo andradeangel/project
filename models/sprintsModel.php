@@ -6,7 +6,11 @@ class SprintModel {
         $this->db = $db;
     }
 
-    public function getAllSprints() {
+    public function getAllSprints($sortBy = 'nombre', $sortOrder = 'ASC') {
+        $allowedColumns = ['nombre', 'idJuego1', 'idJuego2', 'idJuego3', 'idJuego4', 'idJuego5', 'idJuego6'];
+        $sortBy = in_array($sortBy, $allowedColumns) ? $sortBy : 'nombre';
+        $sortOrder = strtoupper($sortOrder) === 'DESC' ? 'DESC' : 'ASC';
+    
         $query = "SELECT s.id, s.nombre, 
                          j1.nombre as juego1, j2.nombre as juego2, j3.nombre as juego3, 
                          j4.nombre as juego4, j5.nombre as juego5, j6.nombre as juego6
@@ -16,7 +20,9 @@ class SprintModel {
                   LEFT JOIN juegos j3 ON s.idJuego3 = j3.id
                   LEFT JOIN juegos j4 ON s.idJuego4 = j4.id
                   LEFT JOIN juegos j5 ON s.idJuego5 = j5.id
-                  LEFT JOIN juegos j6 ON s.idJuego6 = j6.id";
+                  LEFT JOIN juegos j6 ON s.idJuego6 = j6.id
+                  ORDER BY s.$sortBy $sortOrder";
+        
         $result = $this->db->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
     }

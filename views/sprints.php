@@ -72,14 +72,19 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-3 fijarHeader">
                     <h2>Sprints</h2>
-                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addSprintModal">
-                        Crear Sprint
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createSprintModal">
+                        Crear Sprint    
                     </button>
                 </div>
                 <table class="table table-dark table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>
+                                Nombre
+                                <a href="#" id="sortNombre" data-sort="asc" class="text-white">
+                                    <i class="fas fa-sort"></i>
+                                </a>
+                            </th>
                             <th>Juego 1</th>
                             <th>Juego 2</th>
                             <th>Juego 3</th>
@@ -89,7 +94,7 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="sprintsTableBody">
                         <?php foreach($sprints as $sprint): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($sprint['nombre']); ?></td>
@@ -100,7 +105,7 @@
                             <td><?php echo htmlspecialchars($sprint['juego5']); ?></td>
                             <td><?php echo htmlspecialchars($sprint['juego6']); ?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning edit-btn" data-id="<?php echo $sprint['id']; ?>">
+                                <button class="btn btn-sm bg-primary edit-btn" data-id="<?php echo $sprint['id']; ?>">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $sprint['id']; ?>">
@@ -111,6 +116,40 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear sprint -->
+    <div class="modal fade" id="createSprintModal" tabindex="-1" aria-labelledby="createSprintModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createSprintModalLabel">Crear Nuevo Sprint</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="createSprintForm">
+                        <div class="mb-3">
+                            <label for="createSprintNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="createSprintNombre" name="nombre" required>
+                        </div>
+                        <?php for ($i = 1; $i <= 6; $i++): ?>
+                        <div class="mb-3">
+                            <label for="createJuego<?php echo $i; ?>" class="form-label">Juego <?php echo $i; ?></label>
+                            <select class="form-select" id="createJuego<?php echo $i; ?>" name="juego<?php echo $i; ?>" placeholder="Seleccione un juego">
+                                <?php foreach ($juegos as $juego): ?>
+                                    <option value="<?php echo $juego['id']; ?>"><?php echo htmlspecialchars($juego['nombre']); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php endfor; ?>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="saveNewSprintBtn">Guardar</button>
+                </div>
             </div>
         </div>
     </div>
