@@ -2,6 +2,10 @@
     require_once("../database.php");
     require_once("../models/sprintsModel.php");
 
+    $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'nombre';
+    $orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
+
+    
     // Habilitar el registro de errores
     ini_set('display_errors', 1);
     ini_set('log_errors', 1);
@@ -46,7 +50,7 @@
 
     //$model = new SprintModel($conexion);
     $controller = new SprintController($conexion);
-
+    $sprints = $controller->getAllSprints($orderBy, $orderDir);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $accion = $_POST['accion'] ?? '';
         $resultado = ['success' => false, 'message' => 'Acción no válida'];

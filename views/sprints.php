@@ -81,8 +81,8 @@
                         <tr>
                             <th>
                                 Nombre
-                                <a href="#" id="sortNombre" data-sort="asc" class="text-white">
-                                    <i class="fas fa-sort"></i>
+                                <a href="?orderBy=nombre&orderDir=<?php echo $orderBy == 'nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                    <?php echo $orderBy == 'nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
                                 </a>
                             </th>
                             <th>Juego 1</th>
