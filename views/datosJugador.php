@@ -25,7 +25,7 @@
                         <input type="text" class="form-control form-control-lg" id="name" name="nombre" placeholder="Nombre" required>
                     </div>
                     <div class="form-group">
-                        <input type="number" class="form-control form-control-lg" id="age" name="edad" placeholder="Edad" required>
+                        <input type="number" class="form-control form-control-lg" id="age" name="edad" placeholder="Edad" required min="15" max="60">
                     </div>
                     <div class="form-group">
                         <select class="form-control form-control-lg" id="gender" name="genero">
