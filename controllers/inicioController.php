@@ -13,7 +13,7 @@ if(isset($_POST["btnAccess"])) {
             if($dato->idEstado == 2) { // Verificar si el evento está activo
                 $_SESSION['evento_id'] = $dato->id;  // Guardamos el ID del evento en la sesión
                 $_SESSION['evento_nombre'] = $dato->nombre;  // Guardamos el nombre del evento en la sesión
-                header("Location: views/evento.php");
+                header("Location: views/datosJugador.php");
                 exit();
             } else {
                 switch($dato->idEstado) {

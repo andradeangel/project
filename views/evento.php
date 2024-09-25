@@ -1,7 +1,11 @@
-<?php session_start();
+<?php 
+    require_once '../database.php'; // Incluimos la conexión a la base de datos
     require_once '../models/eventoModel.php';
+    //require_once '../controllers/inicioController.php';
 
-    $evento_model = new EventoModel();
+    session_start();
+    
+    $evento_model = new EventoModel($conexion);
     $tematica = $evento_model->getTematica($_SESSION['evento_id']);
 ?>
 
@@ -26,7 +30,9 @@
         <div class="evento-forms text-center">
             <div id="evento-container" class="">
                 <h2 class="text-light">Evento: <?= $_SESSION['evento_nombre'] ?></h2>
-                <h2 class="text-light">Temática: <?= $tematica ?></h2>                <div>
+                <h2 class="text-light">Temática: <?= $tematica ?></h2>                
+                
+                <div>
                     Lista
                 </div>
 
