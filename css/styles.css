@@ -6,7 +6,6 @@ body {
 h2 {
     color: #ffffff;
     font-size: 2em;
-    
 }
 
 .form-control {
@@ -62,7 +61,7 @@ h2 {
     z-index: 1030;
 }
 
-.fijarHeader{
+.fijarHeader {
     padding-top: 75px; /* Adjust this value based on your navbar height */
 }
 
@@ -134,9 +133,23 @@ h2 {
 }
 
 .card {
-    background-color: hsl(0, 100%, 94%);
-    color: rgb(0, 0, 0);
-    border: 3px solid #ff4f4f; /* Borde grueso de color rojo */
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para la lista de juegos */
+.list-group-item {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+/* Estilos para el modal */
+.modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
 }
 
 /* Estilos responsivos */

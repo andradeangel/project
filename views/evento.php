@@ -1,12 +1,5 @@
 <?php 
-    require_once '../database.php'; // Incluimos la conexión a la base de datos
-    require_once '../models/eventoModel.php';
-    //require_once '../controllers/inicioController.php';
-
-    session_start();
-    
-    $evento_model = new EventoModel($conexion);
-    $tematica = $evento_model->getTematica($_SESSION['evento_id']);
+    require_once '../controllers/eventoController.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,17 +16,18 @@
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="logo">
-            <img src="../images/logo.png" class="logo-img" alt="Logo de la pagina">
-        </div>
-
-        <div class="evento-forms text-center">
-            <div id="evento-container" class="">
+        
+        <div class="evento-forms text-center mt-5">
+            <div id="evento-container" class="card p-4 bg-dark text-light">
                 <h2 class="text-light">Evento: <?= $_SESSION['evento_nombre'] ?></h2>
                 <h2 class="text-light">Temática: <?= $tematica ?></h2>                
-                
-                <div>
-                    Lista
+
+                <div class="mt-4">
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($juegos as $juego): ?>
+                            <li class="list-group-item bg-dark text-light"><?= $juego ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
 
                 <form id="evento-form" class="mt-4" method="POST" action="">
@@ -44,7 +38,7 @@
         </div>
     </div>
     
-    <!-- Modal de talba de posiciones -->
+    <!-- Modal de tabla de posiciones -->
     <div class="modal fade" id="modalTablaPosiciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark text-light">
@@ -53,6 +47,8 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- Aquí va el contenido de la tabla de posiciones -->
+                </div>
             </div>
         </div>
     </div>
@@ -71,12 +67,11 @@
         document.querySelector('button[onclick="goBack()"]').addEventListener('click', function(event) {
             event.preventDefault(); // Evitar que se ejecute la función goBack() inmediatamente
             if (confirm("¿Estás seguro de abandonar el evento?")) {
-            window.location.href = '../index.html';
-            // Agregamos un parámetro para evitar que se guarde la página en el historial del navegador
-            window.location.replace('/', '_self');
+                window.location.href = '../index.html';
+                // Agregamos un parámetro para evitar que se guarde la página en el historial del navegador
+                window.location.replace('/', '_self');
             }
         });
     </script>
-
 </body>
 </html>
