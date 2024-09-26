@@ -16,8 +16,7 @@
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-        
-        <div class="evento-forms text-center mt-5">
+        <div class="evento-forms text-center">
             <div id="evento-container" class="card p-4 bg-dark text-light">
                 <h2 class="text-light">Evento: <?= $_SESSION['evento_nombre'] ?></h2>
                 <h2 class="text-light">Temática: <?= $tematica ?></h2>                
@@ -25,7 +24,16 @@
                 <div class="mt-4">
                     <ul class="list-group list-group-flush">
                         <?php foreach ($juegos as $juego): ?>
-                            <li class="list-group-item bg-dark text-light"><?= $juego ?></li>
+                            <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-success btn-sm">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <span><img src="../images/key.png" alt="Imagen de llave"> <?= $juego ?></span>
+                                <span>
+                                    <img src="../images/padlock-closed.png" alt="Candado cerrado" class="img-fluid">
+                                    <img src="../images/padlock-open.png" alt="Candado abierto" class="img-fluid">
+                                </span>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

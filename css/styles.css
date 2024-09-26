@@ -133,10 +133,10 @@ h2 {
 }
 
 .card {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    border: 1px solid #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffe4e4;
+    color: #000000;
+    border: 2px solid #ff2424;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Estilos para la lista de juegos */
@@ -150,6 +150,9 @@ h2 {
 .modal-content {
     background-color: #1e1e1e;
     color: #ffffff;
+}
+.list-group img{
+    width: 20px;
 }
 
 /* Estilos responsivos */
