@@ -3,3 +3,5 @@
 [2024-09-26 16:59:01] [info] Usuario con ID 1 ha iniciado sesión exitosamente
 [2024-09-26 16:59:49] [info] Usuario con ID 1 ha iniciado sesión exitosamente
 [2024-09-26 17:00:32] [info] Usuario con ID 1 ha iniciado sesión exitosamente
+[2024-09-26 21:32:01] [warning] Intento de inicio de sesión fallido para el usuario con CI: 1234567
+[2024-09-26 21:32:06] [info] Usuario con ID 1 ha iniciado sesión exitosamente

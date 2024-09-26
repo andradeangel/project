@@ -46,5 +46,20 @@ class EventoModel {
         }
         return $juegos;
     }
+    public function getJugadores($evento_id) {
+        $sql = "SELECT j.nombres, j.puntaje 
+                FROM eventos e 
+                INNER JOIN jugadores j ON e.id = j.idEvento 
+                WHERE e.id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $evento_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $jugadores = array();
+        while ($fila = $result->fetch_assoc()) {
+            $jugadores[] = $fila;
+        }
+        return $jugadores;
+    }
 }
 ?>
