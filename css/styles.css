@@ -151,7 +151,7 @@ h2 {
     background-color: #1e1e1e;
     color: #ffffff;
 }
-.list-group img{
+.list-group img, .top-group img{
     width: 20px;
 }
 

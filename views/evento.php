@@ -46,58 +46,63 @@
         </div>
     </div>
     
-<!-- Modal de tabla de posiciones -->
-<div class="modal fade" id="modalTablaPosiciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tabla de posiciones</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th>Puesto</th>
-                            <th>Nombre</th>
-                            <th>Puntaje</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tablaPosicionesBody">
-    <?php $i = 1; foreach ($_SESSION['jugadores'] as $jugador) { ?>
-        <tr>
-            <td><?= $i ?></td>
-            <td><?= htmlspecialchars($jugador['nombres']) ?></td>
-            <td><?= htmlspecialchars($jugador['puntaje']) ?></td>
-        </tr>
-        <?php $i++; ?>
-    <?php } ?>
-</tbody>
-                </table>
+    <!-- Modal de tabla de posiciones -->
+    <div class="modal fade" id="modalTablaPosiciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tabla de posiciones</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Puesto</th>
+                                <th>Nombre</th>
+                                <th>Puntaje</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaPosicionesBody" class="top-group">
+                            <?php $i = 1; foreach ($_SESSION['jugadores'] as $jugador) { ?>
+                                <tr>
+                                    <td><?= $i ?></td>
+                                    <td><?= htmlspecialchars($jugador['nombres']) ?></td>
+                                    <td><?= htmlspecialchars($jugador['puntaje']) ?></td>
+                                </tr>
+                                <?php $i++; ?>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
         // Mostrar modal al hacer clic en "Mostrar tabla de posiciones"
         document.querySelector('button[onclick=""]').addEventListener('click', function() {
     $('#modalTablaPosiciones').modal('show');
     var tabla = $('#tablaPosicionesBody');
     tabla.empty();
     var jugadores = <?= json_encode($_SESSION['jugadores']) ?>;
+    jugadores.sort(function(a, b) {
+        return b.puntaje - a.puntaje; // Ordenar de mayor a menor según puntaje
+    });
     $.each(jugadores, function(index, jugador) {
         tabla.append('<tr>' +
             '<td>' + (index + 1) + '</td>' +
             '<td>' + jugador.nombres + '</td>' +
-            '<td>' + jugador.puntaje + '</td>' +
+            '<td><img src="../images/key.png" alt="Imagen de llave" class="img-fluid"> ' + jugador.puntaje + '</td>' +
             '</tr>');
     });
 });
+
 
         // Mostrar mensaje de confirmación al hacer clic en "Abandonar juego"
         document.querySelector('button[onclick="goBack()"]').addEventListener('click', function(event) {

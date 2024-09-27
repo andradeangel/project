@@ -1,6 +1,7 @@
 <?php
     require_once("../database.php");
     require_once("../models/eventosModel.php");
+    require_once("../controllers/actualizarEstadosEventos.php");
 
     $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'e.fechaInicio';
     $orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'DESC';

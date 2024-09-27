@@ -60,6 +60,6 @@ class EventoModel {
             $jugadores[] = $fila;
         }
         return $jugadores;
-    }
+    }   
 }
 ?>
