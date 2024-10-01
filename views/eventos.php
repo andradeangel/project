@@ -69,7 +69,7 @@
                                 <th>
                                     Nombre
                                     <a href="?orderBy=e.nombre&orderDir=<?php echo $orderBy == 'e.nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
-                                        <?php echo $orderBy == 'e.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                        <?php echo $orderBy == 'e.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵';?>
                                     </a>
                                 </th>
                                 <th>
@@ -268,6 +268,18 @@
             document.getElementById('codigo').value = generarCodigoEvento();
         });
 
+        setInterval(function() {
+  $.ajax({
+    type: 'GET',
+    url: '../controllers/actualizarEstadosEventos.php', // Cambia la dirección aquí
+    success: function(data) {
+      console.log('Actualización de estados de eventos realizada con éxito');
+    },
+    error: function(xhr, status, error) {
+      console.error('Error al actualizar estados de eventos:', error);
+    }
+  });
+}, 60000); // 120000 milisegundos = 2 minutos
         
     </script>
 
