@@ -269,18 +269,17 @@
         });
 
         setInterval(function() {
-  $.ajax({
-    type: 'GET',
-    url: '../controllers/actualizarEstadosEventos.php', // Cambia la dirección aquí
-    success: function(data) {
-      console.log('Actualización de estados de eventos realizada con éxito');
-    },
-    error: function(xhr, status, error) {
-      console.error('Error al actualizar estados de eventos:', error);
-    }
-  });
-}, 60000); // 120000 milisegundos = 2 minutos
-        
+            $.ajax({
+                type: 'GET',
+                url: '../controllers/actualizarEstadosEventos.php', // Cambia la dirección aquí
+                success: function(data) {
+                console.log('Actualización de estados de eventos realizada con éxito');
+                },
+                error: function(xhr, status, error) {
+                console.error('Error al actualizar estados de eventos:', error);
+                }
+            });
+        }, 60000);
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -5,7 +5,6 @@
     $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'nombre';
     $orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
 
-    
     // Habilitar el registro de errores
     ini_set('display_errors', 1);
     ini_set('log_errors', 1);

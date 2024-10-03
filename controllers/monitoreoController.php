@@ -1,15 +1,15 @@
 <?php
-require_once('../models/monitoreoModel.php');
+    require_once('../models/monitoreoModel.php');
 
-class MonitoreoController {
-    private $model;
+    class MonitoreoController {
+        private $model;
 
-    public function __construct($conexion) {
-        $this->model = new MonitoreoModel($conexion);
+        public function __construct($conexion) {
+            $this->model = new MonitoreoModel($conexion);
+        }
+
+        public function getEventosEnProceso() {
+            return $this->model->getEventosEnProceso();
+        }
     }
-
-    public function getEventosEnProceso() {
-        return $this->model->getEventosEnProceso();
-    }
-}
 ?>

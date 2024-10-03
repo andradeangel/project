@@ -1,68 +1,69 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-require_once("../database.php");
-require_once("../controllers/consultasController.php");
-
-// Obtener el nombre de usuario y rol
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
-        FROM usuarios 
-        JOIN rol ON usuarios.idRol = rol.id 
-        WHERE usuarios.id = ?";
-$stmt = $conexion->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-
-$nombre_usuario = $user['nombres'];
-$rol_usuario = $user['nombre_rol'];
-
-$consultasController = new ConsultasController();
-$resultado = [];
-$error = "";
-$generos = $consultasController->obtenerGeneros();
-$eventos = $consultasController->obtenerEventos();
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $consulta = $_POST["consulta"];
-    $genero = $_POST["genero"];
-    $evento = $_POST["evento"];
-
-    switch ($consulta) {
-        case 'genero_ultimo_mes':
-            $sql = "SELECT genero.genero, COUNT(jugadores.id) AS cantidad
-                    FROM jugadores
-                    JOIN genero ON jugadores.genero = genero.id
-                    WHERE jugadores.evento = $evento AND MONTH(CURDATE()) = MONTH(jugadores.fecha)
-                    GROUP BY genero.genero";
-            break;
-        case 'evento_especifico':
-            $sql = "SELECT eventos.nombre, COUNT(jugadores.id) AS cantidad
-                    FROM jugadores
-                    JOIN eventos ON jugadores.evento = eventos.id
-                    WHERE eventos.id = $evento
-                    GROUP BY eventos.nombre";
-            break;
-        default:
-            $sql = "";
-            break;
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
     }
 
-    if (!empty($sql)) {
-        $resultado = $consultasController->ejecutarConsulta($sql);
-        if (isset($resultado["error"])) {
-            $error = $resultado["error"];
-            $resultado = [];
+    require_once("../database.php");
+    require_once("../controllers/consultasController.php");
+
+    // Obtener el nombre de usuario y rol
+    $user_id = $_SESSION['user_id'];
+    $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+            FROM usuarios 
+            JOIN rol ON usuarios.idRol = rol.id 
+            WHERE usuarios.id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    $nombre_usuario = $user['nombres'];
+    $rol_usuario = $user['nombre_rol'];
+
+    $consultasController = new ConsultasController();
+    $resultado = [];
+    $error = "";
+    $generos = $consultasController->obtenerGeneros();
+    $eventos = $consultasController->obtenerEventos();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $consulta = $_POST["consulta"];
+        $genero = $_POST["genero"];
+        $evento = $_POST["evento"];
+
+        switch ($consulta) {
+            case 'genero_ultimo_mes':
+                $sql = "SELECT genero.genero, COUNT(jugadores.id) AS cantidad
+                        FROM jugadores
+                        JOIN genero ON jugadores.genero = genero.id
+                        WHERE jugadores.evento = $evento AND MONTH(CURDATE()) = MONTH(jugadores.fecha)
+                        GROUP BY genero.genero";
+                break;
+            case 'evento_especifico':
+                $sql = "SELECT eventos.nombre, COUNT(jugadores.id) AS cantidad
+                        FROM jugadores
+                        JOIN eventos ON jugadores.evento = eventos.id
+                        WHERE eventos.id = $evento
+                        GROUP BY eventos.nombre";
+                break;
+            default:
+                $sql = "";
+                break;
+        }
+
+        if (!empty($sql)) {
+            $resultado = $consultasController->ejecutarConsulta($sql);
+            if (isset($resultado["error"])) {
+                $error = $resultado["error"];
+                $resultado = [];
+            }
         }
     }
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
