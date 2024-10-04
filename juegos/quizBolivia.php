@@ -4,34 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz sobre Bolivia</title>
+    <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
-        
-        .quiz-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #343a40; /* Fondo oscuro para la tarjeta */
+        body {
+            font-family: 'VT323', monospace;
+            background-image: url('https://convenioandresbello.org/wp-content/uploads/2020/07/noticia49_bolivia_01.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .card-title, .card-text {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra para el texto */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+            max-width: 800px; /* Ajusta este valor según tus necesidades */
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .quiz-card {
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .quiz-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        .card-title {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .card-text {
+            font-size: 2rem;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         .btn-check:checked + .btn-outline-light {
-            background-color: #6c757d;
-            color: white;
+            background-color: #ffd700;
+            color: #000;
+            border-color: #ffd700;
+        }
+        .btn-outline-light {
+            border-color: #ffd700;
+            color: #ffd700;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
         }
         .btn-outline-light:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #ffd700;
+            color: #000;
         }
-    </style>
+        #submit {
+            background-color: #ffd700;
+            border: none;
+            color: #000;
+            font-size: 1.5rem;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+        #submit:hover {
+            background-color: #ffec00;
+            transform: scale(1.03);
+        }
+        #result {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #ffd700;
+            text-shadow: 1px 1px 2px #000;
+        } </style>
 </head>
-<body>
-    <div class="container py-5">
-        <h1 class="text-center mb-5 text-info">Quiz de Conocimiento General sobre Bolivia</h1>
+<body class="d-flex align-items-center justify-content-center">
+    <div class="container">
+        <h1>Quiz de Conocimiento General sobre Bolivia</h1>
         <div id="quiz-container"></div>
-        <button id="submit" class="btn btn-primary btn-lg w-100 mt-4">Verificar Respuestas</button>
+        <button id="submit" class="btn btn-lg w-100 mt-4">Verificar Respuestas</button>
         <div id="result" class="mt-4 text-center fs-4 fw-bold"></div>
     </div>
 

@@ -307,3 +307,327 @@
 [2024-10-03 13:21:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
 [2024-10-03 13:21:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
 [2024-10-03 13:21:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:22:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:22:40
+[2024-10-03 13:22:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:22:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:22:40] [info] Resumen de actualización:
+[2024-10-03 13:22:40] [info] Total de eventos actualizados: 0
+[2024-10-03 13:22:40] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:22:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:22:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:22:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:23:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:23:40
+[2024-10-03 13:23:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:23:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:23:40] [info] Resumen de actualización:
+[2024-10-03 13:23:40] [info] Total de eventos actualizados: 0
+[2024-10-03 13:23:40] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:23:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:23:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:23:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:24:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:24:40
+[2024-10-03 13:24:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:24:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:24:40] [info] Resumen de actualización:
+[2024-10-03 13:24:40] [info] Total de eventos actualizados: 0
+[2024-10-03 13:24:40] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:24:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:24:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:24:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:25:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:25:40
+[2024-10-03 13:25:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:25:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:25:40] [info] Resumen de actualización:
+[2024-10-03 13:25:40] [info] Total de eventos actualizados: 0
+[2024-10-03 13:25:40] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:25:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:25:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:25:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:26:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:26:40
+[2024-10-03 13:26:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:26:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:26:40] [info] Resumen de actualización:
+[2024-10-03 13:26:40] [info] Total de eventos actualizados: 0
+[2024-10-03 13:26:40] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:26:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:26:40] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:26:40] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:27:41] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:27:41
+[2024-10-03 13:27:41] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:27:41] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:27:41] [info] Resumen de actualización:
+[2024-10-03 13:27:41] [info] Total de eventos actualizados: 0
+[2024-10-03 13:27:41] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:27:41] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:27:41] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:27:41] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:28:42] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:28:42
+[2024-10-03 13:28:42] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:28:42] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:28:42] [info] Resumen de actualización:
+[2024-10-03 13:28:42] [info] Total de eventos actualizados: 0
+[2024-10-03 13:28:42] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:28:42] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:28:42] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:28:42] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:29:43] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:29:43
+[2024-10-03 13:29:43] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:29:43] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:29:43] [info] Resumen de actualización:
+[2024-10-03 13:29:43] [info] Total de eventos actualizados: 0
+[2024-10-03 13:29:43] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:29:43] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:29:43] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:29:43] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:30:44] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:30:44
+[2024-10-03 13:30:44] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:30:44] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:30:44] [info] Resumen de actualización:
+[2024-10-03 13:30:44] [info] Total de eventos actualizados: 0
+[2024-10-03 13:30:44] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:30:44] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:30:44] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:30:44] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:31:45] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:31:45
+[2024-10-03 13:31:45] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:31:45] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:31:45] [info] Resumen de actualización:
+[2024-10-03 13:31:45] [info] Total de eventos actualizados: 0
+[2024-10-03 13:31:45] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:31:45] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:31:45] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:31:45] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:32:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:32:46
+[2024-10-03 13:32:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:32:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:32:46] [info] Resumen de actualización:
+[2024-10-03 13:32:46] [info] Total de eventos actualizados: 0
+[2024-10-03 13:32:46] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:32:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:32:46] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:32:46] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:33:47] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:33:47
+[2024-10-03 13:33:47] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:33:47] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:33:47] [info] Resumen de actualización:
+[2024-10-03 13:33:47] [info] Total de eventos actualizados: 0
+[2024-10-03 13:33:47] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:33:47] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:33:47] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:33:47] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:34:48] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:34:48
+[2024-10-03 13:34:48] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:34:48] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:34:48] [info] Resumen de actualización:
+[2024-10-03 13:34:48] [info] Total de eventos actualizados: 0
+[2024-10-03 13:34:48] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:34:48] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:34:48] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:34:48] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:35:49] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:35:49
+[2024-10-03 13:35:49] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:35:49] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:35:49] [info] Resumen de actualización:
+[2024-10-03 13:35:49] [info] Total de eventos actualizados: 0
+[2024-10-03 13:35:49] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:35:49] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:35:49] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:35:49] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 13:57:15] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 13:57:15
+[2024-10-03 13:57:15] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 13:57:15] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 13:57:15] [info] Resumen de actualización:
+[2024-10-03 13:57:15] [info] Total de eventos actualizados: 0
+[2024-10-03 13:57:15] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 13:57:15] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 13:57:15] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 13:57:15] [info] Evento ID: 34, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:34:43] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:34:43
+[2024-10-03 14:34:43] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:34:43] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:34:43] [info] Resumen de actualización:
+[2024-10-03 14:34:43] [info] Total de eventos actualizados: 0
+[2024-10-03 14:34:43] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:34:43] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:34:43] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:34:43] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:36:59] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:36:59
+[2024-10-03 14:36:59] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:36:59] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:36:59] [info] Resumen de actualización:
+[2024-10-03 14:36:59] [info] Total de eventos actualizados: 0
+[2024-10-03 14:36:59] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:36:59] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:36:59] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:36:59] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:40:11] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:40:11
+[2024-10-03 14:40:11] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:40:11] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:40:11] [info] Resumen de actualización:
+[2024-10-03 14:40:11] [info] Total de eventos actualizados: 0
+[2024-10-03 14:40:11] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:40:11] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:40:11] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:40:11] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:45:27] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:45:27
+[2024-10-03 14:45:27] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:45:27] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:45:27] [info] Resumen de actualización:
+[2024-10-03 14:45:27] [info] Total de eventos actualizados: 0
+[2024-10-03 14:45:27] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:45:27] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:45:27] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:45:27] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:45:56] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:45:56
+[2024-10-03 14:45:56] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:45:56] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:45:56] [info] Resumen de actualización:
+[2024-10-03 14:45:56] [info] Total de eventos actualizados: 0
+[2024-10-03 14:45:56] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:45:56] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:45:56] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:45:56] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:46:27] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:46:27
+[2024-10-03 14:46:27] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:46:27] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:46:27] [info] Resumen de actualización:
+[2024-10-03 14:46:27] [info] Total de eventos actualizados: 0
+[2024-10-03 14:46:27] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:46:27] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:46:27] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:46:27] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:46:36] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:46:36
+[2024-10-03 14:46:36] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:46:36] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:46:36] [info] Resumen de actualización:
+[2024-10-03 14:46:36] [info] Total de eventos actualizados: 0
+[2024-10-03 14:46:36] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:46:36] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-11-02 13:28:00, Estado: 2
+[2024-10-03 14:46:36] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:46:36] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:46:37] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:46:37
+[2024-10-03 14:46:37] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:46:37] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:46:37] [info] Resumen de actualización:
+[2024-10-03 14:46:37] [info] Total de eventos actualizados: 0
+[2024-10-03 14:46:37] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:46:37] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 2
+[2024-10-03 14:46:37] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:46:37] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:47:22] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:47:22
+[2024-10-03 14:47:22] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:47:22] [info] Eventos actualizados de 'activos' a 'finalizados': 1
+[2024-10-03 14:47:22] [info] Resumen de actualización:
+[2024-10-03 14:47:22] [info] Total de eventos actualizados: 1
+[2024-10-03 14:47:22] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:47:22] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:47:22] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:47:22] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:55:11] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:55:11
+[2024-10-03 14:55:11] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:55:11] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:55:11] [info] Resumen de actualización:
+[2024-10-03 14:55:11] [info] Total de eventos actualizados: 0
+[2024-10-03 14:55:11] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:55:11] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:55:11] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:55:11] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:55:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:55:18
+[2024-10-03 14:55:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:55:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:55:18] [info] Resumen de actualización:
+[2024-10-03 14:55:18] [info] Total de eventos actualizados: 0
+[2024-10-03 14:55:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:55:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:55:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:55:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:56:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:56:18
+[2024-10-03 14:56:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:56:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:56:18] [info] Resumen de actualización:
+[2024-10-03 14:56:18] [info] Total de eventos actualizados: 0
+[2024-10-03 14:56:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:56:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:56:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:56:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:57:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:57:18
+[2024-10-03 14:57:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:57:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:57:18] [info] Resumen de actualización:
+[2024-10-03 14:57:18] [info] Total de eventos actualizados: 0
+[2024-10-03 14:57:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:57:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:57:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:57:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:58:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:58:18
+[2024-10-03 14:58:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:58:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:58:18] [info] Resumen de actualización:
+[2024-10-03 14:58:18] [info] Total de eventos actualizados: 0
+[2024-10-03 14:58:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:58:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:58:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:58:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 14:59:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 14:59:18
+[2024-10-03 14:59:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 14:59:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 14:59:18] [info] Resumen de actualización:
+[2024-10-03 14:59:18] [info] Total de eventos actualizados: 0
+[2024-10-03 14:59:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 14:59:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 14:59:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 14:59:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:00:18] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:00:18
+[2024-10-03 15:00:18] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:00:18] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:00:18] [info] Resumen de actualización:
+[2024-10-03 15:00:18] [info] Total de eventos actualizados: 0
+[2024-10-03 15:00:18] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:00:18] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:00:18] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:00:18] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:01:19] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:01:19
+[2024-10-03 15:01:19] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:01:19] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:01:19] [info] Resumen de actualización:
+[2024-10-03 15:01:19] [info] Total de eventos actualizados: 0
+[2024-10-03 15:01:19] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:01:19] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:01:19] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:01:19] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:02:20] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:02:20
+[2024-10-03 15:02:20] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:02:20] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:02:20] [info] Resumen de actualización:
+[2024-10-03 15:02:20] [info] Total de eventos actualizados: 0
+[2024-10-03 15:02:20] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:02:20] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:02:20] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:02:20] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:03:21] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:03:21
+[2024-10-03 15:03:21] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:03:21] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:03:21] [info] Resumen de actualización:
+[2024-10-03 15:03:21] [info] Total de eventos actualizados: 0
+[2024-10-03 15:03:21] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:03:21] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:03:21] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:03:21] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:04:22] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:04:22
+[2024-10-03 15:04:22] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:04:22] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:04:22] [info] Resumen de actualización:
+[2024-10-03 15:04:22] [info] Total de eventos actualizados: 0
+[2024-10-03 15:04:22] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:04:22] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:04:22] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:04:22] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2
+[2024-10-03 15:05:23] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-03 15:05:23
+[2024-10-03 15:05:23] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-03 15:05:23] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-03 15:05:23] [info] Resumen de actualización:
+[2024-10-03 15:05:23] [info] Total de eventos actualizados: 0
+[2024-10-03 15:05:23] [info] Evento ID: 3, Nombre: Empresa Surface, Inicio: 2024-09-27 11:02:00, Fin: 2024-10-18 11:02:00, Estado: 2
+[2024-10-03 15:05:23] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-01 09:56:00, Fin: 2024-10-03 14:47:00, Estado: 3
+[2024-10-03 15:05:23] [info] Evento ID: 2, Nombre: Mejores amigos, Inicio: 2024-10-01 12:26:00, Fin: 2024-10-24 12:29:59, Estado: 2
+[2024-10-03 15:05:23] [info] Evento ID: 4, Nombre: Empresa Deley, Inicio: 2024-10-01 12:29:00, Fin: 2024-10-04 13:02:00, Estado: 2

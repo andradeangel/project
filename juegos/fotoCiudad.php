@@ -3,85 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reto 1: Captura el Teleférico</title>
+    <title>Captura el teleférico</title>
+    <link rel="icon" href="../images/ico.png">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            background-image: url('https://www.clarin.com/img/2019/10/19/N-J9OLl__1256x620__1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            justify-content: center;
         }
         .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            max-width: 300px;
+            border: 3px solid #5894ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(5, 0, 220, 0.5);
+            width: 90%;
+            max-width: 500px;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(10, 235, 255, 0.5); }
+            to { box-shadow: 0 0 30px rgba(0, 255, 255, 0.9); }
+        }
+        .card h1 {
+            color: #24ffff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card p {
+            color: #fff;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .preview-container {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-container img {
             width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 10px 0;
+            border: 2px solid #5894ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(5, 0, 220, 0.5);
+            transition: transform 0.5s;
         }
-        h1 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
+        .preview-container img:hover {
+            transform: scale(1.05);
         }
-        button {
-            background-color: #007bff;
-            color: white;
+        .custom-file-upload, #submitBtn {
+            background-color: #24ffff;
+            color: #000;
+            padding: 10px 20px;
             border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            border-radius: 10px;
             cursor: pointer;
-            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(5, 0, 220, 0.5);
+            transition: all 0.3s;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
         }
-        button:hover {
-            background-color: #0056b3;
+        .custom-file-upload:hover{
+            background-color: #24bbff;
+            transform: scale(1.05);
         }
-        img {
-            max-width: 100%;
-            border-radius: 4px;
-            margin-bottom: 10px;
+        #submitBtn:hover{
+            background-color: #1f0;
+            transform: scale(1.05);
         }
-        #submitBtn {
+        #submitBtn{
+            background-color: #0c0;
+            box-shadow: 0 0 10px rgba(0, 215, 100, 0.5);
+        }
+        .custom- file-upload:active, #submitBtn:active {
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            transform: scale(0.95);
+        }
+        #fileInput {
             display: none;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .overlay-content {
+            color: #fff;
+            font-size: 1rem;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 3px solid #5894ff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(5, 0, 220, 0.5);
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loader {
+            border: 16px solid #333;
+            border-top: 16px solid #24ffff;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 2s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Reto 1: Captura el Teleférico</h1>
+        <h1>Reto: Captura el teleférico</h1>
         <p>Captura una foto del teleférico de La Paz con la ciudad de fondo.</p>
-        <input type="file" id="fileInput" accept="image/*" capture="environment" style="display: none;">
-        <button onclick="document.getElementById('fileInput').click()">Capturar Imagen</button>
-        <img id="preview" style="display: none;" alt="Vista previa de la imagen">
-        <button id="submitBtn" onclick="enviarImagen()">Enviar</button>
+        <div class="preview-container">
+            <img id="preview" src="" alt="Preview de la foto">
+        </div>
+        <label for="fileInput" class="custom-file-upload">Subir foto</label>
+        <input type="file" id="fileInput" accept="image/*">
+        <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
     </div>
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <p>Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('fileInput').addEventListener('change', function() {
+        const file = this.files[0];
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            document.getElementById('preview').src = event.target.result;
+            document.getElementById('submitBtn').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
 
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const preview = document.getElementById('preview');
-        const submitBtn = document.getElementById('submitBtn');
+    document.getElementById('submitBtn').addEventListener('click', function() {
+        showOverlay();
+        // Aquí puedes agregar el código para enviar la foto al servidor
+    });
 
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    submitBtn.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
-            }
-        });
+    function showOverlay() {
+        document.getElementById('overlay').style.display = 'flex';
+    }
 
-        function enviarImagen() {
-            // Aquí iría la lógica para enviar la imagen
-            console.log('Imagen enviada:', preview.src);
-            alert('Imagen enviada con éxito!');
-            // Podrías hacer una llamada a una API aquí
-        }
-    </script>
+    function hideOverlay() {
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    // Esta función se llamará desde el sistema cuando sea apropiado ocultar el overlay
+    function onProcessingComplete() {
+        hideOverlay();
+        // Aquí puedes agregar cualquier otra lógica necesaria después de que se complete el procesamiento
+    }
+
+    // Ejemplo de cómo podrías llamar a onProcessingComplete desde otra parte del sistema
+    // Esto es solo un ejemplo y no se ejecutará automáticamente
+    /*
+    setTimeout(function() {
+        onProcessingComplete();
+    }, 5000); // Simula que el procesamiento toma 5 segundos
+    */
+</script>
+</script>
 </body>
 </html>
