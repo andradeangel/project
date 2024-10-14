@@ -176,7 +176,28 @@
 
     document.getElementById('submitBtn').addEventListener('click', function() {
         showOverlay();
-        // Aquí puedes agregar el código para enviar la foto al servidor
+        const challengeData = document.getElementById('preview').src;
+        
+        fetch('../controllers/uploadChallenge.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ challenge: challengeData, gameType: 'photo' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Desafío enviado con éxito para calificación');
+            } else {
+                alert('Error al enviar el desafío');
+            }
+            hideOverlay();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            hideOverlay();
+        });
     });
 
     function showOverlay() {

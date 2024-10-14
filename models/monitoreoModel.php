@@ -16,5 +16,28 @@
                 return [];
             }
         }
+        public function addPhotoForReview($eventoId, $jugadorId, $fileName) {
+            $sql = "INSERT INTO fotos_revision (idEvento, idJugador, nombreArchivo, estado) VALUES (?, ?, ?, 'pendiente')";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("iis", $eventoId, $jugadorId, $fileName);
+            return $stmt->execute();
+        }
+    
+        public function getPendingPhotos() {
+            $sql = "SELECT fr.id, fr.idEvento, fr.idJugador, fr.nombreArchivo, j.nombres AS nombreJugador, e.nombre AS nombreEvento 
+                    FROM fotos_revision fr 
+                    JOIN jugadores j ON fr.idJugador = j.id 
+                    JOIN eventos e ON fr.idEvento = e.id 
+                    WHERE fr.estado = 'pendiente'";
+            $result = $this->conexion->query($sql);
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+    
+        public function updatePhotoStatus($photoId, $status) {
+            $sql = "UPDATE fotos_revision SET estado = ? WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("si", $status, $photoId);
+            return $stmt->execute();
+        }
     }
 ?>

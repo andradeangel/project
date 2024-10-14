@@ -32,6 +32,8 @@
         $datetime = new DateTime($fecha);
         return $datetime->format('d/m/y H:i');
     }
+    $pendingChallenges = isset($_SESSION['pending_challenges']) ? $_SESSION['pending_challenges'] : [];
+?>
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -83,11 +85,36 @@
             <div class="col-12">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active fijarHeader" id="monitorear" role="tabpanel" aria-labelledby="nav-monitorear-tab">
-                        <h2>Monitoreo</h2>
+                        <h3>Pendientes de revisión</h3>
                         
                         <!-- Sección de Solicitudes -->
                         <div class="mt-4">
-                            <p>Aún no hay solicitudes.</p>
+                            <div class="row">
+                                <?php if (empty($pendingChallenges)): ?>
+                                    <p>Sin pendientes.</p>
+                                <?php else: ?>
+                                    <?php foreach ($pendingChallenges as $challengeId => $challenge): ?>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+                                                <?php if ($challenge['gameType'] === 'photo'): ?>
+                                                    <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" class="card-img-top" alt="Foto para revisión">
+                                                <?php elseif ($challenge['gameType'] === 'text'): ?>
+                                                    <div class="card-body">
+                                                        <p><?php echo htmlspecialchars($challenge['challenge']); ?></p>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><?php echo htmlspecialchars($challenge['eventoNombre']); ?></h5>
+                                                    <p class="card-text">Jugador: <?php echo htmlspecialchars($challenge['jugadorNombre']); ?></p>
+                                                    <p class="card-text">Tipo: <?php echo htmlspecialchars($challenge['gameType']); ?></p>
+                                                    <button class="btn btn-success btn-sm" onclick="calificarDesafio('<?php echo $challengeId; ?>', 'aprobado')">Bien</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="calificarDesafio('<?php echo $challengeId; ?>', 'rechazado')">Mal</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
 
                         <!-- Sección de Eventos en Proceso -->
@@ -124,6 +151,28 @@
     </div>
 
     <script>
+        function calificarDesafio(challengeId, status) {
+        fetch('../controllers/calificarDesafio.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ challengeId: challengeId, status: status })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Desafío calificado con éxito');
+                location.reload(); // Recargar la página para actualizar la lista de desafíos pendientes
+            } else {
+                alert('Error al calificar el desafío');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+    
     function confirmarCerrarSesion() {
         if (confirm("¿Está seguro de que desea cerrar sesión?")) {
             window.location.href = "/";
