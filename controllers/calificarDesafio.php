@@ -10,10 +10,10 @@ if (isset($data['challengeId']) && isset($data['status'])) {
 
     if (isset($_SESSION['pending_challenges'][$challengeId])) {
         $_SESSION['pending_challenges'][$challengeId]['estado'] = $status;
+        $_SESSION['pending_challenges'][$challengeId]['calificado'] = true;
         $response['success'] = true;
 
-        // Aquí podrías agregar lógica adicional, como actualizar el puntaje del jugador
-        // basado en si el desafío fue aprobado o rechazado
+        // No eliminamos el desafío de la sesión aquí para que cholitas.php pueda verificarlo
     }
 }
 

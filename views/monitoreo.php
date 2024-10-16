@@ -32,7 +32,7 @@
         $datetime = new DateTime($fecha);
         return $datetime->format('d/m/y H:i');
     }
-    $pendingChallenges = isset($_SESSION['pending_challenges']) ? $_SESSION['pending_challenges'] : [];
+    $pendingChallenges = $controller->getPendingChallenges();
 ?>
 ?>
 <!DOCTYPE html> 
@@ -93,8 +93,8 @@
                                 <?php if (empty($pendingChallenges)): ?>
                                     <p>Sin pendientes.</p>
                                 <?php else: ?>
-                                    <?php foreach ($pendingChallenges as $challengeId => $challenge): ?>
-                                        <div class="col-md-4 mb-3">
+                                    <?php foreach ($pendingChallenges as $challenge): ?>
+                                        <div class="col-md-4 mb-3 challenge-card" id="challenge-<?php echo $challenge['challengeId']; ?>">
                                             <div class="card">
                                                 <?php if ($challenge['gameType'] === 'photo'): ?>
                                                     <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" class="card-img-top" alt="Foto para revisión">
@@ -104,11 +104,11 @@
                                                     </div>
                                                 <?php endif; ?>
                                                 <div class="card-body">
-                                                    <h5 class="card-title"><?php echo htmlspecialchars($challenge['eventoNombre']); ?></h5>
-                                                    <p class="card-text">Jugador: <?php echo htmlspecialchars($challenge['jugadorNombre']); ?></p>
-                                                    <p class="card-text">Tipo: <?php echo htmlspecialchars($challenge['gameType']); ?></p>
-                                                    <button class="btn btn-success btn-sm" onclick="calificarDesafio('<?php echo $challengeId; ?>', 'aprobado')">Bien</button>
-                                                    <button class="btn btn-danger btn-sm" onclick="calificarDesafio('<?php echo $challengeId; ?>', 'rechazado')">Mal</button>
+                                                    <h5 class="card-title">Evento: <?php echo htmlspecialchars($challenge['eventoNombre']); ?></h5>
+                                                    <p class="card-text"><strong>Tipo:</strong> <?php echo htmlspecialchars($challenge['gameType']); ?></p>
+                                                    <p class="card-text" style="margin-bottom: 10px;"><strong>Descripción:</strong> <?php echo htmlspecialchars($challenge['gameDescription']); ?></p>
+                                                    <button class="btn btn-success btn-sm" onclick="calificarDesafio('<?php echo $challenge['challengeId']; ?>', 'aprobado')">Aprobar</button>
+                                                    <button class="btn btn-danger btn-sm" onclick="calificarDesafio('<?php echo $challenge['challengeId']; ?>', 'rechazado')">Reprobar</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -152,32 +152,38 @@
 
     <script>
         function calificarDesafio(challengeId, status) {
-        fetch('../controllers/calificarDesafio.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ challengeId: challengeId, status: status })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Desafío calificado con éxito');
-                location.reload(); // Recargar la página para actualizar la lista de desafíos pendientes
-            } else {
-                alert('Error al calificar el desafío');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-    
-    function confirmarCerrarSesion() {
-        if (confirm("¿Está seguro de que desea cerrar sesión?")) {
-            window.location.href = "/";
+            fetch('../controllers/calificarDesafio.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ challengeId: challengeId, status: status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Eliminar el card del desafío calificado
+                    document.getElementById('challenge-' + challengeId).remove();
+                    alert('Desafío calificado con éxito');
+                    
+                    // Si no quedan más desafíos pendientes, mostrar un mensaje
+                    if (document.querySelectorAll('.challenge-card').length === 0) {
+                        document.querySelector('.row').innerHTML = '<p>Sin pendientes.</p>';
+                    }
+                } else {
+                    alert('Error al calificar el desafío');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         }
-    }
+        
+        function confirmarCerrarSesion() {
+            if (confirm("¿Está seguro de que desea cerrar sesión?")) {
+                window.location.href = "/";
+            }
+        }
     </script>
 </body>
 </html>

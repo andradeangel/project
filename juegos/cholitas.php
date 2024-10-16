@@ -147,7 +147,7 @@
     </style>
 </head>
 <body>
-    <div class="card">
+<div class="card">
         <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
         <p>Sube una foto de una cholita en el Mercado de las Brujas</p>
         <div class="preview-container">
@@ -159,11 +159,14 @@
     </div>
     <div id="overlay" class="overlay">
         <div class="overlay-content">
-            <p>Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
+            <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
             <div class="loader"></div>
         </div>
     </div>
 <script>
+    let esperandoCalificacion = false;
+    let challengeId = null;
+
     document.getElementById('fileInput').addEventListener('change', function() {
         const file = this.files[0];
         const reader = new FileReader();
@@ -175,7 +178,12 @@
     });
 
     document.getElementById('submitBtn').addEventListener('click', function() {
-        showOverlay();
+        if (esperandoCalificacion) {
+            alert('Ya has enviado una foto. Por favor, espera la calificación.');
+            return;
+        }
+
+        showOverlay('Enviando foto...');
         const challengeData = document.getElementById('preview').src;
         
         fetch('../controllers/uploadChallenge.php', {
@@ -188,40 +196,73 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('Desafío enviado con éxito para calificación');
+                esperandoCalificacion = true;
+                challengeId = data.challengeId;
+                showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
+                checkCalificacion(); // Iniciar la verificación
             } else {
-                alert('Error al enviar el desafío');
+                hideOverlay();
+                alert('Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
             }
-            hideOverlay();
         })
         .catch(error => {
             console.error('Error:', error);
             hideOverlay();
+            alert('Error al enviar el desafío: ' + error.message);
         });
     });
 
-    function showOverlay() {
-        document.getElementById('overlay').style.display = 'flex';
+    function showOverlay(message) {
+        const overlay = document.getElementById('overlay');
+        const overlayMessage = document.getElementById('overlayMessage');
+        overlayMessage.textContent = "Espere unos segundos, su foto está siendo evaluada por el Game Master :)";
+        overlay.style.display = 'flex';
     }
 
     function hideOverlay() {
-        document.getElementById('overlay').style.display = 'none';
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
     }
 
-    // Esta función se llamará desde el sistema cuando sea apropiado ocultar el overlay
-    function onProcessingComplete() {
-        hideOverlay();
-        // Aquí puedes agregar cualquier otra lógica necesaria después de que se complete el procesamiento
+    function checkCalificacion() {
+        if (!esperandoCalificacion || !challengeId) return;
+
+        fetch('../controllers/checkCalificacion.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ challengeId: challengeId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.calificado) {
+                esperandoCalificacion = false;
+                hideOverlay();
+                alert('Tu foto ha sido ' + (data.status === 'aprobado' ? 'aprobada' : 'rechazada'));
+                window.location.href = '../views/evento.php';
+            } else {
+                // Si aún no está calificado, volver a verificar después de un tiempo
+                setTimeout(checkCalificacion, 5000); // Verifica cada 5 segundos
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar calificación:', error);
+            setTimeout(checkCalificacion, 5000); // Reintenta en caso de error
+        });
     }
 
-    // Ejemplo de cómo podrías llamar a onProcessingComplete desde otra parte del sistema
-    // Esto es solo un ejemplo y no se ejecutará automáticamente
-    /*
-    setTimeout(function() {
-        onProcessingComplete();
-    }, 5000); // Simula que el procesamiento toma 5 segundos
-    */
-</script>
+    // Asegúrate de que esta función se llame cuando se envíe la foto
+    function onPhotoSubmit(event) {
+        event.preventDefault();
+        // ... código para enviar la foto ...
+        esperandoCalificacion = true;
+        showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
+        checkCalificacion(); // Iniciar la verificación
+    }
+
+    // Asegúrate de que el formulario tenga un id, por ejemplo 'photoForm'
+    document.getElementById('photoForm').addEventListener('submit', onPhotoSubmit);
 </script>
 </body>
 </html>

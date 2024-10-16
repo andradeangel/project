@@ -39,5 +39,36 @@
             $stmt->bind_param("si", $status, $photoId);
             return $stmt->execute();
         }
+
+        public function getPendingChallenges() {
+            if (!isset($_SESSION['pending_challenges']) || empty($_SESSION['pending_challenges'])) {
+                return [];
+            }
+
+            $challenges = [];
+            foreach ($_SESSION['pending_challenges'] as $id => $challenge) {
+                // Obtener la descripción del juego desde la base de datos
+                $sql = "SELECT descripcion FROM juegos WHERE id = ?";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bind_param("i", $challenge['gameId']);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $gameDescription = $result->fetch_assoc()['descripcion'] ?? 'Descripción no disponible';
+
+                $challenges[] = [
+                    'challengeId' => $id,
+                    'challenge' => $challenge['challenge'],
+                    'gameType' => $challenge['gameType'],
+                    'eventoId' => $challenge['eventoId'],
+                    'jugadorId' => $challenge['jugadorId'],
+                    'jugadorNombre' => $challenge['jugadorNombre'],
+                    'eventoNombre' => $challenge['eventoNombre'],
+                    'estado' => $challenge['estado'],
+                    'gameDescription' => $gameDescription
+                ];
+            }
+
+            return $challenges;
+        }
     }
 ?>

@@ -11,5 +11,9 @@
         public function getEventosEnProceso() {
             return $this->model->getEventosEnProceso();
         }
+
+        public function getPendingChallenges() {
+            return $this->model->getPendingChallenges();
+        }
     }
 ?>
