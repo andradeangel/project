@@ -23,7 +23,8 @@ try {
             'jugadorId' => $_SESSION['user_id'] ?? 'No definido',
             'jugadorNombre' => $_SESSION['user_name'] ?? 'No definido',
             'eventoNombre' => $_SESSION['evento_nombre'] ?? 'No definido',
-            'gameId' => $_SESSION['current_game_id'] ?? 'No definido', // Asegúrate de que este valor se está estableciendo correctamente
+            'gameId' => $_SESSION['current_game_id'] ?? 'No definido',
+            'gameDescription' => $_SESSION['current_game_description'] ?? 'No definido',
             'estado' => 'pendiente'
         ];
         

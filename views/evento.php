@@ -24,7 +24,7 @@
                     <ul class="list-group list-group-flush">
                         <?php foreach ($juegos as $juego): ?>
                         <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='<?= $juego['direccion'] ?>'">
+                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='<?= $juego['direccion'] ?>?juego_id=<?= $juego['id'] ?>&descripcion=<?= urlencode($juego['descripcion']) ?>'">
                                 <i class="fas fa-play"></i>
                             </button>
                             <span><img src="../images/key.png" alt="Imagen de llave"> <?= $juego['nombre'] ?></span>

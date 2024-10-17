@@ -47,14 +47,6 @@
 
             $challenges = [];
             foreach ($_SESSION['pending_challenges'] as $id => $challenge) {
-                // Obtener la descripción del juego desde la base de datos
-                $sql = "SELECT descripcion FROM juegos WHERE id = ?";
-                $stmt = $this->conexion->prepare($sql);
-                $stmt->bind_param("i", $challenge['gameId']);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                $gameDescription = $result->fetch_assoc()['descripcion'] ?? 'Descripción no disponible';
-
                 $challenges[] = [
                     'challengeId' => $id,
                     'challenge' => $challenge['challenge'],
@@ -64,7 +56,7 @@
                     'jugadorNombre' => $challenge['jugadorNombre'],
                     'eventoNombre' => $challenge['eventoNombre'],
                     'estado' => $challenge['estado'],
-                    'gameDescription' => $gameDescription
+                    'gameDescription' => $challenge['gameDescription']
                 ];
             }
 

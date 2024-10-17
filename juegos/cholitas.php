@@ -1,3 +1,10 @@
+<?php
+session_start();
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -148,21 +155,21 @@
 </head>
 <body>
 <div class="card">
-        <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
-        <p>Sube una foto de una cholita en el Mercado de las Brujas</p>
-        <div class="preview-container">
-            <img id="preview" src="" alt="Preview de la foto">
-        </div>
-        <label for="fileInput" class="custom-file-upload">Subir foto</label>
-        <input type="file" id="fileInput" accept="image/*">
-        <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
+    <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
+    <p><?php echo htmlspecialchars($descripcion); ?></p>
+    <div class="preview-container">
+        <img id="preview" src="" alt="Preview de la foto">
     </div>
-    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-            <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
-            <div class="loader"></div>
-        </div>
+    <label for="fileInput" class="custom-file-upload">Subir foto</label>
+    <input type="file" id="fileInput" accept="image/*">
+    <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
+</div>
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
+        <div class="loader"></div>
     </div>
+</div>
 <script>
     let esperandoCalificacion = false;
     let challengeId = null;
