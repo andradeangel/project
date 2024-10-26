@@ -1,5 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+
     if(isset($_POST["btnAccess"])) {
         if(empty($_POST["codigoAccess"])) {
             echo "<div class='alert alert-danger'>El campo está vacío</div>";

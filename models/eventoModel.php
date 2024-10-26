@@ -68,5 +68,13 @@
             }
             return $jugadores;
         }   
+        public function getJugadorActual($user_id) {
+            $sql = "SELECT id, nombres, puntaje FROM jugadores WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
     }
 ?>

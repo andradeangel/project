@@ -1,5 +1,9 @@
 <?php 
     require_once '../controllers/eventoController.php';
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +24,7 @@
             <div id="evento-container" class="card p-4 bg-dark text-light">
                 <h2 class="text-light">Evento: <?= $_SESSION['evento_nombre'] ?></h2>
                 <h2 class="text-light">Temática: <?= $tematica ?></h2>                
+                <h2 class="text-light">Jugador: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
                 <div class="mt-4">
                     <ul class="list-group list-group-flush">
                         <?php foreach ($juegos as $juego): ?>

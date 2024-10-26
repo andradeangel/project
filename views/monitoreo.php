@@ -34,8 +34,8 @@
     }
     $pendingChallenges = $controller->getPendingChallenges();
 ?>
-?>
-<!DOCTYPE html> 
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -152,32 +152,32 @@
 
     <script>
         function calificarDesafio(challengeId, status) {
-            fetch('../controllers/calificarDesafio.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ challengeId: challengeId, status: status })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Eliminar el card del desafío calificado
-                    document.getElementById('challenge-' + challengeId).remove();
-                    alert('Desafío calificado con éxito');
-                    
-                    // Si no quedan más desafíos pendientes, mostrar un mensaje
-                    if (document.querySelectorAll('.challenge-card').length === 0) {
-                        document.querySelector('.row').innerHTML = '<p>Sin pendientes.</p>';
-                    }
-                } else {
-                    alert('Error al calificar el desafío');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+    fetch('../controllers/calificarDesafio.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ challengeId: challengeId, status: status })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Eliminar el card del desafío calificado
+            document.getElementById('challenge-' + challengeId).remove();
+            alert(data.message);
+            
+            // Si no quedan más desafíos pendientes, mostrar un mensaje
+            if (document.querySelectorAll('.challenge-card').length === 0) {
+                document.querySelector('.row').innerHTML = '<p>Sin pendientes.</p>';
+            }
+        } else {
+            alert('Error al calificar el desafío: ' + data.message);
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
         
         function confirmarCerrarSesion() {
             if (confirm("¿Está seguro de que desea cerrar sesión?")) {

@@ -37,6 +37,9 @@
                 
                 // Ejecutar la consulta
                 if($sql->execute()) {
+                    $jugadorId = $sql->insert_id;
+                    $_SESSION['user_id'] = $jugadorId;
+                    $_SESSION['user_name'] = $nombre;
                     header("Location: ../views/evento.php");
                     exit();
                 } else {

@@ -15,5 +15,12 @@
         public function getPendingChallenges() {
             return $this->model->getPendingChallenges();
         }
+        public function aprobarDesafio($challengeId) {
+            return $this->model->aprobarDesafio($challengeId);
+        }
+        
+        public function getJugadorPuntaje($jugadorId) {
+            return $this->model->getJugadorPuntaje($jugadorId);
+        }
     }
 ?>

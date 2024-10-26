@@ -21,7 +21,7 @@
     $nombre_usuario = $user['nombres'];
     $rol_usuario = $user['nombre_rol'];
 ?>
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +36,7 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo">
             <div class="brand-text">

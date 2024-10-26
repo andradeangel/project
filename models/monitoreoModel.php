@@ -4,6 +4,11 @@
 
         public function __construct($conexion) {
             $this->conexion = $conexion;
+            if (!$this->conexion) {
+                error_log("Error: No se pudo establecer la conexión a la base de datos en MonitoreoModel");
+            } else {
+                error_log("Conexión a la base de datos establecida correctamente en MonitoreoModel");
+            }
         }
 
         public function getEventosEnProceso() {
@@ -61,6 +66,38 @@
             }
 
             return $challenges;
+        }
+        public function aprobarDesafio($challengeId) {
+            error_log("Intentando aprobar desafío: $challengeId");
+            if (isset($_SESSION['pending_challenges'][$challengeId])) {
+                $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
+                error_log("JugadorId encontrado: $jugadorId");
+                $sql = "UPDATE jugadores SET puntaje = puntaje + 1 WHERE id = ?";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bind_param("i", $jugadorId);
+                if ($stmt->execute()) {
+                    error_log("Puntaje actualizado para jugador $jugadorId");
+                    return true;
+                } else {
+                    error_log("Error al actualizar puntaje para jugador $jugadorId: " . $stmt->error);
+                    return false;
+                }
+            } else {
+                error_log("No se encontró el desafío en la sesión: $challengeId");
+            }
+            return false;
+        }
+        
+        public function getJugadorPuntaje($jugadorId) {
+            $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("i", $jugadorId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($row = $result->fetch_assoc()) {
+                return $row['puntaje'];
+            }
+            return 0;
         }
     }
 ?>

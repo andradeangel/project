@@ -171,93 +171,119 @@ $_SESSION['current_game_description'] = $descripcion;
     </div>
 </div>
 <script>
-    let esperandoCalificacion = false;
-    let challengeId = null;
+    document.addEventListener('DOMContentLoaded', function() {
+        let esperandoCalificacion = false;
+let challengeId = null;
 
-    document.getElementById('fileInput').addEventListener('change', function() {
-        const file = this.files[0];
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            document.getElementById('preview').src = event.target.result;
-            document.getElementById('submitBtn').style.display = 'block';
-        };
-        reader.readAsDataURL(file);
-    });
+document.getElementById('fileInput').addEventListener('change', function() {
+    const file = this.files[0];
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        document.getElementById('preview').src = event.target.result;
+        document.getElementById('submitBtn').style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+});
 
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        if (esperandoCalificacion) {
-            alert('Ya has enviado una foto. Por favor, espera la calificación.');
-            return;
-        }
+document.getElementById('submitBtn').addEventListener('click', function() {
+    if (esperandoCalificacion) {
+        alert('Ya has enviado una foto. Por favor, espera la calificación.');
+        return;
+    }
 
-        showOverlay('Enviando foto...');
-        const challengeData = document.getElementById('preview').src;
-        
-        fetch('../controllers/uploadChallenge.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ challenge: challengeData, gameType: 'photo' })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                esperandoCalificacion = true;
-                challengeId = data.challengeId;
-                showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
-                checkCalificacion(); // Iniciar la verificación
-            } else {
-                hideOverlay();
-                alert('Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
+    showOverlay('Enviando foto...');
+    const challengeData = document.getElementById('preview').src;
+    
+    fetch('../controllers/uploadChallenge.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ challenge: challengeData, gameType: 'photo' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            esperandoCalificacion = true;
+            challengeId = data.challengeId;
+            showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
+            checkCalificacion();
+        } else {
             hideOverlay();
-            alert('Error al enviar el desafío: ' + error.message);
-        });
+            console.error('Error al enviar el desafío:', data.message);
+            alert('Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        hideOverlay();
+        alert('Error al enviar el desafío: ' + error.message);
     });
+});
 
-    function showOverlay(message) {
-        const overlay = document.getElementById('overlay');
+function showOverlay(message) {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+        overlay.style.display = 'block';
         const overlayMessage = document.getElementById('overlayMessage');
-        overlayMessage.textContent = "Espere unos segundos, su foto está siendo evaluada por el Game Master :)";
-        overlay.style.display = 'flex';
+        if (overlayMessage) {
+            overlayMessage.innerText = message;
+        }
+    } else {
+        console.error('Elemento overlay no encontrado');
     }
-
-    function hideOverlay() {
-        const overlay = document.getElementById('overlay');
+}
+function hideOverlay() {
+    const overlay = document.getElementById('overlay'); // Elimina el espacio extra
+    if (overlay) {
         overlay.style.display = 'none';
+    } else {
+        console.error('Elemento overlay no encontrado');
+    }
+}
+
+function checkCalificacion() {
+    console.log("Verificando calificación para challengeId:", challengeId);
+    if (!esperandoCalificacion || !challengeId) {
+        console.log("No se está esperando calificación o no hay challengeId");
+        return;
     }
 
-    function checkCalificacion() {
-        if (!esperandoCalificacion || !challengeId) return;
-
-        fetch('../controllers/checkCalificacion.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ challengeId: challengeId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.calificado) {
-                esperandoCalificacion = false;
-                hideOverlay();
-                alert('Tu foto ha sido ' + (data.status === 'aprobado' ? 'aprobada' : 'rechazada'));
-                window.location.href = '../views/evento.php';
+    fetch('../controllers/checkCalificacion.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ challengeId: challengeId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Respuesta de checkCalificacion:", data);
+        if (data.calificado) {
+            esperandoCalificacion = false;
+            hideOverlay();
+            if (data.status === 'aprobado') {
+                alert('Tu foto ha sido aprobada. ¡Felicidades!');
+                if (data.nuevoPuntaje) {
+                    alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
+                }
             } else {
-                // Si aún no está calificado, volver a verificar después de un tiempo
-                setTimeout(checkCalificacion, 5000); // Verifica cada 5 segundos
+                alert('Tu foto ha sido rechazada. Inténtalo de nuevo.');
             }
-        })
-        .catch(error => {
-            console.error('Error al verificar calificación:', error);
-            setTimeout(checkCalificacion, 5000); // Reintenta en caso de error
-        });
-    }
+            // Redirigir al usuario de vuelta a la página del evento
+            window.location.href = '../views/evento.php';
+        } else {
+            // Si aún no está calificado, seguimos verificando
+            setTimeout(checkCalificacion, 2000);
+        }
+    })
+    .catch(error => {
+        console.error("Error al verificar calificación:", error);
+        hideOverlay();
+        alert('Error al verificar calificación. Por favor, inténtalo de nuevo más tarde.');
+    });
+}
+
 
     // Asegúrate de que esta función se llame cuando se envíe la foto
     function onPhotoSubmit(event) {
@@ -267,9 +293,7 @@ $_SESSION['current_game_description'] = $descripcion;
         showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
         checkCalificacion(); // Iniciar la verificación
     }
-
-    // Asegúrate de que el formulario tenga un id, por ejemplo 'photoForm'
-    document.getElementById('photoForm').addEventListener('submit', onPhotoSubmit);
+});
 </script>
 </body>
 </html>
