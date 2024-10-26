@@ -2,7 +2,7 @@
     require_once("../database.php");
     require_once("../utils/logger.php");
 
-    session_start();
+    custom_session_start('admin_session');
 
     if(isset($_POST["btnLogin"])) {
         if(empty($_POST["id"]) || empty($_POST["password"])) {
@@ -27,11 +27,10 @@
             if($usuario = $resultado->fetch_assoc()) {
                 // Verificar la contraseña hasheada
                 if(password_verify($password, $usuario['password'])) {
-                    $_SESSION['user_type'] = 'player';
-                    $_SESSION['user_id'] = $usuario['id'];
-                    $_SESSION['user_role'] = $usuario['idRol'];
-                    $_SESSION['user_type'] = 'admin';
-                    log_activity("Usuario con ID " . $usuario['id'] . " ha iniciado sesión exitosamente");
+                    $_SESSION['admin_id'] = $usuario['id'];
+                    $_SESSION['admin_name'] = $usuario['nombres'];
+                    $_SESSION['admin_role'] = $usuario['nombre_rol'];
+                    log_activity("Administrador con ID " . $usuario['id'] . " ha iniciado sesión exitosamente");
                     header("Location: ../views/eventos.php");
                     exit();
                 } else {

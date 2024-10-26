@@ -154,7 +154,7 @@
             'https://i.pinimg.com/474x/20/78/27/2078277d2ee2fba144fb18acf676486b.jpg',
             'https://thumbs.dreamstime.com/b/bolivian-saltena-meat-pastries-traditional-savory-called-filled-thick-stew-which-popular-street-snack-bolivia-51131075.jpg',
             'https://adminweb.miteleferico.bo/uploads/NARANJA_009e523187.jpg',
-            'https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/290131842_5382932565083702_330166289833517138_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yCV2OE4zzXoQ7kNvgH4bUjt&_nc_ht=scontent.flpb2-2.fna&_nc_gid=Am_nrk-bzvVCHspWDPasC_7&oh=00_AYAafqpdjEff1Qtcv3kyeihn9FVI6EA3Nj77f5WX2-3ZVA&oe=670C9C94',
+            'https://www.bolivar.com.bo/data/picture/2011/Hinchas_Miraflores_Bolivar_The_Strongest_LRZIMA20141029_0021_1.jpg',
             'https://avianreport.com/wp-content/uploads/2023/05/condor-andino-450-550.x46230.webp',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ_KvHDAdtG_qZy_IdT7HiCvjm_H7OXhPHeYg9tyFrHFanzr2Ep2-54nPDFhmfO6h1enI&usqp=CAU'
         ];

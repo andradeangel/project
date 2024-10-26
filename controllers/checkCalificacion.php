@@ -1,5 +1,5 @@
 <?php
-session_start();
+custom_session_start('player_session');
 $response = ['calificado' => false, 'status' => null];
 
 $data = json_decode(file_get_contents('php://input'), true);

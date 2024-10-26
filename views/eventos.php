@@ -1,15 +1,18 @@
 <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
+    require_once("../database.php");
+    custom_session_start('admin_session');
+    if (!isset($_SESSION['admin_id'])) {
         header("Location: login.php");
         exit();
     }
 
-    require_once("../database.php");
     require_once("../models/eventosModel.php");
     require_once("../controllers/eventosController.php");
+
+    $user_id = $_SESSION['admin_id'];
+    $usuario = obtenerUsuario($conexion, $user_id);
+    $nombre_usuario = $usuario['nombres'] ?? 'Usuario';
+    $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -50,7 +53,7 @@
                         <a class="nav-link custom-nav-link" href="consultas.php">Consultas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="confirmarCerrarSesion()">Cerrar Sesión</button>
+                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
             </div>
         </div>
     </nav>

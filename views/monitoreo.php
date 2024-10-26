@@ -1,38 +1,31 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
+    require_once("../database.php");
+    require_once("../models/eventosModel.php");
+    require_once("../controllers/monitoreoController.php");
+    custom_session_start('admin_session');
+
+    if (!isset($_SESSION['admin_id'])) {
         header("Location: login.php");
         exit();
     }
 
-    require_once("../database.php");
-    require_once("../models/eventosModel.php");
-    require_once("../models/monitoreoModel.php");
-    require_once("../controllers/monitoreoController.php");
-
     // Obtener el nombre de usuario y rol
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
-            FROM usuarios 
-            JOIN rol ON usuarios.idRol = rol.id 
-            WHERE usuarios.id = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    $nombre_usuario = $user['nombres'];
-    $rol_usuario = $user['nombre_rol'];
+    $user_id = $_SESSION['admin_id'];
+    $usuario = obtenerUsuario($conexion, $user_id);
+    $nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
+    $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
 
     $controller = new MonitoreoController($conexion);
     $eventosEnProceso = $controller->getEventosEnProceso();
+    $pendingChallenges = $controller->getPendingChallenges();
+
+    // Depuración
+    error_log("Pending challenges: " . print_r($pendingChallenges, true));
 
     function formatearFecha($fecha) {
         $datetime = new DateTime($fecha);
         return $datetime->format('d/m/y H:i');
     }
-    $pendingChallenges = $controller->getPendingChallenges();
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +68,7 @@
                         <a class="nav-link custom-nav-link" href="consultas.php">Consultas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="confirmarCerrarSesion()">Cerrar Sesión</button>
+                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
             </div>
         </div>
     </nav>

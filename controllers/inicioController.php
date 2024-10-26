@@ -1,4 +1,7 @@
 <?php
+//require_once("../database.php");
+custom_session_start('player_session');
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -14,8 +17,8 @@ if (session_status() == PHP_SESSION_NONE) {
             $resultado = $sql->get_result();
             if($dato = $resultado->fetch_object()) {
                 if($dato->idEstado == 2) { // Verificar si el evento está activo
-                    $_SESSION['evento_id'] = $dato->id;  // Guardamos el ID del evento en la sesión
-                    $_SESSION['evento_nombre'] = $dato->nombre;  // Guardamos el nombre del evento en la sesión
+                    $_SESSION['player_evento_id'] = $dato->id;  // Guardamos el ID del evento en la sesión
+                    $_SESSION['player_evento_nombre'] = $dato->nombre;  // Guardamos el nombre del evento en la sesión
                     header("Location: views/datosJugador.php");
                     exit();
                 } else {

@@ -1,3 +1,7 @@
+<?php
+    require_once("database.php");
+    include("controllers/inicioController.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
