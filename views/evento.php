@@ -1,9 +1,45 @@
 <?php 
     require_once '../controllers/eventoController.php';
+    require_once('../database.php');
+    custom_session_start('player_session');
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    
+
+// Verificar si existe la sesión del jugador
+if (!isset($_SESSION['player_id']) || !isset($_SESSION['player_evento_id'])) {
+    header('Location: datosJugador.php');
+    exit;
+}
+
+// Obtener datos del evento actual
+$eventoId = $_SESSION['player_evento_id'];
+$query = "SELECT * FROM eventos WHERE id = ?";
+$stmt = $conexion->prepare($query);
+$stmt->bind_param('i', $eventoId);
+$stmt->execute();
+$evento = $stmt->get_result()->fetch_assoc();
+
+// Guardar datos del evento en la sesión
+$_SESSION['evento_actual'] = [
+    'id' => $evento['id'],
+    'nombre' => $evento['nombre'],
+    'tematica' => $evento['tematica'] ?? 'Temática no disponible'
+];
+
+// Obtener datos del jugador
+$jugadorId = $_SESSION['player_id'];
+$query = "SELECT * FROM jugadores WHERE id = ?";
+$stmt = $conexion->prepare($query);
+$stmt->bind_param('i', $jugadorId);
+$stmt->execute();
+$jugador = $stmt->get_result()->fetch_assoc();
+
+// Guardar datos del jugador en la sesión
+$_SESSION['jugador_actual'] = [
+    'id' => $jugador['id'],
+    'nombres' => $jugador['nombres']
+];
 ?>
 
 <!DOCTYPE html>
@@ -22,8 +58,8 @@
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
         <div class="evento-forms text-center">
             <div id="evento-container" class="card p-4 bg-dark text-light">
-                <h2 class="text-light">Evento: <?= $_SESSION['evento_nombre'] ?></h2>
-                <h2 class="text-light">Temática: <?= $tematica ?></h2>                
+                <h2 class="text-light">Evento: <?= $_SESSION['player_evento_nombre'] ?? 'Nombre no disponible' ?></h2>
+                <h2 class="text-light">Temática: <?= $tematica ?? 'Descripción no disponible' ?></h2>             
                 <h2 class="text-light">Jugador: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
                 <div class="mt-4">
                     <ul class="list-group list-group-flush">

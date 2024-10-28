@@ -1,38 +1,34 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
+    require_once("../database.php");
+    require_once("../models/eventosModel.php");
+    require_once("../controllers/monitoreoController.php");
+    custom_session_start('player_session');
+
+    if (!isset($_SESSION['admin_id'])) {
         header("Location: login.php");
         exit();
     }
 
-    require_once("../database.php");
-    require_once("../models/eventosModel.php");
-    require_once("../models/monitoreoModel.php");
-    require_once("../controllers/monitoreoController.php");
-
     // Obtener el nombre de usuario y rol
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
-            FROM usuarios 
-            JOIN rol ON usuarios.idRol = rol.id 
-            WHERE usuarios.id = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    $nombre_usuario = $user['nombres'];
-    $rol_usuario = $user['nombre_rol'];
+    $user_id = $_SESSION['admin_id'];
+    $usuario = obtenerUsuario($conexion, $user_id);
+    $nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
+    $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
 
     $controller = new MonitoreoController($conexion);
     $eventosEnProceso = $controller->getEventosEnProceso();
+    $pendingChallenges = $controller->getPendingChallenges();
+
+    // Depuración
+    error_log("Pending challenges: " . print_r($pendingChallenges, true));
 
     function formatearFecha($fecha) {
         $datetime = new DateTime($fecha);
         return $datetime->format('d/m/y H:i');
     }
-    $pendingChallenges = $controller->getPendingChallenges();
+
+    // Agregar log para depuración
+    error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'] ?? [], true));
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +71,7 @@
                         <a class="nav-link custom-nav-link" href="consultas.php">Consultas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="confirmarCerrarSesion()">Cerrar Sesión</button>
+                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
             </div>
         </div>
     </nav>
@@ -90,29 +86,39 @@
                         <!-- Sección de Solicitudes -->
                         <div class="mt-4">
                             <div class="row">
-                                <?php if (empty($pendingChallenges)): ?>
-                                    <p>Sin pendientes.</p>
-                                <?php else: ?>
-                                    <?php foreach ($pendingChallenges as $challenge): ?>
-                                        <div class="col-md-4 mb-3 challenge-card" id="challenge-<?php echo $challenge['challengeId']; ?>">
+                                <?php if (isset($_SESSION['pending_challenges']) && !empty($_SESSION['pending_challenges'])): ?>
+                                    <?php foreach ($_SESSION['pending_challenges'] as $challengeId => $challenge): ?>
+                                        <div class="col-md-4 mb-4" id="challenge-<?php echo htmlspecialchars($challengeId); ?>">
                                             <div class="card">
                                                 <?php if ($challenge['gameType'] === 'photo'): ?>
-                                                    <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" class="card-img-top" alt="Foto para revisión">
-                                                <?php elseif ($challenge['gameType'] === 'text'): ?>
-                                                    <div class="card-body">
-                                                        <p><?php echo htmlspecialchars($challenge['challenge']); ?></p>
-                                                    </div>
+                                                    <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" 
+                                                         class="card-img-top" alt="Foto para revisión">
                                                 <?php endif; ?>
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Evento: <?php echo htmlspecialchars($challenge['eventoNombre']); ?></h5>
-                                                    <p class="card-text"><strong>Tipo:</strong> <?php echo htmlspecialchars($challenge['gameType']); ?></p>
-                                                    <p class="card-text" style="margin-bottom: 10px;"><strong>Descripción:</strong> <?php echo htmlspecialchars($challenge['gameDescription']); ?></p>
-                                                    <button class="btn btn-success btn-sm" onclick="calificarDesafio('<?php echo $challenge['challengeId']; ?>', 'aprobado')">Aprobar</button>
-                                                    <button class="btn btn-danger btn-sm" onclick="calificarDesafio('<?php echo $challenge['challengeId']; ?>', 'rechazado')">Reprobar</button>
+                                                    <h5 class="card-title">
+                                                        <strong>Evento:</strong> <?php echo htmlspecialchars($challenge['eventoNombre'] ?? 'No definido'); ?>
+                                                    </h5>
+                                                    <p class="card-text">
+                                                        <strong>Jugador:</strong> <?php echo htmlspecialchars($challenge['jugadorNombre'] ?? 'No definido'); ?><br>
+                                                        <strong>Descripción:</strong> <?php echo htmlspecialchars($challenge['gameDescription'] ?? 'No disponible'); ?><br>
+                                                    </p>
+                                                    <br>
+                                                    <button class="btn btn-success btn-sm" 
+                                                            onclick="calificarDesafio('<?php echo $challengeId; ?>', 'aprobado')">
+                                                        Aprobar
+                                                    </button>
+                                                    <button class="btn btn-danger btn-sm" 
+                                                            onclick="calificarDesafio('<?php echo $challengeId; ?>', 'rechazado')">
+                                                        Reprobar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
+                                <?php else: ?>
+                                    <div class="col-12">
+                                        <p>No hay desafíos pendientes de calificación.</p>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         </div>

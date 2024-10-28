@@ -47,6 +47,7 @@
 
         public function getPendingChallenges() {
             if (!isset($_SESSION['pending_challenges']) || empty($_SESSION['pending_challenges'])) {
+                error_log("No hay desafíos pendientes en la sesión.");
                 return [];
             }
 
@@ -65,6 +66,7 @@
                 ];
             }
 
+            error_log("Desafíos pendientes encontrados: " . count($challenges));
             return $challenges;
         }
         public function aprobarDesafio($challengeId) {

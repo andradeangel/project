@@ -1,0 +1,730 @@
+[2024-10-27 11:43:37] [info] Administrador con ID 1 ha iniciado sesión exitosamente
+[2024-10-27 11:43:37] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:43:37
+[2024-10-27 11:43:37] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:43:37] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:43:37] [info] Resumen de actualización:
+[2024-10-27 11:43:37] [info] Total de eventos actualizados: 0
+[2024-10-27 11:43:37] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:43:37] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:43:37] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:43:37] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:43:37] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:43:37] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:43:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:43:46
+[2024-10-27 11:43:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:43:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:43:46] [info] Resumen de actualización:
+[2024-10-27 11:43:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:43:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:43:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:43:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:43:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:43:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:43:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:44:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:44:46
+[2024-10-27 11:44:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:44:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:44:46] [info] Resumen de actualización:
+[2024-10-27 11:44:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:44:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:44:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:44:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:44:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:44:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:44:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:45:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:45:46
+[2024-10-27 11:45:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:45:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:45:46] [info] Resumen de actualización:
+[2024-10-27 11:45:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:45:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:45:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:45:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:45:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:45:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:45:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:46:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:46:46
+[2024-10-27 11:46:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:46:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:46:46] [info] Resumen de actualización:
+[2024-10-27 11:46:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:46:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:46:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:46:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:46:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:46:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:46:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:47:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:47:46
+[2024-10-27 11:47:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:47:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:47:46] [info] Resumen de actualización:
+[2024-10-27 11:47:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:47:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:47:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:47:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:47:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:47:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:47:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:48:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:48:46
+[2024-10-27 11:48:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:48:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:48:46] [info] Resumen de actualización:
+[2024-10-27 11:48:46] [info] Total de eventos actualizados: 0
+[2024-10-27 11:48:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:48:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:48:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:48:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:48:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:48:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:49:47] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:49:47
+[2024-10-27 11:49:47] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:49:47] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:49:47] [info] Resumen de actualización:
+[2024-10-27 11:49:47] [info] Total de eventos actualizados: 0
+[2024-10-27 11:49:47] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:49:47] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:49:47] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:49:47] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:49:47] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:49:47] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:50:48] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:50:48
+[2024-10-27 11:50:48] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:50:48] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:50:48] [info] Resumen de actualización:
+[2024-10-27 11:50:48] [info] Total de eventos actualizados: 0
+[2024-10-27 11:50:48] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:50:48] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:50:48] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:50:48] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:50:48] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:50:48] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 11:51:49] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 11:51:49
+[2024-10-27 11:51:49] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 11:51:49] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 11:51:49] [info] Resumen de actualización:
+[2024-10-27 11:51:49] [info] Total de eventos actualizados: 0
+[2024-10-27 11:51:49] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 11:51:49] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 11:51:49] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 11:51:49] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 11:51:49] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 11:51:49] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:26:33] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:26:33
+[2024-10-27 16:26:33] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:26:33] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:26:33] [info] Resumen de actualización:
+[2024-10-27 16:26:33] [info] Total de eventos actualizados: 0
+[2024-10-27 16:26:33] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:26:33] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:26:33] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:26:33] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:26:33] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:26:33] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:26:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:26:55
+[2024-10-27 16:26:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:26:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:26:55] [info] Resumen de actualización:
+[2024-10-27 16:26:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:26:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:26:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:26:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:26:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:26:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:26:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:27:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:27:55
+[2024-10-27 16:27:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:27:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:27:55] [info] Resumen de actualización:
+[2024-10-27 16:27:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:27:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:27:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:27:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:27:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:27:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:27:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:28:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:28:55
+[2024-10-27 16:28:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:28:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:28:55] [info] Resumen de actualización:
+[2024-10-27 16:28:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:28:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:28:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:28:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:28:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:28:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:28:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:29:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:29:55
+[2024-10-27 16:29:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:29:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:29:55] [info] Resumen de actualización:
+[2024-10-27 16:29:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:29:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:29:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:29:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:29:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:29:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:29:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:30:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:30:55
+[2024-10-27 16:30:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:30:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:30:55] [info] Resumen de actualización:
+[2024-10-27 16:30:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:30:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:30:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:30:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:30:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:30:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:30:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:31:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:31:55
+[2024-10-27 16:31:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:31:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:31:55] [info] Resumen de actualización:
+[2024-10-27 16:31:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:31:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:31:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:31:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:31:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:31:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:31:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:32:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:32:55
+[2024-10-27 16:32:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:32:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:32:55] [info] Resumen de actualización:
+[2024-10-27 16:32:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:32:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:32:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:32:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:32:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:32:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:32:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:33:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:33:55
+[2024-10-27 16:33:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:33:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:33:55] [info] Resumen de actualización:
+[2024-10-27 16:33:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:33:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:33:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:33:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:33:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:33:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:33:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:34:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:34:55
+[2024-10-27 16:34:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:34:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:34:55] [info] Resumen de actualización:
+[2024-10-27 16:34:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:34:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:34:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:34:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:34:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:34:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:34:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:35:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:35:55
+[2024-10-27 16:35:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:35:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:35:55] [info] Resumen de actualización:
+[2024-10-27 16:35:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:35:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:35:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:35:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:35:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:35:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:35:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:36:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:36:55
+[2024-10-27 16:36:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:36:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:36:55] [info] Resumen de actualización:
+[2024-10-27 16:36:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:36:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:36:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:36:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:36:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:36:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:36:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:37:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:37:55
+[2024-10-27 16:37:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:37:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:37:55] [info] Resumen de actualización:
+[2024-10-27 16:37:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:37:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:37:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:37:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:37:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:37:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:37:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:38:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:38:55
+[2024-10-27 16:38:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:38:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:38:55] [info] Resumen de actualización:
+[2024-10-27 16:38:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:38:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:38:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:38:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:38:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:38:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:38:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:39:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:39:40
+[2024-10-27 16:39:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:39:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:39:40] [info] Resumen de actualización:
+[2024-10-27 16:39:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:39:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:39:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:39:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:39:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:39:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:39:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:40:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:40:40
+[2024-10-27 16:40:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:40:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:40:40] [info] Resumen de actualización:
+[2024-10-27 16:40:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:40:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:40:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:40:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:40:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:40:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:40:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:41:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:41:40
+[2024-10-27 16:41:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:41:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:41:40] [info] Resumen de actualización:
+[2024-10-27 16:41:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:41:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:41:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:41:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:41:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:41:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:41:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:42:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:42:40
+[2024-10-27 16:42:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:42:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:42:40] [info] Resumen de actualización:
+[2024-10-27 16:42:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:42:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:42:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:42:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:42:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:42:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:42:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:43:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:43:40
+[2024-10-27 16:43:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:43:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:43:40] [info] Resumen de actualización:
+[2024-10-27 16:43:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:43:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:43:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:43:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:43:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:43:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:43:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:44:40] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:44:40
+[2024-10-27 16:44:40] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:44:40] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:44:40] [info] Resumen de actualización:
+[2024-10-27 16:44:40] [info] Total de eventos actualizados: 0
+[2024-10-27 16:44:40] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:44:40] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:44:40] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:44:40] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:44:40] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:44:40] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:45:41] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:45:41
+[2024-10-27 16:45:41] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:45:41] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:45:41] [info] Resumen de actualización:
+[2024-10-27 16:45:41] [info] Total de eventos actualizados: 0
+[2024-10-27 16:45:41] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:45:41] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:45:41] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:45:41] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:45:41] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:45:41] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:46:42] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:46:42
+[2024-10-27 16:46:42] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:46:42] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:46:42] [info] Resumen de actualización:
+[2024-10-27 16:46:42] [info] Total de eventos actualizados: 0
+[2024-10-27 16:46:42] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:46:42] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:46:42] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:46:42] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:46:42] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:46:42] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:47:43] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:47:43
+[2024-10-27 16:47:43] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:47:43] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:47:43] [info] Resumen de actualización:
+[2024-10-27 16:47:43] [info] Total de eventos actualizados: 0
+[2024-10-27 16:47:43] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:47:43] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:47:43] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:47:43] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:47:43] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:47:43] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:48:44] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:48:44
+[2024-10-27 16:48:44] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:48:44] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:48:44] [info] Resumen de actualización:
+[2024-10-27 16:48:44] [info] Total de eventos actualizados: 0
+[2024-10-27 16:48:44] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:48:44] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:48:44] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:48:44] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:48:44] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:48:44] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:49:45] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:49:45
+[2024-10-27 16:49:45] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:49:45] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:49:45] [info] Resumen de actualización:
+[2024-10-27 16:49:45] [info] Total de eventos actualizados: 0
+[2024-10-27 16:49:45] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:49:45] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:49:45] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:49:45] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:49:45] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:49:45] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:50:46] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:50:46
+[2024-10-27 16:50:46] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:50:46] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:50:46] [info] Resumen de actualización:
+[2024-10-27 16:50:46] [info] Total de eventos actualizados: 0
+[2024-10-27 16:50:46] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:50:46] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:50:46] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:50:46] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:50:46] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:50:46] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:51:47] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:51:47
+[2024-10-27 16:51:47] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:51:47] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:51:47] [info] Resumen de actualización:
+[2024-10-27 16:51:47] [info] Total de eventos actualizados: 0
+[2024-10-27 16:51:47] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:51:47] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:51:47] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:51:47] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:51:47] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:51:47] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:52:48] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:52:48
+[2024-10-27 16:52:48] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:52:48] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:52:48] [info] Resumen de actualización:
+[2024-10-27 16:52:48] [info] Total de eventos actualizados: 0
+[2024-10-27 16:52:48] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:52:48] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:52:48] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:52:48] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:52:48] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:52:48] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:53:49] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:53:49
+[2024-10-27 16:53:49] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:53:49] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:53:49] [info] Resumen de actualización:
+[2024-10-27 16:53:49] [info] Total de eventos actualizados: 0
+[2024-10-27 16:53:49] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:53:49] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:53:49] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:53:49] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:53:49] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:53:49] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:54:50] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:54:50
+[2024-10-27 16:54:50] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:54:50] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:54:50] [info] Resumen de actualización:
+[2024-10-27 16:54:50] [info] Total de eventos actualizados: 0
+[2024-10-27 16:54:50] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:54:50] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:54:50] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:54:50] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:54:50] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:54:50] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:55:51] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:55:51
+[2024-10-27 16:55:51] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:55:51] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:55:51] [info] Resumen de actualización:
+[2024-10-27 16:55:51] [info] Total de eventos actualizados: 0
+[2024-10-27 16:55:51] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:55:51] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:55:51] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:55:51] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:55:51] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:55:51] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:56:52] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:56:52
+[2024-10-27 16:56:52] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:56:52] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:56:52] [info] Resumen de actualización:
+[2024-10-27 16:56:52] [info] Total de eventos actualizados: 0
+[2024-10-27 16:56:52] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:56:52] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:56:52] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:56:52] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:56:52] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:56:52] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:57:53] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:57:53
+[2024-10-27 16:57:53] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:57:53] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:57:53] [info] Resumen de actualización:
+[2024-10-27 16:57:53] [info] Total de eventos actualizados: 0
+[2024-10-27 16:57:53] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:57:53] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:57:53] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:57:53] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:57:53] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:57:53] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:58:54] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:58:54
+[2024-10-27 16:58:54] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:58:54] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:58:54] [info] Resumen de actualización:
+[2024-10-27 16:58:54] [info] Total de eventos actualizados: 0
+[2024-10-27 16:58:54] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:58:54] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:58:54] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:58:54] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:58:54] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:58:54] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 16:59:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 16:59:55
+[2024-10-27 16:59:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 16:59:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 16:59:55] [info] Resumen de actualización:
+[2024-10-27 16:59:55] [info] Total de eventos actualizados: 0
+[2024-10-27 16:59:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 16:59:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 16:59:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 16:59:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 16:59:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 16:59:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:00:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:00:55
+[2024-10-27 17:00:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:00:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:00:55] [info] Resumen de actualización:
+[2024-10-27 17:00:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:00:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:00:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:00:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:00:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:00:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:00:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:01:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:01:55
+[2024-10-27 17:01:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:01:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:01:55] [info] Resumen de actualización:
+[2024-10-27 17:01:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:01:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:01:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:01:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:01:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:01:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:01:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:02:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:02:55
+[2024-10-27 17:02:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:02:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:02:55] [info] Resumen de actualización:
+[2024-10-27 17:02:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:02:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:02:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:02:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:02:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:02:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:02:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:03:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:03:55
+[2024-10-27 17:03:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:03:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:03:55] [info] Resumen de actualización:
+[2024-10-27 17:03:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:03:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:03:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:03:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:03:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:03:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:03:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:04:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:04:55
+[2024-10-27 17:04:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:04:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:04:55] [info] Resumen de actualización:
+[2024-10-27 17:04:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:04:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:04:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:04:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:04:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:04:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:04:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:05:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:05:55
+[2024-10-27 17:05:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:05:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:05:55] [info] Resumen de actualización:
+[2024-10-27 17:05:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:05:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:05:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:05:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:05:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:05:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:05:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:06:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:06:55
+[2024-10-27 17:06:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:06:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:06:55] [info] Resumen de actualización:
+[2024-10-27 17:06:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:06:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:06:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:06:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:06:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:06:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:06:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:07:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:07:55
+[2024-10-27 17:07:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:07:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:07:55] [info] Resumen de actualización:
+[2024-10-27 17:07:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:07:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:07:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:07:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:07:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:07:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:07:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:08:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:08:55
+[2024-10-27 17:08:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:08:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:08:55] [info] Resumen de actualización:
+[2024-10-27 17:08:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:08:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:08:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:08:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:08:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:08:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:08:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:09:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:09:55
+[2024-10-27 17:09:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:09:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:09:55] [info] Resumen de actualización:
+[2024-10-27 17:09:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:09:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:09:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:09:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:09:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:09:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:09:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:10:55] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:10:55
+[2024-10-27 17:10:55] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:10:55] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:10:55] [info] Resumen de actualización:
+[2024-10-27 17:10:55] [info] Total de eventos actualizados: 0
+[2024-10-27 17:10:55] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:10:55] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:10:55] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:10:55] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:10:55] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:10:55] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:11:16] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:11:16
+[2024-10-27 17:11:16] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:11:16] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:11:16] [info] Resumen de actualización:
+[2024-10-27 17:11:16] [info] Total de eventos actualizados: 0
+[2024-10-27 17:11:16] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:11:16] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:11:16] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:11:16] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:11:16] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:11:16] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:14:51] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:14:51
+[2024-10-27 17:14:51] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:14:51] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:14:51] [info] Resumen de actualización:
+[2024-10-27 17:14:51] [info] Total de eventos actualizados: 0
+[2024-10-27 17:14:51] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:14:51] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:14:51] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:14:51] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:14:51] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:14:51] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:40:57] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:40:57
+[2024-10-27 17:40:57] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:40:57] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:40:57] [info] Resumen de actualización:
+[2024-10-27 17:40:57] [info] Total de eventos actualizados: 0
+[2024-10-27 17:40:57] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:40:57] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:40:57] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:40:57] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:40:57] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:40:57] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:41:29] [info] Administrador con ID 1 ha iniciado sesión exitosamente
+[2024-10-27 17:41:29] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:41:29
+[2024-10-27 17:41:29] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:41:29] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:41:29] [info] Resumen de actualización:
+[2024-10-27 17:41:29] [info] Total de eventos actualizados: 0
+[2024-10-27 17:41:29] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:41:29] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:41:29] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:41:29] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:41:29] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:41:29] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 17:57:12] [info] Administrador con ID 1 ha iniciado sesión exitosamente
+[2024-10-27 17:57:12] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 17:57:12
+[2024-10-27 17:57:12] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 17:57:12] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 17:57:12] [info] Resumen de actualización:
+[2024-10-27 17:57:12] [info] Total de eventos actualizados: 0
+[2024-10-27 17:57:12] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 17:57:12] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 17:57:12] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 17:57:12] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 17:57:12] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 17:57:12] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 18:05:19] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 18:05:19
+[2024-10-27 18:05:19] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 18:05:19] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 18:05:19] [info] Resumen de actualización:
+[2024-10-27 18:05:19] [info] Total de eventos actualizados: 0
+[2024-10-27 18:05:19] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 18:05:19] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 18:05:19] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 18:05:19] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 18:05:19] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 18:05:19] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 18:23:56] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 18:23:56
+[2024-10-27 18:23:56] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 18:23:56] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 18:23:56] [info] Resumen de actualización:
+[2024-10-27 18:23:56] [info] Total de eventos actualizados: 0
+[2024-10-27 18:23:56] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 18:23:56] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 18:23:56] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 18:23:56] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 18:23:56] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 18:23:56] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 18:23:57] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 18:23:57
+[2024-10-27 18:23:57] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 18:23:57] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 18:23:57] [info] Resumen de actualización:
+[2024-10-27 18:23:57] [info] Total de eventos actualizados: 0
+[2024-10-27 18:23:57] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 18:23:57] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 18:23:57] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 18:23:57] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 18:23:57] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 18:23:57] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 18:24:16] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 18:24:16
+[2024-10-27 18:24:16] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 18:24:16] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 18:24:16] [info] Resumen de actualización:
+[2024-10-27 18:24:16] [info] Total de eventos actualizados: 0
+[2024-10-27 18:24:16] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 18:24:16] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 18:24:16] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 18:24:16] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 18:24:16] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 18:24:16] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2
+[2024-10-27 20:08:27] [info] Administrador con ID 1 ha iniciado sesión exitosamente
+[2024-10-27 20:08:27] [info] Iniciando actualización de estados de eventos. Fecha actual: 2024-10-27 20:08:27
+[2024-10-27 20:08:27] [info] Eventos actualizados de 'en espera' a 'activos': 0
+[2024-10-27 20:08:27] [info] Eventos actualizados de 'activos' a 'finalizados': 0
+[2024-10-27 20:08:27] [info] Resumen de actualización:
+[2024-10-27 20:08:27] [info] Total de eventos actualizados: 0
+[2024-10-27 20:08:27] [info] Evento ID: 1, Nombre: Microsoft, Inicio: 2024-10-09 00:00:00, Fin: 2024-10-09 23:32:00, Estado: 3
+[2024-10-27 20:08:27] [info] Evento ID: 2, Nombre: Perdiendo la Cabeza, Inicio: 2024-10-09 13:11:00, Fin: 2024-10-09 14:08:00, Estado: 3
+[2024-10-27 20:08:27] [info] Evento ID: 3, Nombre: Col. Don Bosco, Inicio: 2024-10-09 13:12:00, Fin: 2024-10-09 13:15:00, Estado: 3
+[2024-10-27 20:08:27] [info] Evento ID: 4, Nombre: El Diario, Inicio: 2024-10-10 10:01:00, Fin: 2024-10-24 20:00:00, Estado: 3
+[2024-10-27 20:08:27] [info] Evento ID: 5, Nombre: judith, Inicio: 2024-10-24 18:52:00, Fin: 2024-10-24 19:00:00, Estado: 3
+[2024-10-27 20:08:27] [info] Evento ID: 6, Nombre: New, Inicio: 2024-10-24 22:50:00, Fin: 2024-10-31 22:47:00, Estado: 2

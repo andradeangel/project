@@ -1,7 +1,7 @@
 <?php
-    include_once("../database.php");
+    require_once("../database.php");
 
-    session_start();
+    custom_session_start('player_session');
 
     if(isset($_POST["btnDatosJugador"])) {
         if(empty($_POST["nombre"]) || empty($_POST["edad"]) || empty($_POST["genero"])) {
@@ -26,7 +26,7 @@
                     $generoValor = 3; // Por defecto, si hay algún error
             }
             
-            $eventoId = $_SESSION['evento_id'] ?? null;
+            $eventoId = $_SESSION['player_evento_id'] ?? null;
             
             if($eventoId === null) {
                 echo "<div class='alert alert-danger'>Error: No se pudo obtener el ID del evento</div>";
@@ -38,8 +38,8 @@
                 // Ejecutar la consulta
                 if($sql->execute()) {
                     $jugadorId = $sql->insert_id;
-                    $_SESSION['user_id'] = $jugadorId;
-                    $_SESSION['user_name'] = $nombre;
+                    $_SESSION['player_id'] = $jugadorId;
+                    $_SESSION['player_name'] = $nombre;
                     header("Location: ../views/evento.php");
                     exit();
                 } else {

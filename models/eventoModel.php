@@ -6,17 +6,14 @@
             $this->conexion = $conexion;
         }
 
-        public function getTematica($evento_id) {
-            $sql = "SELECT s.nombre 
-                    FROM eventos e 
-                    INNER JOIN sprint s ON e.idSprint = s.id 
-                    WHERE e.id = ?";
-            $stmt = $this->conexion->prepare($sql);
-            $stmt->bind_param("i", $evento_id);
+        public function getTematica($eventoId) {
+            $query = "SELECT descripcion FROM eventos WHERE id = ?";
+            $stmt = $this->conexion->prepare($query);
+            $stmt->bind_param('i', $eventoId);
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            return $row['nombre'];
+            return $row['descripcion'] ?? 'Descripción no disponible';
         }
 
         public function getJuegos($evento_id) {

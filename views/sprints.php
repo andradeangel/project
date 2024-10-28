@@ -1,12 +1,12 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['user_id'])) {
+    require_once("../database.php");
+    require_once("../models/eventosModel.php");  // Asegúrate de que esta línea esté presente
+    custom_session_start('admin_session');
+    
+    if (!isset($_SESSION['admin_id'])) {
         header("Location: login.php");
         exit();
     }
-
-    require_once("../database.php");
-    require_once("../models/eventosModel.php");
     require_once("../models/sprintsModel.php");
     require_once("../controllers/sprintsController.php");
 
@@ -15,11 +15,12 @@
     $sprints = $controller->getAllSprints();
     $juegos = $controller->getAllJuegos();
 
-    // Obtener nombre de usuario y rol (asumiendo que están definidos en eventosModel.php)
-    $user_id = $_SESSION['user_id'];
-    $user = obtenerUsuario($conexion, $user_id);
-    $nombre_usuario = $user['nombres'];
-    $rol_usuario = $user['nombre_rol'];
+    // Obtener el nombre de usuario y rol
+$user_id = $_SESSION['admin_id'];
+$usuario = obtenerUsuario($conexion, $user_id);
+$nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
+$rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -62,7 +63,7 @@
                         <a class="nav-link custom-nav-link" href="consultas.php">Consultas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="confirmarCerrarSesion()">Cerrar Sesión</button>
+                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
             </div>
         </div>
     </nav>
@@ -216,7 +217,6 @@
                 }
             });
         }
-
         function deleteSprint(id) {
             if (confirm("¿Está seguro de que desea eliminar este sprint?")) {
                 $.ajax({

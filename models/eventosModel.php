@@ -1,16 +1,23 @@
 <?php
-    $user_id = $_SESSION['user_id'];
-    $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
-            FROM usuarios 
-            JOIN rol ON usuarios.idRol = rol.id 
-            WHERE usuarios.id = ?";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-    $nombre_usuario = $user['nombres'];
-    $rol_usuario = $user['nombre_rol'];
+    custom_session_start('admin_session');
+    
+    $user_id = $_SESSION['admin_id'] ?? null;
+    if ($user_id) {
+        $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+                FROM usuarios 
+                JOIN rol ON usuarios.idRol = rol.id 
+                WHERE usuarios.id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        $nombre_usuario = $user['nombres'] ?? 'Usuario desconocido';
+        $rol_usuario = $user['nombre_rol'] ?? 'Rol no definido';
+    } else {
+        $nombre_usuario = 'Usuario desconocido';
+        $rol_usuario = 'Rol no definido';
+    }
 
     function obtenerSprints($conexion) {
         $sql = "SELECT id, nombre FROM sprint ORDER BY nombre";
@@ -119,15 +126,18 @@
     }
 
     function obtenerUsuario($conexion, $user_id) {
-        $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
-                FROM usuarios 
-                JOIN rol ON usuarios.idRol = rol.id 
-                WHERE usuarios.id = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        if ($user_id) {
+            $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
+                    FROM usuarios 
+                    JOIN rol ON usuarios.idRol = rol.id 
+                    WHERE usuarios.id = ?";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+        return null;
     }
     
     function obtenerEventos($conexion, $orderBy = 'e.fechaInicio', $orderDir = 'DESC') {
