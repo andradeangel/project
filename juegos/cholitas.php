@@ -144,6 +144,9 @@ $_SESSION['current_game_description'] = $descripcion;
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             max-width: 80%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .loader {
