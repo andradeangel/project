@@ -22,5 +22,14 @@
         public function getJugadorPuntaje($jugadorId) {
             return $this->model->getJugadorPuntaje($jugadorId);
         }
+
+        public function agregarDesafio($jugadorId, $eventoId, $juegoId, $challenge, $gameType, $descripcion) {
+            error_log("Agregando nuevo desafío:");
+            error_log("JugadorId: $jugadorId");
+            error_log("EventoId: $eventoId");
+            error_log("JuegoId: $juegoId");
+            error_log("GameType: $gameType");
+            error_log("Descripción: $descripcion");
+        }
     }
 ?>

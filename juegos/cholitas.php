@@ -198,12 +198,24 @@ $_SESSION['current_game_description'] = $descripcion;
         });
 
         document.getElementById('submitBtn').addEventListener('click', function() {
+            console.log('Iniciando envío de foto...');
             if (esperandoCalificacion) {
+                console.log('Ya esperando calificación, abortando...');
                 alert('Ya has enviado una foto. Por favor, espera la calificación.');
                 return;
             }
 
             const challengeData = document.getElementById('preview').src;
+            console.log('Datos de la foto preparados, enviando a servidor...');
+            
+            const requestData = { 
+                challenge: challengeData,
+                gameType: 'photo',
+                juego_id: <?php echo json_encode($juego_id); ?>,
+                jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+            };
+            
+            console.log('Datos a enviar:', requestData);
             
             fetch('../controllers/uploadChallenge.php', {
                 method: 'POST',
@@ -211,10 +223,7 @@ $_SESSION['current_game_description'] = $descripcion;
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({ 
-                    challenge: challengeData, 
-                    gameType: 'photo' 
-                })
+                body: JSON.stringify(requestData)
             })
             .then(response => {
                 // Imprimir headers de respuesta
@@ -307,7 +316,7 @@ $_SESSION['current_game_description'] = $descripcion;
                             alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
                         }
                     } else {
-                        alert('Tu foto ha sido rechazada. Inténtalo de nuevo.');
+                        alert('Tu foto ha sido rechazada, continua con el siguiente reto.');
                     }
                     window.location.href = '../views/evento.php';
                 } else {

@@ -1,3 +1,21 @@
+<?php
+require_once('../database.php');
+custom_session_start('player_session');
+
+// Debug
+error_log("SESSION en fotoCiudad.php: " . print_r($_SESSION, true));
+
+if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
+    error_log("Redirección a evento.php por falta de datos de sesión");
+    header('Location: ../views/evento.php');
+    exit;
+}
+
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -95,7 +113,7 @@
             background-color: #0c0;
             box-shadow: 0 0 10px rgba(0, 215, 100, 0.5);
         }
-        .custom- file-upload:active, #submitBtn:active {
+        .custom-file-upload:active, #submitBtn:active {
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
             transform: scale(0.95);
         }
@@ -113,9 +131,7 @@
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            text-align: center;
         }
-
         .overlay-content {
             color: #fff;
             font-size: 1rem;
@@ -125,11 +141,11 @@
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(5, 0, 220, 0.5);
             max-width: 80%;
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .loader {
             border: 16px solid #333;
             border-top: 16px solid #24ffff;
@@ -139,7 +155,6 @@
             animation: spin 2s linear infinite;
             margin-top: 20px;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -147,61 +162,146 @@
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Reto: Captura el teleférico</h1>
-        <p>Captura una foto del teleférico de La Paz con la ciudad de fondo.</p>
-        <div class="preview-container">
-            <img id="preview" src="" alt="Preview de la foto">
-        </div>
-        <label for="fileInput" class="custom-file-upload">Subir foto</label>
-        <input type="file" id="fileInput" accept="image/*">
-        <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
+<div class="card">
+    <h1>Reto: Captura el teleférico</h1>
+    <p><?php echo htmlspecialchars($descripcion); ?></p>
+    <div class="preview-container">
+        <img id="preview" src="" alt="Preview de la foto">
     </div>
-    <div id="overlay" class="overlay">
-        <div class="overlay-content">
-            <p>Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
-            <div class="loader"></div>
-        </div>
+    <label for="fileInput" class="custom-file-upload">Subir foto</label>
+    <input type="file" id="fileInput" accept="image/*">
+    <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
+</div>
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
+        <div class="loader"></div>
     </div>
 </div>
 <script>
-    document.getElementById('fileInput').addEventListener('change', function() {
-        const file = this.files[0];
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            document.getElementById('preview').src = event.target.result;
-            document.getElementById('submitBtn').style.display = 'block';
-        };
-        reader.readAsDataURL(file);
+    document.addEventListener('DOMContentLoaded', function() {
+        let esperandoCalificacion = false;
+        let challengeId = null;
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('preview').src = event.target.result;
+                document.getElementById('submitBtn').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            if (esperandoCalificacion) {
+                alert('Ya has enviado una foto. Por favor, espera la calificación.');
+                return;
+            }
+
+            const challengeData = document.getElementById('preview').src;
+            
+            fetch('../controllers/uploadChallenge.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    challenge: challengeData, 
+                    gameType: 'photo' 
+                })
+            })
+            .then(response => response.text())
+            .then(text => {
+                try {
+                    if (!text.trim()) {
+                        throw new Error('Respuesta vacía del servidor');
+                    }
+                    return JSON.parse(text);
+                } catch (e) {
+                    throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    esperandoCalificacion = true;
+                    challengeId = data.challengeId;
+                    showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
+                    checkCalificacion();
+                } else {
+                    hideOverlay();
+                    console.error('Error al enviar el desafío:', data.message);
+                    alert('Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
+                }
+            })
+            .catch(error => {
+                console.error('Error completo:', error);
+                hideOverlay();
+                alert('Error al enviar el desafío: ' + error.message);
+            });
+        });
+
+        function showOverlay(message) {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+                const overlayMessage = document.getElementById('overlayMessage');
+                if (overlayMessage) {
+                    overlayMessage.innerText = message;
+                }
+            }
+        }
+
+        function hideOverlay() {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        }
+
+        function checkCalificacion() {
+            if (!esperandoCalificacion || !challengeId) {
+                return;
+            }
+
+            fetch('../controllers/checkCalificacion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ challengeId: challengeId })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Respuesta de checkCalificacion:", data);
+                if (data.calificado) {
+                    esperandoCalificacion = false;
+                    hideOverlay();
+                    if (data.status === 'aprobado') {
+                        alert('Tu foto ha sido aprobada. ¡Felicidades!');
+                        if (data.nuevoPuntaje) {
+                            alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
+                        }
+                    } else {
+                        alert('Tu foto ha sido rechazada, continua con el siguiente reto.');
+                    }
+                    window.location.href = '../views/evento.php';
+                } else {
+                    setTimeout(checkCalificacion, 2000);
+                }
+            })
+            .catch(error => {
+                console.error("Error al verificar calificación:", error);
+                setTimeout(checkCalificacion, 2000);
+            });
+        }
     });
-
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        showOverlay();
-        // Aquí puedes agregar el código para enviar la foto al servidor
-    });
-
-    function showOverlay() {
-        document.getElementById('overlay').style.display = 'flex';
-    }
-
-    function hideOverlay() {
-        document.getElementById('overlay').style.display = 'none';
-    }
-
-    // Esta función se llamará desde el sistema cuando sea apropiado ocultar el overlay
-    function onProcessingComplete() {
-        hideOverlay();
-        // Aquí puedes agregar cualquier otra lógica necesaria después de que se complete el procesamiento
-    }
-
-    // Ejemplo de cómo podrías llamar a onProcessingComplete desde otra parte del sistema
-    // Esto es solo un ejemplo y no se ejecutará automáticamente
-    /*
-    setTimeout(function() {
-        onProcessingComplete();
-    }, 5000); // Simula que el procesamiento toma 5 segundos
-    */
-</script>
 </script>
 </body>
 </html>

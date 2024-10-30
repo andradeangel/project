@@ -74,18 +74,30 @@
             if (isset($_SESSION['pending_challenges'][$challengeId])) {
                 $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
                 error_log("JugadorId encontrado: $jugadorId");
-                $sql = "UPDATE jugadores SET puntaje = puntaje + 1 WHERE id = ?";
+                
+                // Primero verificamos el puntaje actual
+                $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
                 $stmt = $this->conexion->prepare($sql);
                 $stmt->bind_param("i", $jugadorId);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                $puntajeActual = $row['puntaje'];
+                
+                // Actualizamos el puntaje
+                $nuevoPuntaje = $puntajeActual + 1;
+                $sql = "UPDATE jugadores SET puntaje = ? WHERE id = ?";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bind_param("ii", $nuevoPuntaje, $jugadorId);
+                
                 if ($stmt->execute()) {
-                    error_log("Puntaje actualizado para jugador $jugadorId");
+                    $_SESSION['pending_challenges'][$challengeId]['nuevoPuntaje'] = $nuevoPuntaje;
+                    error_log("Puntaje actualizado para jugador $jugadorId: $nuevoPuntaje");
                     return true;
                 } else {
                     error_log("Error al actualizar puntaje para jugador $jugadorId: " . $stmt->error);
                     return false;
                 }
-            } else {
-                error_log("No se encontró el desafío en la sesión: $challengeId");
             }
             return false;
         }
@@ -96,10 +108,8 @@
             $stmt->bind_param("i", $jugadorId);
             $stmt->execute();
             $result = $stmt->get_result();
-            if ($row = $result->fetch_assoc()) {
-                return $row['puntaje'];
-            }
-            return 0;
+            $row = $result->fetch_assoc();
+            return $row['puntaje'] ?? 0;
         }
     }
 ?>

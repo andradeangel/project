@@ -1,3 +1,54 @@
+<?php
+require_once('../database.php');
+custom_session_start('player_session');
+
+if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
+    error_log("Redirección a evento.php por falta de datos de sesión");
+    header('Location: ../views/evento.php');
+    exit;
+}
+
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+
+// Función para actualizar el puntaje
+function actualizarPuntaje($puntos) {
+    global $conexion;
+    $jugadorId = $_SESSION['jugador_actual']['id'];
+    
+    // Obtener puntaje actual
+    $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $jugadorId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $puntajeActual = $row['puntaje'];
+    
+    // Actualizar puntaje
+    $nuevoPuntaje = $puntajeActual + $puntos;
+    $sql = "UPDATE jugadores SET puntaje = ? WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ii", $nuevoPuntaje, $jugadorId);
+    
+    if ($stmt->execute()) {
+        return ['success' => true, 'nuevoPuntaje' => $nuevoPuntaje];
+    }
+    return ['success' => false];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (isset($data['action']) && $data['action'] === 'actualizarPuntaje' && isset($data['puntos'])) {
+        $resultado = actualizarPuntaje($data['puntos']);
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -131,8 +182,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="game-container">
-            <h1 class="mb-4">Juego de Memoria</h1>
+        <div class="game-container" style="width: 600px;">
+            <h1 class="mb-4">Juego de Memoria encuentra la pareja de imagenes</h1>
+            <div id="timer" class="mb-3" style="font-size: 14px;">Tiempo: 0s</div>
             <div class="game-board mb-4">
                 <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
             </div>
@@ -143,7 +195,11 @@
     <div id="win-message">
         <div id="win-content">
             <h2>Muy buena memoria, aca tienes tu llave</h2>
+            <p id="tiempo-final"></p>
+            <p id="puntos-ganados"></p>
+            <p id="puntaje-total"></p>
             <img src="../images/key.png" alt="Llave">
+            <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
         </div>
     </div>
 
@@ -162,6 +218,8 @@
         let cards = [...images, ...images];
         let flippedCards = [];
         let matchedPairs = 0;
+        let startTime;
+        let timerInterval;
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -209,8 +267,49 @@
             flippedCards = [];
         }
 
+        function updateTimer() {
+            const currentTime = (Date.now() - startTime) / 1000;
+            document.getElementById('timer').textContent = `Tiempo: ${currentTime.toFixed(1)}s`;
+        }
+
         function showWinMessage() {
-            document.getElementById('win-message').style.display = 'flex';
+            const endTime = (Date.now() - startTime) / 1000;
+            clearInterval(timerInterval);
+            
+            let puntos = 1;
+            if (endTime <= 20) {
+                puntos = 3;
+            } else if (endTime <= 40) {
+                puntos = 2;
+            }
+
+            fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'actualizarPuntaje',
+                    puntos: puntos
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('tiempo-final').textContent = `Tiempo: ${endTime.toFixed(2)}s`;
+                    document.getElementById('puntos-ganados').textContent = `Puntos ganados: ${puntos}`;
+                    document.getElementById('puntaje-total').textContent = `Puntaje total: ${data.nuevoPuntaje}`;
+                }
+                document.getElementById('win-message').style.display = 'flex';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('win-message').style.display = 'flex';
+            });
+        }
+
+        function redirigirEvento() {
+            window.location.href = '../views/evento.php';
         }
 
         function initGame() {
@@ -225,10 +324,12 @@
             });
 
             document.getElementById('win-message').style.display = 'none';
+            startTime = Date.now();
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 100);
         }
 
         document.getElementById('restart-button').addEventListener('click', initGame);
-
         initGame();
     </script>
 </body>

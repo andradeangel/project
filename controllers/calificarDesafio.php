@@ -1,7 +1,7 @@
 <?php
-session_start();
 require_once('../database.php');
 require_once('../controllers/monitoreoController.php');
+custom_session_start('admin_session');
 
 $response = ['success' => false, 'message' => '', 'nuevoPuntaje' => 0];
 
@@ -10,6 +10,9 @@ $data = json_decode(file_get_contents('php://input'), true);
 if (isset($data['challengeId']) && isset($data['status'])) {
     $challengeId = $data['challengeId'];
     $status = $data['status'];
+
+    error_log("Intentando calificar desafío: " . $challengeId);
+    error_log("Estado actual de la sesión: " . print_r($_SESSION, true));
 
     $controller = new MonitoreoController($conexion);
 
@@ -21,12 +24,10 @@ if (isset($data['challengeId']) && isset($data['status'])) {
             if ($controller->aprobarDesafio($challengeId)) {
                 $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
                 $nuevoPuntaje = $controller->getJugadorPuntaje($jugadorId);
-                error_log("Nuevo puntaje para jugador $jugadorId: $nuevoPuntaje");
                 $response['nuevoPuntaje'] = $nuevoPuntaje;
                 $response['success'] = true;
                 $response['message'] = 'Desafío aprobado y puntaje actualizado';
             } else {
-                error_log("Fallo al aprobar desafío: $challengeId");
                 $response['message'] = 'Error al actualizar el puntaje';
             }
         } else {
@@ -34,10 +35,9 @@ if (isset($data['challengeId']) && isset($data['status'])) {
             $response['message'] = 'Desafío reprobado';
         }
     } else {
+        error_log("Desafío no encontrado en la sesión. Challenge ID: " . $challengeId);
         $response['message'] = 'Desafío no encontrado';
     }
-} else {
-    $response['message'] = 'Datos incompletos';
 }
 
 echo json_encode($response);

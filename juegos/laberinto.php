@@ -1,3 +1,54 @@
+<?php
+require_once('../database.php');
+custom_session_start('player_session');
+
+if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
+    error_log("Redirección a evento.php por falta de datos de sesión");
+    header('Location: ../views/evento.php');
+    exit;
+}
+
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    if (isset($data['action']) && $data['action'] === 'actualizarPuntaje' && isset($data['puntos'])) {
+        $resultado = actualizarPuntaje($data['puntos']);
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+}
+// Función para actualizar el puntaje
+function actualizarPuntaje($puntos) {
+    global $conexion;
+    $jugadorId = $_SESSION['jugador_actual']['id'];
+    
+    // Obtener puntaje actual
+    $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $jugadorId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $puntajeActual = $row['puntaje'];
+    
+    // Actualizar puntaje
+    $nuevoPuntaje = $puntajeActual + $puntos;
+    $sql = "UPDATE jugadores SET puntaje = ? WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ii", $nuevoPuntaje, $jugadorId);
+    
+    if ($stmt->execute()) {
+        return ['success' => true, 'nuevoPuntaje' => $nuevoPuntaje];
+    }
+    return ['success' => false];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -86,13 +137,13 @@
         }
         #overlay-message {
             text-align: center;
-            font-size: 18px;
-            color: #0f0;
-            background-color: #111;
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #0f0;
-            box-shadow: 0 0 10px #0f0;
+            line-height: 1.5;
+        }
+        #overlay-message button {
+            margin-top: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            padding: 10px 20px;
         }
         h1 {
             font-size: 25px;
@@ -219,12 +270,67 @@
         }
 
         function gameOver(win) {
-            isGameOver = true;
-            clearInterval(timerInterval);
-            const endTime = (Date.now() - startTime) / 1000;
-            overlayMessageDisplay.textContent = win ? `¡Llave conseguida!\nTiempo: ${endTime.toFixed(2)}s` : '¡Perdiste! Inténtalo de nuevo.';
-            overlayMessageDisplay.style.color = win ? '#0f0' : '#f00';
+        isGameOver = true;
+        clearInterval(timerInterval);
+        const endTime = (Date.now() - startTime) / 1000;
+        
+        if (win) {
+            let puntos = 1; // Puntuación por defecto
+            if (endTime <= 10) {
+                puntos = 3;
+            } else if (endTime <= 30) {
+                puntos = 2;
+            }
+            
+            fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'actualizarPuntaje',
+                    puntos: puntos
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    overlayMessageDisplay.innerHTML = `
+                        ¡Llave conseguida!<br>
+                        Tiempo: ${endTime.toFixed(2)}s<br>
+                        Puntos ganados: ${puntos}<br>
+                        Nuevo puntaje total: ${data.nuevoPuntaje}<br>
+                        <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                    `;
+                } else {
+                    overlayMessageDisplay.innerHTML = `
+                        Error al actualizar puntaje.<br>
+                        Tiempo: ${endTime.toFixed(2)}s<br>
+                        <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                    `;
+                }
+                overlayMessageDisplay.style.color = '#0f0';
+                messageOverlay.style.display = 'flex';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                overlayMessageDisplay.innerHTML = `
+                    Error al procesar el resultado.<br>
+                    Tiempo: ${endTime.toFixed(2)}s<br>
+                    <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                `;
+                overlayMessageDisplay.style.color = '#f00';
+                messageOverlay.style.display = 'flex';
+            });
+        } else {
+            overlayMessageDisplay.textContent = '¡Perdiste! Inténtalo de nuevo.';
+            overlayMessageDisplay.style.color = '#f00';
             messageOverlay.style.display = 'flex';
+        }
+    }
+
+        function redirigirEvento() {
+            window.location.href = '../views/evento.php';
         }
 
         function startGame() {

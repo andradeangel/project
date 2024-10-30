@@ -1,13 +1,26 @@
 <?php
-    require_once("../database.php");
+require_once('../database.php');
+custom_session_start('admin_session');
+
+if (!isset($_SESSION['pending_challenges'])) {
+    $_SESSION['pending_challenges'] = [];
+}
+
+error_log("Contenido de pending_challenges en monitoreo: " . print_r($_SESSION['pending_challenges'], true));
     require_once("../models/eventosModel.php");
     require_once("../controllers/monitoreoController.php");
-    custom_session_start('player_session');
+
+    error_log("Contenido de _SESSION en monitoreo.php: " . print_r($_SESSION, true));
+error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? [], true));
 
     if (!isset($_SESSION['admin_id'])) {
         header("Location: login.php");
         exit();
     }
+    if (!isset($_SESSION['pending_challenges'])) {
+        $_SESSION['pending_challenges'] = [];
+    }
+    error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'], true));
 
     // Obtener el nombre de usuario y rol
     $user_id = $_SESSION['admin_id'];
@@ -30,7 +43,6 @@
     // Agregar log para depuración
     error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'] ?? [], true));
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -158,32 +170,29 @@
 
     <script>
         function calificarDesafio(challengeId, status) {
-    fetch('../controllers/calificarDesafio.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ challengeId: challengeId, status: status })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Eliminar el card del desafío calificado
-            document.getElementById('challenge-' + challengeId).remove();
-            alert(data.message);
-            
-            // Si no quedan más desafíos pendientes, mostrar un mensaje
-            if (document.querySelectorAll('.challenge-card').length === 0) {
-                document.querySelector('.row').innerHTML = '<p>Sin pendientes.</p>';
-            }
-        } else {
-            alert('Error al calificar el desafío: ' + data.message);
+            console.log("Intentando calificar desafío:", challengeId, status);
+            fetch('../controllers/calificarDesafio.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ challengeId: challengeId, status: status })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Respuesta del servidor:", data);
+                if (data.success) {
+                    document.getElementById('challenge-' + challengeId).remove();
+                    alert(data.message);
+                } else {
+                    alert('Error al calificar el desafío: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al procesar la solicitud');
+            });
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
         
         function confirmarCerrarSesion() {
             if (confirm("¿Está seguro de que desea cerrar sesión?")) {
@@ -193,3 +202,4 @@
     </script>
 </body>
 </html>
+

@@ -1,3 +1,52 @@
+<?php
+require_once('../database.php');
+custom_session_start('player_session');
+
+if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
+    error_log("Redirección a evento.php por falta de datos de sesión");
+    header('Location: ../views/evento.php');
+    exit;
+}
+
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+
+// Función para actualizar el puntaje
+function actualizarPuntaje($puntos) {
+    global $conexion;
+    $jugadorId = $_SESSION['jugador_actual']['id'];
+    
+    $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("i", $jugadorId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $puntajeActual = $row['puntaje'];
+    
+    $nuevoPuntaje = $puntajeActual + $puntos;
+    $sql = "UPDATE jugadores SET puntaje = ? WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("ii", $nuevoPuntaje, $jugadorId);
+    
+    if ($stmt->execute()) {
+        return ['success' => true, 'nuevoPuntaje' => $nuevoPuntaje];
+    }
+    return ['success' => false];
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (isset($data['action']) && $data['action'] === 'actualizarPuntaje' && isset($data['puntos'])) {
+        $resultado = actualizarPuntaje($data['puntos']);
+        header('Content-Type: application/json');
+        echo json_encode($resultado);
+        exit;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -148,39 +197,74 @@
         }
 
         function checkAnswers() {
-            let score = 0;
-            quizData.forEach((question, index) => {
-                const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selectedOption && parseInt(selectedOption.value) === question.answer) {
-                    score++;
-                }
-            });
+        let score = 0;
+        quizData.forEach((question, index) => {
+            const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selectedOption && parseInt(selectedOption.value) === question.answer) {
+                score++;
+            }
+        });
+
+        let puntosGanados = 0;
+        if (score === 3) puntosGanados = 3;
+        else if (score === 2) puntosGanados = 2;
+        else if (score === 1) puntosGanados = 1;
+
+        fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: 'actualizarPuntaje',
+                puntos: puntosGanados
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                resultDiv.innerHTML = `
+                    Tu puntuación: ${score} de ${quizData.length}<br>
+                    Puntos ganados: +${puntosGanados}<br>
+                    Puntaje total: ${data.nuevoPuntaje}
+                `;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
             resultDiv.textContent = `Tu puntuación: ${score} de ${quizData.length}`;
+        });
+
+        // Mostrar respuestas correctas e incorrectas
+        quizData.forEach((question, index) => {
+            const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+            const options = document.querySelectorAll(`input[name="q${index}"]`);
             
-            // Mostrar respuestas correctas e incorrectas
-            quizData.forEach((question, index) => {
-                const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
-                const options = document.querySelectorAll(`input[name="q${index}"]`);
+            options.forEach((option, i) => {
+                const label = option.nextElementSibling;
+                label.classList.remove('btn-outline-light', 'btn-success', 'btn-danger');
                 
-                options.forEach((option, i) => {
-                    const label = option.nextElementSibling;
-                    label.classList.remove('btn-outline-light', 'btn-success', 'btn-danger');
-                    
-                    if (i === question.answer) {
-                        label.classList.add('btn-success');
-                    } else if (selectedOption && parseInt(selectedOption.value) === i) {
-                        label.classList.add('btn-danger');
-                    } else {
-                        label.classList.add('btn-outline-light');
-                    }
-                });
+                if (i === question.answer) {
+                    label.classList.add('btn-success');
+                } else if (selectedOption && parseInt(selectedOption.value) === i) {
+                    label.classList.add('btn-danger');
+                } else {
+                    label.classList.add('btn-outline-light');
+                }
+                option.disabled = true;
             });
+        });
 
-            submitButton.disabled = true;
-        }
+        // Cambiar el botón a "Aceptar" y su funcionalidad
+        submitButton.textContent = 'Aceptar';
+        submitButton.removeEventListener('click', checkAnswers);
+        submitButton.addEventListener('click', () => {
+            window.location.href = '../views/evento.php';
+        });
+    }
 
-        createQuiz();
-        submitButton.addEventListener('click', checkAnswers);
+    createQuiz();
+    submitButton.addEventListener('click', checkAnswers);
     </script>
 </body>
 </html>
