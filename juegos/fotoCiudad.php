@@ -201,16 +201,20 @@ $_SESSION['current_game_description'] = $descripcion;
 
             const challengeData = document.getElementById('preview').src;
             
+            const requestData = { 
+                challenge: challengeData,
+                gameType: 'photo',
+                juego_id: <?php echo json_encode($juego_id); ?>,
+                jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+            };
+
             fetch('../controllers/uploadChallenge.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({ 
-                    challenge: challengeData, 
-                    gameType: 'photo' 
-                })
+                body: JSON.stringify(requestData)
             })
             .then(response => response.text())
             .then(text => {

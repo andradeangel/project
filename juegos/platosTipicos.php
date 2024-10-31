@@ -1,3 +1,21 @@
+<?php
+require_once('../database.php');
+custom_session_start('player_session');
+
+// Debug
+error_log("SESSION en platosTipicos.php: " . print_r($_SESSION, true));
+
+if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
+    error_log("Redirección a evento.php por falta de datos de sesión");
+    header('Location: ../views/evento.php');
+    exit;
+}
+
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -147,11 +165,12 @@
         <h1>Reto: Platos Típicos Paceños</h1>
         <p>Haz un video de 20 segundos o más probando 1 comida típica paceña: salteña, api con pastel, plato paceño u otros. Recomendación no mas de 30 segundos.</p>
         <div class="preview-container">
-            <video id="preview" style="display: none;" controls></video>
-            <input type="file" id="videoInput" accept="video/*" capture="environment" style="display: none;">
-            <button class="custom-file-upload" onclick="document.getElementById('videoInput').click()">Subir Video</button>
-        </div>
-        <button id="submitBtn" onclick="enviarVideo()">Enviar</button>
+    <video id="preview" style="display: none;" controls></video>
+    <input type="file" id="videoInput" accept="video/*" capture="environment" style="display: none;">
+    <button class="custom-file-upload" onclick="document.getElementById('videoInput').click()">Subir Video</button>
+</div>
+<button id="submitBtn" style="display: none;">Enviar</button>
+
     </div>
     <div class="overlay" id="overlay">
         <div class="card">
@@ -161,26 +180,126 @@
     </div>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let esperandoCalificacion = false;
+        let challengeId = null;
+
         const videoInput = document.getElementById('videoInput');
         const preview = document.getElementById('preview');
         const submitBtn = document.getElementById('submitBtn');
-        const overlay = document.getElementById('overlay');
 
-        videoInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const videoURL = URL.createObjectURL(file);
-                preview.src = videoURL;
+        videoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                preview.src = event.target.result;
                 preview.style.display = 'block';
                 submitBtn.style.display = 'block';
-            }
+            };
+            reader.readAsDataURL(file);
         });
 
-        function enviarVideo() {
-            overlay.classList.add('show');
-            // Aquí iría la lógica para enviar el video
-            console.log('Video enviado:', preview.src);
+        submitBtn.addEventListener('click', function() {
+            console.log('Iniciando envío de video...');
+            if (esperandoCalificacion) {
+                console.log('Ya esperando calificación, abortando...');
+                alert('Ya has enviado un video. Por favor, espera la calificación.');
+                return;
+            }
+
+            const videoData = preview.src;
+            console.log('Datos del video preparados, enviando a servidor...');
+            
+            const requestData = { 
+                challenge: videoData,
+                gameType: 'video',
+                juego_id: <?php echo json_encode($juego_id); ?>,
+                jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+            };
+            
+            console.log('Datos a enviar:', requestData);
+            
+            fetch('../controllers/uploadChallenge.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.text())
+            .then(text => {
+                try {
+                    if (!text.trim()) {
+                        throw new Error('Respuesta vacía del servidor');
+                    }
+                    return JSON.parse(text);
+                } catch (e) {
+                    throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
+                }
+            })
+            .then(data => {
+                if (data.success) {
+                    esperandoCalificacion = true;
+                    challengeId = data.challengeId;
+                    showOverlay('Espere unos segundos, su video está siendo evaluado por el Game Master :)');
+                    checkCalificacion();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al enviar el video: ' + error.message);
+            });
+        });
+
+        function showOverlay(message) {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
         }
-    </script>
+
+        function hideOverlay() {
+            const overlay = document.getElementById('overlay');
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        }
+
+        function checkCalificacion() {
+            if (!esperandoCalificacion || !challengeId) return;
+
+            fetch('../controllers/checkCalificacion.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ challengeId: challengeId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.calificado) {
+                    esperandoCalificacion = false;
+                    hideOverlay();
+                    if (data.status === 'aprobado') {
+                        alert('Tu video ha sido aprobado. ¡Felicidades!');
+                        if (data.nuevoPuntaje) {
+                            alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
+                        }
+                    } else {
+                        alert('Tu video ha sido rechazado, continua con el siguiente reto.');
+                    }
+                    window.location.href = '../views/evento.php';
+                } else {
+                    setTimeout(checkCalificacion, 2000);
+                }
+            })
+            .catch(error => {
+                console.error("Error al verificar calificación:", error);
+                setTimeout(checkCalificacion, 2000);
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -105,6 +105,11 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
                                                 <?php if ($challenge['gameType'] === 'photo'): ?>
                                                     <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" 
                                                          class="card-img-top" alt="Foto para revisión">
+                                                <?php elseif ($challenge['gameType'] === 'video'): ?>
+                                                    <video controls class="card-img-top">
+                                                        <source src="<?php echo htmlspecialchars($challenge['challenge']); ?>" type="video/mp4">
+                                                        Tu navegador no soporta el elemento de video.
+                                                    </video>
                                                 <?php endif; ?>
                                                 <div class="card-body">
                                                     <h5 class="card-title">

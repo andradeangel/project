@@ -7,13 +7,16 @@
         }
 
         public function getTematica($eventoId) {
-            $query = "SELECT descripcion FROM eventos WHERE id = ?";
+            $query = "SELECT s.nombre 
+                      FROM eventos e 
+                      LEFT JOIN sprint s ON e.idSprint = s.id 
+                      WHERE e.id = ?";
             $stmt = $this->conexion->prepare($query);
             $stmt->bind_param('i', $eventoId);
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            return $row['descripcion'] ?? 'Descripción no disponible';
+            return $row['nombre'] ?? 'Temática no disponible';
         }
 
         public function getJuegos($evento_id) {
@@ -24,13 +27,13 @@
                             j5.id AS juego5_id, j5.nombre AS juego5, j5.juego AS direccion5, j5.descripcion AS descripcion5,
                             j6.id AS juego6_id, j6.nombre AS juego6, j6.juego AS direccion6, j6.descripcion AS descripcion6
                     FROM eventos e 
-                    INNER JOIN sprint s ON e.idSprint = s.id 
-                    INNER JOIN juegos j1 ON s.idJuego1 = j1.id 
-                    INNER JOIN juegos j2 ON s.idJuego2 = j2.id 
-                    INNER JOIN juegos j3 ON s.idJuego3 = j3.id 
-                    INNER JOIN juegos j4 ON s.idJuego4 = j4.id 
-                    INNER JOIN juegos j5 ON s.idJuego5 = j5.id 
-                    INNER JOIN juegos j6 ON s.idJuego6 = j6.id 
+                    LEFT JOIN sprint s ON e.idSprint = s.id 
+                    LEFT JOIN juegos j1 ON s.idJuego1 = j1.id 
+                    LEFT JOIN juegos j2 ON s.idJuego2 = j2.id 
+                    LEFT JOIN juegos j3 ON s.idJuego3 = j3.id 
+                    LEFT JOIN juegos j4 ON s.idJuego4 = j4.id 
+                    LEFT JOIN juegos j5 ON s.idJuego5 = j5.id 
+                    LEFT JOIN juegos j6 ON s.idJuego6 = j6.id 
                     WHERE e.id = ?";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bind_param("i", $evento_id);
