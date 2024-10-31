@@ -190,6 +190,14 @@ $_SESSION['current_game_description'] = $descripcion;
 
         videoInput.addEventListener('change', function() {
             const file = this.files[0];
+            const maxSize = 40 * 1024 * 1024; // 40MB en bytes
+
+            if (file.size > maxSize) {
+                alert('El video es demasiado grande. Por favor, sube un video de menos de 40MB.');
+                this.value = ''; // Limpiar el input
+                return;
+            }
+
             const reader = new FileReader();
             reader.onload = function(event) {
                 preview.src = event.target.result;
