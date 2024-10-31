@@ -23,6 +23,13 @@ if (isset($data['challengeId']) && isset($data['status'])) {
         if ($status === 'aprobado') {
             if ($controller->aprobarDesafio($challengeId)) {
                 $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
+                
+                // Actualizar juego_actual además del puntaje
+                $sql = "UPDATE jugadores SET juego_actual = juego_actual + 1 WHERE id = ?";
+                $stmt = $conexion->prepare($sql);
+                $stmt->bind_param("i", $jugadorId);
+                $stmt->execute();
+                
                 $nuevoPuntaje = $controller->getJugadorPuntaje($jugadorId);
                 $response['nuevoPuntaje'] = $nuevoPuntaje;
                 $response['success'] = true;

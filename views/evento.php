@@ -63,15 +63,24 @@ $_SESSION['jugador_actual'] = [
                 <h2 class="text-light">Jugador: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
                 <div class="mt-4">
                     <ul class="list-group list-group-flush">
-                        <?php foreach ($juegos as $juego): ?>
-                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='<?= $juego['direccion'] ?>?juego_id=<?= $juego['id'] ?>&descripcion=<?= urlencode($juego['descripcion']) ?>'">
+                        <?php foreach ($juegos as $index => $juego):
+                            $juego_actual = $jugador['juego_actual'] ?? 1;
+                            $disabled = ($index + 1) !== $juego_actual ? 'disabled' : '';
+                            $opacity = ($index + 1) !== $juego_actual ? 'opacity: 0.5;' : '';
+                        ?>
+                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center" style="<?php echo $opacity; ?>">
+                            <button type="button" class="btn btn-success btn-sm" 
+                                    <?php echo $disabled; ?>
+                                    onclick="window.location.href='<?php echo $juego['direccion']; ?>?juego_id=<?php echo $juego['id']; ?>&descripcion=<?php echo urlencode($juego['descripcion']); ?>'">
                                 <i class="fas fa-play"></i>
                             </button>
-                            <span><img src="../images/key.png" alt="Imagen de llave"> <?= $juego['nombre'] ?></span>
+                            <span><img src="../images/key.png" alt="Imagen de llave"> <?php echo $juego['nombre']; ?></span>
                             <span>
-                                <img src="../images/padlock-closed.png" alt="Candado cerrado" class="img-fluid">
-                                <img src="../images/padlock-open.png" alt="Candado abierto" class="img-fluid">
+                                <?php if (($index + 1) < $juego_actual): ?>
+                                    <img src="../images/padlock-open.png" alt="Candado abierto" class="img-fluid">
+                                <?php else: ?>
+                                    <img src="../images/padlock-closed.png" alt="Candado cerrado" class="img-fluid">
+                                <?php endif; ?>
                             </span>
                         </li>
                         <?php endforeach; ?>
