@@ -32,7 +32,7 @@
                 echo "<div class='alert alert-danger'>Error: No se pudo obtener el ID del evento</div>";
             } else {
                 // Preparar la consulta SQL
-                $sql = $conexion->prepare("INSERT INTO jugadores (nombres, edad, idGenero, idEvento, puntaje, juego_actual, idEstado) VALUES (?, ?, ?, ?, 0, 1, 1)");
+                $sql = $conexion->prepare("INSERT INTO jugadores (nombres, edad, idGenero, idEvento, puntaje, juego_actual) VALUES (?, ?, ?, ?, 0, 1)");
                 $sql->bind_param("siii", $nombre, $edad, $generoValor, $eventoId);
                 
                 // Ejecutar la consulta

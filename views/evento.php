@@ -12,6 +12,19 @@ if (!isset($_SESSION['player_id']) || !isset($_SESSION['player_evento_id'])) {
     exit;
 }
 
+// Verificar si el jugador ya terminó todos los juegos
+$jugadorId = $_SESSION['player_id'];
+$sql = "SELECT juego_actual FROM jugadores WHERE id = ?";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param('i', $jugadorId);
+$stmt->execute();
+$jugador = $stmt->get_result()->fetch_assoc();
+
+if ($jugador['juego_actual'] > 6) {
+    header('Location: finJuego.php');
+    exit;
+}
+
 // Obtener datos del evento actual
 $eventoId = $_SESSION['player_evento_id'];
 $query = "SELECT * FROM eventos WHERE id = ?";

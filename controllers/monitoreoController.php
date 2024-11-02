@@ -1,5 +1,6 @@
 <?php
     require_once('../models/monitoreoModel.php');
+    require_once("../controllers/actualizarEstadosEventos.php");
 
     class MonitoreoController {
         private $model;

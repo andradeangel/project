@@ -284,7 +284,7 @@
                 console.error('Error al actualizar estados de eventos:', error);
                 }
             });
-        }, 60000);
+        }, 30000);
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

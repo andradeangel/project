@@ -204,6 +204,24 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
                 window.location.href = "/";
             }
         }
+        // Actualizar estados de eventos cada 30 segundos
+        setInterval(function() {
+            $.ajax({
+                type: 'GET',
+                url: '../controllers/actualizarEstadosEventos.php', // Cambia la dirección aquí
+                success: function(data) {
+                console.log('Actualización de estados de eventos realizada con éxito');
+                },
+                error: function(xhr, status, error) {
+                console.error('Error al actualizar estados de eventos:', error);
+                }
+            });
+        }, 30000);
+
+        // Recargar la página cada 30 segundos
+        setInterval(function() {
+            location.reload();
+        }, 30000);
     </script>
 </body>
 </html>
