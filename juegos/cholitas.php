@@ -286,11 +286,7 @@ $_SESSION['current_game_description'] = $descripcion;
         }
 
         function checkCalificacion() {
-            console.log("Verificando calificación para challengeId:", challengeId);
-            if (!esperandoCalificacion || !challengeId) {
-                console.log("No se está esperando calificación o no hay challengeId");
-                return;
-            }
+            if (!esperandoCalificacion || !challengeId) return;
 
             fetch('../controllers/checkCalificacion.php', {
                 method: 'POST',
@@ -299,25 +295,20 @@ $_SESSION['current_game_description'] = $descripcion;
                 },
                 body: JSON.stringify({ challengeId: challengeId })
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                console.log("Respuesta de checkCalificacion:", data);
                 if (data.calificado) {
                     esperandoCalificacion = false;
                     hideOverlay();
                     if (data.status === 'aprobado') {
-                        alert('Tu foto ha sido aprobada. ¡Felicidades!');
+                        alert('Tu desafío ha sido aprobado. ¡Felicidades!');
                         if (data.nuevoPuntaje) {
                             alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
                         }
                     } else {
-                        alert('Tu foto ha sido rechazada, continua con el siguiente reto.');
+                        alert('Tu desafío ha sido reprobado. Continúa con el siguiente reto.');
                     }
+                    // Redirigir en ambos casos
                     window.location.href = '../views/evento.php';
                 } else {
                     setTimeout(checkCalificacion, 2000);
@@ -325,7 +316,6 @@ $_SESSION['current_game_description'] = $descripcion;
             })
             .catch(error => {
                 console.error("Error al verificar calificación:", error);
-                // En lugar de mostrar el error y detener la verificación, continuamos intentando
                 setTimeout(checkCalificacion, 2000);
             });
         }

@@ -64,7 +64,7 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="container d-flex flex-column align-items-center vh-100">
         <div class="card bg-dark text-light p-4">
             <?php if ($todosTerminaron): ?>
                 <div class="alert alert-success text-center">

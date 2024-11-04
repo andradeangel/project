@@ -1,5 +1,6 @@
 <?php
 require_once('../database.php');
+require_once('../controllers/monitoreoController.php');
 custom_session_start('admin_session');
 
 if (!isset($_SESSION['pending_challenges'])) {
@@ -29,6 +30,7 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
     $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
 
     $controller = new MonitoreoController($conexion);
+$desafiosPendientes = $controller->getPendingChallenges();
     $eventosEnProceso = $controller->getEventosEnProceso();
     $pendingChallenges = $controller->getPendingChallenges();
 
@@ -42,6 +44,19 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
 
     // Agregar log para depuración
     error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'] ?? [], true));
+
+    error_log("Desafíos pendientes en monitoreo.php:");
+    error_log(print_r($pendingChallenges, true));
+
+    // Agrega este código temporalmente al inicio de monitoreo.php
+    $uploadDir = "../uploads/challenges/";
+    if (is_dir($uploadDir)) {
+        error_log("Directorio existe: " . $uploadDir);
+        $files = scandir($uploadDir);
+        error_log("Archivos en el directorio: " . print_r($files, true));
+    } else {
+        error_log("Directorio NO existe: " . $uploadDir);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -98,34 +113,36 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
                         <!-- Sección de Solicitudes -->
                         <div class="mt-4">
                             <div class="row">
-                                <?php if (isset($_SESSION['pending_challenges']) && !empty($_SESSION['pending_challenges'])): ?>
-                                    <?php foreach ($_SESSION['pending_challenges'] as $challengeId => $challenge): ?>
-                                        <div class="col-md-4 mb-4" id="challenge-<?php echo htmlspecialchars($challengeId); ?>">
+                                <?php if (!empty($pendingChallenges)): ?>
+                                    <?php foreach ($pendingChallenges as $desafio): ?>
+                                        <div class="col-md-4 mb-4" id="challenge-<?php echo htmlspecialchars($desafio['id']); ?>">
                                             <div class="card">
-                                                <?php if ($challenge['gameType'] === 'photo'): ?>
-                                                    <img src="<?php echo htmlspecialchars($challenge['challenge']); ?>" 
-                                                         class="card-img-top" alt="Foto para revisión">
-                                                <?php elseif ($challenge['gameType'] === 'video'): ?>
+                                                <?php if ($desafio['tipo'] === 'photo'): ?>
+                                                    <img src="../uploads/challenges/<?php echo htmlspecialchars($desafio['archivo_ruta']); ?>" 
+                                                         class="card-img-top" 
+                                                         alt="Foto para revisión"
+                                                         style="object-fit: contain;">
+                                                <?php elseif ($desafio['tipo'] === 'video'): ?>
                                                     <video controls class="card-img-top">
-                                                        <source src="<?php echo htmlspecialchars($challenge['challenge']); ?>" type="video/mp4">
-                                                        Tu navegador no soporta el elemento de video.
+                                                        <source src="../uploads/challenges/<?php echo htmlspecialchars($desafio['archivo_ruta']); ?>" 
+                                                                type="video/mp4">
+                                                        Tu navegador no soporta la reproducción de videos.
                                                     </video>
                                                 <?php endif; ?>
                                                 <div class="card-body">
                                                     <h5 class="card-title">
-                                                        <strong>Evento:</strong> <?php echo htmlspecialchars($challenge['eventoNombre'] ?? 'No definido'); ?>
+                                                        <strong>Jugador:</strong> <?php echo htmlspecialchars($desafio['jugador_nombre']); ?>
                                                     </h5>
                                                     <p class="card-text">
-                                                        <strong>Jugador:</strong> <?php echo htmlspecialchars($challenge['jugadorNombre'] ?? 'No definido'); ?><br>
-                                                        <strong>Descripción:</strong> <?php echo htmlspecialchars($challenge['gameDescription'] ?? 'No disponible'); ?><br>
+                                                        <strong>Evento:</strong> <?php echo htmlspecialchars($desafio['evento_nombre']); ?><br>
+                                                        <strong>Descripción:</strong> <?php echo htmlspecialchars($desafio['game_description']); ?>
                                                     </p>
-                                                    <br>
-                                                    <button class="btn btn-success btn-sm" 
-                                                            onclick="calificarDesafio('<?php echo $challengeId; ?>', 'aprobado')">
+                                                    <button class="btn btn-success" 
+                                                            onclick="calificarDesafio('<?php echo $desafio['id']; ?>', 'aprobado')">
                                                         Aprobar
                                                     </button>
-                                                    <button class="btn btn-danger btn-sm" 
-                                                            onclick="calificarDesafio('<?php echo $challengeId; ?>', 'rechazado')">
+                                                    <button class="btn btn-danger" 
+                                                            onclick="calificarDesafio('<?php echo $desafio['id']; ?>', 'reprobado')">
                                                         Reprobar
                                                     </button>
                                                 </div>
@@ -175,7 +192,6 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
 
     <script>
         function calificarDesafio(challengeId, status) {
-            console.log("Intentando calificar desafío:", challengeId, status);
             fetch('../controllers/calificarDesafio.php', {
                 method: 'POST',
                 headers: {
@@ -185,12 +201,11 @@ error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? 
             })
             .then(response => response.json())
             .then(data => {
-                console.log("Respuesta del servidor:", data);
                 if (data.success) {
-                    document.getElementById('challenge-' + challengeId).remove();
                     alert(data.message);
+                    location.reload(); // Recargar la página después de calificar
                 } else {
-                    alert('Error al calificar el desafío: ' + data.message);
+                    alert('Error: ' + data.message);
                 }
             })
             .catch(error => {

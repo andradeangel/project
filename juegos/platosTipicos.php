@@ -158,6 +158,24 @@ $_SESSION['current_game_description'] = $descripcion;
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }   
+        .input-file-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .custom-file-upload {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #0f0;
+            color: white;
+            border-radius: 5px;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -166,8 +184,10 @@ $_SESSION['current_game_description'] = $descripcion;
         <p>Haz un video de 20 segundos o más probando 1 comida típica paceña: salteña, api con pastel, plato paceño u otros. Recomendación no mas de 30 segundos.</p>
         <div class="preview-container">
     <video id="preview" style="display: none;" controls></video>
-    <input type="file" id="videoInput" accept="video/*" capture="environment" style="display: none;">
-    <button class="custom-file-upload" onclick="document.getElementById('videoInput').click()">Subir Video</button>
+    <div class="input-file-container">
+        <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
+        <label for="fileInput" class="custom-file-upload">Subir Video</label>
+    </div>
 </div>
 <button id="submitBtn" style="display: none;">Enviar</button>
 
@@ -184,7 +204,7 @@ $_SESSION['current_game_description'] = $descripcion;
         let esperandoCalificacion = false;
         let challengeId = null;
 
-        const videoInput = document.getElementById('videoInput');
+        const videoInput = document.getElementById('fileInput');
         const preview = document.getElementById('preview');
         const submitBtn = document.getElementById('submitBtn');
 
@@ -208,56 +228,59 @@ $_SESSION['current_game_description'] = $descripcion;
         });
 
         submitBtn.addEventListener('click', function() {
-            console.log('Iniciando envío de video...');
             if (esperandoCalificacion) {
-                console.log('Ya esperando calificación, abortando...');
                 alert('Ya has enviado un video. Por favor, espera la calificación.');
                 return;
             }
 
-            const videoData = preview.src;
-            console.log('Datos del video preparados, enviando a servidor...');
-            
-            const requestData = { 
-                challenge: videoData,
-                gameType: 'video',
-                juego_id: <?php echo json_encode($juego_id); ?>,
-                jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
-            };
-            
-            console.log('Datos a enviar:', requestData);
-            
-            fetch('../controllers/uploadChallenge.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => response.text())
-            .then(text => {
-                try {
-                    if (!text.trim()) {
-                        throw new Error('Respuesta vacía del servidor');
+            const videoFile = document.querySelector('input[type="file"]').files[0];
+            if (videoFile.size > 40 * 1024 * 1024) { // 40MB en bytes
+                alert('El video no debe superar los 40MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const requestData = { 
+                    challenge: e.target.result,
+                    gameType: 'video',
+                    juego_id: <?php echo json_encode($juego_id); ?>,
+                    jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+                };
+
+                fetch('../controllers/uploadChallenge.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                .then(response => response.text())
+                .then(text => {
+                    try {
+                        if (!text.trim()) {
+                            throw new Error('Respuesta vacía del servidor');
+                        }
+                        return JSON.parse(text);
+                    } catch (e) {
+                        throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
                     }
-                    return JSON.parse(text);
-                } catch (e) {
-                    throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
-                }
-            })
-            .then(data => {
-                if (data.success) {
-                    esperandoCalificacion = true;
-                    challengeId = data.challengeId;
-                    showOverlay('Espere unos segundos, su video está siendo evaluado por el Game Master :)');
-                    checkCalificacion();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error al enviar el video: ' + error.message);
-            });
+                })
+                .then(data => {
+                    if (data.success) {
+                        esperandoCalificacion = true;
+                        challengeId = data.challengeId;
+                        showOverlay('Espere unos segundos, su video está siendo evaluado por el Game Master :)');
+                        checkCalificacion();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al enviar el video: ' + error.message);
+                });
+            };
+            reader.readAsDataURL(videoFile);
         });
 
         function showOverlay(message) {
@@ -290,13 +313,14 @@ $_SESSION['current_game_description'] = $descripcion;
                     esperandoCalificacion = false;
                     hideOverlay();
                     if (data.status === 'aprobado') {
-                        alert('Tu video ha sido aprobado. ¡Felicidades!');
+                        alert('Tu desafío ha sido aprobado. ¡Felicidades!');
                         if (data.nuevoPuntaje) {
                             alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
                         }
                     } else {
-                        alert('Tu video ha sido rechazado, continua con el siguiente reto.');
+                        alert('Tu desafío ha sido Reprobado. Continúa con el siguiente reto.');
                     }
+                    // Redirigir en ambos casos
                     window.location.href = '../views/evento.php';
                 } else {
                     setTimeout(checkCalificacion, 2000);
@@ -308,6 +332,15 @@ $_SESSION['current_game_description'] = $descripcion;
             });
         }
     });
-</script>
+
+    function validateFileSize(input) {
+        if (input.files[0].size > 40 * 1024 * 1024) {
+            alert('El archivo es demasiado grande. El tamaño máximo es 40MB.');
+            input.value = '';
+            return false;
+        }
+        return true;
+    }
+    </script>
 </body>
 </html>

@@ -5,46 +5,59 @@ custom_session_start('admin_session');
 
 $response = ['success' => false, 'message' => '', 'nuevoPuntaje' => 0];
 
-$data = json_decode(file_get_contents('php://input'), true);
+try {
+    $data = json_decode(file_get_contents('php://input'), true);
 
-if (isset($data['challengeId']) && isset($data['status'])) {
-    $challengeId = $data['challengeId'];
-    $status = $data['status'];
-
-    error_log("Intentando calificar desafío: " . $challengeId);
-    error_log("Estado actual de la sesión: " . print_r($_SESSION, true));
+    if (!isset($data['challengeId']) || !isset($data['status'])) {
+        throw new Exception('Datos incompletos');
+    }
 
     $controller = new MonitoreoController($conexion);
+    
+    // Obtener el jugador_id primero
+    $sql = "SELECT jugador_id FROM desafios WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $data['challengeId']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $desafio = $result->fetch_assoc();
+    
+    if (!$desafio) {
+        throw new Exception('No se encontró el desafío');
+    }
 
-    if (isset($_SESSION['pending_challenges'][$challengeId])) {
-        $_SESSION['pending_challenges'][$challengeId]['estado'] = $status;
-        $_SESSION['pending_challenges'][$challengeId]['calificado'] = true;
-
-        if ($status === 'aprobado') {
-            if ($controller->aprobarDesafio($challengeId)) {
-                $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
-                
-                // Actualizar juego_actual además del puntaje
-                $sql = "UPDATE jugadores SET juego_actual = juego_actual + 1 WHERE id = ?";
-                $stmt = $conexion->prepare($sql);
-                $stmt->bind_param("i", $jugadorId);
-                $stmt->execute();
-                
-                $nuevoPuntaje = $controller->getJugadorPuntaje($jugadorId);
-                $response['nuevoPuntaje'] = $nuevoPuntaje;
-                $response['success'] = true;
-                $response['message'] = 'Desafío aprobado y puntaje actualizado';
-            } else {
-                $response['message'] = 'Error al actualizar el puntaje';
-            }
-        } else {
+    if ($data['status'] === 'aprobado') {
+        if ($controller->aprobarDesafio($data['challengeId'])) {
+            $nuevoPuntaje = $controller->getJugadorPuntaje($desafio['jugador_id']);
+            $response['nuevoPuntaje'] = $nuevoPuntaje;
             $response['success'] = true;
-            $response['message'] = 'Desafío reprobado';
+            $response['message'] = 'Desafío aprobado y puntaje actualizado';
         }
     } else {
-        error_log("Desafío no encontrado en la sesión. Challenge ID: " . $challengeId);
-        $response['message'] = 'Desafío no encontrado';
+        // Actualizar estado del desafío
+        $sql = "UPDATE desafios SET estado = 'reprobado', calificado = TRUE WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("s", $data['challengeId']);
+        
+        if ($stmt->execute()) {
+            // Actualizar juego_actual del jugador
+            $sql = "UPDATE jugadores SET juego_actual = juego_actual + 1 WHERE id = ?";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("i", $desafio['jugador_id']);
+            
+            if ($stmt->execute()) {
+                $response['success'] = true;
+                $response['message'] = 'Desafío reprobado y juego actualizado';
+            } else {
+                throw new Exception('Error al actualizar el juego actual');
+            }
+        } else {
+            throw new Exception('Error al actualizar el estado del desafío');
+        }
     }
+} catch (Exception $e) {
+    $response['message'] = 'Error: ' . $e->getMessage();
+    error_log("Error en calificarDesafio.php: " . $e->getMessage());
 }
 
 echo json_encode($response);

@@ -46,60 +46,69 @@
         }
 
         public function getPendingChallenges() {
-            if (!isset($_SESSION['pending_challenges']) || empty($_SESSION['pending_challenges'])) {
-                error_log("No hay desafíos pendientes en la sesión.");
+            $sql = "SELECT d.*, j.nombres as jugador_nombre, 
+                    e.nombre as evento_nombre, 
+                    g.descripcion as game_description
+                    FROM desafios d
+                    JOIN jugadores j ON d.jugador_id = j.id
+                    JOIN eventos e ON d.evento_id = e.id
+                    JOIN juegos g ON d.juego_id = g.id
+                    WHERE d.estado = 'pendiente'";
+            
+            $result = $this->conexion->query($sql);
+            
+            if (!$result) {
+                error_log("Error en la consulta: " . $this->conexion->error);
                 return [];
             }
-
-            $challenges = [];
-            foreach ($_SESSION['pending_challenges'] as $id => $challenge) {
-                $challenges[] = [
-                    'challengeId' => $id,
-                    'challenge' => $challenge['challenge'],
-                    'gameType' => $challenge['gameType'],
-                    'eventoId' => $challenge['eventoId'],
-                    'jugadorId' => $challenge['jugadorId'],
-                    'jugadorNombre' => $challenge['jugadorNombre'],
-                    'eventoNombre' => $challenge['eventoNombre'],
-                    'estado' => $challenge['estado'],
-                    'gameDescription' => $challenge['gameDescription']
-                ];
-            }
-
-            error_log("Desafíos pendientes encontrados: " . count($challenges));
+            
+            $challenges = $result->fetch_all(MYSQLI_ASSOC);
+            error_log("Desafíos encontrados: " . count($challenges));
+            error_log("Datos: " . print_r($challenges, true));
+            
             return $challenges;
         }
         public function aprobarDesafio($challengeId) {
-            error_log("Intentando aprobar desafío: $challengeId");
-            if (isset($_SESSION['pending_challenges'][$challengeId])) {
-                $jugadorId = $_SESSION['pending_challenges'][$challengeId]['jugadorId'];
-                error_log("JugadorId encontrado: $jugadorId");
-                
-                // Primero verificamos el puntaje actual
-                $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+            $this->conexion->begin_transaction();
+            
+            try {
+                // Obtener información del desafío
+                $sql = "SELECT jugador_id FROM desafios WHERE id = ?";
                 $stmt = $this->conexion->prepare($sql);
-                $stmt->bind_param("i", $jugadorId);
+                $stmt->bind_param("s", $challengeId);
                 $stmt->execute();
                 $result = $stmt->get_result();
-                $row = $result->fetch_assoc();
-                $puntajeActual = $row['puntaje'];
+                $desafio = $result->fetch_assoc();
                 
-                // Actualizamos el puntaje
-                $nuevoPuntaje = $puntajeActual + 1;
-                $sql = "UPDATE jugadores SET puntaje = ? WHERE id = ?";
-                $stmt = $this->conexion->prepare($sql);
-                $stmt->bind_param("ii", $nuevoPuntaje, $jugadorId);
-                
-                if ($stmt->execute()) {
-                    $_SESSION['pending_challenges'][$challengeId]['nuevoPuntaje'] = $nuevoPuntaje;
-                    error_log("Puntaje actualizado para jugador $jugadorId: $nuevoPuntaje");
-                    return true;
-                } else {
-                    error_log("Error al actualizar puntaje para jugador $jugadorId: " . $stmt->error);
-                    return false;
+                if (!$desafio) {
+                    throw new Exception("Desafío no encontrado");
                 }
+                
+                // Actualizar puntaje y juego actual del jugador
+                $sql = "UPDATE jugadores 
+                        SET puntaje = puntaje + 1, 
+                            juego_actual = juego_actual + 1 
+                        WHERE id = ?";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bind_param("i", $desafio['jugador_id']);
+                $stmt->execute();
+                
+                // Marcar desafío como aprobado
+                $sql = "UPDATE desafios 
+                        SET estado = 'aprobado', 
+                            calificado = TRUE 
+                        WHERE id = ?";
+                $stmt = $this->conexion->prepare($sql);
+                $stmt->bind_param("s", $challengeId);
+                $stmt->execute();
+                
+                $this->conexion->commit();
+                return true;
+            } catch (Exception $e) {
+                $this->conexion->rollback();
+                error_log("Error al aprobar desafío: " . $e->getMessage());
+                return false;
             }
-            return false;
         }
         
         public function getJugadorPuntaje($jugadorId) {

@@ -12,19 +12,25 @@ try {
         throw new Exception('ID del desafío no proporcionado');
     }
 
-    $challengeId = $data['challengeId'];
+    $sql = "SELECT estado, calificado FROM desafios WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $data['challengeId']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $desafio = $result->fetch_assoc();
     
-    if (isset($_SESSION['pending_challenges'][$challengeId])) {
-        $challenge = $_SESSION['pending_challenges'][$challengeId];
-        if (isset($challenge['calificado']) && $challenge['calificado']) {
-            $response['calificado'] = true;
-            $response['status'] = $challenge['estado'];
-            if (isset($challenge['nuevoPuntaje'])) {
-                $response['nuevoPuntaje'] = $challenge['nuevoPuntaje'];
-            }
-            // Eliminamos el desafío de la sesión
-            unset($_SESSION['pending_challenges'][$challengeId]);
-        }
+    if ($desafio && $desafio['calificado']) {
+        $response['calificado'] = true;
+        $response['status'] = $desafio['estado'];
+        
+        // Obtener nuevo puntaje
+        $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bind_param("i", $_SESSION['jugador_actual']['id']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $jugador = $result->fetch_assoc();
+        $response['nuevoPuntaje'] = $jugador['puntaje'];
     }
 } catch (Exception $e) {
     $response['error'] = $e->getMessage();
