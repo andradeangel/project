@@ -74,6 +74,24 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                     <?php endif; ?>
                     <h3>El ganador es: <?php echo htmlspecialchars($ganador); ?></h3>
                     <p>¡Felicitaciones al ganador y a todos los participantes!</p>
+                    
+                    <!-- Formulario de Feedback -->
+                    <div class="feedback-form mt-4">
+                        <h4>¡Cuéntanos tu experiencia!</h4>
+                        <p class="text-muted">Nos gustaría saber qué te pareció el evento. Tus comentarios nos ayudan a mejorar.</p>
+                        <form id="feedbackForm" method="POST" action="../controllers/feedbackController.php">
+                            <input type="hidden" name="idJugador" value="<?php echo $jugadorId; ?>">
+                            <input type="hidden" name="idEvento" value="<?php echo $eventoId; ?>">
+                            <div class="form-group">
+                                <textarea class="form-control" name="comentarios" rows="4" 
+                                    placeholder="Comparte tus comentarios, sugerencias o experiencia..." required></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between mt-3">
+                                <button type="submit" class="btn btn-success" style="margin: 10px;">Enviar Comentarios</button>
+                                <a href="https://lapuerta.net/" class="btn btn-secondary" style="margin: 10px;">Visita nuestra página</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             <?php else: ?>
                 <h2 class="text-center mb-4">¡Felicidades! Has completado todos los retos</h2>

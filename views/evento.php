@@ -12,15 +12,28 @@ if (!isset($_SESSION['player_id']) || !isset($_SESSION['player_evento_id'])) {
     exit;
 }
 
-// Verificar si el jugador ya terminó todos los juegos
+// Verificar el estado del jugador
 $jugadorId = $_SESSION['player_id'];
-$sql = "SELECT juego_actual FROM jugadores WHERE id = ?";
+$sql = "SELECT juego_actual, idEstado FROM jugadores WHERE id = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param('i', $jugadorId);
 $stmt->execute();
 $jugador = $stmt->get_result()->fetch_assoc();
 
+// Si el jugador está en estado "Terminado" (3), redirigir a finJuego.php
+if ($jugador['idEstado'] == 3) {
+    header('Location: finJuego.php');
+    exit;
+}
+
+// Verificar si el jugador ya terminó todos los juegos
 if ($jugador['juego_actual'] > 6) {
+    // Actualizar el estado del jugador a "Terminado" (3)
+    $sqlUpdate = "UPDATE jugadores SET idEstado = 3 WHERE id = ?";
+    $stmtUpdate = $conexion->prepare($sqlUpdate);
+    $stmtUpdate->bind_param('i', $jugadorId);
+    $stmtUpdate->execute();
+    
     header('Location: finJuego.php');
     exit;
 }
@@ -53,6 +66,20 @@ $_SESSION['jugador_actual'] = [
     'id' => $jugador['id'],
     'nombres' => $jugador['nombres']
 ];
+
+// Manejar la solicitud de abandono
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'abandonar') {
+    header('Content-Type: application/json');
+    
+    $jugadorId = $_POST['jugadorId'];
+    $sql = "UPDATE jugadores SET idEstado = 3 WHERE id = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param('i', $jugadorId);
+    
+    $response = ['success' => $stmt->execute()];
+    echo json_encode($response);
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -132,7 +159,7 @@ $_SESSION['jugador_actual'] = [
     </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -155,10 +182,22 @@ $_SESSION['jugador_actual'] = [
         }
 
         function confirmarAbandonar() {
-            if (confirm("¿Estás seguro de abandonar el evento?")) {
-                window.location.href = '../index.html';
-                // Agregamos un parámetro para evitar que se guarde la página en el historial del navegador
-                window.location.replace('/', '_self');
+            if (confirm('¿Estás seguro que deseas abandonar el evento? No podrás volver a ingresar.')) {
+                var formData = new FormData();
+                formData.append('action', 'abandonar');
+                formData.append('jugadorId', <?php echo $_SESSION['player_id']; ?>);
+
+                fetch('evento.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    window.location.href = '../index.php';
+                })
+                .catch(error => {
+                    alert('Error al abandonar el evento');
+                });
             }
         }
     </script>

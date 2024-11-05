@@ -3,6 +3,10 @@ require_once('../database.php');
 require_once('../controllers/monitoreoController.php');
 custom_session_start('admin_session');
 
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 if (!isset($_SESSION['pending_challenges'])) {
     $_SESSION['pending_challenges'] = [];
 }
@@ -63,6 +67,9 @@ $desafiosPendientes = $controller->getPendingChallenges();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Panel de Control</title>
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -237,6 +244,16 @@ $desafiosPendientes = $controller->getPendingChallenges();
         setInterval(function() {
             location.reload();
         }, 30000);
+
+        if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD) {
+            window.location.replace('/');
+        }
+        
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.replace('/');
+            }
+        };
     </script>
 </body>
 </html>
