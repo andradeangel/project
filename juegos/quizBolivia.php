@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             font-family: 'VT323', monospace;
@@ -146,11 +147,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 2rem;
             color: #ffd700;
             text-shadow: 1px 1px 2px #000;
-        } </style>
+        }
+        .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(255, 215, 0, 0.2);
+        border: 2px solid #ffd700;
+        color: #ffd700;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .back-btn:hover {
+        background-color: rgba(255, 215, 0, 0.4);
+        transform: scale(1.1);
+    }
+    </style>
 </head>
 <body class="d-flex align-items-center justify-content-center">
+<button onclick="window.location.href='../views/evento.php'" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+</button>
     <div class="container">
         <h1>Quiz de Conocimiento General sobre Bolivia</h1>
+        <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div id="quiz-container"></div>
         <button id="submit" class="btn btn-lg w-100 mt-4">Verificar Respuestas</button>
         <div id="result" class="mt-4 text-center fs-4 fw-bold"></div>

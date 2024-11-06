@@ -26,6 +26,7 @@ $_SESSION['current_game_description'] = $descripcion;
     <link rel="icon" href="../images/ico.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
             background-image: url('https://www.hotelpresidente.com.bo/wp-content/uploads/2024/02/WhatsApp-Image-2024-02-16-at-19.21.24.jpeg');
@@ -163,9 +164,30 @@ $_SESSION['current_game_description'] = $descripcion;
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(0, 255, 0, 0.2);
+        border: 2px solid #00ff00;
+        color: #00ff00;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    .back-btn:hover {
+        background-color: rgba(0, 255, 0, 0.4);
+        transform: scale(1.1);
+    }
     </style>
 </head>
 <body>
+<button onclick="window.location.href='../views/evento.php'" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+</button>
 <div class="card">
     <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
     <p><?php echo htmlspecialchars($descripcion); ?></p>

@@ -59,39 +59,28 @@ $(document).on('click', '.delete-btn', function() {
     }
 });
 
-$('#crearEventoBtn').on('click', function() {
+document.getElementById('crearEventoBtn').addEventListener('click', function() {
     var form = document.getElementById('crearEventoForm');
     if (form.checkValidity()) {
-        var fechaInicio = new Date(document.getElementById('fechaInicio').value);
-        var fechaFin = new Date(document.getElementById('fechaFin').value);
-
-        if (fechaFin < fechaInicio) {
-            alert('La fecha de finalización no puede ser anterior a la fecha de inicio.');
-            return;
-        }
-
         var formData = new FormData(form);
         formData.append('accion', 'crear');
-
-        $.ajax({
-            url: 'eventos.php',
+        
+        fetch('eventos.php', {
             method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    alert('Evento creado con éxito');
-                    location.reload();
-                } else {
-                    alert('Error al crear el evento: ' + response.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('Ocurrió un error al crear el evento');
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Evento creado con éxito');
+                location.reload();
+            } else {
+                alert('Error al crear el evento: ' + data.message);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Ocurrió un error al crear el evento');
         });
     } else {
         alert('Por favor, complete todos los campos requeridos.');

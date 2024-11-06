@@ -16,6 +16,42 @@
     $usuario = obtenerUsuario($conexion, $user_id);
     $nombre_usuario = $usuario['nombres'] ?? 'Usuario';
     $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
+
+    // Procesar solicitud AJAX para crear evento
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_once("../models/eventosModel.php");
+        
+        $response = ['success' => false, 'message' => ''];
+        
+        try {
+            if (
+                isset($_POST['nombre']) && 
+                isset($_POST['fechaInicio']) && 
+                isset($_POST['fechaFin']) && 
+                isset($_POST['sprint']) && 
+                isset($_POST['descripcion'])
+            ) {
+                $result = crearEvento(
+                    $conexion, 
+                    $_POST['nombre'],
+                    $_POST['fechaInicio'],
+                    $_POST['fechaFin'],
+                    $_POST['sprint'],
+                    $_POST['descripcion']
+                );
+                
+                header('Content-Type: application/json');
+                echo json_encode($result);
+                exit;
+            }
+        } catch (Exception $e) {
+            $response['message'] = 'Error: ' . $e->getMessage();
+        }
+        
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+    }
 ?>
 <!DOCTYPE html> 
 <html lang="es">
@@ -242,32 +278,7 @@
     }
 }
 
-        document.getElementById('crearEventoBtn').addEventListener('click', function() {
-            var form = document.getElementById('crearEventoForm');
-            if (form.checkValidity()) {
-                var formData = new FormData(form);
-
-                fetch('eventos.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Evento creado con éxito');
-                        location.reload(); // Recargar la página para mostrar el nuevo evento
-                    } else {
-                        alert('Error al crear el evento: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Ocurrió un error al crear el evento');
-                });
-            } else {
-                alert('Por favor, complete todos los campos requeridos.');
-            }
-        });
+        
 
         // Función para generar un código aleatorio
         function generarCodigoEvento() {
@@ -275,9 +286,7 @@
         }
 
         // Generar código automáticamente al abrir el modal
-        document.getElementById('crearEventoModal').addEventListener('show.bs.modal', function (event) {
-            document.getElementById('codigo').value = generarCodigoEvento();
-        });
+        
 
         setInterval(function() {
             $.ajax({

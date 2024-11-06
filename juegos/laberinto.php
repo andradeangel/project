@@ -13,6 +13,7 @@ $descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
 $_SESSION['current_game_id'] = $juego_id;
 $_SESSION['current_game_description'] = $descripcion;
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     
@@ -60,6 +61,7 @@ function actualizarPuntaje($puntos) {
     <link rel="icon" href="../images/ico.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body, html {
             margin: 0;
@@ -171,11 +173,33 @@ function actualizarPuntaje($puntos) {
                 font-size: 10px;
             }
         }
+        .back-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(0, 123, 255, 0.2);
+        border: 2px solid #007bff;
+        color: #007bff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    .back-btn:hover {
+        background-color: rgba(0, 123, 255, 0.4);
+        transform: scale(1.1);
+    }
     </style>
 </head>
 <body>
+<button onclick="window.location.href='../views/evento.php'" class="back-btn">
+    <i class="fas fa-arrow-left"></i>
+</button>
     <div class="container">
         <h1>Laberinto</h1>
+        <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div id="game-container">
             <div id="player"></div>
             <img id="key" src="../images/key.png" alt="Llave">

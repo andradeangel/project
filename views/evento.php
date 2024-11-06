@@ -40,7 +40,10 @@ if ($jugador['juego_actual'] > 6) {
 
 // Obtener datos del evento actual
 $eventoId = $_SESSION['player_evento_id'];
-$query = "SELECT * FROM eventos WHERE id = ?";
+$query = "SELECT e.*, s.nombre as tematica 
+          FROM eventos e 
+          LEFT JOIN sprint s ON e.idSprint = s.id 
+          WHERE e.id = ?";
 $stmt = $conexion->prepare($query);
 $stmt->bind_param('i', $eventoId);
 $stmt->execute();
@@ -99,8 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         <div class="evento-forms text-center">
             <div id="evento-container" class="card p-4 bg-dark text-light">
                 <h2 class="text-light">Evento: <?= $_SESSION['player_evento_nombre'] ?? 'Nombre no disponible' ?></h2>
+                <h6 class="text-light"><?= htmlspecialchars($evento['descripcion']) ?></h6>
                 <h2 class="text-light">Temática: <?= $tematica ?? 'Descripción no disponible' ?></h2>             
-                <h2 class="text-light">Jugador: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
+                <h2 class="text-light">Jugador/a: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
+                <div id="countdown" class="display-4"></div>
+                <h6 class="text-light" style="margin-bottom: 0;"> 👇Lista de juegos y retos a ser completados</h6>
                 <div class="mt-4">
                     <ul class="list-group list-group-flush">
                         <?php foreach ($juegos as $index => $juego):
@@ -200,6 +206,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 });
             }
         }
+
+        // Convertir la fecha de fin a timestamp
+        const fechaFin = new Date('<?php echo $evento['fechaFin']; ?>').getTime();
+
+        const timer = setInterval(function() {
+            const ahora = new Date().getTime();
+            const diferencia = fechaFin - ahora;
+
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+
+            if (diferencia < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "¡TIEMPO TERMINADO!";
+                window.location.href = 'finJuego.php';
+            }
+        }, 1000);
     </script>
 </body>
 </html>

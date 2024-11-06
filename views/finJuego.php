@@ -116,7 +116,7 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                             <tr>
                                 <td><?php echo $index + 1; ?></td>
                                 <td><?php echo htmlspecialchars($jugador['nombres']); ?></td>
-                                <td><?php echo $jugador['puntaje']; ?></td>
+                                <td><img src="../images/key.png" alt="Imagen de llave" class="" width="20"> <?php echo $jugador['puntaje']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
