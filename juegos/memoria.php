@@ -322,7 +322,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             .then(data => {
                 if (data.success) {
                     document.getElementById('tiempo-final').textContent = `Tiempo: ${endTime.toFixed(2)}s`;
-                    document.getElementById('puntos-ganados').textContent = `Puntos ganados: ${puntos}`;
+                    document.getElementById('puntos-ganados').textContent = `Puntos ganados: +${puntos}`;
                     document.getElementById('puntaje-total').textContent = `Puntaje total: ${data.nuevoPuntaje}`;
                 }
                 document.getElementById('win-message').style.display = 'flex';

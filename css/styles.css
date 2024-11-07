@@ -31,7 +31,8 @@ h2 {
 
 .btn-primary:focus,
 .btn-primary:active,
-.btn-primary:visited {
+.btn-primary:visited,
+.btn-primary:disabled {
     background-color: #f80103 !important;
     border-color: #a60000 !important;  
 }

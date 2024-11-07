@@ -76,6 +76,55 @@ $desafiosPendientes = $controller->getPendingChallenges();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.9); /* Fondo rojo */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff4d4d; /* Borde rojo claro */
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
+
+        .custom-modal h3 {
+            color: black; /* Título en rojo claro */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .custom-modal p {
+            margin: 10px 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            background-color: #ffe4e4;
+        }
+
+        .custom-modal button {
+            background-color: #ffe4e4;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+        }
+    </style>
 </head>
 
 <body>
@@ -209,18 +258,41 @@ $desafiosPendientes = $controller->getPendingChallenges();
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert(data.message);
-                    location.reload(); // Recargar la página después de calificar
+                    showCustomMessage('Éxito', data.message, () => {
+                        location.reload(); // Recargar la página después de calificar
+                    });
                 } else {
-                    alert('Error: ' + data.message);
+                    showCustomMessage('Error', 'Error: ' + data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error al procesar la solicitud');
+                showCustomMessage('Error', 'Error al procesar la solicitud');
             });
         }
-        
+
+        function showCustomMessage(title, message, callback) {
+            // Remover modal anterior si existe
+            const existingModal = document.querySelector('.custom-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.innerHTML = `
+                <h3>${title}</h3>
+                <div>${message}</div>
+                <button onclick="closeCustomModal(this)">Aceptar</button>
+            `;
+            document.body.appendChild(modal);
+
+            window.closeCustomModal = function(button) {
+                button.parentElement.remove();
+                if (callback) callback();
+            };
+        }
+
         function confirmarCerrarSesion() {
             if (confirm("¿Está seguro de que desea cerrar sesión?")) {
                 window.location.href = "/";

@@ -65,6 +65,18 @@
         }
 
         public function deleteSprint($id) {
+            // Verificar si el sprint está siendo utilizado
+            $queryCheck = "SELECT COUNT(*) as count FROM eventos WHERE idSprint = ?";
+            $stmtCheck = $this->db->prepare($queryCheck);
+            $stmtCheck->bind_param("i", $id);
+            $stmtCheck->execute();
+            $resultCheck = $stmtCheck->get_result();
+            $rowCheck = $resultCheck->fetch_assoc();
+
+            if ($rowCheck['count'] > 0) {
+                return ["success" => false, "message" => "No se puede eliminar este Sprint porque ya fue utilizado en un evento."];
+            }
+
             $query = "DELETE FROM sprint WHERE id = ?";
             $stmt = $this->db->prepare($query);
             $stmt->bind_param("i", $id);

@@ -41,6 +41,48 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.9); /* Fondo rojo */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff4d4d; /* Borde rojo claro */
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
+
+        .custom-modal h3 {
+            color: #ff4d4d; /* Título en rojo claro */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .custom-modal button {
+            background-color: #ff4d4d; /* Botón en rojo claro */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+        }
+    </style>
 </head>
 
 <body>

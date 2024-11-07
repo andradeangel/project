@@ -195,6 +195,52 @@ $_SESSION['current_game_description'] = $descripcion;
         background-color: rgba(0, 100, 0, 0.4);
         transform: scale(1.1);
     }
+    .custom-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #00ff00;
+        color: #fff;
+        text-align: center;
+        z-index: 2000;
+        min-width: 300px;
+        font-family: 'Press Start 2P', cursive;
+        animation: glow 2s infinite alternate;
+    }
+
+    .custom-modal h3 {
+        color: #00ff00;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .custom-modal p {
+        margin: 10px 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .custom-modal button {
+        background-color: #00ff00;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .custom-modal button:hover {
+        transform: scale(1.05);
+        background-color: #00cc00;
+    }
     </style>
 </head>
 <body>
@@ -299,7 +345,7 @@ $_SESSION['current_game_description'] = $descripcion;
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error al enviar el video: ' + error.message);
+                    showCustomMessage('Error', '<p>Error al enviar el video.</p><p>Por favor, intenta nuevamente.</p>');
                 });
             };
             reader.readAsDataURL(videoFile);
@@ -335,15 +381,19 @@ $_SESSION['current_game_description'] = $descripcion;
                     esperandoCalificacion = false;
                     hideOverlay();
                     if (data.status === 'aprobado') {
-                        alert('Tu desafío ha sido aprobado. ¡Felicidades!');
-                        if (data.nuevoPuntaje) {
-                            alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
-                        }
+                        let mensaje = `
+                            <p>¡Has completado el desafío exitosamente!</p>
+                            <p>Puntos ganados: +1</p>
+                            <p>Puntaje total: ${data.nuevoPuntaje}</p>
+                        `;
+                        showCustomMessage('¡Felicitaciones!', mensaje, () => {
+                            window.location.href = '../views/evento.php';
+                        });
                     } else {
-                        alert('Tu desafío ha sido Reprobado. Continúa con el siguiente reto.');
+                        showCustomMessage('Resultado', '<p>Tu desafío ha sido reprobado.</p><p>Continúa con el siguiente reto.</p>', () => {
+                            window.location.href = '../views/evento.php';
+                        });
                     }
-                    // Redirigir en ambos casos
-                    window.location.href = '../views/evento.php';
                 } else {
                     setTimeout(checkCalificacion, 2000);
                 }
@@ -353,11 +403,33 @@ $_SESSION['current_game_description'] = $descripcion;
                 setTimeout(checkCalificacion, 2000);
             });
         }
+
+        function showCustomMessage(title, message, callback) {
+            // Remover modal anterior si existe
+            const existingModal = document.querySelector('.custom-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.innerHTML = `
+                <h3>${title}</h3>
+                <div>${message}</div>
+                <button onclick="closeCustomModal(this)">Aceptar</button>
+            `;
+            document.body.appendChild(modal);
+
+            window.closeCustomModal = function(button) {
+                button.parentElement.remove();
+                if (callback) callback();
+            };
+        }
     });
 
     function validateFileSize(input) {
         if (input.files[0].size > 40 * 1024 * 1024) {
-            alert('El archivo es demasiado grande. El tamaño máximo es 40MB.');
+            showCustomMessage('Error', '<p>El archivo es demasiado grande.</p><p>El tamaño máximo es 40MB.</p>');
             input.value = '';
             return false;
         }

@@ -23,8 +23,11 @@
             <div class="player-login text-center" id="invitation-code-container">
                 <h2 class="text-light">Acceso a Escape Room</h2>
                 <?php
-                    include("database.php");
-                    include("controllers/inicioController.php");
+                    // Mostrar mensajes de error aquí
+                    if (isset($_SESSION['error_message'])) {
+                        echo "<div class='alert alert-danger mb-3'>" . $_SESSION['error_message'] . "</div>";
+                        unset($_SESSION['error_message']); // Limpiar el mensaje después de mostrarlo
+                    }
                 ?>
                 <form class="mt-4" id="invitation-code-form" method="POST">
                     <div class="form-group">

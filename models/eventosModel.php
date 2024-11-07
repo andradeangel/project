@@ -108,20 +108,28 @@
     }
     
     function eliminarEvento($conexion, $id) {
+        // Primero, verificar si el evento ha sido jugado
+        $sqlCheck = "SELECT COUNT(*) as count FROM desafios WHERE evento_id = ?";
+        $stmtCheck = $conexion->prepare($sqlCheck);
+        $stmtCheck->bind_param("i", $id);
+        $stmtCheck->execute();
+        $resultCheck = $stmtCheck->get_result();
+        $rowCheck = $resultCheck->fetch_assoc();
+
+        if ($rowCheck['count'] > 0) {
+            return ["success" => false, "message" => "No se puede eliminar este evento porque ya ha sido jugado."];
+        }
+
+        // Si no ha sido jugado, proceder a eliminar el evento
         $sql = "DELETE FROM eventos WHERE id = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("i", $id);
         $success = $stmt->execute();
-    
+
         if ($success) {
             return ["success" => true, "message" => "Evento eliminado con éxito"];
         } else {
-            // Verificar si el error es debido a una restricción de clave foránea
-            if ($conexion->error == 1451) {
-                return ["success" => false, "message" => "No se puede eliminar el evento porque hay jugadores registrados en él."];
-            } else {
-                return ["success" => false, "message" => "Error al eliminar el evento: " . $stmt->error];
-            }
+            return ["success" => false, "message" => "Error al eliminar el evento: " . $stmt->error];
         }
     }
 

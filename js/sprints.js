@@ -19,12 +19,12 @@ $(document).ready(function() {
                     }
                     $('#sprintModal').modal('show');
                 } else {
-                    alert('Error al obtener el sprint: ' + response.message);
+                    showCustomMessage('Error', 'Error al obtener el sprint: ' + response.message);
                 }
             },
             error: function(xhr, status, error) {
                 console.error('Error en la solicitud AJAX:', error);
-                alert('Error al obtener el sprint');
+                showCustomMessage('Error', 'Error al obtener el sprint');
             }
         });
     });
@@ -43,15 +43,16 @@ $(document).ready(function() {
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        alert('Sprint eliminado con éxito');
-                        location.reload();
+                        showCustomMessage('Éxito', 'Sprint eliminado con éxito', () => {
+                            location.reload();
+                        });
                     } else {
-                        alert('Error al eliminar el sprint: ' + response.message);
+                        showCustomMessage('Error', 'Error al eliminar el sprint: ' + response.message);
                     }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error en la solicitud AJAX:', error);
-                    alert('Error al eliminar el sprint: ' + error);
+                    showCustomMessage('Error', 'Error al eliminar el sprint: ' + error);
                 }
             });
         }
@@ -72,63 +73,11 @@ $(document).ready(function() {
     });
 
     $('#crearSprintBtn').on('click', function() {
-        var form = document.getElementById('crearSprintForm');
-        if (form.checkValidity()) {
-            var formData = new FormData(form);
-            formData.append('accion', 'crear');
-
-            $.ajax({
-                url: 'sprints.php',
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        alert('Sprint creado con éxito');
-                        location.reload();
-                    } else {
-                        alert('Error al crear el sprint: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error:', error);
-                    alert('Ocurrió un error al crear el sprint');
-                }
-            });
-        } else {
-            alert('Por favor, complete todos los campos requeridos.');
-        }
-    });
-
-    $('#editarSprintBtn').on('click', function() {
-        var formData = new FormData($('#editarSprintForm')[0]);
-        formData.append('accion', 'editar');
-
-        $.ajax({
-            url: 'sprints.php',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    alert('Sprint actualizado con éxito');
-                    location.reload();
-                } else {
-                    alert('Error al actualizar el sprint: ' + response.message);
-                }
-            },
-            error: function() {
-                alert('Error al actualizar el sprint');
-            }
-        });
-    });
-
-    $('#saveNewSprintBtn').on('click', function() {
         var formData = $('#createSprintForm').serialize();
+        if (!$('#sprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
+            showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+            return;
+        }
         formData += '&accion=crear';
 
         $.ajax({
@@ -138,23 +87,27 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    alert('Sprint creado con éxito');
-                    $('#createSprintModal').modal('hide');
-                    location.reload();
+                    showCustomMessage('Éxito', 'Sprint creado con éxito', () => {
+                        $('#createSprintModal').modal('hide');
+                        location.reload();
+                    });
                 } else {
-                    alert('Error al crear el sprint: ' + response.message);
+                    showCustomMessage('Error', 'Error al crear el sprint: ' + response.message);
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', error);
-                alert('Error al crear el sprint');
+                console.error('Error al crear el sprint:', error);
+                showCustomMessage('Error', 'Error al crear el sprint');
             }
         });
     });
 
-    // Manejar el guardado de cambios
     $('#saveSprintBtn').on('click', function() {
         var formData = $('#editSprintForm').serialize();
+        if (!$('#sprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
+            showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+            return;
+        }
         formData += '&accion=editar';
 
         $.ajax({
@@ -164,16 +117,78 @@ $(document).ready(function() {
             dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    alert('Sprint actualizado con éxito');
-                    $('#sprintModal').modal('hide');
-                    location.reload();
+                    showCustomMessage('Éxito', 'Sprint actualizado con éxito', () => {
+                        $('#sprintModal').modal('hide');
+                        location.reload();
+                    });
                 } else {
-                    alert('Error al actualizar el sprint: ' + response.message);
+                    showCustomMessage('Error', 'Error al actualizar el sprint: ' + response.message);
                 }
             },
             error: function(xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', error);
-                alert('Error al actualizar el sprint');
+                console.error('Error al actualizar el sprint:', error);
+                showCustomMessage('Error', 'Error al actualizar el sprint');
+            }
+        });
+    });
+
+    $('#saveNewSprintBtn').on('click', function() {
+        var formData = $('#createSprintForm').serialize();
+        if (!$('#createSprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
+            showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+            return;
+        }
+        formData += '&accion=crear';
+
+        $.ajax({
+            url: '../controllers/sprintsController.php',
+            method: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    showCustomMessage('Éxito', 'Sprint creado con éxito', () => {
+                        $('#createSprintModal').modal('hide');
+                        location.reload();
+                    });
+                } else {
+                    showCustomMessage('Error', 'Error al crear el sprint: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al crear el sprint:', error);
+                showCustomMessage('Error', 'Error al crear el sprint');
+            }
+        });
+    });
+
+    // Manejar el guardado de cambios
+    $('#saveSprintBtn').on('click', function() {
+        var formData = $('#editSprintForm').serialize();
+        if (!$('#sprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
+            showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+            return;
+        }
+        formData += '&accion=editar';
+
+        $.ajax({
+            url: '../controllers/sprintsController.php',
+            method: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    showCustomMessage('Éxito', 'Sprint actualizado con éxito', () => {
+                        $('#sprintModal').modal('hide');
+                        location.reload();
+                    });
+                } else {
+                    showCustomMessage('Error', 'Error al actualizar el sprint: ' + response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al actualizar el sprint:', error);
+                showCustomMessage('Error', 'Error al actualizar el sprint');
             }
         });
     });

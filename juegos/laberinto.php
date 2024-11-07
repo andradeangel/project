@@ -324,7 +324,7 @@ function actualizarPuntaje($puntos) {
                     overlayMessageDisplay.innerHTML = `
                         ¡Llave conseguida!<br>
                         Tiempo: ${endTime.toFixed(2)}s<br>
-                        Puntos ganados: ${puntos}<br>
+                        Puntos ganados: +${puntos}<br>
                         Nuevo puntaje total: ${data.nuevoPuntaje}<br>
                         <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
                     `;

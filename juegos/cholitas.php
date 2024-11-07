@@ -182,6 +182,53 @@ $_SESSION['current_game_description'] = $descripcion;
         background-color: rgba(0, 255, 0, 0.4);
         transform: scale(1.1);
     }
+
+    .custom-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #ffd700;
+        color: #fff;
+        text-align: center;
+        z-index: 2000;
+        min-width: 300px;
+        font-family: 'Press Start 2P', cursive;
+        animation: glow 2s infinite alternate;
+    }
+
+    .custom-modal h3 {
+        color: #ffd700;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .custom-modal p {
+        margin: 10px 0;
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .custom-modal button {
+        background-color: #ffd700;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-family: 'Press Start 2P', cursive;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .custom-modal button:hover {
+        transform: scale(1.05);
+        background-color: #ffec00;
+    }
     </style>
 </head>
 <body>
@@ -223,7 +270,7 @@ $_SESSION['current_game_description'] = $descripcion;
             console.log('Iniciando envío de foto...');
             if (esperandoCalificacion) {
                 console.log('Ya esperando calificación, abortando...');
-                alert('Ya has enviado una foto. Por favor, espera la calificación.');
+                showCustomMessage('Error', 'Ya has enviado una foto. Por favor, espera la calificación.');
                 return;
             }
 
@@ -248,13 +295,7 @@ $_SESSION['current_game_description'] = $descripcion;
                 body: JSON.stringify(requestData)
             })
             .then(response => {
-                // Imprimir headers de respuesta
-                console.log('Content-Type:', response.headers.get('Content-Type'));
-                
                 return response.text().then(text => {
-                    // Imprimir respuesta raw
-                    console.log('Respuesta raw:', text);
-                    
                     try {
                         if (!text.trim()) {
                             throw new Error('Respuesta vacía del servidor');
@@ -275,13 +316,13 @@ $_SESSION['current_game_description'] = $descripcion;
                 } else {
                     hideOverlay();
                     console.error('Error al enviar el desafío:', data.message);
-                    alert('Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
+                    showCustomMessage('Error', 'Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
                 }
             })
             .catch(error => {
                 console.error('Error completo:', error);
                 hideOverlay();
-                alert('Error al enviar el desafío: ' + error.message);
+                showCustomMessage('Error', 'Error al enviar el desafío: ' + error.message);
             });
         });
 
@@ -323,15 +364,19 @@ $_SESSION['current_game_description'] = $descripcion;
                     esperandoCalificacion = false;
                     hideOverlay();
                     if (data.status === 'aprobado') {
-                        alert('Tu desafío ha sido aprobado. ¡Felicidades!');
-                        if (data.nuevoPuntaje) {
-                            alert('Tu nuevo puntaje es: ' + data.nuevoPuntaje);
-                        }
+                        let mensaje = `
+                            <p>¡Has completado el desafío exitosamente!</p>
+                            <p>Puntos ganados: +1</p>
+                            <p>Puntaje total: ${data.nuevoPuntaje}</p>
+                        `;
+                        showCustomMessage('¡Felicitaciones!', mensaje, () => {
+                            window.location.href = '../views/evento.php';
+                        });
                     } else {
-                        alert('Tu desafío ha sido reprobado. Continúa con el siguiente reto.');
+                        showCustomMessage('Resultado', '<p>Tu desafío ha sido reprobado.</p><p>Continúa con el siguiente reto.</p>', () => {
+                            window.location.href = '../views/evento.php';
+                        });
                     }
-                    // Redirigir en ambos casos
-                    window.location.href = '../views/evento.php';
                 } else {
                     setTimeout(checkCalificacion, 2000);
                 }
@@ -340,6 +385,28 @@ $_SESSION['current_game_description'] = $descripcion;
                 console.error("Error al verificar calificación:", error);
                 setTimeout(checkCalificacion, 2000);
             });
+        }
+
+        function showCustomMessage(title, message, callback) {
+            // Remover modal anterior si existe
+            const existingModal = document.querySelector('.custom-modal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.innerHTML = `
+                <h3>${title}</h3>
+                <div>${message}</div>
+                <button onclick="closeCustomModal(this)">Aceptar</button>
+            `;
+            document.body.appendChild(modal);
+
+            window.closeCustomModal = function(button) {
+                button.parentElement.remove();
+                if (callback) callback();
+            };
         }
     });
 </script>
