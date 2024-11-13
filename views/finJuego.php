@@ -62,23 +62,52 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            text-align: center;
+        }
+
+        .text-dark {
+            color: #1a1a1a !important;
+        }
+
+        .feedback-form{
+            padding: 0;
+        }
+        .feedback-form textarea {
+            background-color: #fff;
+            border: 1px solid #28a745;
+            color: #1a1a1a;
+            padding: 0;
+        }
+
+        .feedback-form textarea::placeholder {
+            color: #6c757d;
+        }
+
+        .fw-bold {
+            font-weight: 600 !important;
+        }
+    </style>
 </head>
 <body>
     <div class="container d-flex flex-column align-items-center vh-100">
         <div class="card bg-dark text-light p-4">
             <?php if ($todosTerminaron): ?>
-                <div class="alert alert-success text-center">
-                    <h2>¡Evento Finalizado!</h2>
+                <div class="alert alert-success text-dark">
+                    <h2 class="text-dark fw-bold">¡Evento Finalizado!</h2>
                     <?php if ($tiempoTerminado): ?>
-                        <h3>El tiempo del evento ha terminado</h3>
+                        <h3 class="text-dark">El tiempo del evento ha terminado</h3>
                     <?php endif; ?>
-                    <h3>El ganador es: <?php echo htmlspecialchars($ganador); ?></h3>
-                    <p>¡Felicitaciones al ganador y a todos los participantes!</p>
+                    <h3 class="text-dark">El ganador es: <?php echo htmlspecialchars($ganador); ?></h3>
+                    <p class="text-dark fw-bold">¡Felicitaciones al ganador y a todos los participantes!</p>
                     
                     <!-- Formulario de Feedback -->
-                    <div class="feedback-form mt-4">
-                        <h4>¡Cuéntanos tu experiencia!</h4>
-                        <p class="text-muted">Nos gustaría saber qué te pareció el evento. Tus comentarios nos ayudan a mejorar.</p>
+                    <div class="feedback-form">
+                        <h4 class="text-dark fw-bold">¡Cuéntanos tu experiencia!</h4>
+                        <p class="text-dark">Nos gustaría saber qué te pareció el evento. Tus comentarios nos ayudan a mejorar.</p>
                         <form id="feedbackForm" method="POST" action="../controllers/feedbackController.php">
                             <input type="hidden" name="idJugador" value="<?php echo $jugadorId; ?>">
                             <input type="hidden" name="idEvento" value="<?php echo $eventoId; ?>">

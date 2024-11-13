@@ -165,6 +165,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     </div>
     </div>
 
+    <!-- Agregar este nuevo modal para confirmación de abandono -->
+    <div class="modal fade" id="modalConfirmarAbandono" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar abandono</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro que deseas abandonar el evento?</p>
+                    <p>No podrás volver a ingresar.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="abandonarEvento()">Abandonar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -188,23 +208,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         }
 
         function confirmarAbandonar() {
-            if (confirm('¿Estás seguro que deseas abandonar el evento? No podrás volver a ingresar.')) {
-                var formData = new FormData();
-                formData.append('action', 'abandonar');
-                formData.append('jugadorId', <?php echo $_SESSION['player_id']; ?>);
+            // Mostrar el modal en lugar del confirm
+            $('#modalConfirmarAbandono').modal('show');
+        }
 
-                fetch('evento.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    window.location.href = '../index.php';
-                })
-                .catch(error => {
-                    alert('Error al abandonar el evento');
-                });
-            }
+        function abandonarEvento() {
+            var formData = new FormData();
+            formData.append('action', 'abandonar');
+            formData.append('jugadorId', <?php echo $_SESSION['player_id']; ?>);
+
+            fetch('evento.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                window.location.href = '../index.php';
+            })
+            .catch(error => {
+                // Aquí también podrías mostrar el error en un modal estilizado
+                alert('Error al abandonar el evento');
+            });
         }
 
         // Convertir la fecha de fin a timestamp

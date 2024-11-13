@@ -281,7 +281,7 @@ $_SESSION['current_game_description'] = $descripcion;
             const maxSize = 40 * 1024 * 1024; // 40MB en bytes
 
             if (file.size > maxSize) {
-                alert('El video es demasiado grande. Por favor, sube un video de menos de 40MB.');
+                showCustomMessage('Error', '<p>El video es demasiado grande.</p><p>Por favor, sube un video de menos de 40MB.</p>');
                 this.value = ''; // Limpiar el input
                 return;
             }
