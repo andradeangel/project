@@ -49,20 +49,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .custom-modal {
+            display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(255, 0, 0, 0.9); /* Fondo rojo */
+            background-color: #212529;
             padding: 20px;
-            border-radius: 10px;
-            border: 2px solid #ff4d4d; /* Borde rojo claro */
-            color: #fff;
-            text-align: center;
-            z-index: 2000;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            color: white;
             min-width: 300px;
-            font-family: 'Press Start 2P', cursive;
-            animation: glow 2s infinite alternate;
+            text-align: center;
         }
 
         .custom-modal h3 {
@@ -87,6 +86,63 @@
         .custom-modal button:hover {
             transform: scale(1.05);
             background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        /* Estilos para el modal y overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #212529;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            color: white;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .custom-modal h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .custom-modal p {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .custom-modal button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .custom-modal button:first-of-type {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .custom-modal button:last-of-type {
+            background-color: #6c757d;
+            color: white;
         }
     </style>
 </head>
@@ -118,7 +174,9 @@
                         <a class="nav-link custom-nav-link" href="consultas.php">Consultas</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
+                <a class="nav-link" href="#" onclick="showLogoutConfirm(event)">
+    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+</a>
             </div>
         </div>
     </nav>
@@ -291,17 +349,53 @@
             </div>
         </div>
     </div>
+    <!-- Overlay para el fondo oscuro -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+
+    <!-- Modal de confirmación para cerrar sesión -->
+    <div id="logoutConfirmModal" class="custom-modal" style="display: none;">
+        <h3>Confirmar cierre de sesión</h3>
+        <p>¿Está seguro de que desea cerrar la sesión?</p>
+        <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
+        <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
-        function confirmarCerrarSesion() {
-    if (confirm("¿Está seguro de que desea cerrar sesión?")) {
-        window.location.href = "../logout.php";
-    }
-}
+        document.addEventListener('DOMContentLoaded', function() {
+            // Agregar el event listener para el botón de cerrar sesión
+            const logoutButton = document.querySelector('a[href="#"][onclick="showLogoutConfirm(event)"]');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showLogoutConfirm(e);
+                });
+            }
+        });
 
-        
+        function showLogoutConfirm(event) {
+            event.preventDefault();
+            const overlay = document.getElementById('modalOverlay');
+            const modal = document.getElementById('logoutConfirmModal');
+            if (overlay && modal) {
+                overlay.style.display = 'block';
+                modal.style.display = 'block';
+            }
+        }
+
+        function closeLogoutModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const modal = document.getElementById('logoutConfirmModal');
+            if (overlay && modal) {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+            }
+        }
+
+        function confirmLogout() {
+            window.location.href = '../logout.php';
+        }
 
         // Función para generar un código aleatorio
         function generarCodigoEvento() {

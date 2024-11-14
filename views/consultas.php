@@ -95,7 +95,65 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             word-wrap: break-word;
         }
         .table td:last-child {
-            max-width: 500px; /* Más espacio para la columna de comentarios */
+            max-width: 500px;
+        }
+
+        /* Estilos para los modales personalizados */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #212529;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            color: white;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .custom-modal h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .custom-modal p {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .custom-modal button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .custom-modal button:first-of-type {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .custom-modal button:last-of-type {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        /* Overlay para el fondo oscuro */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
         }
     </style>
 </head>
@@ -131,7 +189,9 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                         </button>
                     </li>
                 </ul>
-                <button class="btn btn-outline-light custom-logout-btn" onclick="window.location.href='../logout.php'">Cerrar Sesión</button>
+                <a class="nav-link" href="#" onclick="showLogoutConfirm(event)">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
             </div>
         </div>
     </nav>
@@ -266,6 +326,33 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </div>
 </div>
+
+<!-- Modal personalizado para mensajes -->
+<div id="customModal" class="custom-modal" style="display: none;">
+    <h3 id="modalTitle"></h3>
+    <p id="modalMessage"></p>
+    <button onclick="closeCustomModal()">Aceptar</button>
+</div>
+
+<!-- Modal de confirmación para eliminar -->
+<div id="confirmModal" class="custom-modal" style="display: none;">
+    <h3>Confirmar eliminación</h3>
+    <p>¿Está seguro de eliminar este usuario?</p>
+    <button onclick="confirmDeleteUser()">Eliminar</button>
+    <button onclick="closeConfirmModal()">Cancelar</button>
+</div>
+
+<!-- Modal de confirmación para cerrar sesión -->
+<div id="logoutConfirmModal" class="custom-modal" style="display: none;">
+    <h3>Confirmar cierre de sesión</h3>
+    <p>¿Está seguro de que desea cerrar la sesión?</p>
+    <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
+    <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
+</div>
+
+<!-- Overlay para el fondo oscuro -->
+<div id="modalOverlay" class="modal-overlay"></div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -308,6 +395,15 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                 }
             })
             .catch(error => console.error('Error:', error));
+
+            // Agregar el event listener para el botón de cerrar sesión
+            const logoutButton = document.querySelector('a[href="#"][onclick="showLogoutConfirm(event)"]');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showLogoutConfirm(e);
+                });
+            }
         });
 
         // Mantener las funciones existentes para usuarios
@@ -323,11 +419,43 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             modalCrear.show();
         }
 
+        // Agregar estas funciones para manejar los modales
+        function showCustomMessage(title, message, callback) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('customModal').style.display = 'block';
+            if (callback) {
+                window.modalCallback = callback;
+            }
+        }
+
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+            if (window.modalCallback) {
+                window.modalCallback();
+                window.modalCallback = null;
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+            userToDelete = null;
+        }
+
+        let userToDelete = null;
+
+        // Modificar la función eliminarUsuario
         function eliminarUsuario(id) {
-            if (confirm('¿Estás seguro de eliminar este usuario?')) {
+            userToDelete = id;
+            document.getElementById('confirmModal').style.display = 'block';
+        }
+
+        // Nueva función para confirmar la eliminación
+        function confirmDeleteUser() {
+            if (userToDelete) {
                 const formData = new FormData();
                 formData.append('action', 'eliminar_usuario');
-                formData.append('id', id);
+                formData.append('id', userToDelete);
 
                 fetch('consultas.php', {
                     method: 'POST',
@@ -338,21 +466,35 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                     return response.json();
                 })
                 .then(data => {
+                    document.getElementById('confirmModal').style.display = 'none';
                     if (data.success) {
-                        location.reload();
+                        showCustomMessage('Éxito', 'Usuario eliminado con éxito', () => {
+                            location.reload();
+                        });
                     } else {
-                        alert('Error al eliminar usuario');
+                        showCustomMessage('Error', 'Error al eliminar usuario');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error al procesar la solicitud');
+                    showCustomMessage('Error', 'Error al procesar la solicitud');
                 });
             }
         }
 
+        // Modificar el event listener del formulario de crear usuario
         document.getElementById('formCrearUsuario').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validar nombres y apellidos
+            const nombres = this.querySelector('[name="nombres"]').value;
+            const apellidos = this.querySelector('[name="apellidos"]').value;
+            
+            if (!/^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/.test(nombres) || !/^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/.test(apellidos)) {
+                showCustomMessage('Error', 'Nombres y apellidos deben contener solo letras');
+                return;
+            }
+
             const formData = new FormData(this);
             formData.append('action', 'crear_usuario');
 
@@ -366,14 +508,16 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             })
             .then(data => {
                 if (data.success) {
-                    location.reload();
+                    showCustomMessage('Éxito', 'Usuario creado con éxito', () => {
+                        location.reload();
+                    });
                 } else {
-                    alert(data.message || 'Error al crear usuario');
+                    showCustomMessage('Error', data.message || 'Error al crear usuario');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Error al procesar la solicitud');
+                showCustomMessage('Error', 'Error al procesar la solicitud');
             });
         });
 
@@ -386,6 +530,30 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                 window.location.replace('/');
             }
         };
+
+        // Agregar estas funciones al script existente
+        function showLogoutConfirm(event) {
+            event.preventDefault();
+            const overlay = document.getElementById('modalOverlay');
+            const modal = document.getElementById('logoutConfirmModal');
+            if (overlay && modal) {
+                overlay.style.display = 'block';
+                modal.style.display = 'block';
+            }
+        }
+
+        function closeLogoutModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const modal = document.getElementById('logoutConfirmModal');
+            if (overlay && modal) {
+                overlay.style.display = 'none';
+                modal.style.display = 'none';
+            }
+        }
+
+        function confirmLogout() {
+            window.location.href = '../logout.php';
+        }
     </script>
 </body>
 </html>

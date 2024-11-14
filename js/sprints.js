@@ -30,32 +30,13 @@ $(document).ready(function() {
     });
 
     // Código para eliminar sprint
-    $(document).on('click', '.delete-btn', function() {
-        var id = $(this).data('id');
-        if (confirm('¿Está seguro de que desea eliminar este sprint?')) {
-            $.ajax({
-                url: '../controllers/sprintsController.php',
-                method: 'POST',
-                data: {
-                    accion: 'eliminar',
-                    id: id
-                },
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        showCustomMessage('Éxito', 'Sprint eliminado con éxito', () => {
-                            location.reload();
-                        });
-                    } else {
-                        showCustomMessage('Error', 'Error al eliminar el sprint: ' + response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error en la solicitud AJAX:', error);
-                    showCustomMessage('Error', 'Error al eliminar el sprint: ' + error);
-                }
-            });
-        }
+    $(document).on('click', '.delete-btn', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const id = $(this).data('id');
+        sprintToDelete = id;
+        document.getElementById('confirmModal').style.display = 'block';
+        return false;
     });
 
     // Manejar el clic en el icono de ordenamiento
@@ -193,3 +174,37 @@ $(document).ready(function() {
         });
     });
 });
+
+// Asegurarse de que estas funciones estén disponibles globalmente
+window.confirmDelete = function() {
+    if (sprintToDelete) {
+        $.ajax({
+            url: '../controllers/sprintsController.php',
+            method: 'POST',
+            data: {
+                accion: 'eliminar',
+                id: sprintToDelete
+            },
+            dataType: 'json',
+            success: function(response) {
+                document.getElementById('confirmModal').style.display = 'none';
+                if (response.success) {
+                    showCustomMessage('Éxito', 'Sprint eliminado con éxito', () => {
+                        location.reload();
+                    });
+                } else {
+                    showCustomMessage('Error', 'No se puede eliminar este sprint porque ya ha sido utilizado por un evento.');
+                }
+            },
+            error: function(xhr, status, error) {
+                document.getElementById('confirmModal').style.display = 'none';
+                showCustomMessage('Error', 'Error al eliminar el sprint: ' + error);
+            }
+        });
+    }
+};
+
+window.closeConfirmModal = function() {
+    document.getElementById('confirmModal').style.display = 'none';
+    sprintToDelete = null;
+};
