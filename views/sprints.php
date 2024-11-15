@@ -1,6 +1,6 @@
 <?php
     require_once("../database.php");
-    require_once("../models/eventosModel.php");  // Asegúrate de que esta línea esté presente
+    require_once("../models/eventosModel.php");
     custom_session_start('admin_session');
     
     header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
@@ -14,9 +14,11 @@
     require_once("../models/sprintsModel.php");
     require_once("../controllers/sprintsController.php");
 
+    $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'nombre';
+    $orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
 
     $controller = new SprintController($conexion);
-    $sprints = $controller->getAllSprints();
+    $sprints = $controller->getAllSprints($orderBy, $orderDir);
     $juegos = $controller->getAllJuegos();
 
     // Obtener el nombre de usuario y rol
@@ -31,11 +33,13 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>Panel de Control</title>
-    <link rel="icon" href="../images/ico.png">
+    
+    <!-- Favicon - múltiples formatos para mejor compatibilidad -->
+    <link rel="icon" type="image/x-icon" href="../images/ico.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/ico.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/ico.png">
+    <link rel="shortcut icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
@@ -189,8 +193,12 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
                         <tr>
                             <th>
                                 Nombre
-                                <a href="?orderBy=nombre&orderDir=<?php echo $orderBy == 'nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
-                                    <?php echo $orderBy == 'nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                <a href="?orderBy=nombre&orderDir=<?php echo ($orderBy === 'nombre' && $orderDir === 'ASC') ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                    <i class="fas fa-sort<?php 
+                                        if ($orderBy === 'nombre') {
+                                            echo $orderDir === 'ASC' ? '-up' : '-down';
+                                        }
+                                    ?>"></i>
                                 </a>
                             </th>
                             <th>Juego 1</th>

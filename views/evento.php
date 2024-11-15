@@ -8,7 +8,7 @@
 
 // Verificar si existe la sesión del jugador
 if (!isset($_SESSION['player_id']) || !isset($_SESSION['player_evento_id'])) {
-    header('Location: datosJugador.php');
+    header('Location: /');
     exit;
 }
 

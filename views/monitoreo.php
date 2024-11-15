@@ -257,6 +257,13 @@ $desafiosPendientes = $controller->getPendingChallenges();
         </div>
     </div>
 
+    <div id="customModal" class="custom-modal" style="display: none;">
+    <h3 id="modalTitle"></h3>
+    <p id="modalMessage"></p>
+    <button onclick="closeCustomModal()">Aceptar</button>
+</div>
+
+<div id="modalOverlay" class="modal-overlay"></div>
     <div id="logoutConfirmModal" class="custom-modal" style="display: none;">
         <h3>Confirmar cierre de sesión</h3>
         <p>¿Está seguro de que desea cerrar la sesión?</p>
@@ -288,9 +295,7 @@ $desafiosPendientes = $controller->getPendingChallenges();
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showCustomMessage('Éxito', data.message, () => {
-                        location.reload(); // Recargar la página después de calificar
-                    });
+                    showCustomMessage('Éxito', data.message);
                 } else {
                     showCustomMessage('Error', 'Error: ' + data.message);
                 }
@@ -301,26 +306,23 @@ $desafiosPendientes = $controller->getPendingChallenges();
             });
         }
 
-        function showCustomMessage(title, message, callback) {
-            // Remover modal anterior si existe
-            const existingModal = document.querySelector('.custom-modal');
-            if (existingModal) {
-                existingModal.remove();
+        function showCustomMessage(title, message) {
+            const modal = document.getElementById('customModal');
+            const overlay = document.getElementById('modalOverlay');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalMessage').textContent = message;
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            const overlay = document.getElementById('modalOverlay');
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+            if (document.getElementById('modalTitle').textContent === 'Éxito') {
+                location.reload();
             }
-
-            const modal = document.createElement('div');
-            modal.className = 'custom-modal';
-            modal.innerHTML = `
-                <h3>${title}</h3>
-                <div>${message}</div>
-                <button onclick="closeCustomModal(this)">Aceptar</button>
-            `;
-            document.body.appendChild(modal);
-
-            window.closeCustomModal = function(button) {
-                button.parentElement.remove();
-                if (callback) callback();
-            };
         }
 
         // Actualizar estados de eventos cada 30 segundos

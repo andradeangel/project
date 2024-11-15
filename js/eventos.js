@@ -37,119 +37,163 @@ $(document).on('click', '.delete-btn', function() {
     showConfirmationModal(id);
 });
 
-function showConfirmationModal(eventId) {
-    showCustomMessage('Confirmación', '¿Está seguro de que desea eliminar este evento? Esta acción no se puede deshacer.', function() {
-        // Si el usuario confirma, proceder a eliminar el evento
-        $.ajax({
-            url: 'eventos.php',
-            method: 'POST',
-            data: {
-                id: eventId,
-                accion: 'eliminar'
-            },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    showCustomMessage('Éxito', 'Evento eliminado con éxito', () => {
-                        location.reload();
-                    });
-                } else {
-                    showCustomMessage('Error', response.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error en la solicitud AJAX:', error);
-                showCustomMessage('Error', 'Error al eliminar el evento: ' + error);
-            }
-        });
-    }, function() {
-        // Acción a realizar si el usuario cancela
-        console.log('Eliminación cancelada');
-    });
-}
-
-document.getElementById('crearEventoBtn').addEventListener('click', function() {
-    var form = document.getElementById('crearEventoForm');
-    if (form.checkValidity()) {
-        var formData = new FormData(form);
-        formData.append('accion', 'crear');
-        
-        fetch('eventos.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                showCustomMessage('Éxito', 'Evento creado con éxito', () => {
-                    location.reload();
-                });
-            } else {
-                showCustomMessage('Error', 'Error al crear el evento: ' + data.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showCustomMessage('Error', 'Ocurrió un error al crear el evento');
-        });
-    } else {
+// Crear evento
+$('#crearEventoBtn').on('click', function() {
+    var form = $('#crearEventoForm')[0];
+    if (!form.checkValidity()) {
         showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+        return;
     }
+
+    var fechaInicio = new Date($('#fechaInicio').val());
+    var fechaFin = new Date($('#fechaFin').val());
+    
+    if (fechaFin < fechaInicio) {
+        showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
+        return;
+    }
+
+    var formData = new FormData(form);
+    formData.append('accion', 'crear');
+    
+    $.ajax({
+        url: 'eventos.php',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        success: function(response) {
+            $('#crearEventoModal').modal('hide');
+            if (response.success) {
+                showCustomMessage('Éxito', 'Evento creado con éxito');
+            } else {
+                showCustomMessage('Error', response.message);
+            }
+        },
+        error: function() {
+            $('#crearEventoModal').modal('hide');
+            showCustomMessage('Error', 'Error al crear el evento');
+        }
+    });
 });
 
+// Editar evento
 $('#editarEventoBtn').on('click', function() {
     var form = $('#editarEventoForm')[0];
-    if (form.checkValidity()) {
-        var formData = new FormData(form);
-        formData.append('accion', 'editar');
-        $.ajax({
-            url: 'eventos.php',
-            method: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    showCustomMessage('Éxito', 'Evento actualizado con éxito', () => {
-                        location.reload();
-                    });
-                } else {
-                    showCustomMessage('Error', 'Error al actualizar el evento: ' + response.message);
-                }
-            },
-            error: function() {
-                showCustomMessage('Error', 'Error al actualizar el evento');
-            }
-        });
-    } else {
+    if (!form.checkValidity()) {
         showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+        return;
     }
+
+    var fechaInicio = new Date($('#editarFechaInicio').val());
+    var fechaFin = new Date($('#editarFechaFin').val());
+    
+    if (fechaFin < fechaInicio) {
+        showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
+        return;
+    }
+
+    var formData = new FormData(form);
+    formData.append('accion', 'editar');
+    
+    $.ajax({
+        url: 'eventos.php',
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        dataType: 'json',
+        success: function(response) {
+            $('#editarEventoModal').modal('hide');
+            if (response.success) {
+                showCustomMessage('Éxito', 'Evento actualizado con éxito');
+            } else {
+                showCustomMessage('Error', response.message);
+            }
+        },
+        error: function() {
+            $('#editarEventoModal').modal('hide');
+            showCustomMessage('Error', 'Error al actualizar el evento');
+        }
+    });
 });
 
-function showCustomMessage(title, message, confirmCallback, cancelCallback) {
-    // Remover modal anterior si existe
-    const existingModal = document.querySelector('.custom-modal');
-    if (existingModal) {
-        existingModal.remove();
-    }
-
-    const modal = document.createElement('div');
-    modal.className = 'custom-modal';
-    modal.innerHTML = `
-        <h3>${title}</h3>
-        <div>${message}</div>
-        <button onclick="closeCustomModal(this, true)">Aceptar</button>
-        <button onclick="closeCustomModal(this, false)">Cancelar</button>
-    `;
-    document.body.appendChild(modal);
-
-    window.closeCustomModal = function(button, isConfirmed) {
-        button.parentElement.remove();
-        if (isConfirmed && confirmCallback) {
-            confirmCallback();
-        } else if (!isConfirmed && cancelCallback) {
-            cancelCallback();
+// Eliminar evento
+function showConfirmationModal(eventId) {
+    showCustomMessage(
+        'Confirmación',
+        '¿Está seguro de que desea eliminar este evento? Esta acción no se puede deshacer.',
+        () => {
+            $.ajax({
+                url: 'eventos.php',
+                method: 'POST',
+                data: {
+                    id: eventId,
+                    accion: 'eliminar'
+                },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        showCustomMessage('Éxito', 'Evento eliminado con éxito');
+                    } else {
+                        showCustomMessage('Error', response.message);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    showCustomMessage('Error', 'Error al eliminar el evento: ' + error);
+                }
+            });
         }
-    };
+    );
+}
+
+function showCustomMessage(title, message, confirmCallback, cancelCallback) {
+    const modal = document.getElementById('customModal');
+    const overlay = document.getElementById('modalOverlay');
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('modalMessage').textContent = message;
+    
+    // Limpiar botones existentes
+    while (modal.querySelector('button')) {
+        modal.querySelector('button').remove();
+    }
+    
+    // Si hay callback de confirmación, mostrar botones Aceptar y Cancelar
+    if (confirmCallback) {
+        const confirmButton = document.createElement('button');
+        confirmButton.textContent = 'Aceptar';
+        confirmButton.onclick = () => {
+            closeCustomModal();
+            confirmCallback();
+        };
+        modal.appendChild(confirmButton);
+
+        const cancelButton = document.createElement('button');
+        cancelButton.textContent = 'Cancelar';
+        cancelButton.onclick = () => {
+            closeCustomModal();
+            if (cancelCallback) cancelCallback();
+        };
+        modal.appendChild(cancelButton);
+    } else {
+        // Solo botón Aceptar para mensajes informativos
+        const acceptButton = document.createElement('button');
+        acceptButton.textContent = 'Aceptar';
+        acceptButton.onclick = closeCustomModal;
+        modal.appendChild(acceptButton);
+    }
+    
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+function closeCustomModal() {
+    const modal = document.getElementById('customModal');
+    const overlay = document.getElementById('modalOverlay');
+    modal.style.display = 'none';
+    overlay.style.display = 'none';
+    if (document.getElementById('modalTitle').textContent === 'Éxito') {
+        location.reload();
+    }
 }

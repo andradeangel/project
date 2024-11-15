@@ -65,58 +65,6 @@
         }
 
         .custom-modal h3 {
-            color: #ff4d4d; /* Título en rojo claro */
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .custom-modal button {
-            background-color: #ff4d4d; /* Botón en rojo claro */
-            color: black;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 15px;
-            cursor: pointer;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .custom-modal button:hover {
-            transform: scale(1.05);
-            background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
-        }
-
-        /* Estilos para el modal y overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9998;
-        }
-
-        .custom-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #212529;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            color: white;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .custom-modal h3 {
             margin-bottom: 15px;
             color: white;
         }
@@ -143,6 +91,17 @@
         .custom-modal button:last-of-type {
             background-color: #6c757d;
             color: white;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
         }
     </style>
 </head>
@@ -349,6 +308,12 @@
             </div>
         </div>
     </div>
+    <!-- Agregar los divs del modal antes del cierre del body -->
+<div id="customModal" class="custom-modal" style="display: none;">
+    <h3 id="modalTitle"></h3>
+    <p id="modalMessage"></p>
+    <button onclick="closeCustomModal()">Aceptar</button>
+</div>
     <!-- Overlay para el fondo oscuro -->
     <div id="modalOverlay" class="modal-overlay"></div>
 

@@ -22,8 +22,8 @@
             $this->model = new SprintModel($db);
         }
 
-        public function getAllSprints() {
-            return $this->model->getAllSprints();
+        public function getAllSprints($orderBy = 'nombre', $orderDir = 'ASC') {
+            return $this->model->getAllSprints($orderBy, $orderDir);
         }
 
         public function getAllJuegos() {
@@ -116,7 +116,4 @@
         echo json_encode($resultado);   
         exit;
     }
-    // Si llegamos aquí, significa que no se manejó la solicitud
-    header('HTTP/1.1 400 Bad Request');
-    echo json_encode(['success' => false, 'message' => 'Solicitud no válida']);
 ?>

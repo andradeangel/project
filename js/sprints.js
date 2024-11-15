@@ -39,18 +39,10 @@ $(document).ready(function() {
         return false;
     });
 
-    // Manejar el clic en el icono de ordenamiento
-    $('#sortNombre').on('click', function(e) {
-        e.preventDefault();
-        var currentSort = $(this).data('sort');
-        var newSort = currentSort === 'asc' ? 'desc' : 'asc';
-        $(this).data('sort', newSort);
-        
-        // Cambiar el icono
-        $(this).find('i').removeClass('fa-sort fa-sort-up fa-sort-down')
-               .addClass(newSort === 'asc' ? 'fa-sort-up' : 'fa-sort-down');
-        
-        loadSprints('nombre', newSort);
+    // Manejar el clic en el enlace de ordenamiento
+    $('.sort-btn').on('click', function(e) {
+        // El ordenamiento ahora se maneja a través del href del enlace
+        // No necesitamos prevenir el comportamiento por defecto
     });
 
     $('#crearSprintBtn').on('click', function() {
