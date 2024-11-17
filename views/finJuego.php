@@ -42,6 +42,16 @@ $tiempoTerminado = $fechaActual >= $fechaFin;
 
 $todosTerminaron = $jugadores['total'] == $jugadores['terminados'] || $tiempoTerminado;
 
+// Si el jugador ha terminado o el tiempo se acabó, cerrar sesión
+if ($todosTerminaron || $tiempoTerminado) {
+    // Destruir solo la sesión del jugador
+    unset($_SESSION['player_id']);
+    unset($_SESSION['player_evento_id']);
+    unset($_SESSION['player_name']);
+    unset($_SESSION['jugador_actual']);
+    unset($_SESSION['evento_actual']);
+}
+
 // Obtener tabla de posiciones
 $sqlPosiciones = "SELECT nombres, puntaje FROM jugadores WHERE idEvento = ? ORDER BY puntaje DESC";
 $stmtPosiciones = $conexion->prepare($sqlPosiciones);

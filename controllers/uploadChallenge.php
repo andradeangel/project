@@ -37,8 +37,8 @@ try {
             // Guardar en la base de datos
             $sql = "INSERT INTO desafios (
                 id, jugador_id, evento_id, juego_id, 
-                tipo, archivo_ruta, estado
-            ) VALUES (?, ?, ?, ?, ?, ?, 'pendiente')";
+                tipo, archivo_ruta, estado, calificador_id
+            ) VALUES (?, ?, ?, ?, ?, ?, 'pendiente', NULL)";
             
             $stmt = $conexion->prepare($sql);
             $stmt->bind_param("siisss",

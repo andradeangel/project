@@ -68,7 +68,7 @@
             
             return $challenges;
         }
-        public function aprobarDesafio($challengeId) {
+        public function aprobarDesafio($challengeId, $admin_id) {
             $this->conexion->begin_transaction();
             
             try {
@@ -93,20 +93,21 @@
                 $stmt->bind_param("i", $desafio['jugador_id']);
                 $stmt->execute();
                 
-                // Marcar desafío como aprobado
+                // Marcar desafío como aprobado y registrar calificador
                 $sql = "UPDATE desafios 
                         SET estado = 'aprobado', 
-                            calificado = TRUE 
+                            calificado = TRUE,
+                            calificador_id = ? 
                         WHERE id = ?";
                 $stmt = $this->conexion->prepare($sql);
-                $stmt->bind_param("s", $challengeId);
+                $stmt->bind_param("is", $admin_id, $challengeId);
                 $stmt->execute();
                 
                 $this->conexion->commit();
                 return true;
             } catch (Exception $e) {
                 $this->conexion->rollback();
-                error_log("Error al aprobar desafío: " . $e->getMessage());
+                error_log("Error en aprobarDesafio: " . $e->getMessage());
                 return false;
             }
         }

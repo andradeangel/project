@@ -290,19 +290,32 @@ $desafiosPendientes = $controller->getPendingChallenges();
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ challengeId: challengeId, status: status })
+                body: JSON.stringify({ 
+                    challengeId: challengeId, 
+                    status: status 
+                })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     showCustomMessage('Éxito', data.message);
+                    // Ocultar el desafío calificado
+                    const challengeElement = document.getElementById('challenge-' + challengeId);
+                    if (challengeElement) {
+                        challengeElement.style.display = 'none';
+                    }
                 } else {
-                    showCustomMessage('Error', 'Error: ' + data.message);
+                    showCustomMessage('Error', data.message);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showCustomMessage('Error', 'Error al procesar la solicitud');
+                showCustomMessage('Error', 'Error al procesar la solicitud: ' + error.message);
             });
         }
 

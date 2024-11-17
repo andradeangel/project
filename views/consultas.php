@@ -28,44 +28,39 @@ if ($usuario['idRol'] == 2) { // Si es Game Master
 }
 
 // Manejar solicitudes POST primero
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    ob_clean(); // Limpiar cualquier salida anterior
-    header('Content-Type: application/json');
-    
-    switch ($_POST['action']) {
-        case 'eliminar_usuario':
-            $id = $_POST['id'];
-            $sql = "DELETE FROM usuarios WHERE id = ?";
-            $stmt = $conexion->prepare($sql);
-            $stmt->bind_param('i', $id);
-            $result = $stmt->execute();
-            echo json_encode(['success' => $result]);
-            exit;
-            
-        case 'crear_usuario':
-            // Validaciones
-            if (!preg_match('/^\d+$/', $_POST['ci'])) {
-                echo json_encode(['success' => false, 'message' => 'CI debe contener solo números']);
-                exit;
-            }
-            if (!preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['nombres']) || 
-                !preg_match('/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/', $_POST['apellidos'])) {
-                echo json_encode(['success' => false, 'message' => 'Nombres y apellidos deben contener solo letras']);
-                exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['action']) && $_POST['action'] === 'cambiar_estado_usuario') {
+        $response = ['success' => false, 'message' => ''];
+        
+        try {
+            if (!isset($_POST['id']) || !isset($_POST['estado'])) {
+                throw new Exception('Datos incompletos');
             }
             
-            $ci = $_POST['ci'];
-            $nombres = $_POST['nombres'];
-            $apellidos = $_POST['apellidos'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $idRol = $_POST['idRol'];
+            $id = (int)$_POST['id'];
+            $estado = (int)$_POST['estado'];
             
-            $sql = "INSERT INTO usuarios (ci, nombres, apellidos, password, idRol) VALUES (?, ?, ?, ?, ?)";
+            if ($estado !== 2 && $estado !== 3) {
+                throw new Exception('Estado inválido');
+            }
+            
+            $sql = "UPDATE usuarios SET idEstado = ? WHERE id = ?";
             $stmt = $conexion->prepare($sql);
-            $stmt->bind_param('isssi', $ci, $nombres, $apellidos, $password, $idRol);
-            $result = $stmt->execute();
-            echo json_encode(['success' => $result]);
-            exit;
+            $stmt->bind_param("ii", $estado, $id);
+            
+            if ($stmt->execute()) {
+                $response['success'] = true;
+                $response['message'] = 'Estado actualizado correctamente';
+            } else {
+                throw new Exception('Error al actualizar el estado');
+            }
+        } catch (Exception $e) {
+            $response['message'] = $e->getMessage();
+        }
+        
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
     }
 }
 
@@ -257,12 +252,12 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Rol</th>
-                            <th>Acciones</th>
+                            <th>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol 
+                        $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol, u.idEstado 
                                FROM usuarios u 
                                LEFT JOIN rol r ON u.idRol = r.id 
                                ORDER BY u.nombres ASC";
@@ -273,9 +268,15 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                             echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
                             echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
                             echo "<td>
-                                    <button class='btn btn-danger btn-sm' onclick='eliminarUsuario(" . $row['id'] . ")'>
-                                        <i class='fas fa-trash'></i>
-                                    </button>
+                                    <div class='form-check form-switch'>
+                                        <input class='form-check-input' type='checkbox' 
+                                            id='switchUsuario_" . $row['id'] . "' 
+                                            onchange='cambiarEstadoUsuario(" . $row['id'] . ", this.checked)'
+                                            " . ($row['idEstado'] == 2 ? 'checked' : '') . ">
+                                        <label class='form-check-label' for='switchUsuario_" . $row['id'] . "'>
+                                            " . ($row['idEstado'] == 2 ? 'Activo' : 'Inactivo') . "
+                                        </label>
+                                    </div>
                                   </td>";
                             echo "</tr>";
                         }
@@ -553,6 +554,48 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
 
         function confirmLogout() {
             window.location.href = '../logout.php';
+        }
+
+        function cambiarEstadoUsuario(id, estado) {
+            const nuevoEstado = estado ? 2 : 3; // 2 para activo, 3 para inactivo
+            const formData = new FormData();
+            formData.append('action', 'cambiar_estado_usuario');
+            formData.append('id', id);
+            formData.append('estado', nuevoEstado);
+
+            fetch('consultas.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Error en la respuesta del servidor');
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    const label = document.querySelector(`label[for="switchUsuario_${id}"]`);
+                    if (label) {
+                        label.textContent = estado ? 'Activo' : 'Inactivo';
+                    }
+                    showCustomMessage('Éxito', 'Estado del usuario actualizado correctamente');
+                } else {
+                    showCustomMessage('Error', data.message || 'Error al actualizar estado');
+                    // Revertir el switch si hubo error
+                    const switch_element = document.getElementById(`switchUsuario_${id}`);
+                    if (switch_element) {
+                        switch_element.checked = !estado;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showCustomMessage('Error', 'Error al procesar la solicitud');
+                // Revertir el switch si hubo error
+                const switch_element = document.getElementById(`switchUsuario_${id}`);
+                if (switch_element) {
+                    switch_element.checked = !estado;
+                }
+            });
         }
     </script>
 </body>

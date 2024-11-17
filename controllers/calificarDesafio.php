@@ -3,11 +3,16 @@ require_once('../database.php');
 require_once('../controllers/monitoreoController.php');
 custom_session_start('admin_session');
 
+header('Content-Type: application/json');
 $response = ['success' => false, 'message' => '', 'nuevoPuntaje' => 0];
 
 try {
-    $data = json_decode(file_get_contents('php://input'), true);
+    if (!isset($_SESSION['admin_id'])) {
+        throw new Exception('No hay sesión de administrador activa');
+    }
 
+    $data = json_decode(file_get_contents('php://input'), true);
+    
     if (!isset($data['challengeId']) || !isset($data['status'])) {
         throw new Exception('Datos incompletos');
     }
@@ -32,12 +37,14 @@ try {
             $response['nuevoPuntaje'] = $nuevoPuntaje;
             $response['success'] = true;
             $response['message'] = 'Desafío aprobado y puntaje actualizado';
+        } else {
+            throw new Exception('Error al aprobar el desafío');
         }
     } else {
         // Actualizar estado del desafío
-        $sql = "UPDATE desafios SET estado = 'reprobado', calificado = TRUE WHERE id = ?";
+        $sql = "UPDATE desafios SET estado = 'reprobado', calificado = TRUE, calificador_id = ? WHERE id = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("s", $data['challengeId']);
+        $stmt->bind_param("is", $_SESSION['admin_id'], $data['challengeId']);
         
         if ($stmt->execute()) {
             // Actualizar juego_actual del jugador
@@ -56,8 +63,9 @@ try {
         }
     }
 } catch (Exception $e) {
-    $response['message'] = 'Error: ' . $e->getMessage();
+    $response['message'] = $e->getMessage();
     error_log("Error en calificarDesafio.php: " . $e->getMessage());
 }
 
 echo json_encode($response);
+exit;

@@ -38,6 +38,15 @@
             $resultado = $stmt->get_result();
             
             if($usuario = $resultado->fetch_assoc()) {
+                // Verificar si el usuario está activo
+                if ($usuario['idEstado'] != 2) { // 2 es el estado "Activo"
+                    $_SESSION['error'] = "Error de credenciales"; // Usuario inactivo
+                    $_SESSION['login_attempts']++;
+                    $_SESSION['last_attempt_time'] = time();
+                    header("Location: ../views/login.php");
+                    exit();
+                }
+
                 if(password_verify($password, $usuario['password'])) {
                     // Reiniciar contadores en caso de éxito
                     $_SESSION['login_attempts'] = 0;

@@ -17,7 +17,12 @@
             return $this->model->getPendingChallenges();
         }
         public function aprobarDesafio($challengeId) {
-            return $this->model->aprobarDesafio($challengeId);
+            // Obtener el ID del administrador de la sesión
+            if (!isset($_SESSION['admin_id'])) {
+                return false;
+            }
+            $admin_id = $_SESSION['admin_id'];
+            return $this->model->aprobarDesafio($challengeId, $admin_id);
         }
         
         public function getJugadorPuntaje($jugadorId) {

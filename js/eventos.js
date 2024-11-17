@@ -1,4 +1,30 @@
 $(document).ready(function() {
+    // Establecer fecha mínima para los inputs de fecha
+    function setMinDates() {
+        const now = new Date();
+        // Formatear fecha actual a formato datetime-local (YYYY-MM-DDThh:mm)
+        const formattedDate = now.getFullYear() + '-' +
+            String(now.getMonth() + 1).padStart(2, '0') + '-' +
+            String(now.getDate()).padStart(2, '0') + 'T' +
+            String(now.getHours()).padStart(2, '0') + ':' +
+            String(now.getMinutes()).padStart(2, '0');
+
+        // Establecer fecha mínima para el formulario de crear
+        $('#fechaInicio').attr('min', formattedDate);
+        $('#fechaFin').attr('min', formattedDate);
+
+        // Establecer fecha mínima para el formulario de editar
+        $('#editarFechaInicio').attr('min', formattedDate);
+        $('#editarFechaFin').attr('min', formattedDate);
+    }
+
+    // Establecer fechas mínimas al cargar la página
+    setMinDates();
+
+    // Actualizar fechas mínimas cuando se abren los modales
+    $('#crearEventoModal').on('show.bs.modal', setMinDates);
+    $('#editarEventoModal').on('show.bs.modal', setMinDates);
+
     // Usar delegación de eventos para los botones de editar y eliminar
     $(document).on('click', '.edit-btn', function() {
         var id = $(this).data('id');
@@ -40,13 +66,26 @@ $(document).on('click', '.delete-btn', function() {
 // Crear evento
 $('#crearEventoBtn').on('click', function() {
     var form = $('#crearEventoForm')[0];
+    var fechaInicio = new Date($('#fechaInicio').val());
+    var fechaFin = new Date($('#fechaFin').val());
+    var ahora = new Date();
+    
+    // Validar primero las fechas manuales
+    if ($('#fechaInicio').val() && fechaInicio < ahora) {
+        showCustomMessage('Advertencia', 'La fecha y hora no pueden ser antes de la fecha y hora actual');
+        return;
+    }
+
+    if ($('#fechaFin').val() && fechaFin < ahora) {
+        showCustomMessage('Advertencia', 'La fecha y hora no pueden ser antes de la fecha y hora actual');
+        return;
+    }
+
+    // Luego validar el formulario completo
     if (!form.checkValidity()) {
         showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
         return;
     }
-
-    var fechaInicio = new Date($('#fechaInicio').val());
-    var fechaFin = new Date($('#fechaFin').val());
     
     if (fechaFin < fechaInicio) {
         showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
@@ -81,13 +120,26 @@ $('#crearEventoBtn').on('click', function() {
 // Editar evento
 $('#editarEventoBtn').on('click', function() {
     var form = $('#editarEventoForm')[0];
+    var fechaInicio = new Date($('#editarFechaInicio').val());
+    var fechaFin = new Date($('#editarFechaFin').val());
+    var ahora = new Date();
+    
+    // Validar primero las fechas manuales
+    if ($('#editarFechaInicio').val() && fechaInicio < ahora) {
+        showCustomMessage('Advertencia', 'La fecha y hora no pueden ser antes de la fecha y hora actual');
+        return;
+    }
+
+    if ($('#editarFechaFin').val() && fechaFin < ahora) {
+        showCustomMessage('Advertencia', 'La fecha y hora no pueden ser antes de la fecha y hora actual');
+        return;
+    }
+
+    // Luego validar el formulario completo
     if (!form.checkValidity()) {
         showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
         return;
     }
-
-    var fechaInicio = new Date($('#editarFechaInicio').val());
-    var fechaFin = new Date($('#editarFechaFin').val());
     
     if (fechaFin < fechaInicio) {
         showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
