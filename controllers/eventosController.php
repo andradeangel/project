@@ -19,14 +19,16 @@
 
         switch ($accion) {
             case 'crear':
-                $resultado = crearEvento($conexion, $_POST['nombre'], $_POST['fechaInicio'], $_POST['fechaFin'], $_POST['sprint'], $_POST['descripcion']);
+                $resultado = crearEvento($conexion, $_POST['nombre'], $_POST['fechaInicio'], $_POST['fechaFin'], 
+                                         $_POST['sprint'], $_POST['descripcion'], $_POST['personas']);
                 break;
             case 'obtener':
                 $evento = obtenerEvento($conexion, $_POST['id']);
                 $resultado = $evento ? ['success' => true, 'data' => $evento] : ['success' => false, 'message' => 'Evento no encontrado'];
                 break;
             case 'editar':
-                $resultado = editarEvento($conexion, $_POST['id'], $_POST['nombre'], $_POST['fechaInicio'], $_POST['fechaFin'], $_POST['sprint'], $_POST['descripcion']);
+                $resultado = editarEvento($conexion, $_POST['id'], $_POST['nombre'], $_POST['fechaInicio'], 
+                                              $_POST['fechaFin'], $_POST['sprint'], $_POST['descripcion'], $_POST['personas']);
                 break;
             case 'eliminar':
                 $resultado = eliminarEvento($conexion, $_POST['id']);

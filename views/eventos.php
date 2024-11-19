@@ -184,6 +184,12 @@
                                     </a>
                                 </th>
                                 <th>
+                                    Capacidad
+                                    <a href="?orderBy=e.personas&orderDir=<?php echo $orderBy == 'e.personas' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <?php echo $orderBy == 'e.personas' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
+                                    </a>
+                                </th>
+                                <th>
                                     Sprint
                                     <a href="?orderBy=s.nombre&orderDir=<?php echo $orderBy == 's.nombre' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
                                         <?php echo $orderBy == 's.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
@@ -201,6 +207,7 @@
                                 <td><?php echo formatDate($evento['fechaInicio']); ?></td>
                                 <td><?php echo formatDate($evento['fechaFin']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['estado_nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($evento['personas']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['sprint_nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
                                 <td>
@@ -241,6 +248,10 @@
                         <div class="mb-3">
                             <label for="fechaFin" class="form-label">Fecha de Finalización</label>
                             <input type="datetime-local" class="form-control" id="fechaFin" name="fechaFin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="personas" class="form-label">Capacidad de Personas</label>
+                            <input type="number" class="form-control" id="personas" name="personas" min="0" value="5" required>
                         </div>
                         <div class="mb-3">
                             <label for="sprint" class="form-label">Sprint</label>
@@ -286,6 +297,10 @@
                         <div class="mb-3">
                             <label for="editarFechaFin" class="form-label">Fecha de Finalización</label>
                             <input type="datetime-local" class="form-control" id="editarFechaFin" name="fechaFin" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editarPersonas" class="form-label">Capacidad de Personas</label>
+                            <input type="number" class="form-control" id="editarPersonas" name="personas" min="0" required>
                         </div>
                         <div class="mb-3">
                             <label for="editarSprint" class="form-label">Sprint</label>
@@ -368,8 +383,6 @@
         }
 
         // Generar código automáticamente al abrir el modal
-        
-
         setInterval(function() {
             $.ajax({
                 type: 'GET',

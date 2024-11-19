@@ -44,8 +44,10 @@ $(document).ready(function() {
                     $('#editarCodigo').val(evento.codigo);
                     $('#editarFechaInicio').val(evento.fechaInicio);
                     $('#editarFechaFin').val(evento.fechaFin);
+                    $('#editarPersonas').val(evento.personas);
                     $('#editarSprint').val(evento.idSprint);
                     $('#editarDescripcion').val(evento.descripcion);
+                    
                     $('#editarEventoModal').modal('show');
                 } else {
                     alert('Error al obtener el evento: ' + response.message);
@@ -89,6 +91,11 @@ $('#crearEventoBtn').on('click', function() {
     
     if (fechaFin < fechaInicio) {
         showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
+        return;
+    }
+
+    if ($('#personas').val() < 2) {
+        showCustomMessage('Advertencia', 'La capacidad de personas debe ser al menos 2');
         return;
     }
 
@@ -143,6 +150,11 @@ $('#editarEventoBtn').on('click', function() {
     
     if (fechaFin < fechaInicio) {
         showCustomMessage('Advertencia', 'La fecha de finalización no puede ser anterior a la fecha de inicio.');
+        return;
+    }
+
+    if ($('#editarPersonas').val() < 2) {
+        showCustomMessage('Advertencia', 'La capacidad de personas debe ser al menos 2 y no puede ser un número negativo');
         return;
     }
 

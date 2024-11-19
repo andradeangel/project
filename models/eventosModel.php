@@ -59,7 +59,7 @@
         return $letras[0] . chr(ord($letras[1]) + 1);
     }
             
-    function crearEvento($conexion, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion) {
+    function crearEvento($conexion, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas) {
         // Validate dates
         if (strtotime($fechaFin) < strtotime($fechaInicio)) {
             return ["success" => false, "message" => "La fecha de finalización no puede ser anterior a la fecha de inicio."];
@@ -68,12 +68,16 @@
         $ultimoCodigo = obtenerUltimoCodigo($conexion);
         $nuevoCodigo = generarSiguienteCodigo($ultimoCodigo);
     
-        $sql = "INSERT INTO eventos (nombre, codigo, fechaInicio, fechaFin, idSprint, descripcion) 
-                VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO eventos (nombre, codigo, fechaInicio, fechaFin, idSprint, descripcion, personas) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("ssssss", $nombre, $nuevoCodigo, $fechaInicio, $fechaFin, $sprint, $descripcion);
+        $stmt->bind_param("ssssssi", $nombre, $nuevoCodigo, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas);
         $success = $stmt->execute();
-    
+        
+        if ($personas < 2) {
+            return ["success" => false, "message" => "La capacidad de personas debe ser al menos 2"];
+        }
+
         if ($success) {
             return ["success" => true, "message" => "Evento creado con éxito"];
         } else {
@@ -90,16 +94,19 @@
         return $result->fetch_assoc();
     }
     
-    function editarEvento($conexion, $id, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion) {
+    function editarEvento($conexion, $id, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas) {
         if (strtotime($fechaFin) < strtotime($fechaInicio)) {
             return ["success" => false, "message" => "La fecha de finalización no puede ser anterior a la fecha de inicio."];
         }
-    
-        $sql = "UPDATE eventos SET nombre = ?, fechaInicio = ?, fechaFin = ?, idSprint = ?, descripcion = ? WHERE id = ?";
+        $sql = "UPDATE eventos SET nombre = ?, fechaInicio = ?, fechaFin = ?, idSprint = ?, descripcion = ?, personas = ? WHERE id = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("sssssi", $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $id);
+        $stmt->bind_param("sssssii", $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas, $id);
         $success = $stmt->execute();
     
+        if ($personas < 2) {
+            return ["success" => false, "message" => "La capacidad de personas debe ser al menos 2"];
+        }
+        
         if ($success) {
             return ["success" => true, "message" => "Evento actualizado con éxito"];
         } else {
@@ -149,13 +156,13 @@
     }
     
     function obtenerEventos($conexion, $orderBy = 'e.fechaInicio', $orderDir = 'DESC') {
-        $allowedColumns = ['e.nombre', 'e.codigo', 'es.estado', 's.nombre', 'e.fechaInicio', 'e.fechaFin'];
+        $allowedColumns = ['e.nombre', 'e.codigo', 'es.estado', 's.nombre', 'e.fechaInicio', 'e.fechaFin', 'e.personas'];
         $orderBy = in_array($orderBy, $allowedColumns) ? $orderBy : 'e.fechaInicio';
         $orderDir = $orderDir === 'ASC' ? 'ASC' : 'DESC';
     
         $sql = "SELECT e.id, e.nombre, e.codigo, e.fechaInicio, e.fechaFin, 
                 es.estado AS estado_nombre,
-                s.nombre AS sprint_nombre, e.descripcion, e.idSprint
+                s.nombre AS sprint_nombre, e.descripcion, e.idSprint, e.personas
                 FROM eventos e
                 LEFT JOIN estado es ON e.idEstado = es.id
                 LEFT JOIN sprint s ON e.idSprint = s.id
