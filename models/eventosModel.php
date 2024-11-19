@@ -1,7 +1,7 @@
 <?php
     custom_session_start('admin_session');
-    
     $user_id = $_SESSION['admin_id'] ?? null;
+
     if ($user_id) {
         $sql = "SELECT usuarios.nombres, usuarios.idRol, rol.rol AS nombre_rol 
                 FROM usuarios 
@@ -60,7 +60,6 @@
     }
             
     function crearEvento($conexion, $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas) {
-        // Validate dates
         if (strtotime($fechaFin) < strtotime($fechaInicio)) {
             return ["success" => false, "message" => "La fecha de finalización no puede ser anterior a la fecha de inicio."];
         }
@@ -98,6 +97,7 @@
         if (strtotime($fechaFin) < strtotime($fechaInicio)) {
             return ["success" => false, "message" => "La fecha de finalización no puede ser anterior a la fecha de inicio."];
         }
+        
         $sql = "UPDATE eventos SET nombre = ?, fechaInicio = ?, fechaFin = ?, idSprint = ?, descripcion = ?, personas = ? WHERE id = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->bind_param("sssssii", $nombre, $fechaInicio, $fechaFin, $sprint, $descripcion, $personas, $id);

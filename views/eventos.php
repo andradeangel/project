@@ -1,39 +1,38 @@
 <?php
-    require_once("../database.php");
-    custom_session_start('admin_session');
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    header("Cache-Control: post-check=0, pre-check=0", false);
-    header("Pragma: no-cache");
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: login.php");
-        exit();
+require_once("../database.php");
+custom_session_start('admin_session');
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+require_once("../models/eventosModel.php");
+require_once("../controllers/eventosController.php");
+$user_id = $_SESSION['admin_id'];
+$usuario = obtenerUsuario($conexion, $user_id);
+$nombre_usuario = $usuario['nombres'] ?? 'Usuario';
+$rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
+
+// Procesar solicitud AJAX para crear evento
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $accion = $_POST['accion'] ?? '';
+    $resultado = ['success' => false, 'message' => 'Acción no válida'];
+    switch ($accion) {
+        case 'eliminar':
+            $resultado = eliminarEvento($conexion, $_POST['id']);
+            break;
+        // Otras acciones...
     }
-
-    require_once("../models/eventosModel.php");
-    require_once("../controllers/eventosController.php");
-
-    $user_id = $_SESSION['admin_id'];
-    $usuario = obtenerUsuario($conexion, $user_id);
-    $nombre_usuario = $usuario['nombres'] ?? 'Usuario';
-    $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
-
-    // Procesar solicitud AJAX para crear evento
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $accion = $_POST['accion'] ?? '';
-        $resultado = ['success' => false, 'message' => 'Acción no válida'];
-
-        switch ($accion) {
-            case 'eliminar':
-                $resultado = eliminarEvento($conexion, $_POST['id']);
-                break;
-            // Otras acciones...
-        }
-
-        header('Content-Type: application/json');
-        echo json_encode($resultado);
-        exit;
-    }
+    header('Content-Type: application/json');
+    echo json_encode($resultado);
+    exit;
+}
 ?>
+
 <!DOCTYPE html> 
 <html lang="es">
 <head>
@@ -134,8 +133,8 @@
                     </li>
                 </ul>
                 <a class="nav-link" href="#" onclick="showLogoutConfirm(event)">
-    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-</a>
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
             </div>
         </div>
     </nav>
@@ -184,7 +183,7 @@
                                     </a>
                                 </th>
                                 <th>
-                                    Capacidad
+                                    N°
                                     <a href="?orderBy=e.personas&orderDir=<?php echo $orderBy == 'e.personas' && $orderDir == 'ASC' ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
                                         <?php echo $orderBy == 'e.personas' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
                                     </a>
@@ -195,7 +194,6 @@
                                         <?php echo $orderBy == 's.nombre' ? ($orderDir == 'ASC' ? '▲' : '▼') : '⇵'; ?>
                                     </a>
                                 </th>
-                                <th>Descripción</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -209,7 +207,6 @@
                                 <td><?php echo htmlspecialchars($evento['estado_nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['personas']); ?></td>
                                 <td><?php echo htmlspecialchars($evento['sprint_nombre']); ?></td>
-                                <td><?php echo htmlspecialchars($evento['descripcion']); ?></td>
                                 <td>
                                     <button class="btn btn-sm bg-primary edit-btn" data-id="<?php echo $evento['id']; ?>)">
                                         <i class="fas fa-edit"></i>
@@ -323,13 +320,14 @@
             </div>
         </div>
     </div>
+
     <!-- Agregar los divs del modal antes del cierre del body -->
-<div id="customModal" class="custom-modal" style="display: none;">
-    <h3 id="modalTitle"></h3>
-    <p id="modalMessage"></p>
-    <button onclick="closeCustomModal()">Aceptar</button>
-</div>
-    <!-- Overlay para el fondo oscuro -->
+    <div id="customModal" class="custom-modal" style="display: none;">
+        <h3 id="modalTitle"></h3>
+        <p id="modalMessage"></p>
+        <button onclick="closeCustomModal()">Aceptar</button>
+    </div>
+
     <div id="modalOverlay" class="modal-overlay"></div>
 
     <!-- Modal de confirmación para cerrar sesión -->
@@ -344,7 +342,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Agregar el event listener para el botón de cerrar sesión
             const logoutButton = document.querySelector('a[href="#"][onclick="showLogoutConfirm(event)"]');
             if (logoutButton) {
                 logoutButton.addEventListener('click', function(e) {
@@ -377,16 +374,14 @@
             window.location.href = '../logout.php';
         }
 
-        // Función para generar un código aleatorio
         function generarCodigoEvento() {
             return 'EV-' + Math.random().toString(36).substr(2, 6).toUpperCase();
         }
 
-        // Generar código automáticamente al abrir el modal
         setInterval(function() {
             $.ajax({
                 type: 'GET',
-                url: '../controllers/actualizarEstadosEventos.php', // Cambia la dirección aquí
+                url: '../controllers/actualizarEstadosEventos.php',
                 success: function(data) {
                 console.log('Actualización de estados de eventos realizada con éxito');
                 },

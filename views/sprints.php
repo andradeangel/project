@@ -1,41 +1,39 @@
 <?php
-    require_once("../database.php");
-    require_once("../models/eventosModel.php");
-    custom_session_start('admin_session');
-    
-    header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-    header("Cache-Control: post-check=0, pre-check=0", false);
-    header("Pragma: no-cache");
-    
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: login.php");
-        exit();
-    }
-    require_once("../models/sprintsModel.php");
-    require_once("../controllers/sprintsController.php");
+require_once("../database.php");
+require_once("../models/eventosModel.php");
+custom_session_start('admin_session');
 
-    $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'nombre';
-    $orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
-    $controller = new SprintController($conexion);
-    $sprints = $controller->getAllSprints($orderBy, $orderDir);
-    $juegos = $controller->getAllJuegos();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-    // Obtener el nombre de usuario y rol
+require_once("../models/sprintsModel.php");
+require_once("../controllers/sprintsController.php");
+
+$orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : 'nombre';
+$orderDir = isset($_GET['orderDir']) ? $_GET['orderDir'] : 'ASC';
+$controller = new SprintController($conexion);
+$sprints = $controller->getAllSprints($orderBy, $orderDir);
+$juegos = $controller->getAllJuegos();
+
+// Obtener el nombre de usuario y rol
 $user_id = $_SESSION['admin_id'];
 $usuario = obtenerUsuario($conexion, $user_id);
 $nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
 $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
-
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control</title>
-    
-    <!-- Favicon - múltiples formatos para mejor compatibilidad -->
     <link rel="icon" type="image/x-icon" href="../images/ico.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/ico.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/ico.png">
@@ -319,77 +317,76 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
     </div>
 
     <!-- Modal de confirmación para cerrar sesión -->
-<div id="logoutConfirmModal" class="custom-modal" style="display: none;">
-    <h3>Confirmar cierre de sesión</h3>
-    <p>¿Está seguro de que desea cerrar la sesión?</p>
-    <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
-    <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
-</div>
+    <div id="logoutConfirmModal" class="custom-modal" style="display: none;">
+        <h3>Confirmar cierre de sesión</h3>
+        <p>¿Está seguro de que desea cerrar la sesión?</p>
+        <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
+        <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
+    </div>
 
     <!-- Overlay para el fondo oscuro -->
     <div id="modalOverlay" class="modal-overlay"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../js/sprints.js"></script><script>
+    <script src="../js/sprints.js"></script>
+    
+    <script>
         function showCustomMessage(title, message) {
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalMessage').textContent = message;
-    document.getElementById('customModal').style.display = 'block';
-}
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalMessage').textContent = message;
+        document.getElementById('customModal').style.display = 'block';
+        }
 
-function closeCustomModal() {
-    document.getElementById('customModal').style.display = 'none';
-    if (document.getElementById('modalTitle').textContent === 'Éxito') {
-        location.reload();
-    }
-}
-
-let sprintToDelete = null;
-
-function closeConfirmModal() {
-    document.getElementById('confirmModal').style.display = 'none';
-    sprintToDelete = null;
-}
-
-
-
-// Modificar la función saveSprint para usar el nuevo sistema de mensajes
-function saveSprint() {
-    // Validar campos requeridos
-    if (!$('#sprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || 
-        !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
-        showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
-        return;
-    }
-
-    var formData = {
-        action: $('#sprintId').val() ? 'update' : 'create',
-        id: $('#sprintId').val(),
-        nombre: $('#sprintNombre').val(),
-        juego1: $('#juego1').val(),
-        juego2: $('#juego2').val(),
-        juego3: $('#juego3').val(),
-        juego4: $('#juego4').val(),
-        juego5: $('#juego5').val(),
-        juego6: $('#juego6').val()
-    };
-
-    $.ajax({
-        url: '../controllers/sprintsController.php',
-        type: 'POST',
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-            $('#sprintModal').modal('hide');
-            if (response.success) {
-                showCustomMessage('Éxito', formData.action === 'create' ? 
-                    'Sprint creado con éxito' : 'Sprint modificado con éxito');
-            } else {
-                showCustomMessage('Error', 'Error al guardar el sprint');
+        function closeCustomModal() {
+            document.getElementById('customModal').style.display = 'none';
+            if (document.getElementById('modalTitle').textContent === 'Éxito') {
+                location.reload();
             }
         }
-    });
-}
+
+        let sprintToDelete = null;
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').style.display = 'none';
+            sprintToDelete = null;
+        }
+
+        function saveSprint() {
+            // Validar campos requeridos
+            if (!$('#sprintNombre').val() || !$('#juego1').val() || !$('#juego2').val() || 
+                !$('#juego3').val() || !$('#juego4').val() || !$('#juego5').val() || !$('#juego6').val()) {
+                showCustomMessage('Advertencia', 'Por favor, complete todos los campos requeridos.');
+                return;
+            }
+
+            var formData = {
+                action: $('#sprintId').val() ? 'update' : 'create',
+                id: $('#sprintId').val(),
+                nombre: $('#sprintNombre').val(),
+                juego1: $('#juego1').val(),
+                juego2: $('#juego2').val(),
+                juego3: $('#juego3').val(),
+                juego4: $('#juego4').val(),
+                juego5: $('#juego5').val(),
+                juego6: $('#juego6').val()
+            };
+
+            $.ajax({
+                url: '../controllers/sprintsController.php',
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    $('#sprintModal').modal('hide');
+                    if (response.success) {
+                        showCustomMessage('Éxito', formData.action === 'create' ? 
+                            'Sprint creado con éxito' : 'Sprint modificado con éxito');
+                    } else {
+                        showCustomMessage('Error', 'Error al guardar el sprint');
+                    }
+                }
+            });
+        }
     </script>
     <script>
         if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_BACK_FORWARD) {

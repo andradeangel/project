@@ -2,7 +2,6 @@
 require_once('../database.php');
 custom_session_start('player_session');
 
-// Debug
 error_log("SESSION en platosTipicos.php: " . print_r($_SESSION, true));
 
 if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
@@ -153,7 +152,7 @@ $_SESSION['current_game_description'] = $descripcion;
             width: 80px;
             height: 80px;
             animation: spin 2s linear infinite;
-            margin-top: 20px; /* Añade un poco de espacio entre el mensaje y la animación */
+            margin-top: 20px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -178,88 +177,88 @@ $_SESSION['current_game_description'] = $descripcion;
             border: none;
         }
         .back-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background-color: rgba(0, 100, 0, 0.2);
-        border: 2px solid #006400;
-        color: #006400;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    .back-btn:hover {
-        background-color: rgba(0, 100, 0, 0.4);
-        transform: scale(1.1);
-    }
-    .custom-modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 20px;
-        border-radius: 10px;
-        border: 2px solid #00ff00;
-        color: #fff;
-        text-align: center;
-        z-index: 2000;
-        min-width: 300px;
-        font-family: 'Press Start 2P', cursive;
-        animation: glow 2s infinite alternate;
-    }
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 100, 0, 0.2);
+            border: 2px solid #006400;
+            color: #006400;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-btn:hover {
+            background-color: rgba(0, 100, 0, 0.4);
+            transform: scale(1.1);
+        }
+        .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #00ff00;
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
 
-    .custom-modal h3 {
-        color: #00ff00;
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-    }
+        .custom-modal h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
 
-    .custom-modal p {
-        margin: 10px 0;
-        font-size: 0.8rem;
-        line-height: 1.5;
-    }
+        .custom-modal p {
+            margin: 10px 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
 
-    .custom-modal button {
-        background-color: #00ff00;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin-top: 15px;
-        cursor: pointer;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.8rem;
-        transition: all 0.3s ease;
-    }
+        .custom-modal button {
+            background-color: #00ff00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
 
-    .custom-modal button:hover {
-        transform: scale(1.05);
-        background-color: #00cc00;
-    }
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #00cc00;
+        }
     </style>
 </head>
 <body>
-<button onclick="window.location.href='../views/evento.php'" class="back-btn">
-    <i class="fas fa-arrow-left"></i>
-</button>
+    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
     <div class="card">
         <h1>Reto: Platos Típicos Paceños</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
-    <video id="preview" style="display: none;" controls></video>
-    <div class="input-file-container">
-        <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
-        <label for="fileInput" class="custom-file-upload">Subir Video</label>
+            <video id="preview" style="display: none;" controls></video>
+            <div class="input-file-container">
+                <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
+                <label for="fileInput" class="custom-file-upload">Subir Video</label>
+            </div>
+        </div>
+        <button id="submitBtn" style="display: none;">Enviar</button>
     </div>
-</div>
-<button id="submitBtn" style="display: none;">Enviar</button>
 
-    </div>
     <div class="overlay" id="overlay">
         <div class="card">
             <div class="message">Espere un momento, su video está siendo evaluada por el Game Master :)</div>
@@ -268,59 +267,59 @@ $_SESSION['current_game_description'] = $descripcion;
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let esperandoCalificacion = false;
-        let challengeId = null;
+        document.addEventListener('DOMContentLoaded', function() {
+            let esperandoCalificacion = false;
+            let challengeId = null;
 
-        const videoInput = document.getElementById('fileInput');
-        const preview = document.getElementById('preview');
-        const submitBtn = document.getElementById('submitBtn');
+            const videoInput = document.getElementById('fileInput');
+            const preview = document.getElementById('preview');
+            const submitBtn = document.getElementById('submitBtn');
 
-        videoInput.addEventListener('change', function() {
-            const file = this.files[0];
-            const maxSize = 40 * 1024 * 1024; // 40MB en bytes
+            videoInput.addEventListener('change', function() {
+                const file = this.files[0];
+                const maxSize = 40 * 1024 * 1024; // 40MB en bytes
 
-            if (file.size > maxSize) {
-                showCustomMessage('Error', '<p>El video es demasiado grande.</p><p>Por favor, sube un video de menos de 40MB.</p>');
-                this.value = ''; // Limpiar el input
-                return;
-            }
+                if (file.size > maxSize) {
+                    showCustomMessage('Error', '<p>El video es demasiado grande.</p><p>Por favor, sube un video de menos de 40MB.</p>');
+                    this.value = ''; // Limpiar el input
+                    return;
+                }
 
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                preview.src = event.target.result;
-                preview.style.display = 'block';
-                submitBtn.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        });
-
-        submitBtn.addEventListener('click', function() {
-            if (esperandoCalificacion) {
-                alert('Ya has enviado un video. Por favor, espera la calificación.');
-                return;
-            }
-
-            const videoFile = document.querySelector('input[type="file"]').files[0];
-            if (videoFile.size > 40 * 1024 * 1024) { // 40MB en bytes
-                alert('El video no debe superar los 40MB');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const requestData = { 
-                    challenge: e.target.result,
-                    gameType: 'video',
-                    juego_id: <?php echo json_encode($juego_id); ?>,
-                    jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                    submitBtn.style.display = 'block';
                 };
+                reader.readAsDataURL(file);
+            });
 
-                fetch('../controllers/uploadChallenge.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+            submitBtn.addEventListener('click', function() {
+                if (esperandoCalificacion) {
+                    alert('Ya has enviado un video. Por favor, espera la calificación.');
+                    return;
+                }
+
+                const videoFile = document.querySelector('input[type="file"]').files[0];
+                if (videoFile.size > 40 * 1024 * 1024) { // 40MB en bytes
+                    alert('El video no debe superar los 40MB');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const requestData = { 
+                        challenge: e.target.result,
+                        gameType: 'video',
+                        juego_id: <?php echo json_encode($juego_id); ?>,
+                        jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+                    };
+
+                    fetch('../controllers/uploadChallenge.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
                     },
                     body: JSON.stringify(requestData)
                 })
@@ -427,14 +426,14 @@ $_SESSION['current_game_description'] = $descripcion;
         }
     });
 
-    function validateFileSize(input) {
-        if (input.files[0].size > 40 * 1024 * 1024) {
-            showCustomMessage('Error', '<p>El archivo es demasiado grande.</p><p>El tamaño máximo es 40MB.</p>');
-            input.value = '';
-            return false;
+        function validateFileSize(input) {
+            if (input.files[0].size > 40 * 1024 * 1024) {
+                showCustomMessage('Error', '<p>El archivo es demasiado grande.</p><p>El tamaño máximo es 40MB.</p>');
+                input.value = '';
+                return false;
+            }
+            return true;
         }
-        return true;
-    }
     </script>
 </body>
 </html>

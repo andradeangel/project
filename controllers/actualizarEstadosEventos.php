@@ -10,10 +10,7 @@ function actualizarEstadosEventos($conexion) {
         $fechaActualStr = $fechaActual->format("Y-m-d H:i:s");
         
         log_activity("Iniciando actualización de estados de eventos. Fecha actual: " . $fechaActualStr);
-
-        // 1. NUEVAS VALIDACIONES PARA RETROCESO DE ESTADOS
-        
-        // 1.1 Eventos En Proceso que deben volver a Pendiente
+        // Eventos En Proceso que deben volver a Pendiente
         $sqlRetrocesoPendiente = "UPDATE eventos 
                                  SET idEstado = 1 
                                  WHERE idEstado = 2 
@@ -25,7 +22,7 @@ function actualizarEstadosEventos($conexion) {
         $eventosRetrocedidosPendiente = $stmtRetroceso->affected_rows;
         log_activity("Eventos retrocedidos a Pendiente: " . $eventosRetrocedidosPendiente);
 
-        // 1.2 Eventos Finalizados que deben volver a En Proceso o Pendiente
+        // Eventos Finalizados que deben volver a En Proceso o Pendiente
         $sqlRetrocesoFinalizados = "UPDATE eventos 
                                    SET idEstado = CASE 
                                        WHEN fechaInicio > ? THEN 1
@@ -41,9 +38,7 @@ function actualizarEstadosEventos($conexion) {
         $eventosRetrocedidosFinalizados = $stmtRetrocesoFin->affected_rows;
         log_activity("Eventos retrocedidos desde Finalizado: " . $eventosRetrocedidosFinalizados);
 
-        // 2. VALIDACIONES ORIGINALES DE AVANCE DE ESTADOS
-
-        // 2.1 Actualizar eventos que han finalizado
+        // Actualizar eventos que han finalizado
         $sqlEventosFinalizados = "UPDATE eventos SET idEstado = 3 
                                 WHERE idEstado = 2 
                                 AND fechaFin <= ?";
@@ -54,7 +49,7 @@ function actualizarEstadosEventos($conexion) {
         $eventosActualizados = $stmtEventos->affected_rows;
         log_activity("Eventos finalizados actualizados: " . $eventosActualizados);
 
-        // 2.2 Actualizar los jugadores de eventos finalizados
+        // Actualizar los jugadores de eventos finalizados
         $sqlUpdateJugadores = "UPDATE jugadores j 
                              INNER JOIN eventos e ON j.idEvento = e.id 
                              SET j.idEstado = 3 
@@ -66,7 +61,7 @@ function actualizarEstadosEventos($conexion) {
         $jugadoresActualizados = $stmtJugadores->affected_rows;
         log_activity("Jugadores actualizados a terminado: " . $jugadoresActualizados);
 
-        // 2.3 Actualizar eventos que deben iniciar
+        // Actualizar eventos que deben iniciar
         $sqlEventosInicio = "UPDATE eventos SET idEstado = 2 
                             WHERE idEstado = 1 
                             AND fechaInicio <= ?";
@@ -77,7 +72,7 @@ function actualizarEstadosEventos($conexion) {
         $eventosIniciados = $stmtEventosInicio->affected_rows;
         log_activity("Eventos iniciados: " . $eventosIniciados);
 
-        // 3. VERIFICACIÓN FINAL
+        // Verificar estado de jugadores para terminar eventos
         $sqlVerificacion = "SELECT e.id, e.nombre, e.idEstado as estado_evento, 
                            COUNT(j.id) as total_jugadores, 
                            SUM(CASE WHEN j.idEstado = 3 THEN 1 ELSE 0 END) as jugadores_terminados

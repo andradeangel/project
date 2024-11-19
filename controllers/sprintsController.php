@@ -47,7 +47,6 @@
         }
     }
 
-    //$model = new SprintModel($conexion);
     $controller = new SprintController($conexion);
     $sprints = $controller->getAllSprints($orderBy, $orderDir);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

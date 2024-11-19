@@ -42,9 +42,9 @@
     </div>
 
     <script>
-    function goBack() {
-        window.location.href = '/';
-    }
+        function goBack() {
+            window.location.href = '/';
+        }
     </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['player_id'])) {
 $jugadorId = $_SESSION['player_id'];
 $eventoId = $_SESSION['player_evento_id'];
 
-// Establecer zona horaria para Bolivia
+// Establecer zona horaria
 date_default_timezone_set('America/La_Paz');
 
 // Actualizar estado del jugador actual a "Terminado"
@@ -165,7 +165,6 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
     </div>
 
     <script>
-        // Convertir la fecha de fin a timestamp considerando la zona horaria
         const fechaFin = new Date('<?php echo $fechaFin->format('Y-m-d H:i:s'); ?>').getTime();
 
         const timer = setInterval(function() {

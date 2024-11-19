@@ -29,7 +29,7 @@ $(document).ready(function() {
         });
     });
 
-    // Código para eliminar sprint
+    // Eliminar sprint
     $(document).on('click', '.delete-btn', function(e) {
         e.preventDefault();
         e.stopPropagation();

@@ -12,55 +12,51 @@ if (!isset($_SESSION['pending_challenges'])) {
 }
 
 error_log("Contenido de pending_challenges en monitoreo: " . print_r($_SESSION['pending_challenges'], true));
-    require_once("../models/eventosModel.php");
-    require_once("../controllers/monitoreoController.php");
-
-    error_log("Contenido de _SESSION en monitoreo.php: " . print_r($_SESSION, true));
+require_once("../models/eventosModel.php");
+require_once("../controllers/monitoreoController.php");
+error_log("Contenido de _SESSION en monitoreo.php: " . print_r($_SESSION, true));
 error_log("Desafíos pendientes: " . print_r($_SESSION['pending_challenges'] ?? [], true));
 
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: login.php");
-        exit();
-    }
-    if (!isset($_SESSION['pending_challenges'])) {
-        $_SESSION['pending_challenges'] = [];
-    }
-    error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'], true));
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+}
 
-    // Obtener el nombre de usuario y rol
-    $user_id = $_SESSION['admin_id'];
-    $usuario = obtenerUsuario($conexion, $user_id);
-    $nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
-    $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
+if (!isset($_SESSION['pending_challenges'])) {
+    $_SESSION['pending_challenges'] = [];
+}
 
-    $controller = new MonitoreoController($conexion);
+error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'], true));
+
+// Obtener el nombre de usuario y rol
+$user_id = $_SESSION['admin_id'];
+$usuario = obtenerUsuario($conexion, $user_id);
+$nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
+$rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
+$controller = new MonitoreoController($conexion);
 $desafiosPendientes = $controller->getPendingChallenges();
-    $eventosEnProceso = $controller->getEventosEnProceso();
-    $pendingChallenges = $controller->getPendingChallenges();
+$eventosEnProceso = $controller->getEventosEnProceso();
+$pendingChallenges = $controller->getPendingChallenges();
 
-    // Depuración
-    error_log("Pending challenges: " . print_r($pendingChallenges, true));
+error_log("Pending challenges: " . print_r($pendingChallenges, true));
+function formatearFecha($fecha) {
+    $datetime = new DateTime($fecha);
+    return $datetime->format('d/m/y H:i');
+}
 
-    function formatearFecha($fecha) {
-        $datetime = new DateTime($fecha);
-        return $datetime->format('d/m/y H:i');
-    }
+// Agregar log para depuración
+error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'] ?? [], true));
+error_log("Desafíos pendientes en monitoreo.php:");
+error_log(print_r($pendingChallenges, true));
 
-    // Agregar log para depuración
-    error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'] ?? [], true));
-
-    error_log("Desafíos pendientes en monitoreo.php:");
-    error_log(print_r($pendingChallenges, true));
-
-    // Agrega este código temporalmente al inicio de monitoreo.php
-    $uploadDir = "../uploads/challenges/";
-    if (is_dir($uploadDir)) {
-        error_log("Directorio existe: " . $uploadDir);
-        $files = scandir($uploadDir);
-        error_log("Archivos en el directorio: " . print_r($files, true));
-    } else {
-        error_log("Directorio NO existe: " . $uploadDir);
-    }
+$uploadDir = "../uploads/challenges/";
+if (is_dir($uploadDir)) {
+    error_log("Directorio existe: " . $uploadDir);
+    $files = scandir($uploadDir);
+    error_log("Archivos en el directorio: " . print_r($files, true));
+} else {
+    error_log("Directorio NO existe: " . $uploadDir);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -164,8 +160,8 @@ $desafiosPendientes = $controller->getPendingChallenges();
                     </li>
                 </ul>
                 <a class="nav-link" href="#" onclick="showLogoutConfirm(event)">
-    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-</a>
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
             </div>
         </div>
     </nav>
@@ -249,8 +245,6 @@ $desafiosPendientes = $controller->getPendingChallenges();
                                 <?php endif; ?>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -258,12 +252,13 @@ $desafiosPendientes = $controller->getPendingChallenges();
     </div>
 
     <div id="customModal" class="custom-modal" style="display: none;">
-    <h3 id="modalTitle"></h3>
-    <p id="modalMessage"></p>
-    <button onclick="closeCustomModal()">Aceptar</button>
-</div>
+        <h3 id="modalTitle"></h3>
+        <p id="modalMessage"></p>
+        <button onclick="closeCustomModal()">Aceptar</button>
+    </div>
 
-<div id="modalOverlay" class="modal-overlay"></div>
+    <div id="modalOverlay" class="modal-overlay"></div>
+    
     <div id="logoutConfirmModal" class="custom-modal" style="display: none;">
         <h3>Confirmar cierre de sesión</h3>
         <p>¿Está seguro de que desea cerrar la sesión?</p>

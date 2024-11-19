@@ -149,30 +149,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             text-shadow: 1px 1px 2px #000;
         }
         .back-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background-color: rgba(255, 215, 0, 0.2);
-        border: 2px solid #ffd700;
-        color: #ffd700;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        transition: all 0.3s ease;
-        z-index: 1000;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    }
-    .back-btn:hover {
-        background-color: rgba(255, 215, 0, 0.4);
-        transform: scale(1.1);
-    }
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            color: #ffd700;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .back-btn:hover {
+            background-color: rgba(255, 215, 0, 0.4);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center">
-<button onclick="window.location.href='../views/evento.php'" class="back-btn">
-    <i class="fas fa-arrow-left"></i>
-</button>
+    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    
     <div class="container">
         <h1>Quiz de Conocimiento General sobre Bolivia</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>

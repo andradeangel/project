@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
             padding: 20px;
+
         }
         .game-container {
             text-align: center;
@@ -182,30 +182,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         .back-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background-color: rgba(0, 123, 255, 0.2);
-        border: 2px solid #007bff;
-        color: #007bff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    .back-btn:hover {
-        background-color: rgba(0, 123, 255, 0.4);
-        transform: scale(1.1);
-    }
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 123, 255, 0.2);
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-btn:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-<button onclick="window.location.href='../views/evento.php'" class="back-btn">
-    <i class="fas fa-arrow-left"></i>
-</button>
+    
     <div class="container">
+        <button onclick="window.location.href='../views/evento.php'" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+        </button>
         <div class="game-container" style="width: 600px;">
             <h1 class="mb-4">Memoria</h1>
             <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>

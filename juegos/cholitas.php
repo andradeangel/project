@@ -2,7 +2,6 @@
 require_once('../database.php');
 custom_session_start('player_session');
 
-// Debug
 error_log("SESSION en cholitas.php: " . print_r($_SESSION, true));
 
 if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
@@ -19,7 +18,6 @@ $_SESSION['current_game_description'] = $descripcion;
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cholitas en el Mercado de las Brujas</title>
@@ -134,7 +132,6 @@ $_SESSION['current_game_description'] = $descripcion;
             justify-content: center;
             align-items: center;
         }
-
         .overlay-content {
             color: #fff;
             font-size: 1rem;
@@ -149,7 +146,6 @@ $_SESSION['current_game_description'] = $descripcion;
             flex-direction: column;
             align-items: center;
         }
-
         .loader {
             border: 16px solid #333;
             border-top: 16px solid #ffd700;
@@ -159,7 +155,6 @@ $_SESSION['current_game_description'] = $descripcion;
             animation: spin 2s linear infinite;
             margin-top: 20px;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -177,238 +172,236 @@ $_SESSION['current_game_description'] = $descripcion;
         font-size: 20px;
         transition: all 0.3s ease;
         z-index: 1000;
-    }
-    .back-btn:hover {
-        background-color: rgba(0, 255, 0, 0.4);
-        transform: scale(1.1);
-    }
-
-    .custom-modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 20px;
-        border-radius: 10px;
-        border: 2px solid #ffd700;
-        color: #fff;
-        text-align: center;
-        z-index: 2000;
-        min-width: 300px;
-        font-family: 'Press Start 2P', cursive;
-        animation: glow 2s infinite alternate;
-    }
-
-    .custom-modal h3 {
-        color: #ffd700;
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-    }
-
-    .custom-modal p {
-        margin: 10px 0;
-        font-size: 0.8rem;
-        line-height: 1.5;
-    }
-
-    .custom-modal button {
-        background-color: #ffd700;
-        color: black;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin-top: 15px;
-        cursor: pointer;
-        font-family: 'Press Start 2P', cursive;
-        font-size: 0.8rem;
-        transition: all 0.3s ease;
-    }
-
-    .custom-modal button:hover {
-        transform: scale(1.05);
-        background-color: #ffec00;
-    }
+        }
+        .back-btn:hover {
+            background-color: rgba(0, 255, 0, 0.4);
+            transform: scale(1.1);
+        }
+        .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
+        .custom-modal h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .custom-modal p {
+            margin: 10px 0;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        .custom-modal button {
+            background-color: #ffd700;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #ffec00;
+        }
     </style>
 </head>
 <body>
-<button onclick="window.location.href='../views/evento.php'" class="back-btn">
-    <i class="fas fa-arrow-left"></i>
-</button>
-<div class="card">
-    <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
-    <p><?php echo htmlspecialchars($descripcion); ?></p>
-    <div class="preview-container">
-        <img id="preview" src="" alt="Preview de la foto">
+    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="card">
+        <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
+        <p><?php echo htmlspecialchars($descripcion); ?></p>
+        <div class="preview-container">
+            <img id="preview" src="" alt="Preview de la foto">
+        </div>
+        <label for="fileInput" class="custom-file-upload">Subir foto</label>
+        <input type="file" id="fileInput" accept="image/*">
+        <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
     </div>
-    <label for="fileInput" class="custom-file-upload">Subir foto</label>
-    <input type="file" id="fileInput" accept="image/*">
-    <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
-</div>
-<div id="overlay" class="overlay">
-    <div class="overlay-content">
-        <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
-        <div class="loader"></div>
+
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+            <p id="overlayMessage">Espere unos segundos, su foto está siendo evaluada por el Game Master :)</p>
+            <div class="loader"></div>
+        </div>
     </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let esperandoCalificacion = false;
-        let challengeId = null;
 
-        document.getElementById('fileInput').addEventListener('change', function() {
-            const file = this.files[0];
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('preview').src = event.target.result;
-                document.getElementById('submitBtn').style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let esperandoCalificacion = false;
+            let challengeId = null;
 
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            console.log('Iniciando envío de foto...');
-            if (esperandoCalificacion) {
-                console.log('Ya esperando calificación, abortando...');
-                showCustomMessage('Error', 'Ya has enviado una foto. Por favor, espera la calificación.');
-                return;
-            }
+            document.getElementById('fileInput').addEventListener('change', function() {
+                const file = this.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('preview').src = event.target.result;
+                    document.getElementById('submitBtn').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            });
 
-            const challengeData = document.getElementById('preview').src;
-            console.log('Datos de la foto preparados, enviando a servidor...');
-            
-            const requestData = { 
-                challenge: challengeData,
-                gameType: 'photo',
-                juego_id: <?php echo json_encode($juego_id); ?>,
-                jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
-            };
-            
-            console.log('Datos a enviar:', requestData);
-            
-            fetch('../controllers/uploadChallenge.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => {
-                return response.text().then(text => {
-                    try {
-                        if (!text.trim()) {
-                            throw new Error('Respuesta vacía del servidor');
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                console.log('Iniciando envío de foto...');
+                if (esperandoCalificacion) {
+                    console.log('Ya esperando calificación, abortando...');
+                    showCustomMessage('Error', 'Ya has enviado una foto. Por favor, espera la calificación.');
+                    return;
+                }
+
+                const challengeData = document.getElementById('preview').src;
+                console.log('Datos de la foto preparados, enviando a servidor...');
+
+                const requestData = { 
+                    challenge: challengeData,
+                    gameType: 'photo',
+                    juego_id: <?php echo json_encode($juego_id); ?>,
+                    jugador_id: <?php echo json_encode($_SESSION['jugador_actual']['id']); ?>
+                };
+
+                console.log('Datos a enviar:', requestData);
+
+                fetch('../controllers/uploadChallenge.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                .then(response => {
+                    return response.text().then(text => {
+                        try {
+                            if (!text.trim()) {
+                                throw new Error('Respuesta vacía del servidor');
+                            }
+                            return JSON.parse(text);
+                        } catch (e) {
+                            throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
                         }
-                        return JSON.parse(text);
-                    } catch (e) {
-                        throw new Error(`Error al parsear JSON: ${e.message}\nRespuesta del servidor: ${text}`);
-                    }
-                });
-            })
-            .then(data => {
-                console.log('Datos parseados:', data);
-                if (data.success) {
-                    esperandoCalificacion = true;
-                    challengeId = data.challengeId;
-                    showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
-                    checkCalificacion();
-                } else {
-                    hideOverlay();
-                    console.error('Error al enviar el desafío:', data.message);
-                    showCustomMessage('Error', 'Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
-                }
-            })
-            .catch(error => {
-                console.error('Error completo:', error);
-                hideOverlay();
-                showCustomMessage('Error', 'Error al enviar el desafío: ' + error.message);
-            });
-        });
-
-        function showOverlay(message) {
-            const overlay = document.getElementById('overlay');
-            if (overlay) {
-                overlay.style.display = 'flex';
-                const overlayMessage = document.getElementById('overlayMessage');
-                if (overlayMessage) {
-                    overlayMessage.innerText = message;
-                }
-            } else {
-                console.error('Elemento overlay no encontrado');
-            }
-        }
-
-        function hideOverlay() {
-            const overlay = document.getElementById('overlay');
-            if (overlay) {
-                overlay.style.display = 'none';
-            } else {
-                console.error('Elemento overlay no encontrado');
-            }
-        }
-
-        function checkCalificacion() {
-            if (!esperandoCalificacion || !challengeId) return;
-
-            fetch('../controllers/checkCalificacion.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ challengeId: challengeId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.calificado) {
-                    esperandoCalificacion = false;
-                    hideOverlay();
-                    if (data.status === 'aprobado') {
-                        let mensaje = `
-                            <p>¡Has completado el desafío exitosamente!</p>
-                            <p>Puntos ganados: +1</p>
-                            <p>Puntaje total: ${data.nuevoPuntaje}</p>
-                        `;
-                        showCustomMessage('¡Felicitaciones!', mensaje, () => {
-                            window.location.href = '../views/evento.php';
-                        });
+                    });
+                })
+                .then(data => {
+                    console.log('Datos parseados:', data);
+                    if (data.success) {
+                        esperandoCalificacion = true;
+                        challengeId = data.challengeId;
+                        showOverlay('Espere unos segundos, su foto está siendo evaluada por el Game Master :)');
+                        checkCalificacion();
                     } else {
-                        showCustomMessage('Resultado', '<p>Tu desafío ha sido reprobado.</p><p>Continúa con el siguiente reto.</p>', () => {
-                            window.location.href = '../views/evento.php';
-                        });
+                        hideOverlay();
+                        console.error('Error al enviar el desafío:', data.message);
+                        showCustomMessage('Error', 'Error al enviar el desafío: ' + (data.message || 'Error desconocido'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error completo:', error);
+                    hideOverlay();
+                    showCustomMessage('Error', 'Error al enviar el desafío: ' + error.message);
+                });
+            });
+
+            function showOverlay(message) {
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                    const overlayMessage = document.getElementById('overlayMessage');
+                    if (overlayMessage) {
+                        overlayMessage.innerText = message;
                     }
                 } else {
-                    setTimeout(checkCalificacion, 2000);
+                    console.error('Elemento overlay no encontrado');
                 }
-            })
-            .catch(error => {
-                console.error("Error al verificar calificación:", error);
-                setTimeout(checkCalificacion, 2000);
-            });
-        }
-
-        function showCustomMessage(title, message, callback) {
-            // Remover modal anterior si existe
-            const existingModal = document.querySelector('.custom-modal');
-            if (existingModal) {
-                existingModal.remove();
             }
 
-            const modal = document.createElement('div');
-            modal.className = 'custom-modal';
-            modal.innerHTML = `
-                <h3>${title}</h3>
-                <div>${message}</div>
-                <button onclick="closeCustomModal(this)">Aceptar</button>
-            `;
-            document.body.appendChild(modal);
+            function hideOverlay() {
+                const overlay = document.getElementById('overlay');
+                if (overlay) {
+                    overlay.style.display = 'none';
+                } else {
+                    console.error('Elemento overlay no encontrado');
+                }
+            }
 
-            window.closeCustomModal = function(button) {
-                button.parentElement.remove();
-                if (callback) callback();
-            };
-        }
-    });
-</script>
+            function checkCalificacion() {
+                if (!esperandoCalificacion || !challengeId) return;
+
+                fetch('../controllers/checkCalificacion.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ challengeId: challengeId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.calificado) {
+                        esperandoCalificacion = false;
+                        hideOverlay();
+                        if (data.status === 'aprobado') {
+                            let mensaje = `
+                                <p>¡Has completado el desafío exitosamente!</p>
+                                <p>Puntos ganados: +1</p>
+                                <p>Puntaje total: ${data.nuevoPuntaje}</p>
+                            `;
+                            showCustomMessage('¡Felicitaciones!', mensaje, () => {
+                                window.location.href = '../views/evento.php';
+                            });
+                        } else {
+                            showCustomMessage('Resultado', '<p>Tu desafío ha sido reprobado.</p><p>Continúa con el siguiente reto.</p>', () => {
+                                window.location.href = '../views/evento.php';
+                            });
+                        }
+                    } else {
+                        setTimeout(checkCalificacion, 2000);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al verificar calificación:", error);
+                    setTimeout(checkCalificacion, 2000);
+                });
+            }
+
+            function showCustomMessage(title, message, callback) {
+                // Remover modal anterior si existe
+                const existingModal = document.querySelector('.custom-modal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+
+                const modal = document.createElement('div');
+                modal.className = 'custom-modal';
+                modal.innerHTML = `
+                    <h3>${title}</h3>
+                    <div>${message}</div>
+                    <button onclick="closeCustomModal(this)">Aceptar</button>
+                `;
+                document.body.appendChild(modal);
+
+                window.closeCustomModal = function(button) {
+                    button.parentElement.remove();
+                    if (callback) callback();
+                };
+            }
+        });
+    </script>
 </body>
 </html>

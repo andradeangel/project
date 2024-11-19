@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
 // Función para actualizar el puntaje
 function actualizarPuntaje($puntos) {
     global $conexion;
@@ -174,29 +175,30 @@ function actualizarPuntaje($puntos) {
             }
         }
         .back-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        background-color: rgba(0, 123, 255, 0.2);
-        border: 2px solid #007bff;
-        color: #007bff;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    .back-btn:hover {
-        background-color: rgba(0, 123, 255, 0.4);
-        transform: scale(1.1);
-    }
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(0, 123, 255, 0.2);
+            border: 2px solid #007bff;
+            color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-btn:hover {
+            background-color: rgba(0, 123, 255, 0.4);
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
-<button onclick="window.location.href='../views/evento.php'" class="back-btn">
-    <i class="fas fa-arrow-left"></i>
-</button>
+    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
     <div class="container">
         <h1>Laberinto</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
@@ -230,7 +232,7 @@ function actualizarPuntaje($puntos) {
         const restartBtn = document.getElementById('restartBtn');
 
         let playerX = 0;
-        let playerY = 5.77;  // Ajustado para la nueva escala
+        let playerY = 5.77;
         let isGameOver = false;
         let startTime;
         let timerInterval;
@@ -296,64 +298,64 @@ function actualizarPuntaje($puntos) {
         }
 
         function gameOver(win) {
-        isGameOver = true;
-        clearInterval(timerInterval);
-        const endTime = (Date.now() - startTime) / 1000;
-        
-        if (win) {
-            let puntos = 1; // Puntuación por defecto
-            if (endTime <= 10) {
-                puntos = 3;
-            } else if (endTime <= 30) {
-                puntos = 2;
-            }
+            isGameOver = true;
+            clearInterval(timerInterval);
+            const endTime = (Date.now() - startTime) / 1000;
             
-            fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    action: 'actualizarPuntaje',
-                    puntos: puntos
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    overlayMessageDisplay.innerHTML = `
-                        ¡Llave conseguida!<br>
-                        Tiempo: ${endTime.toFixed(2)}s<br>
-                        Puntos ganados: +${puntos}<br>
-                        Nuevo puntaje total: ${data.nuevoPuntaje}<br>
-                        <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
-                    `;
-                } else {
-                    overlayMessageDisplay.innerHTML = `
-                        Error al actualizar puntaje.<br>
-                        Tiempo: ${endTime.toFixed(2)}s<br>
-                        <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
-                    `;
+            if (win) {
+                let puntos = 1; // Puntuación por defecto
+                if (endTime <= 10) {
+                    puntos = 3;
+                } else if (endTime <= 30) {
+                    puntos = 2;
                 }
-                overlayMessageDisplay.style.color = '#0f0';
-                messageOverlay.style.display = 'flex';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                overlayMessageDisplay.innerHTML = `
-                    Error al procesar el resultado.<br>
-                    Tiempo: ${endTime.toFixed(2)}s<br>
-                    <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
-                `;
+
+                fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'actualizarPuntaje',
+                        puntos: puntos
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        overlayMessageDisplay.innerHTML = `
+                            ¡Llave conseguida!<br>
+                            Tiempo: ${endTime.toFixed(2)}s<br>
+                            Puntos ganados: +${puntos}<br>
+                            Nuevo puntaje total: ${data.nuevoPuntaje}<br>
+                            <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                        `;
+                    } else {
+                        overlayMessageDisplay.innerHTML = `
+                            Error al actualizar puntaje.<br>
+                            Tiempo: ${endTime.toFixed(2)}s<br>
+                            <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                        `;
+                    }
+                    overlayMessageDisplay.style.color = '#0f0';
+                    messageOverlay.style.display = 'flex';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    overlayMessageDisplay.innerHTML = `
+                        Error al procesar el resultado.<br>
+                        Tiempo: ${endTime.toFixed(2)}s<br>
+                        <button onclick="redirigirEvento()" class="btn btn-success mt-3">Aceptar</button>
+                    `;
+                    overlayMessageDisplay.style.color = '#f00';
+                    messageOverlay.style.display = 'flex';
+                });
+            } else {
+                overlayMessageDisplay.textContent = '¡Perdiste! Inténtalo de nuevo.';
                 overlayMessageDisplay.style.color = '#f00';
                 messageOverlay.style.display = 'flex';
-            });
-        } else {
-            overlayMessageDisplay.textContent = '¡Perdiste! Inténtalo de nuevo.';
-            overlayMessageDisplay.style.color = '#f00';
-            messageOverlay.style.display = 'flex';
-        }
-    }
+            }
+        }   
 
         function redirigirEvento() {
             window.location.href = '../views/evento.php';

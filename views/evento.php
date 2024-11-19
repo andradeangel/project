@@ -1,10 +1,11 @@
 <?php 
-    require_once '../controllers/eventoController.php';
-    require_once('../database.php');
-    custom_session_start('player_session');
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
+require_once '../controllers/eventoController.php';
+require_once('../database.php');
+custom_session_start('player_session');
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Verificar si existe la sesión del jugador
 if (!isset($_SESSION['player_id']) || !isset($_SESSION['player_evento_id'])) {

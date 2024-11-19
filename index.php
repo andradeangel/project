@@ -1,7 +1,8 @@
 <?php
-    require_once("database.php");
-    include("controllers/inicioController.php");
+require_once("database.php");
+include("controllers/inicioController.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +27,7 @@
                     // Mostrar mensajes de error aquí
                     if (isset($_SESSION['error_message'])) {
                         echo "<div class='alert alert-danger mb-3'>" . $_SESSION['error_message'] . "</div>";
-                        unset($_SESSION['error_message']); // Limpiar el mensaje después de mostrarlo
+                        unset($_SESSION['error_message']);
                     }
                 ?>
                 <form class="mt-4" id="invitation-code-form" method="POST">

@@ -21,6 +21,7 @@
                 return [];
             }
         }
+
         public function addPhotoForReview($eventoId, $jugadorId, $fileName) {
             $sql = "INSERT INTO fotos_revision (idEvento, idJugador, nombreArchivo, estado) VALUES (?, ?, ?, 'pendiente')";
             $stmt = $this->conexion->prepare($sql);
@@ -68,6 +69,7 @@
             
             return $challenges;
         }
+        
         public function aprobarDesafio($challengeId, $admin_id) {
             $this->conexion->begin_transaction();
             

@@ -2,6 +2,7 @@
 require_once("../database.php");
 custom_session_start('admin_session');
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,25 +79,26 @@ custom_session_start('admin_session');
             </div>  
         </div>
     </div>
-    <script>
-    function goBack() {
-        window.location.href = '/';
-    }
 
-    function togglePassword() {
-        const passwordInput = document.getElementById('login-password');
-        const toggleIcon = document.querySelector('.toggle-password');
-        
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            toggleIcon.classList.remove('fa-eye');
-            toggleIcon.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            toggleIcon.classList.remove('fa-eye-slash');
-            toggleIcon.classList.add('fa-eye');
+    <script>
+        function goBack() {
+            window.location.href = '/';
         }
-    }
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('login-password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
     </script>
 </body>
 </html>

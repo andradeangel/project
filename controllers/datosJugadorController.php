@@ -1,6 +1,5 @@
 <?php
     require_once("../database.php");
-
     custom_session_start('player_session');
 
     if(isset($_POST["btnDatosJugador"])) {

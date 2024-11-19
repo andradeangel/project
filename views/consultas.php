@@ -27,7 +27,6 @@ if ($usuario['idRol'] == 2) { // Si es Game Master
     exit();
 }
 
-// Manejar solicitudes POST primero
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action']) && $_POST['action'] === 'cambiar_estado_usuario') {
         $response = ['success' => false, 'message' => ''];
@@ -92,8 +91,6 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
         .table td:last-child {
             max-width: 500px;
         }
-
-        /* Estilos para los modales personalizados */
         .custom-modal {
             display: none;
             position: fixed;
@@ -109,17 +106,14 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             min-width: 300px;
             text-align: center;
         }
-
         .custom-modal h3 {
             margin-bottom: 15px;
             color: white;
         }
-
         .custom-modal p {
             margin-bottom: 20px;
             color: white;
         }
-
         .custom-modal button {
             padding: 8px 15px;
             margin: 0 5px;
@@ -128,18 +122,14 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             cursor: pointer;
             font-size: 14px;
         }
-
         .custom-modal button:first-of-type {
             background-color: #dc3545;
             color: white;
         }
-
         .custom-modal button:last-of-type {
             background-color: #6c757d;
             color: white;
         }
-
-        /* Overlay para el fondo oscuro */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -149,6 +139,9 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 9998;
+        }
+        .modal-title{
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -235,124 +228,124 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
     </div>
 
     <!-- Modal de Usuarios -->
-<div class="modal fade" id="modalUsuarios" tabindex="-1" aria-labelledby="modalUsuariosLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark text-light">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalUsuariosLabel">Lista de Usuarios</h5>
-                <button type="button" class="btn btn-primary me-2" onclick="mostrarCrearUsuario()">
-                    <i class="fas fa-user-plus"></i> Crear Usuario
-                </button>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Rol</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol, u.idEstado 
-                               FROM usuarios u 
-                               LEFT JOIN rol r ON u.idRol = r.id 
-                               ORDER BY u.nombres ASC";
-                        $result = $conexion->query($sql);
-                        while($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
-                            echo "<td>
-                                    <div class='form-check form-switch'>
-                                        <input class='form-check-input' type='checkbox' 
-                                            id='switchUsuario_" . $row['id'] . "' 
-                                            onchange='cambiarEstadoUsuario(" . $row['id'] . ", this.checked)'
-                                            " . ($row['idEstado'] == 2 ? 'checked' : '') . ">
-                                        <label class='form-check-label' for='switchUsuario_" . $row['id'] . "'>
-                                            " . ($row['idEstado'] == 2 ? 'Activo' : 'Inactivo') . "
-                                        </label>
-                                    </div>
-                                  </td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal Crear Usuario -->
-<div class="modal fade" id="modalCrearUsuario" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light">
-            <div class="modal-header">
-                <h5 class="modal-title">Crear Nuevo Usuario</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="formCrearUsuario">
-                    <div class="mb-3">
-                        <input type="number" class="form-control" name="ci" placeholder="CI" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
-                    </div>
-                    <div class="mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
-                    </div>
-                    <div class="mb-3">
-                        <select class="form-control" name="idRol" required>
+    <div class="modal fade" id="modalUsuarios" tabindex="-1" aria-labelledby="modalUsuariosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalUsuariosLabel">Lista de Usuarios</h5>
+                    <button type="button" class="btn btn-primary me-2" onclick="mostrarCrearUsuario()">
+                        <i class="fas fa-user-plus"></i>
+                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                            $sqlRoles = "SELECT id, rol FROM rol";
-                            $resultRoles = $conexion->query($sqlRoles);
-                            while($rol = $resultRoles->fetch_assoc()) {
-                                echo "<option value='" . $rol['id'] . "'>" . htmlspecialchars($rol['rol']) . "</option>";
+                            $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol, u.idEstado 
+                                FROM usuarios u 
+                                LEFT JOIN rol r ON u.idRol = r.id 
+                                ORDER BY u.nombres ASC";
+                            $result = $conexion->query($sql);
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
+                                echo "<td>
+                                        <div class='form-check form-switch'>
+                                            <input class='form-check-input' type='checkbox' 
+                                                id='switchUsuario_" . $row['id'] . "' 
+                                                onchange='cambiarEstadoUsuario(" . $row['id'] . ", this.checked)'
+                                                " . ($row['idEstado'] == 2 ? 'checked' : '') . ">
+                                            <label class='form-check-label' for='switchUsuario_" . $row['id'] . "'>
+                                                " . ($row['idEstado'] == 2 ? 'Activo' : 'Inactivo') . "
+                                            </label>
+                                        </div>
+                                    </td>";
+                                echo "</tr>";
                             }
                             ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </form>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal personalizado para mensajes -->
-<div id="customModal" class="custom-modal" style="display: none;">
-    <h3 id="modalTitle"></h3>
-    <p id="modalMessage"></p>
-    <button onclick="closeCustomModal()">Aceptar</button>
-</div>
+    <!-- Modal Crear Usuario -->
+    <div class="modal fade" id="modalCrearUsuario" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crear Nuevo Usuario</h5> <br>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCrearUsuario">
+                        <div class="mb-3">
+                            <input type="number" class="form-control" name="ci" placeholder="CI" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="nombres" placeholder="Nombres" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="apellidos" placeholder="Apellidos" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-control" name="idRol" required>
+                                <?php
+                                $sqlRoles = "SELECT id, rol FROM rol";
+                                $resultRoles = $conexion->query($sqlRoles);
+                                while($rol = $resultRoles->fetch_assoc()) {
+                                    echo "<option value='" . $rol['id'] . "'>" . htmlspecialchars($rol['rol']) . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Modal de confirmación para eliminar -->
-<div id="confirmModal" class="custom-modal" style="display: none;">
-    <h3>Confirmar eliminación</h3>
-    <p>¿Está seguro de eliminar este usuario?</p>
-    <button onclick="confirmDeleteUser()">Eliminar</button>
-    <button onclick="closeConfirmModal()">Cancelar</button>
-</div>
+    <!-- Modal personalizado para mensajes -->
+    <div id="customModal" class="custom-modal" style="display: none;">
+        <h3 id="modalTitle"></h3>
+        <p id="modalMessage"></p>
+        <button onclick="closeCustomModal()">Aceptar</button>
+    </div>
 
-<!-- Modal de confirmación para cerrar sesión -->
-<div id="logoutConfirmModal" class="custom-modal" style="display: none;">
-    <h3>Confirmar cierre de sesión</h3>
-    <p>¿Está seguro de que desea cerrar la sesión?</p>
-    <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
-    <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
-</div>
+    <!-- Modal de confirmación para eliminar -->
+    <div id="confirmModal" class="custom-modal" style="display: none;">
+        <h3>Confirmar eliminación</h3>
+        <p>¿Está seguro de eliminar este usuario?</p>
+        <button onclick="confirmDeleteUser()">Eliminar</button>
+        <button onclick="closeConfirmModal()">Cancelar</button>
+    </div>
 
-<!-- Overlay para el fondo oscuro -->
-<div id="modalOverlay" class="modal-overlay"></div>
+    <!-- Modal de confirmación para cerrar sesión -->
+    <div id="logoutConfirmModal" class="custom-modal" style="display: none;">
+        <h3>Confirmar cierre de sesión</h3>
+        <p>¿Está seguro de que desea cerrar la sesión?</p>
+        <button onclick="confirmLogout()" class="btn btn-danger">Cerrar Sesión</button>
+        <button onclick="closeLogoutModal()" class="btn btn-secondary">Cancelar</button>
+    </div>
+
+    <!-- Overlay para el fondo oscuro -->
+    <div id="modalOverlay" class="modal-overlay"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -407,7 +400,6 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             }
         });
 
-        // Mantener las funciones existentes para usuarios
         function mostrarUsuarios() {
             var modal = new bootstrap.Modal(document.getElementById('modalUsuarios'));
             modal.show();
@@ -420,7 +412,6 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             modalCrear.show();
         }
 
-        // Agregar estas funciones para manejar los modales
         function showCustomMessage(title, message, callback) {
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalMessage').textContent = message;
@@ -445,13 +436,11 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
 
         let userToDelete = null;
 
-        // Modificar la función eliminarUsuario
         function eliminarUsuario(id) {
             userToDelete = id;
             document.getElementById('confirmModal').style.display = 'block';
         }
 
-        // Nueva función para confirmar la eliminación
         function confirmDeleteUser() {
             if (userToDelete) {
                 const formData = new FormData();
@@ -483,7 +472,6 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             }
         }
 
-        // Modificar el event listener del formulario de crear usuario
         document.getElementById('formCrearUsuario').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -532,7 +520,6 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             }
         };
 
-        // Agregar estas funciones al script existente
         function showLogoutConfirm(event) {
             event.preventDefault();
             const overlay = document.getElementById('modalOverlay');

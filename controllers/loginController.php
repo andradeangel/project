@@ -39,7 +39,7 @@
             
             if($usuario = $resultado->fetch_assoc()) {
                 // Verificar si el usuario está activo
-                if ($usuario['idEstado'] != 2) { // 2 es el estado "Activo"
+                if ($usuario['idEstado'] != 2) {
                     $_SESSION['error'] = "Error de credenciales"; // Usuario inactivo
                     $_SESSION['login_attempts']++;
                     $_SESSION['last_attempt_time'] = time();

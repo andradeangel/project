@@ -67,7 +67,8 @@
                 $jugadores[] = $fila;
             }
             return $jugadores;
-        }   
+        }  
+        
         public function getJugadorActual($user_id) {
             $sql = "SELECT id, nombres, puntaje FROM jugadores WHERE id = ?";
             $stmt = $this->conexion->prepare($sql);
