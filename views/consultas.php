@@ -92,6 +92,58 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             max-width: 500px;
         }
         .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.9); /* Fondo rojo */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff4d4d; /* Borde rojo claro */
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
+
+        .custom-modal h3 {
+            color: #ff4d4d; /* Título en rojo claro */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .custom-modal button {
+            background-color: #ff4d4d; /* Botón en rojo claro */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+        .custom-modal {
             display: none;
             position: fixed;
             top: 50%;
@@ -106,14 +158,17 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             min-width: 300px;
             text-align: center;
         }
+
         .custom-modal h3 {
             margin-bottom: 15px;
             color: white;
         }
+
         .custom-modal p {
             margin-bottom: 20px;
             color: white;
         }
+
         .custom-modal button {
             padding: 8px 15px;
             margin: 0 5px;
@@ -122,10 +177,12 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
             cursor: pointer;
             font-size: 14px;
         }
+
         .custom-modal button:first-of-type {
             background-color: #dc3545;
             color: white;
         }
+
         .custom-modal button:last-of-type {
             background-color: #6c757d;
             color: white;
@@ -146,7 +203,7 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo">
             <div class="brand-text">
@@ -184,7 +241,7 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4 fijarHeader">
         <div class="row">
             <div class="col-12">
                 <div class="card p-4 bg-dark text-light">
@@ -239,43 +296,45 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Rol</th>
-                                <th>Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol, u.idEstado 
-                                FROM usuarios u 
-                                LEFT JOIN rol r ON u.idRol = r.id 
-                                ORDER BY u.nombres ASC";
-                            $result = $conexion->query($sql);
-                            while($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
-                                echo "<td>
-                                        <div class='form-check form-switch'>
-                                            <input class='form-check-input' type='checkbox' 
-                                                id='switchUsuario_" . $row['id'] . "' 
-                                                onchange='cambiarEstadoUsuario(" . $row['id'] . ", this.checked)'
-                                                " . ($row['idEstado'] == 2 ? 'checked' : '') . ">
-                                            <label class='form-check-label' for='switchUsuario_" . $row['id'] . "'>
-                                                " . ($row['idEstado'] == 2 ? 'Activo' : 'Inactivo') . "
-                                            </label>
-                                        </div>
-                                    </td>";
-                                echo "</tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombres</th>
+                                    <th>Apellidos</th>
+                                    <th>Rol</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $sql = "SELECT u.id, u.nombres, u.apellidos, r.rol, u.idEstado 
+                                    FROM usuarios u 
+                                    LEFT JOIN rol r ON u.idRol = r.id 
+                                    ORDER BY u.nombres ASC";
+                                $result = $conexion->query($sql);
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . htmlspecialchars($row['nombres']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['apellidos']) . "</td>";
+                                    echo "<td>" . htmlspecialchars($row['rol']) . "</td>";
+                                    echo "<td>
+                                            <div class='form-check form-switch'>
+                                                <input class='form-check-input' type='checkbox' 
+                                                    id='switchUsuario_" . $row['id'] . "' 
+                                                    onchange='cambiarEstadoUsuario(" . $row['id'] . ", this.checked)'
+                                                    " . ($row['idEstado'] == 2 ? 'checked' : '') . ">
+                                                <label class='form-check-label' for='switchUsuario_" . $row['id'] . "'>
+                                                    " . ($row['idEstado'] == 2 ? 'Activo' : 'Inactivo') . "
+                                                </label>
+                                            </div>
+                                        </td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

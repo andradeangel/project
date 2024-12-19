@@ -48,6 +48,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         .custom-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.9); /* Fondo rojo */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ff4d4d; /* Borde rojo claro */
+            color: #fff;
+            text-align: center;
+            z-index: 2000;
+            min-width: 300px;
+            font-family: 'Press Start 2P', cursive;
+            animation: glow 2s infinite alternate;
+        }
+
+        .custom-modal h3 {
+            color: #ff4d4d; /* Título en rojo claro */
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .custom-modal button {
+            background-color: #ff4d4d; /* Botón en rojo claro */
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .custom-modal button:hover {
+            transform: scale(1.05);
+            background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+        }
+
+        .custom-modal {
             display: none;
             position: fixed;
             top: 50%;
@@ -90,17 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .custom-modal button:last-of-type {
             background-color: #6c757d;
             color: white;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9998;
         }
     </style>
 </head>
@@ -321,7 +362,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    <!-- Agregar los divs del modal antes del cierre del body -->
     <div id="customModal" class="custom-modal" style="display: none;">
         <h3 id="modalTitle"></h3>
         <p id="modalMessage"></p>

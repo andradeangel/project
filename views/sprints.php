@@ -186,50 +186,52 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
                         Crear Sprint    
                     </button>
                 </div>
-                <table class="table table-dark table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                Nombre
-                                <a href="?orderBy=nombre&orderDir=<?php echo ($orderBy === 'nombre' && $orderDir === 'ASC') ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
-                                    <i class="fas fa-sort<?php 
-                                        if ($orderBy === 'nombre') {
-                                            echo $orderDir === 'ASC' ? '-up' : '-down';
-                                        }
-                                    ?>"></i>
-                                </a>
-                            </th>
-                            <th>Juego 1</th>
-                            <th>Juego 2</th>
-                            <th>Juego 3</th>
-                            <th>Juego 4</th>
-                            <th>Juego 5</th>
-                            <th>Juego 6</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sprintsTableBody">
-                        <?php foreach($sprints as $sprint): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($sprint['nombre']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego1']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego2']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego3']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego4']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego5']); ?></td>
-                            <td><?php echo htmlspecialchars($sprint['juego6']); ?></td>
-                            <td>
-                                <button class="btn btn-sm bg-primary edit-btn" data-id="<?php echo $sprint['id']; ?>">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $sprint['id']; ?>" type="button">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Nombre
+                                    <a href="?orderBy=nombre&orderDir=<?php echo ($orderBy === 'nombre' && $orderDir === 'ASC') ? 'DESC' : 'ASC'; ?>" class="sort-btn ms-2">
+                                        <i class="fas fa-sort<?php 
+                                            if ($orderBy === 'nombre') {
+                                                echo $orderDir === 'ASC' ? '-up' : '-down';
+                                            }
+                                        ?>"></i>
+                                    </a>
+                                </th>
+                                <th>Juego 1</th>
+                                <th>Juego 2</th>
+                                <th>Juego 3</th>
+                                <th>Juego 4</th>
+                                <th>Juego 5</th>
+                                <th>Juego 6</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sprintsTableBody">
+                            <?php foreach($sprints as $sprint): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($sprint['nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego1']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego2']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego3']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego4']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego5']); ?></td>
+                                <td><?php echo htmlspecialchars($sprint['juego6']); ?></td>
+                                <td>
+                                    <button class="btn btn-sm bg-primary edit-btn" data-id="<?php echo $sprint['id']; ?>">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-id="<?php echo $sprint['id']; ?>" type="button">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

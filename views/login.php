@@ -1,6 +1,13 @@
 <?php
 require_once("../database.php");
 custom_session_start('admin_session');
+
+// Verificar si ya existe una sesión activa
+if (isset($_SESSION['admin_id'])) {
+    // Redirigir al panel de control si ya hay una sesión
+    header("Location: eventos.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
