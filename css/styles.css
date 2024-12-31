@@ -191,3 +191,62 @@ h2 {
     color: #fff;
     margin-bottom: 15px;
 }
+
+/* Estilos neón y gamer */
+.neon-text {
+    color: #198754;
+    text-shadow: 0 0 5px rgb(245, 255, 248),
+                 0 0 5px rgb(255, 255, 255),
+                 0 0 5px rgb(255, 255, 255),
+                 0 0 40px rgb(255, 255, 255);
+    letter-spacing: 2px;
+}
+
+.neon-countdown {
+    color: rgb(255, 93, 93);
+    text-shadow: 0 0 5px rgb(255, 255, 255),
+                 0 0 10px rgb(255, 255, 255),
+                 0 0 20px rgb(161, 39, 39),
+                 0 0 40px rgb(243, 86, 86);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.gamer-text {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Agregar animación de pulso para el contador */
+@keyframes neon-pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.neon-countdown {
+    animation: neon-pulse 2s infinite;
+}
+
+/* Estilo neón para el contenedor principal */
+#evento-container.card {
+    background-color: #1a1a1a;
+    border: 2px solid #198754;
+    box-shadow: 0 0 5px #198754,
+                0 0 10px #198754,
+                0 0 20px #198754;
+    transition: all 0.3s ease;
+}
+
+#evento-container.card:hover {
+    box-shadow: 0 0 10px #198754,
+                0 0 20px #198754,
+                0 0 40px #198754;
+}

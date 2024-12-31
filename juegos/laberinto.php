@@ -70,7 +70,7 @@ function actualizarPuntaje($puntos) {
             height: 100%;
             font-family: 'Press Start 2P', cursive;
             color: white;
-            background: url('https://wallpapers.com/images/hd/labyrinth-on-blank-black-qu7ldvf7f59j1ieq.jpg') no-repeat center center fixed;
+            background: url('https://p4.wallpaperbetter.com/wallpaper/11/559/620/monochrome-surreal-digital-art-people-wallpaper-preview.jpg') no-repeat center center fixed;
             background-size: cover;
         }
         .container {
@@ -150,9 +150,13 @@ function actualizarPuntaje($puntos) {
             font-size: 0.8rem;
             padding: 10px 20px;
         }
-        h1 {
+        h1{
             font-size: 25px;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px #0f0; 
+        }
+        .timer{
+            text-shadow: 0 0 10px #0f0; 
         }
         #key {
             position: absolute;
@@ -192,6 +196,9 @@ function actualizarPuntaje($puntos) {
             background-color: rgba(0, 123, 255, 0.4);
             transform: scale(1.1);
         }
+        .card-text {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -206,7 +213,7 @@ function actualizarPuntaje($puntos) {
             <div id="player"></div>
             <img id="key" src="../images/key.png" alt="Llave">
         </div>
-        <div id="timer">Tiempo: 0s</div>
+        <div id="timer" class="timer">Tiempo: 0s</div>
         <div id="message"></div>
         <div id="controls">
             <button class="btn btn-primary control-btn" onclick="movePlayer(0, -5)">↑</button>

@@ -71,11 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: #fff;
         }
         .container {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-
         }
         .game-container {
             text-align: center;
@@ -123,6 +123,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transform: rotateY(180deg);
             background-color: #6a6a6a;
         }
+        p.card-text{
+            font-sice: 12px;
+        }
         #restart-button {
             font-family: 'Press Start 2P', cursive;
             background-color: #4CAF50;
@@ -131,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: white;
             text-shadow: 1px 1px 2px black;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-            margin-top: 10px;
         }
         #restart-button:hover {
             background-color: #45a049;
@@ -164,6 +166,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         h1 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            text-shadow: 0 0 10px #00ff00,
+                         0 0 10px #00ff00,
+                         0 0 20px #00ff00;
+            color: #fff;
         }
         @media (max-width: 576px) {
             .game-container {
@@ -174,7 +180,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 gap: 5px;
             }
             h1 {
-                font-size: 1rem;
+                font-size: 20px;
+            }
+            h2{
+                font-size: 20px;
             }
             #restart-button {
                 font-size: 0.7rem;
@@ -185,9 +194,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             position: fixed;
             top: 20px;
             left: 20px;
-            background-color: rgba(0, 123, 255, 0.2);
-            border: 2px solid #007bff;
-            color: #007bff;
+            background-color: rgba(0, 255, 0, 0.2);
+            border: 2px solid rgba(0, 255, 0, 0.5);
+            color: rgba(0, 255, 0, 0.5);
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -199,6 +208,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: rgba(0, 123, 255, 0.4);
             transform: scale(1.1);
         }
+        #timer {
+            text-shadow: 0 0 5px #00ff00,
+                         0 0 5px #00ff00,
+                         0 0 5px #00ff00;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -208,10 +224,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <i class="fas fa-arrow-left"></i>
         </button>
         <div class="game-container" style="width: 600px;">
-            <h1 class="mb-4">Memoria</h1>
-            <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
-            <div id="timer" class="mb-3" style="font-size: 14px;">Tiempo: 0s</div>
-            <div class="game-board mb-4">
+            <h1>Memoria</h1>
+            <p class="card-text" style="font-size: 12px;"><?php echo htmlspecialchars($descripcion);?></p>
+            <div id="timer" class="mb-3" style="font-size: 11px;">Tiempo: 0s</div>
+            <div class="game-board mb-3">
                 <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
             </div>
             <button id="restart-button" class="btn">Reiniciar Juego</button>

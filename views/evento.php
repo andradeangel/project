@@ -97,18 +97,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
         <div class="evento-forms text-center">
-            <div id="evento-container" class="card p-4 bg-dark text-light">
-                <h2 class="text-light">Evento: <?= $_SESSION['player_evento_nombre'] ?? 'Nombre no disponible' ?></h2>
-                <h6 class="text-light"><?= htmlspecialchars($evento['descripcion']) ?></h6>
-                <h2 class="text-light">Temática: <?= $tematica ?? 'Descripción no disponible' ?></h2>             
-                <h2 class="text-light">Jugador/a: <?= $_SESSION['jugador_actual']['nombres'] ?></h2>
-                <div id="countdown" class="display-4"></div>
-                <h6 class="text-light" style="margin-bottom: 0;"> 👇Lista de juegos y retos a ser completados</h6>
-                <div class="mt-4">
+            <div id="evento-container" class="card p-4 bg-dark text-light"> 
+                <div class="d-flex justify-content-center align-items-center">
+                    <h6 class="text-light mb-0 me-2">Evento:</h6>
+                    <h4 class="mb-0 neon-text gamer-text"><?= $_SESSION['player_evento_nombre'] ?? 'Nombre no disponible' ?></h4>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <h6 class="text-light mb-0 me-2">Temática:</h6>
+                    <h4 class="mb-0 neon-text gamer-text"><?= $tematica ?? 'Descripción no disponible' ?></h4>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <h6 class="text-light mb-0 me-2">Jugador/a:</h6>
+                    <h4 class="mb-0 neon-text gamer-text"><?= $_SESSION['jugador_actual']['nombres'] ?></h4>
+                </div>
+                <div>
+                    <div id="countdown" class="display-5 neon-countdown gamer-text" style="margin: 10px;"></div>
+                </div>
+                <h6 class="text-light"> 👇Lista de juegos y retos a ser completados👇</h6>
+                <div>
                     <ul class="list-group list-group-flush">
                         <?php foreach ($juegos as $index => $juego):
                             $juego_actual = $jugador['juego_actual'] ?? 1;
@@ -133,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                         <?php endforeach; ?>
                     </ul>
                 </div>
-                <form id="evento-form" class="mt-4" method="POST" action="">
+                <form id="evento-form" method="POST" action="">
                     <button type="button" onclick="mostrarTablaPosiciones()" class="btn btn-primary btn-block btn-lg mt-2">Mostrar tabla de posiciones</button>
                     <button type="button" onclick="confirmarAbandonar()" class="btn btn-secondary btn-block btn-lg mt-2">Abandonar Evento</button>
                 </form>
