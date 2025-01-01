@@ -191,22 +191,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(0, 255, 0, 0.2);
-            border: 2px solid rgba(0, 255, 0, 0.5);
-            color: rgba(0, 255, 0, 0.5);
-            padding: 10px 20px;
+            background-color: rgba(80, 80, 80, 0.9);
+            border: 2px solid #999;
+            color: #ddd;
+            padding: 7px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 10px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
         .back-btn:hover {
-            background-color: rgba(0, 123, 255, 0.4);
-            transform: scale(1.1);
+            background-color: rgba(50, 50, 50, 0.9);
         }
         #timer {
             text-shadow: 0 0 5px #00ff00,
@@ -220,9 +216,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     
     <div class="container">
-        <button onclick="window.location.href='../views/evento.php'" class="back-btn">
-            <i class="fas fa-arrow-left"></i>
-        </button>
         <div class="game-container" style="width: 600px;">
             <h1>Memoria</h1>
             <p class="card-text" style="font-size: 12px;"><?php echo htmlspecialchars($descripcion);?></p>
@@ -230,6 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="game-board mb-3">
                 <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
             </div>
+            <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
             <button id="restart-button" class="btn">Reiniciar Juego</button>
         </div>
     </div>

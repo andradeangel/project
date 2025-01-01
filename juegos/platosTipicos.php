@@ -103,11 +103,11 @@ $_SESSION['current_game_description'] = $descripcion;
         }
         #submitBtn {
             display: none;
-            background-color: #0c0;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            background-color: #0f0;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.9);
         }
         #submitBtn:hover{
-            background-color: #1f0;
+            background-color: #0f0;
             transform: scale(1.05);
         }
         .overlay {
@@ -168,7 +168,7 @@ $_SESSION['current_game_description'] = $descripcion;
         }
         
         .custom-file-upload {
-            display: inline-block;
+            display: inline;
             padding: 10px 20px;
             cursor: pointer;
             background-color: #0f0;
@@ -177,22 +177,18 @@ $_SESSION['current_game_description'] = $descripcion;
             border: none;
         }
         .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(0, 100, 0, 0.2);
-            border: 2px solid #006400;
-            color: #006400;
-            padding: 10px 20px;
+            background-color: rgba(100, 100, 100, 0.9);
+            border: 2px solid #999;
+            color: #ddd;
+            padding: 7px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 10px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
         .back-btn:hover {
-            background-color: rgba(0, 100, 0, 0.4);
-            transform: scale(1.1);
+            background-color: rgba(50, 50, 50, 0.9);
         }
         .custom-modal {
             position: fixed;
@@ -243,17 +239,15 @@ $_SESSION['current_game_description'] = $descripcion;
     </style>
 </head>
 <body>
-    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
     <div class="card">
         <h1>Reto: Platos Típicos Paceños</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <video id="preview" style="display: none;" controls></video>
             <div class="input-file-container">
-                <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
                 <label for="fileInput" class="custom-file-upload">Subir Video</label>
+                <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
             </div>
         </div>
         <button id="submitBtn" style="display: none;">Enviar</button>

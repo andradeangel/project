@@ -95,8 +95,8 @@ $_SESSION['current_game_description'] = $descripcion;
             transition: all 0.3s;
             font-family: 'Press Start 2P', cursive;
             font-size: 0.7rem;
-            display: inline-block;
-            margin: 20px auto;
+            display: inline;
+            margin: 0 auto;
             width: 100%;
             max-width: 200px;
             text-align: center;
@@ -112,6 +112,7 @@ $_SESSION['current_game_description'] = $descripcion;
         #submitBtn{
             background-color: #0c0;
             box-shadow: 0 0 10px rgba(0, 215, 100, 0.5);
+
         }
         .custom-file-upload:active, #submitBtn:active {
             box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
@@ -119,6 +120,11 @@ $_SESSION['current_game_description'] = $descripcion;
         }
         #fileInput {
             display: none;
+        }
+        .input-file-container {
+            position: relative;
+            display: inline-block;
+            padding: 5px;
         }
         .overlay {
             display: none;
@@ -157,25 +163,21 @@ $_SESSION['current_game_description'] = $descripcion;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(0, 255, 0, 0.2);
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            padding: 10px 20px;
+            100% { transform: rotate(360deg); }
+        }
+        .back-btn {
+            background-color: rgba(100, 100, 100, 0.9);
+            border: 2px solid #999;
+            color: #ddd;
+            padding: 7px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 10px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
         .back-btn:hover {
-            background-color: rgba(0, 255, 0, 0.4);
-            transform: scale(1.1);
+            background-color: rgba(50, 50, 50, 0.9);
         }
         .custom-modal {
             position: fixed;
@@ -222,18 +224,17 @@ $_SESSION['current_game_description'] = $descripcion;
     </style>
 </head>
 <body>
-    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-
     <div class="card">
         <h1>Reto: Captura el teleférico</h1>
         <p><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <img id="preview" src="" alt="Preview de la foto">
+            <div class="input-file-container">
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
+                <label for="fileInput" class="custom-file-upload">Subir foto</label>
+                <input type="file" id="fileInput" accept="image/*">
+            </div>
         </div>
-        <label for="fileInput" class="custom-file-upload">Subir foto</label>
-        <input type="file" id="fileInput" accept="image/*">
         <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
     </div>
 

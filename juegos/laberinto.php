@@ -120,7 +120,6 @@ function actualizarPuntaje($puntos) {
         #controls {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
         }
         .control-btn {
             width: 40px;
@@ -179,22 +178,18 @@ function actualizarPuntaje($puntos) {
             }
         }
         .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(0, 123, 255, 0.2);
-            border: 2px solid #007bff;
-            color: #007bff;
-            padding: 10px 20px;
+            background-color: rgba(80, 80, 80, 0.9);
+            border: 2px solid #999;
+            color: #ddd;
+            padding: 7px 12px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 10px;
             transition: all 0.3s ease;
             z-index: 1000;
         }
         .back-btn:hover {
-            background-color: rgba(0, 123, 255, 0.4);
-            transform: scale(1.1);
+            background-color: rgba(50, 50, 50, 0.9);
         }
         .card-text {
             text-align: center;
@@ -202,10 +197,7 @@ function actualizarPuntaje($puntos) {
     </style>
 </head>
 <body>
-    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
-
+    
     <div class="container">
         <h1>Laberinto</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
@@ -222,6 +214,7 @@ function actualizarPuntaje($puntos) {
             <button class="btn btn-primary control-btn" onclick="movePlayer(0, 5)">↓</button>
         </div>
         <div class="mt-2">
+            <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
             <button id="restartBtn" class="btn btn-success">Reiniciar</button>
         </div>
         <div id="message-overlay">
