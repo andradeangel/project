@@ -225,7 +225,7 @@ $_SESSION['current_game_description'] = $descripcion;
 </head>
 <body>
     <div class="card">
-        <h1>Reto: Captura el teleférico</h1>
+        <h1>Reto: Selfie en el teleférico</h1>
         <p><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <img id="preview" src="" alt="Preview de la foto">

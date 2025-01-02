@@ -78,7 +78,9 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
             border-color: #c3e6cb;
             text-align: center;
         }
-
+        .container{
+            padding: 10px;
+        }
         .text-dark {
             color: #1a1a1a !important;
         }
@@ -100,11 +102,29 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
         .fw-bold {
             font-weight: 600 !important;
         }
+
+        /* Estilo neón para el mensaje de felicitación */
+        h2.text-center {
+            text-shadow: 0 0 10px #00ff00,
+                         0 0 20px #00ff00,
+                         0 0 30px #00ff00;
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        /* Estilo neón para el timer */
+        #timer {
+            text-shadow: 0 0 5px #00ff00,
+                         0 0 5px #00ff00,
+                         0 0 5px #00ff00;
+            color: #fff;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-    <div class="container d-flex flex-column align-items-center vh-100">
-        <div class="card bg-dark text-light p-4">
+    <div class="container d-flex flex-column align-items-center">
+        <div class="card bg-dark text-light px-4 py-0">
             <?php if ($todosTerminaron): ?>
                 <div class="alert alert-success text-dark">
                     <h2 class="text-dark fw-bold">¡Evento Finalizado!</h2>
@@ -133,15 +153,14 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                     </div>
                 </div>
             <?php else: ?>
-                <h2 class="text-center mb-4">¡Felicidades! Has completado todos los retos</h2>
-                <div id="countdown" class="text-center mb-4">
-                    <h4>Tiempo restante del evento:</h4>
+                <h2 class="text-center my-2">¡Felicidades! Has completado todos los retos</h2>
+                <div id="countdown" class="text-center">
+                    <h4 style="margin: 0;">Tiempo restante del evento:</h4>
                     <div id="timer" class="display-4"></div>
                 </div>
             <?php endif; ?>
 
             <div class="table-responsive">
-                <h4 class="text-center mb-3">Tabla de Posiciones</h4>
                 <table class="table table-dark table-striped">
                     <thead>
                         <tr>

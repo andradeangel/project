@@ -79,14 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: rgba(0, 0, 0, 0.7);
             border-radius: 15px;
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px 20px;
             max-width: 800px; /* Ajusta este valor según tus necesidades */
+            text-align: center;
         }
         h1 {
-            font-size: 2.8rem;
+            font-size: 2rem;
             color: #ffd700;
             text-align: center;
-            margin-bottom: 30px;
+            margin: 0;
             text-shadow: 2px 2px 4px #000;
         }
         .quiz-card {
@@ -102,14 +103,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
         }
         .card-title {
-            font-size: 3rem;
             color: #fff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0;
         }
         .card-text {
-            font-size: 2rem;
+            font-size: 1.4rem;
             color: #fff;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0 0 5px 0;
         }
         .btn-check:checked + .btn-outline-light {
             background-color: #ffd700;
@@ -120,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-color: #ffd700;
             color: #ffd700;
             transition: all 0.3s ease;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
         .btn-outline-light:hover {
             background-color: #ffd700;
@@ -140,46 +142,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         #result {
             background-color: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ffd700;
+
             border-radius: 15px;
-            padding: 15px;
-            margin-top: 20px;
+
             font-size: 2rem;
             color: #ffd700;
             text-shadow: 1px 1px 2px #000;
         }
         .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(255, 215, 0, 0.2);
-            border: 2px solid #ffd700;
-            color: #ffd700;
-            padding: 10px 20px;
+            background-color: rgba(100, 100, 100, 0.9);
+            border: 2px solid #999;
+            color: #ddd;
+            margin: 2px 0;
             border-radius: 5px;
             cursor: pointer;
             font-size: 20px;
-            transition: all 0.3s ease;
             z-index: 1000;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: block;
         }
         .back-btn:hover {
-            background-color: rgba(255, 215, 0, 0.4);
-            transform: scale(1.1);
+            background-color: rgba(50, 50, 50, 0.9);
         }
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center">
-    <button onclick="window.location.href='../views/evento.php'" class="back-btn">
-        <i class="fas fa-arrow-left"></i>
-    </button>
     
     <div class="container">
         <h1>Quiz de Conocimiento General sobre Bolivia</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div id="quiz-container"></div>
-        <button id="submit" class="btn btn-lg w-100 mt-4">Verificar Respuestas</button>
-        <div id="result" class="mt-4 text-center fs-4 fw-bold"></div>
+        <button id="submit" class="btn btn-lg w-100 mb-2">Verificar Respuestas</button>
+        <button onclick="window.location.href='../views/evento.php'" class="back-btn w-100">Volver</button>
+        <div id="result" class="text-center fs-4 fw-bold"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -209,10 +204,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function createQuiz() {
             quizData.forEach((question, index) => {
                 const questionDiv = document.createElement('div');
-                questionDiv.classList.add('card', 'quiz-card', 'mb-4');
+                questionDiv.classList.add('card', 'quiz-card', 'mb-2');
                 questionDiv.innerHTML = `
                     <div class="card-body">
-                        <h5 class="card-title">Pregunta ${index + 1}</h5>
+                        <h2 class="card-title">Pregunta ${index + 1}</h2>
                         <p class="card-text">${question.question}</p>
                         <div class="options">
                             ${question.options.map((option, i) => `
@@ -291,6 +286,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         submitButton.addEventListener('click', () => {
             window.location.href = '../views/evento.php';
         });
+
+        // Ocultar el botón "Volver"
+        document.querySelector('.back-btn').style.display = 'none';
     }
 
     createQuiz();

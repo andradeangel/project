@@ -1,5 +1,6 @@
 <?php
 require_once("../database.php");
+require_once("../controllers/actualizarEstadosEventos.php");
 custom_session_start('admin_session');
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
