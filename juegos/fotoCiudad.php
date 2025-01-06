@@ -89,7 +89,7 @@ $_SESSION['current_game_description'] = $descripcion;
             color: #000;
             padding: 10px 20px;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
             box-shadow: 0 0 10px rgba(5, 0, 220, 0.5);
             transition: all 0.3s;

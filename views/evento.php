@@ -29,7 +29,7 @@ if ($jugador['idEstado'] == 3) {
 
 // Verificar si el jugador ya terminó todos los juegos
 if ($jugador['juego_actual'] > 6) {
-    // Actualizar el estado del jugador a "Terminado" (3)
+    //Actualizar el estado del jugador a "Terminado" (3)
     $sqlUpdate = "UPDATE jugadores SET idEstado = 3 WHERE id = ?";
     $stmtUpdate = $conexion->prepare($sqlUpdate);
     $stmtUpdate->bind_param('i', $jugadorId);
@@ -103,20 +103,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <div class="d-flex justify-content-center align-items-center min-vh-100">
         <div class="evento-forms text-center">
             <div id="evento-container" class="card p-4 bg-dark text-light"> 
-                <div class="d-flex justify-content-center align-items-center">
-                    <h6 class="text-light mb-0 me-2">Evento:</h6>
+                <div class="d-flex justify-content-center align-items-center w-35">
+                    <h6 class="text-light mb-0 me-2 text-start w-35">Evento:</h6>
                     <h4 class="mb-0 neon-text gamer-text"><?= $_SESSION['player_evento_nombre'] ?? 'Nombre no disponible' ?></h4>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    <h6 class="text-light mb-0 me-2">Temática:</h6>
+                <div class="d-flex justify-content-center align-items-center w-35">
+                    <h6 class="text-light mb-0 me-2 text-start w-35">Temática:</h6>
                     <h4 class="mb-0 neon-text gamer-text"><?= $tematica ?? 'Descripción no disponible' ?></h4>
                 </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    <h6 class="text-light mb-0 me-2">Jugador/a:</h6>
+                <div class="d-flex justify-content-center align-items-center w-35">
+                    <h6 class="text-light mb-0 me-2 text-start w-35">Jugador/a:</h6>
                     <h4 class="mb-0 neon-text gamer-text"><?= $_SESSION['jugador_actual']['nombres'] ?></h4>
                 </div>
                 <div>
-                    <div id="countdown" class="display-5 neon-countdown gamer-text" style="margin: 10px;"></div>
+                    <div id="countdown" class="display-5 neon-countdown gamer-text my-2"></div>
                 </div>
                 <h6 class="text-light"> 👇Lista de juegos y retos a ser completados👇</h6>
                 <div>

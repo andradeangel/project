@@ -78,6 +78,7 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
             border-color: #c3e6cb;
             text-align: center;
         }
+        
         .container{
             padding: 10px;
         }
@@ -113,12 +114,16 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
         }
 
         /* Estilo neón para el timer */
-        #timer {
+        #timer, .winer{
             text-shadow: 0 0 5px #00ff00,
                          0 0 5px #00ff00,
                          0 0 5px #00ff00;
-            color: #fff;
+            color: #000;
             font-weight: bold;
+        }
+        .winer{
+            font-family: cursive;
+            font-size: xx-large
         }
     </style>
 </head>
@@ -126,28 +131,24 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
     <div class="container d-flex flex-column align-items-center">
         <div class="card bg-dark text-light px-4 py-0">
             <?php if ($todosTerminaron): ?>
-                <div class="alert alert-success text-dark">
+                <div class="alert alert-success text-dark mt-3 mb-0">
                     <h2 class="text-dark fw-bold">¡Evento Finalizado!</h2>
-                    <?php if ($tiempoTerminado): ?>
-                        <h3 class="text-dark">El tiempo del evento ha terminado</h3>
-                    <?php endif; ?>
-                    <h3 class="text-dark">El ganador es: <?php echo htmlspecialchars($ganador); ?></h3>
+                    <h3 class="text-dark text-center my-2">Ganador/a del evento: <span class="winer"><?php echo htmlspecialchars($ganador); ?></span></h3>
                     <p class="text-dark fw-bold">¡Felicitaciones al ganador y a todos los participantes!</p>
                     
                     <!-- Formulario de Feedback -->
                     <div class="feedback-form">
-                        <h4 class="text-dark fw-bold">¡Cuéntanos tu experiencia!</h4>
-                        <p class="text-dark">Nos gustaría saber qué te pareció el evento. Tus comentarios nos ayudan a mejorar.</p>
+                        <h4 class="text-dark fw-bold m-2">¡Cuéntanos tu experiencia!</h4>
                         <form id="feedbackForm" method="POST" action="../controllers/feedbackController.php">
                             <input type="hidden" name="idJugador" value="<?php echo $jugadorId; ?>">
                             <input type="hidden" name="idEvento" value="<?php echo $eventoId; ?>">
                             <div class="form-group">
                                 <textarea class="form-control" name="comentarios" rows="4" 
-                                    placeholder="Comparte tus comentarios, sugerencias o experiencia..." required></textarea>
+                                    placeholder=" Compartenos tus comentarios, sugerencias o experiencia..." required></textarea>
                             </div>
-                            <div class="d-flex justify-content-between mt-3">
-                                <button type="submit" class="btn btn-success" style="margin: 10px;">Enviar Comentarios</button>
-                                <a href="https://lapuerta.net/" class="btn btn-secondary" style="margin: 10px;">Visita nuestra página</a>
+                            <div class="d-flex justify-content-between mt-2">
+                                <a href="https://lapuerta.net/" class="btn btn-secondary m-2 p-2" target="_blank">Visita nuestra página</a>
+                                <button type="submit" class="btn btn-success m-2 p-2    ">Enviar Comentarios</button>
                             </div>
                         </form>
                     </div>
