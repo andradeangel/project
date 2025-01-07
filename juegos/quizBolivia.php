@@ -28,10 +28,14 @@ function actualizarPuntaje($puntos) {
     $puntajeActual = $row['puntaje'];
     $juegoActual = $row['juego_actual'];
     
-    // Actualizar puntaje y avanzar al siguiente juego
+    // Actualizar puntaje, juego actual y tiempo_fin
     $nuevoPuntaje = $puntajeActual + $puntos;
     $nuevoJuegoActual = $juegoActual + 1;
-    $sql = "UPDATE jugadores SET puntaje = ?, juego_actual = ? WHERE id = ?";
+    $sql = "UPDATE jugadores 
+            SET puntaje = ?, 
+                juego_actual = ?, 
+                tiempo_fin = CURRENT_TIMESTAMP 
+            WHERE id = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("iii", $nuevoPuntaje, $nuevoJuegoActual, $jugadorId);
     

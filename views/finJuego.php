@@ -19,6 +19,14 @@ $stmtUpdate = $conexion->prepare($sqlUpdateEstado);
 $stmtUpdate->bind_param("i", $jugadorId);
 $stmtUpdate->execute();
 
+// Actualizar el tiempo de finalización si aún no está establecido
+$sqlUpdateTiempo = "UPDATE jugadores 
+                    SET tiempo_fin = CURRENT_TIMESTAMP 
+                    WHERE id = ? AND tiempo_fin IS NULL";
+$stmtUpdateTiempo = $conexion->prepare($sqlUpdateTiempo);
+$stmtUpdateTiempo->bind_param("i", $jugadorId);
+$stmtUpdateTiempo->execute();
+
 // Verificar si todos los jugadores han terminado
 $sqlJugadoresActivos = "SELECT COUNT(*) as total, 
     SUM(CASE WHEN idEstado = 3 THEN 1 ELSE 0 END) as terminados 
@@ -53,7 +61,10 @@ if ($todosTerminaron || $tiempoTerminado) {
 }
 
 // Obtener tabla de posiciones
-$sqlPosiciones = "SELECT nombres, puntaje FROM jugadores WHERE idEvento = ? ORDER BY puntaje DESC";
+$sqlPosiciones = "SELECT nombres, puntaje 
+                 FROM jugadores 
+                 WHERE idEvento = ? 
+                 ORDER BY puntaje DESC, tiempo_fin ASC";
 $stmtPosiciones = $conexion->prepare($sqlPosiciones);
 $stmtPosiciones->bind_param("i", $eventoId);
 $stmtPosiciones->execute();

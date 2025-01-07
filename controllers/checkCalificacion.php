@@ -12,7 +12,9 @@ try {
         throw new Exception('ID del desafío no proporcionado');
     }
 
-    $sql = "SELECT estado, calificado FROM desafios WHERE id = ?";
+    $sql = "SELECT d.estado, d.calificado, d.jugador_id 
+            FROM desafios d 
+            WHERE d.id = ?";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $data['challengeId']);
     $stmt->execute();
@@ -23,10 +25,20 @@ try {
         $response['calificado'] = true;
         $response['status'] = $desafio['estado'];
         
+        // Actualizar tiempo_fin cuando el desafío es calificado
+        if ($desafio['estado'] === 'aprobado') {
+            $sqlUpdateTiempo = "UPDATE jugadores 
+                               SET tiempo_fin = CURRENT_TIMESTAMP 
+                               WHERE id = ?";
+            $stmtTiempo = $conexion->prepare($sqlUpdateTiempo);
+            $stmtTiempo->bind_param("i", $desafio['jugador_id']);
+            $stmtTiempo->execute();
+        }
+        
         // Obtener nuevo puntaje
         $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $_SESSION['jugador_actual']['id']);
+        $stmt->bind_param("i", $desafio['jugador_id']);
         $stmt->execute();
         $result = $stmt->get_result();
         $jugador = $result->fetch_assoc();

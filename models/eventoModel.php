@@ -57,7 +57,8 @@
             $sql = "SELECT j.nombres, j.puntaje 
                     FROM eventos e 
                     INNER JOIN jugadores j ON e.id = j.idEvento 
-                    WHERE e.id = ?";
+                    WHERE e.id = ?
+                    ORDER BY j.puntaje DESC, j.tiempo_fin ASC";
             $stmt = $this->conexion->prepare($sql);
             $stmt->bind_param("i", $evento_id);
             $stmt->execute();
