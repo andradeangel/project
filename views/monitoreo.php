@@ -29,12 +29,19 @@ if (!isset($_SESSION['pending_challenges'])) {
 
 error_log("Desafíos pendientes en monitoreo.php: " . print_r($_SESSION['pending_challenges'], true));
 
+// Verificar conexión
+if (!isset($conexion)) {
+    error_log("Error: No hay conexión a la base de datos en monitoreo.php");
+    die("Error de conexión a la base de datos");
+}
+
+$controller = new MonitoreoController($conexion);
+
 // Obtener el nombre de usuario y rol
 $user_id = $_SESSION['admin_id'];
 $usuario = obtenerUsuario($conexion, $user_id);
 $nombre_usuario = $usuario['nombres'] ?? 'Usuario desconocido';
 $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
-$controller = new MonitoreoController($conexion);
 $desafiosPendientes = $controller->getPendingChallenges();
 $eventosEnProceso = $controller->getEventosEnProceso();
 $pendingChallenges = $controller->getPendingChallenges();
@@ -57,6 +64,38 @@ if (is_dir($uploadDir)) {
     error_log("Archivos en el directorio: " . print_r($files, true));
 } else {
     error_log("Directorio NO existe: " . $uploadDir);
+}
+
+// Agregar al inicio del archivo, después de los requires
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'terminarEvento') {
+    header('Content-Type: application/json');
+    $response = ['success' => false, 'message' => ''];
+    
+    try {
+        if (!isset($_POST['eventoId'])) {
+            throw new Exception('ID del evento no proporcionado');
+        }
+        
+        // Agregar log para debugging
+        error_log("Recibida solicitud para terminar evento ID: " . $_POST['eventoId']);
+        
+        $controller = new MonitoreoController($conexion);
+        $resultado = $controller->terminarEvento($_POST['eventoId']);
+        
+        if ($resultado) {
+            $response['success'] = true;
+            $response['message'] = 'Evento terminado exitosamente';
+            error_log("Evento terminado exitosamente: " . $_POST['eventoId']);
+        } else {
+            throw new Exception('Error al terminar el evento');
+        }
+    } catch (Exception $e) {
+        error_log("Error en terminarEvento: " . $e->getMessage());
+        $response['message'] = $e->getMessage();
+    }
+    
+    echo json_encode($response);
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -278,8 +317,13 @@ if (is_dir($uploadDir)) {
                                                         <strong>Código:</strong> <?php echo htmlspecialchars($evento['codigo']); ?><br>
                                                         <strong>Fecha Inicio:</strong> <?php echo formatearFecha($evento['fechaInicio']); ?><br>
                                                         <strong>Fecha Fin:</strong> <?php echo formatearFecha($evento['fechaFin']); ?><br>
-                                                        <strong>Estado:</strong> En proceso
+                                                        <strong>Estado:</strong> En proceso<br>
+                                                        <strong>Capacidad:</strong> <?php echo $evento['jugadores_actuales']; ?>/<?php echo $evento['personas']; ?>
                                                     </p>
+                                                    <button class="btn btn-danger" 
+                                                            onclick="confirmarTerminarEvento(<?php echo $evento['id']; ?>, '<?php echo htmlspecialchars($evento['nombre']); ?>')">
+                                                        Terminar
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -309,6 +353,15 @@ if (is_dir($uploadDir)) {
     </div>
 
     <div id="modalOverlay" class="modal-overlay"></div>
+
+    <div id="terminarEventoModal" class="custom-modal" style="display: none;">
+        <h3>Confirmar finalización</h3>
+        <p id="terminarEventoMessage"></p>
+        <div class="d-flex justify-content-center gap-2">
+            <button onclick="terminarEvento()" class="btn btn-danger">Terminar</button>
+            <button onclick="closeTerminarModal()" class="btn btn-secondary">Cancelar</button>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -425,6 +478,63 @@ if (is_dir($uploadDir)) {
 
         function confirmLogout() {
             window.location.href = '../logout.php';
+        }
+
+        let eventoIdToTerminate = null;
+
+        function confirmarTerminarEvento(eventoId, eventoNombre) {
+            eventoIdToTerminate = eventoId;
+            const modal = document.getElementById('terminarEventoModal');
+            const message = document.getElementById('terminarEventoMessage');
+            message.textContent = `¿Está seguro que desea terminar el evento "${eventoNombre}"?`;
+            modal.style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+        }
+
+        function closeTerminarModal() {
+            document.getElementById('terminarEventoModal').style.display = 'none';
+            document.getElementById('modalOverlay').style.display = 'none';
+            eventoIdToTerminate = null;
+        }
+
+        function terminarEvento() {
+            if (!eventoIdToTerminate) return;
+            
+            const formData = new FormData();
+            formData.append('action', 'terminarEvento');
+            formData.append('eventoId', eventoIdToTerminate);
+            
+            console.log('Enviando solicitud para terminar evento:', eventoIdToTerminate);
+            
+            fetch('monitoreo.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(data => {
+                closeTerminarModal();
+                console.log('Respuesta del servidor:', data);
+                
+                if (data.success) {
+                    showCustomMessage('Éxito', 'El evento ha sido terminado exitosamente');
+                    // Forzar recarga después de un breve delay
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000);
+                } else {
+                    throw new Error(data.message || 'Error al terminar el evento');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                closeTerminarModal();
+                showCustomMessage('Error', error.message || 'Ocurrió un error al procesar la solicitud');
+            });
         }
     </script>
 </body>

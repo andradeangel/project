@@ -6,13 +6,14 @@
             $this->conexion = $conexion;
             if (!$this->conexion) {
                 error_log("Error: No se pudo establecer la conexión a la base de datos en MonitoreoModel");
-            } else {
-                error_log("Conexión a la base de datos establecida correctamente en MonitoreoModel");
             }
         }
 
         public function getEventosEnProceso() {
-            $query = "SELECT nombre, codigo, fechaInicio, fechaFin, idEstado FROM eventos WHERE idEstado = 2";
+            $query = "SELECT e.id, e.nombre, e.codigo, e.fechaInicio, e.fechaFin, e.idEstado, e.personas,
+                     (SELECT COUNT(*) FROM jugadores j WHERE j.idEvento = e.id) as jugadores_actuales
+              FROM eventos e 
+              WHERE e.idEstado = 2";
             $resultado = $this->conexion->query($query);
             
             if ($resultado) {
@@ -47,27 +48,27 @@
         }
 
         public function getPendingChallenges() {
-            $sql = "SELECT d.*, j.nombres as jugador_nombre, 
-                    e.nombre as evento_nombre, 
-                    g.descripcion as game_description
+            try {
+                $sql = "SELECT d.id, d.jugador_id, d.evento_id, d.tipo, d.archivo_ruta, 
+                               j.nombres as jugador_nombre, e.nombre as evento_nombre,
+                               g.descripcion as game_description
                     FROM desafios d
                     JOIN jugadores j ON d.jugador_id = j.id
                     JOIN eventos e ON d.evento_id = e.id
-                    JOIN juegos g ON d.juego_id = g.id
-                    WHERE d.estado = 'pendiente'";
-            
-            $result = $this->conexion->query($sql);
-            
-            if (!$result) {
-                error_log("Error en la consulta: " . $this->conexion->error);
+                    LEFT JOIN juegos g ON d.juego_id = g.id
+                    WHERE d.calificado = 0 AND d.estado = 'pendiente'
+                    ORDER BY d.created_at DESC";
+                    
+                $resultado = $this->conexion->query($sql);
+                
+                if ($resultado) {
+                    return $resultado->fetch_all(MYSQLI_ASSOC);
+                }
+                return [];
+            } catch (Exception $e) {
+                error_log("Error en getPendingChallenges: " . $e->getMessage());
                 return [];
             }
-            
-            $challenges = $result->fetch_all(MYSQLI_ASSOC);
-            error_log("Desafíos encontrados: " . count($challenges));
-            error_log("Datos: " . print_r($challenges, true));
-            
-            return $challenges;
         }
         
         public function aprobarDesafio($challengeId, $admin_id) {
@@ -122,6 +123,41 @@
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             return $row['puntaje'] ?? 0;
+        }
+
+        public function terminarEvento($eventoId) {
+            try {
+                // Obtener la fecha y hora actual en formato MySQL
+                $fechaActual = date('Y-m-d H:i:s');
+                
+                // Actualizar tanto el estado como la fecha de finalización
+                $sqlUpdate = "UPDATE eventos 
+                             SET idEstado = 3, 
+                                 fechaFin = ? 
+                             WHERE id = ? AND idEstado = 2";
+                
+                $stmtUpdate = $this->conexion->prepare($sqlUpdate);
+                if (!$stmtUpdate) {
+                    error_log("Error preparando consulta de actualización: " . $this->conexion->error);
+                    return false;
+                }
+                
+                $stmtUpdate->bind_param("si", $fechaActual, $eventoId);
+                $success = $stmtUpdate->execute();
+                
+                if (!$success) {
+                    error_log("Error ejecutando actualización: " . $stmtUpdate->error);
+                    return false;
+                }
+                
+                $rowsAffected = $stmtUpdate->affected_rows;
+                error_log("Evento $eventoId terminado. Fecha fin actualizada a: $fechaActual. Filas afectadas: $rowsAffected");
+                
+                return $rowsAffected > 0;
+            } catch (Exception $e) {
+                error_log("Error en terminarEvento: " . $e->getMessage());
+                return false;
+            }
         }
     }
 ?>

@@ -1,41 +1,45 @@
 <?php
-    require_once('../models/monitoreoModel.php');
-    require_once("../controllers/actualizarEstadosEventos.php");
+require_once('../database.php');
+require_once('../models/monitoreoModel.php');
 
-    class MonitoreoController {
-        private $model;
+class MonitoreoController {
+    private $model;
+    private $conexion;
 
-        public function __construct($conexion) {
-            $this->model = new MonitoreoModel($conexion);
-        }
+    public function __construct($conexion) {
+        $this->conexion = $conexion;
+        $this->model = new MonitoreoModel($conexion);
+    }
 
-        public function getEventosEnProceso() {
-            return $this->model->getEventosEnProceso();
-        }
+    public function getPendingChallenges() {
+        return $this->model->getPendingChallenges();
+    }
 
-        public function getPendingChallenges() {
-            return $this->model->getPendingChallenges();
-        }
-        public function aprobarDesafio($challengeId) {
-            // Obtener el ID del administrador de la sesión
-            if (!isset($_SESSION['admin_id'])) {
+    public function terminarEvento($eventoId) {
+        try {
+            $eventoId = intval($eventoId);
+            if ($eventoId <= 0) {
+                error_log("ID de evento inválido: " . $eventoId);
                 return false;
             }
-            $admin_id = $_SESSION['admin_id'];
-            return $this->model->aprobarDesafio($challengeId, $admin_id);
-        }
-        
-        public function getJugadorPuntaje($jugadorId) {
-            return $this->model->getJugadorPuntaje($jugadorId);
-        }
 
-        public function agregarDesafio($jugadorId, $eventoId, $juegoId, $challenge, $gameType, $descripcion) {
-            error_log("Agregando nuevo desafío:");
-            error_log("JugadorId: $jugadorId");
-            error_log("EventoId: $eventoId");
-            error_log("JuegoId: $juegoId");
-            error_log("GameType: $gameType");
-            error_log("Descripción: $descripcion");
+            // Debug para verificar la conexión
+            if (!$this->conexion) {
+                error_log("Error: No hay conexión a la base de datos");
+                return false;
+            }
+
+            $resultado = $this->model->terminarEvento($eventoId);
+            error_log("Resultado de terminarEvento para ID {$eventoId}: " . ($resultado ? 'true' : 'false'));
+            return $resultado;
+        } catch (Exception $e) {
+            error_log("Error en MonitoreoController->terminarEvento: " . $e->getMessage());
+            return false;
         }
     }
+
+    public function getEventosEnProceso() {
+        return $this->model->getEventosEnProceso();
+    }
+}
 ?>
