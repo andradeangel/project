@@ -41,5 +41,60 @@ class MonitoreoController {
     public function getEventosEnProceso() {
         return $this->model->getEventosEnProceso();
     }
+
+    public function aprobarDesafio($challengeId, $admin_id) {
+        try {
+            // Iniciar transacción
+            $this->conexion->begin_transaction();
+            
+            // Obtener información del desafío
+            $sql = "SELECT jugador_id FROM desafios WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("s", $challengeId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $desafio = $result->fetch_assoc();
+            
+            if (!$desafio) {
+                throw new Exception("Desafío no encontrado");
+            }
+            
+            // Actualizar puntaje y juego actual del jugador
+            $sql = "UPDATE jugadores 
+                    SET puntaje = puntaje + 1, 
+                        juego_actual = juego_actual + 1 
+                    WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("i", $desafio['jugador_id']);
+            $stmt->execute();
+            
+            // Marcar desafío como aprobado y registrar calificador
+            $sql = "UPDATE desafios 
+                    SET estado = 'aprobado', 
+                        calificado = TRUE,
+                        calificador_id = ? 
+                    WHERE id = ?";
+            $stmt = $this->conexion->prepare($sql);
+            $stmt->bind_param("is", $admin_id, $challengeId);
+            $stmt->execute();
+            
+            $this->conexion->commit();
+            return true;
+        } catch (Exception $e) {
+            $this->conexion->rollback();
+            error_log("Error en aprobarDesafio: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getJugadorPuntaje($jugadorId) {
+        $sql = "SELECT puntaje FROM jugadores WHERE id = ?";
+        $stmt = $this->conexion->prepare($sql);
+        $stmt->bind_param("i", $jugadorId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        return $row['puntaje'] ?? 0;
+    }
 }
 ?>

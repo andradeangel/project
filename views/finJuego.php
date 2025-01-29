@@ -52,7 +52,10 @@ $todosTerminaron = $jugadores['total'] == $jugadores['terminados'] || $tiempoTer
 
 // Si el jugador ha terminado o el tiempo se acabó, cerrar sesión
 if ($todosTerminaron || $tiempoTerminado) {
-    // Destruir solo la sesión del jugador
+    // Obtener el ID del evento antes de destruir la sesión
+    $eventoIdResumen = $eventoId;
+    
+    // Destruir la sesión
     unset($_SESSION['player_id']);
     unset($_SESSION['player_evento_id']);
     unset($_SESSION['player_name']);
@@ -155,11 +158,12 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                             <input type="hidden" name="idEvento" value="<?php echo $eventoId; ?>">
                             <div class="form-group">
                                 <textarea class="form-control" name="comentarios" rows="4" 
-                                    placeholder=" Compartenos tus comentarios, sugerencias o experiencia..." required></textarea>
+                                placeholder=" Compartenos tus comentarios, sugerencias o experiencia..." required></textarea>
                             </div>
                             <div class="d-flex justify-content-between mt-2">
-                                <a href="https://lapuerta.net/" class="btn btn-secondary m-2 p-2" target="_blank">Visita nuestra página</a>
-                                <button type="submit" class="btn btn-success m-2 p-2    ">Enviar Comentarios</button>
+                                <!-- Botón de Resumen del Evento -->
+                                <button type="button" onclick="verResumenEvento('<?php echo base64_encode($eventoId . '_' . time()); ?>')" class="btn btn-info">Ver Resumen del Evento y Salir</button>
+                                <button type="submit" class="btn btn-success">Enviar y Salir</button>
                             </div>
                         </form>
                     </div>
@@ -225,6 +229,10 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                 location.reload();
             }, 30000);
         <?php endif; ?>
+
+        function verResumenEvento(hash) {
+            window.location.href = 'resumenEvento.php?token=' + hash;
+        }
     </script>
 </body>
 </html>

@@ -389,18 +389,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 if (!response.ok) {
                     throw new Error('Error en la respuesta del servidor');
                 }
-                return response.json();
+                return response.text().then(text => {
+                    try {
+                        return JSON.parse(text);
+                    } catch (e) {
+                        console.error('Respuesta del servidor:', text);
+                        throw new Error(`Error al parsear JSON: ${e.message}`);
+                    }
+                });
             })
             .then(data => {
                 if (data.success) {
                     showCustomMessage('Éxito', data.message);
                     // Ocultar el desafío calificado
-                    const challengeElement = document.getElementById('challenge-' + challengeId);
-                    if (challengeElement) {
-                        challengeElement.style.display = 'none';
+                    const desafioElement = document.querySelector(`[data-desafio-id="${challengeId}"]`);
+                    if (desafioElement) {
+                        desafioElement.remove();
                     }
+                    // Actualizar la vista si es necesario
+                    location.reload();
                 } else {
-                    showCustomMessage('Error', data.message);
+                    showCustomMessage('Error', data.message || 'Error al procesar la solicitud');
                 }
             })
             .catch(error => {
@@ -525,7 +534,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     // Forzar recarga después de un breve delay
                     setTimeout(() => {
                         location.reload();
-                    }, 5000);
+                    }, 1000);
                 } else {
                     throw new Error(data.message || 'Error al terminar el evento');
                 }

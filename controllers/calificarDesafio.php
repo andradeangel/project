@@ -32,11 +32,13 @@ try {
     }
 
     if ($data['status'] === 'aprobado') {
-        if ($controller->aprobarDesafio($data['challengeId'])) {
+        if ($controller->aprobarDesafio($data['challengeId'], $_SESSION['admin_id'])) {
             $nuevoPuntaje = $controller->getJugadorPuntaje($desafio['jugador_id']);
-            $response['nuevoPuntaje'] = $nuevoPuntaje;
-            $response['success'] = true;
-            $response['message'] = 'Desafío aprobado y puntaje actualizado';
+            $response = [
+                'success' => true,
+                'message' => 'Desafío aprobado y puntaje actualizado',
+                'nuevoPuntaje' => $nuevoPuntaje
+            ];
         } else {
             throw new Exception('Error al aprobar el desafío');
         }
@@ -63,8 +65,8 @@ try {
         }
     }
 } catch (Exception $e) {
-    $response['message'] = $e->getMessage();
-    error_log("Error en calificarDesafio.php: " . $e->getMessage());
+    $response['success'] = false;
+    $response['message'] = 'Error: ' . $e->getMessage();
 }
 
 echo json_encode($response);
