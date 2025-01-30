@@ -406,8 +406,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                     if (desafioElement) {
                         desafioElement.remove();
                     }
-                    // Actualizar la vista si es necesario
-                    location.reload();
+                    // Retrasar la recarga de la página por 10 segundos
+                    setTimeout(() => {
+                        location.reload();
+                    }, 10000);
                 } else {
                     showCustomMessage('Error', data.message || 'Error al procesar la solicitud');
                 }

@@ -141,6 +141,22 @@ try {
             background-color: rgba(220, 53, 69, 0.2);
             border: 1px solid #dc3545;
         }
+
+        /* Estilos específicos para impresión */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .video-placeholder {
+                border: 1px solid #ccc;
+                padding: 10px;
+                text-align: center;
+                background-color: #f5f5f5;
+                color: #666;
+                font-style: italic;
+            }
+        }
     </style>
 </head>
 <body class="bg-dark text-light">
@@ -163,16 +179,19 @@ try {
                     <?php
                     if ($jugador['desafios_info']) {
                         $desafios = explode(',', $jugador['desafios_info']);
+                        $contador_retos = 1;
                         foreach ($desafios as $desafio) {
                             list($tipo, $ruta, $tiempo, $juego_id, $estado) = explode(':', $desafio);
                             echo '<div class="col-md-4 desafio-card">';
-                            echo '<h5>Juego ' . $juego_id . '</h5>';
+                            echo '<h5>Reto ' . $contador_retos . '</h5>';
                             if ($tipo == 'photo' && $ruta) {
-                                echo '<img src="' . htmlspecialchars($ruta) . '" class="desafio-imagen">';
+                                echo '<img src="../uploads/challenges/' . htmlspecialchars($ruta) . '" class="desafio-imagen">';
                             } elseif ($tipo == 'video' && $ruta) {
-                                echo '<video class="desafio-video" controls><source src="' . htmlspecialchars($ruta) . '"></video>';
+                                echo '<video class="desafio-video no-print" controls><source src="../uploads/challenges/' . htmlspecialchars($ruta) . '"></video>';
+                                echo '<div class="video-placeholder d-none d-print-block">Video</div>';
                             }
                             echo '</div>';
+                            $contador_retos++;
                         }
                     }
                     ?>
@@ -180,7 +199,7 @@ try {
             </div>
         <?php endforeach; ?>
         
-        <div class="text-center mb-4">
+        <div class="text-center mb-4 no-print">
             <button onclick="window.print()" class="btn btn-success m-2">Descargar Resumen</button>
             <a href="../index.php" class="btn btn-primary m-2">Salir</a>
         </div>
