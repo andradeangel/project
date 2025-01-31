@@ -162,7 +162,9 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
                             </div>
                             <div class="d-flex justify-content-between mt-2">
                                 <!-- Botón de Resumen del Evento -->
-                                <button type="button" onclick="verResumenEvento('<?php echo base64_encode($eventoId . '_' . time()); ?>')" class="btn btn-info">Ver Resumen del Evento y Salir</button>
+                                <button type="button" 
+                                        onclick="verResumenEvento('<?php echo base64_encode($eventoId . '_' . time()); ?>')" 
+                                        class="btn btn-info">Ver Resumen del Evento y Salir</button>
                                 <button type="submit" class="btn btn-success">Enviar y Salir</button>
                             </div>
                         </form>

@@ -1,88 +1,68 @@
 <?php
 require_once("../database.php");
 
-// Verificar que se proporcione un token
-if (!isset($_GET['token'])) {
-    header("Location: ../index.php");
-    exit();
-}
+// Logs para depuración
+error_log("Accediendo a resumenEvento.php");
+error_log("GET params: " . print_r($_GET, true));
 
-try {
-    // Decodificar el token
+$eventoId = null;
+
+// Verificar si viene de eventos.php (admin)
+if (isset($_GET['id'])) {
+    $eventoId = $_GET['id'];
+} 
+// Verificar si viene de finJuego.php (jugador)
+elseif (isset($_GET['token'])) {
+    // Decodificar el token (formato: base64_encode(eventoId_timestamp))
     $decodedToken = base64_decode($_GET['token']);
-    list($eventoId, $timestamp) = explode('_', $decodedToken);
-    
-    // Verificar que el token no tenga más de 1 hora de antigüedad
-    if (time() - $timestamp > 3600) {
-        header("Location: ../index.php");
-        exit();
-    }
-    
-    // Convertir a entero para mayor seguridad
-    $eventoId = (int)$eventoId;
-    
-    // Verificar que el evento exista y haya terminado
-    $sqlVerificar = "SELECT COUNT(*) as total, 
-                     SUM(CASE WHEN j.idEstado = 3 THEN 1 ELSE 0 END) as terminados,
-                     e.fechaFin
-                     FROM jugadores j
-                     JOIN eventos e ON j.idEvento = e.id
-                     WHERE j.idEvento = ? AND e.idEstado = 3";
-    $stmtVerificar = $conexion->prepare($sqlVerificar);
-    $stmtVerificar->bind_param("i", $eventoId);
-    $stmtVerificar->execute();
-    $verificacion = $stmtVerificar->get_result()->fetch_assoc();
-    
-    if (!$verificacion) {
-        throw new Exception("Evento no válido");
-    }
-    
-    // Verificar si el tiempo ha terminado
-    $fechaActual = new DateTime('now', new DateTimeZone('America/La_Paz'));
-    $fechaFin = new DateTime($verificacion['fechaFin'], new DateTimeZone('America/La_Paz'));
-    $tiempoTerminado = $fechaActual >= $fechaFin;
+    list($tokenEventoId, $timestamp) = explode('_', $decodedToken);
+    $eventoId = $tokenEventoId;
+}
 
-    $eventoTerminado = ($verificacion['total'] == $verificacion['terminados']) || $tiempoTerminado;
-
-    if (!$eventoTerminado) {
-        header("Location: ../index.php");
-        exit();
-    }
-
-    // Obtener todos los jugadores del evento con sus detalles
-    $sql = "SELECT j.id, j.nombres, j.puntaje, j.tiempo_fin,
-            (SELECT GROUP_CONCAT(
-                CONCAT_WS(':', 
-                    d.tipo, 
-                    d.archivo_ruta, 
-                    d.created_at,
-                    d.juego_id,
-                    COALESCE(d.estado, 'pendiente')
-                ) ORDER BY d.created_at
-            )
-             FROM desafios d 
-             WHERE d.jugador_id = j.id) as desafios_info,
-            (SELECT MIN(created_at) FROM desafios WHERE jugador_id = j.id) as tiempo_inicio
-            FROM jugadores j 
-            WHERE j.idEvento = ?
-            ORDER BY j.puntaje DESC, j.tiempo_fin ASC";
-
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $eventoId);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    $jugadores = $resultado->fetch_all(MYSQLI_ASSOC);
-
-    // Obtener el nombre del evento
-    $sqlEvento = "SELECT nombre FROM eventos WHERE id = ?";
-    $stmtEvento = $conexion->prepare($sqlEvento);
-    $stmtEvento->bind_param("i", $eventoId);
-    $stmtEvento->execute();
-    $evento = $stmtEvento->get_result()->fetch_assoc();
-} catch (Exception $e) {
+if (!$eventoId) {
     header("Location: ../index.php");
     exit();
 }
+
+// Verificar que el evento existe
+$sql = "SELECT * FROM eventos WHERE id = ?";
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $eventoId);
+$stmt->execute();
+$evento = $stmt->get_result()->fetch_assoc();
+
+if (!$evento) {
+    header("Location: ../index.php");
+    exit();
+}
+
+// Obtener todos los jugadores del evento con sus detalles
+$sql = "SELECT j.id, j.nombres, j.puntaje, j.tiempo_fin,
+        GROUP_CONCAT(
+            CONCAT(
+                d.tipo, ':', 
+                d.archivo_ruta, ':', 
+                d.created_at, ':', 
+                d.juego_id, ':', 
+                d.estado
+            ) ORDER BY d.created_at ASC
+        ) as desafios_info
+        FROM jugadores j
+        LEFT JOIN desafios d ON j.id = d.jugador_id
+        WHERE j.idEvento = ?
+        GROUP BY j.id
+        ORDER BY j.puntaje DESC, j.tiempo_fin ASC";
+
+error_log("Ejecutando consulta de jugadores para evento ID: " . $eventoId);
+
+$stmt = $conexion->prepare($sql);
+$stmt->bind_param("i", $eventoId);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$jugadores = $resultado->fetch_all(MYSQLI_ASSOC);
+
+error_log("Jugadores encontrados: " . count($jugadores));
+error_log("Datos de jugadores: " . print_r($jugadores, true));
 ?>
 
 <!DOCTYPE html>
@@ -162,7 +142,7 @@ try {
 <body class="bg-dark text-light">
     <div class="container-fluid">
         <h1 class="text-center mt-4">Resumen del Evento: <?php echo htmlspecialchars($evento['nombre']); ?></h1>
-        
+
         <?php foreach ($jugadores as $jugador): ?>
             <div class="resumen-container">
                 <h3><?php echo htmlspecialchars($jugador['nombres']); ?></h3>

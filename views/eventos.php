@@ -2,9 +2,6 @@
 require_once("../database.php");
 require_once("../controllers/actualizarEstadosEventos.php");
 custom_session_start('admin_session');
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Cache-Control: post-check=0, pre-check=0", false);
-header("Pragma: no-cache");
 
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
@@ -99,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 9998;
         }
-
+        
         .custom-modal {
             display: none;
             position: fixed;
@@ -150,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a href="login.php"><img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo"></a>
+            <a href="index.php"><img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo"></a>
             <div class="brand-text">
                 <span class="panel-title">Panel de Control</span>
                 <span class="welcome-text">Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?></span>
@@ -242,7 +239,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <tbody>
                             <?php foreach ($eventos as $evento): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($evento['nombre']); ?></td>
+                                <td>
+                                    <?php
+                                    error_log("ID del evento: " . $evento['id']);
+                                    ?>
+                                    <a href="resumenEvento.php?id=<?php echo $evento['id']; ?>" 
+                                       class="text-light" target="_blank"
+                                       onclick="console.log('Clickeando evento ID: <?php echo $evento['id']; ?>')">
+                                        <?php echo htmlspecialchars($evento['nombre']); ?>
+                                    </a>
+                                </td>
                                 <td><?php echo htmlspecialchars($evento['codigo']); ?></td>
                                 <td><?php echo formatDate($evento['fechaInicio']); ?></td>
                                 <td><?php echo formatDate($evento['fechaFin']); ?></td>
