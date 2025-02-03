@@ -245,9 +245,9 @@ $_SESSION['current_game_description'] = $descripcion;
         <div class="preview-container">
             <video id="preview" style="display: none;" controls></video>
             <div class="input-file-container">
-                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
                 <label for="fileInput" class="custom-file-upload">Subir Video</label>
                 <input type="file" id="fileInput" accept="video/*" max="40000000" onchange="validateFileSize(this)">
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
             </div>
         </div>
         <button id="submitBtn" style="display: none;">Enviar</button>

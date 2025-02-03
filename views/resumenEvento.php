@@ -1,6 +1,9 @@
 <?php
 require_once("../database.php");
 
+// Iniciar y verificar sesión de administrador
+custom_session_start('admin_session');
+
 // Logs para depuración
 error_log("Accediendo a resumenEvento.php");
 error_log("GET params: " . print_r($_GET, true));
@@ -9,6 +12,11 @@ $eventoId = null;
 
 // Verificar si viene de eventos.php (admin)
 if (isset($_GET['id'])) {
+    // Verificar que haya una sesión de administrador activa
+    if (!isset($_SESSION['admin_id'])) {
+        header("Location: login.php");
+        exit();
+    }
     $eventoId = $_GET['id'];
 } 
 // Verificar si viene de finJuego.php (jugador)
@@ -16,10 +24,15 @@ elseif (isset($_GET['token'])) {
     // Decodificar el token (formato: base64_encode(eventoId_timestamp))
     $decodedToken = base64_decode($_GET['token']);
     list($tokenEventoId, $timestamp) = explode('_', $decodedToken);
+    
+    // Verificar que el token no tenga más de 1 hora de antigüedad
+    if (time() - $timestamp > 3600) { // 3600 segundos = 1 hora
+        header("Location: ../index.php");
+        exit();
+    }
+    
     $eventoId = $tokenEventoId;
-}
-
-if (!$eventoId) {
+} else {
     header("Location: ../index.php");
     exit();
 }
@@ -136,6 +149,10 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
                 color: #666;
                 font-style: italic;
             }
+
+            .download-btn {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -166,9 +183,25 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
                             echo '<h5>Reto ' . $contador_retos . '</h5>';
                             if ($tipo == 'photo' && $ruta) {
                                 echo '<img src="../uploads/challenges/' . htmlspecialchars($ruta) . '" class="desafio-imagen">';
+                                echo '<div class="mt-2 download-btn no-print">';
+                                echo '<a href="../uploads/challenges/' . htmlspecialchars($ruta) . '" 
+                                        download="Reto_' . $contador_retos . '_' . htmlspecialchars($jugador['nombres']) . '.jpg" 
+                                        class="btn btn-success btn-sm">
+                                        <i class="fas fa-download"></i> Descargar Foto
+                                     </a>';
+                                echo '</div>';
                             } elseif ($tipo == 'video' && $ruta) {
-                                echo '<video class="desafio-video no-print" controls><source src="../uploads/challenges/' . htmlspecialchars($ruta) . '"></video>';
+                                echo '<video class="desafio-video no-print" controls>
+                                        <source src="../uploads/challenges/' . htmlspecialchars($ruta) . '">
+                                      </video>';
                                 echo '<div class="video-placeholder d-none d-print-block">Video</div>';
+                                echo '<div class="mt-2 download-btn no-print">';
+                                echo '<a href="../uploads/challenges/' . htmlspecialchars($ruta) . '" 
+                                        download="Reto_' . $contador_retos . '_' . htmlspecialchars($jugador['nombres']) . '.mp4" 
+                                        class="btn btn-success btn-sm">
+                                        <i class="fas fa-download"></i> Descargar Video
+                                     </a>';
+                                echo '</div>';
                             }
                             echo '</div>';
                             $contador_retos++;
@@ -181,7 +214,7 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
         
         <div class="text-center mb-4 no-print">
             <button onclick="window.print()" class="btn btn-success m-2">Descargar Resumen</button>
-            <a href="../index.php" class="btn btn-primary m-2">Salir</a>
+            <a href="https://lapuerta.net" class="btn btn-secondary m-2">Salir</a>
         </div>
     </div>
 </body>

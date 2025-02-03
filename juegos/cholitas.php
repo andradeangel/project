@@ -100,6 +100,9 @@ $_SESSION['current_game_description'] = $descripcion;
             max-width: 200px;
             text-align: center;
         }
+        .custom-file-upload{
+            margin: 10px;
+        }
         .custom-file-upload:hover{
             background-color: #ffec00;
             transform: scale(1.05);
@@ -173,6 +176,7 @@ $_SESSION['current_game_description'] = $descripcion;
             font-size: 10px;
             transition: all 0.3s ease;
             z-index: 1000;
+            margin: 10px;
         }
         .back-btn:hover {
             background-color: rgba(50, 50, 50, 0.9);
@@ -219,6 +223,53 @@ $_SESSION['current_game_description'] = $descripcion;
             transform: scale(1.05);
             background-color: #ffec00;
         }
+        .camera-btn {
+            background-color: #ffd700;
+            border: 1px solid #999;
+            color: #000;
+            padding: 7px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+            transition: all 1s ease;
+            z-index: 1000;
+            margin: 10px;
+        }
+        
+        .camera-btn:hover {
+            background-color: #ffec00;
+            transform: scale(1.05);
+        }
+
+        #camera-preview {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 2000;
+        }
+
+        #captureBtn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2001;
+            background-color: #ffd700;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border: none;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .input-file-container{
+            display: flex;
+            padding:0;
+        }
     </style>
 </head>
 <body>
@@ -228,12 +279,25 @@ $_SESSION['current_game_description'] = $descripcion;
         <div class="preview-container">
             <img id="preview" src="" alt="Preview de la foto">
             <div class="input-file-container">
-                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
-                <label for="fileInput" class="custom-file-upload">Subir foto</label>
+                <label for="fileInput" class="custom-file-upload">
+                    <i class="fas fa-upload"></i> Subir foto
+                </label>
                 <input type="file" id="fileInput" accept="image/*">
+                <button class="camera-btn" id="cameraBtn">
+                    Abrir <i class="fas fa-camera"></i> 
+                </button>
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
             </div>
         </div>
         <button type="button" id="submitBtn" style="display: none;" class="submit">Enviar</button>
+    </div>
+
+    <!-- Cámara en pantalla completa -->
+    <div id="cameraContainer" style="display: none;">
+        <video id="camera-preview" autoplay playsinline></video>
+        <button id="captureBtn">
+            <i class="fas fa-camera"></i>
+        </button>
     </div>
 
     <div id="overlay" class="overlay">
@@ -247,6 +311,56 @@ $_SESSION['current_game_description'] = $descripcion;
         document.addEventListener('DOMContentLoaded', function() {
             let esperandoCalificacion = false;
             let challengeId = null;
+            let stream = null;
+
+            // Función para iniciar la cámara
+            async function startCamera() {
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({ 
+                        video: { 
+                            facingMode: 'environment',
+                            width: { ideal: window.innerWidth },
+                            height: { ideal: window.innerHeight }
+                        }, 
+                        audio: false 
+                    });
+                    const videoElement = document.getElementById('camera-preview');
+                    const cameraContainer = document.getElementById('cameraContainer');
+                    
+                    videoElement.srcObject = stream;
+                    cameraContainer.style.display = 'block';
+                    videoElement.style.display = 'block';
+                    document.getElementById('captureBtn').style.display = 'block';
+                } catch (err) {
+                    console.error('Error al acceder a la cámara:', err);
+                    showCustomMessage('Error', 'No se pudo acceder a la cámara. Por favor, verifica los permisos.');
+                }
+            }
+
+            // Función para detener la cámara
+            function stopCamera() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    document.getElementById('cameraContainer').style.display = 'none';
+                    document.getElementById('camera-preview').style.display = 'none';
+                }
+            }
+
+            // Botón para activar la cámara
+            document.getElementById('cameraBtn').addEventListener('click', startCamera);
+
+            // Botón para capturar foto
+            document.getElementById('captureBtn').addEventListener('click', function() {
+                const video = document.getElementById('camera-preview');
+                const canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                
+                document.getElementById('preview').src = canvas.toDataURL('image/jpeg');
+                document.getElementById('submitBtn').style.display = 'block';
+                stopCamera();
+            });
 
             document.getElementById('fileInput').addEventListener('change', function() {
                 const file = this.files[0];
