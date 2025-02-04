@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a href="login.php"><img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo"></a>
+            <a href="../index.php"><img src="../images/logo.png" height="30" class="d-inline-block align-top" alt="Logo"></a>
             <div class="brand-text">
                 <span class="panel-title">Panel de Control</span>
                 <span class="welcome-text">Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?></span>

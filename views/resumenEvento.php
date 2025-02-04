@@ -168,7 +168,7 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
                     if ($jugador['tiempo_fin']) {
                         echo date('H:i:s', strtotime($jugador['tiempo_fin']));
                     } else {
-                        echo "No disponible";
+                        echo "No completo los juegos";
                     }
                 ?></p>
                 
