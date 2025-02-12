@@ -1,0 +1,252 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 2em;
+}
+
+.form-control {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #ffffff;
+    font-size: .8em;
+}
+
+.form-control::placeholder {
+    color: #777;
+}
+
+.btn-primary {
+    background-color: #f80103;
+    border-color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #a60000;
+    border-color: #fff;
+}
+
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:disabled {
+    background-color: #f80103 !important;
+    border-color: #a60000 !important;  
+}
+
+#login-link a {
+    cursor: pointer;
+}
+
+.d-none {
+    display: none;
+}
+
+.logo-img {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    z-index: 1;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.fijarHeader {
+    padding-top: 65px;
+}
+
+/* Estilos para la barra de navegación */
+.navbar .custom-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .brand-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.navbar .panel-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.navbar .welcome-text {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+}
+
+.navbar .user-role {
+    font-size: 0.7rem;
+    color: #a0a0a0;
+}
+
+/* Estilos para las pestañas de navegación */
+.navbar .custom-nav-link {
+    color: #ffffff !important;
+    transition: background-color 0.3s, color 0.3s;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.navbar .custom-nav-link:hover {
+    background-color: #495057 !important;
+    color: #ffffff !important;
+}
+
+/* Estilo para la pestaña activa */
+.navbar .custom-nav-link.active {
+    background-color: #f80103 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto hover para la pestaña activa */
+.navbar .custom-nav-link.active:hover {
+    background-color: #a60000 !important;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.navbar .custom-logout-btn {
+    transition: background-color 0.3s, color 0.3s;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+.navbar .custom-logout-btn:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+.card-body p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.card {
+    background-color: #ffe4e4;
+    color: #000000;
+    border: 2px solid #ff2424;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilos para la lista de juegos */
+.list-group-item {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+}
+
+/* Estilos para el modal */
+.modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+.list-group img, .top-group img{
+    width: 20px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 991px) {
+    .navbar .custom-logout-btn {
+        margin-top: 10px;
+    }
+    
+    .navbar-collapse {
+        background-color: #343a40;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+}
+
+.feedback-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.feedback-form textarea {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+.feedback-form h4 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/* Estilos neón y gamer */
+.neon-text {
+    color: #198754;
+    text-shadow: 0 0 5px rgb(245, 255, 248),
+                 0 0 5px rgb(255, 255, 255),
+                 0 0 5px rgb(255, 255, 255),
+                 0 0 40px rgb(255, 255, 255);
+    letter-spacing: 2px;
+}
+
+.neon-countdown {
+    color: rgb(255, 93, 93);
+    text-shadow: 0 0 5px rgb(255, 255, 255),
+                 0 0 10px rgb(255, 255, 255),
+                 0 0 20px rgb(161, 39, 39),
+                 0 0 40px rgb(243, 86, 86);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.gamer-text {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Agregar animación de pulso para el contador */
+@keyframes neon-pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.neon-countdown {
+    animation: neon-pulse 2s infinite;
+}
+
+/* Estilo neón para el contenedor principal */
+#evento-container.card {
+    background-color: #1a1a1a;
+    border: 2px solid #198754;
+    box-shadow: 0 0 5px #198754,
+                0 0 10px #198754,
+                0 0 20px #198754;
+    transition: all 0.3s ease;
+}
+
+#evento-container.card:hover {
+    box-shadow: 0 0 10px #198754,
+                0 0 20px #198754,
+                0 0 40px #198754;
+}
