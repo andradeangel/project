@@ -8,6 +8,11 @@ if (!isset($_SESSION['jugador_actual']) || !isset($_SESSION['evento_actual'])) {
     exit;
 }
 
+$juego_id = $_GET['juego_id'] ?? null;
+$descripcion = $_GET['descripcion'] ?? 'Descripción no disponible';
+$_SESSION['current_game_id'] = $juego_id;
+$_SESSION['current_game_description'] = $descripcion;
+
 // Manejar la solicitud AJAX para actualizar puntaje
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
@@ -58,8 +63,8 @@ $preguntas = [
     ],
     [
         'pregunta' => '¿Cuál es el órgano más grande del cuerpo humano?',
-        'opciones' => ['Hígado', 'Piel', 'Pulmones'],
-        'correcta' => 1
+        'opciones' => ['Hígado', 'Pulmones', 'Piel'],
+        'correcta' => 2
     ],
     [
         'pregunta' => '¿Qué animal tiene la mordida más fuerte del reino animal?',
@@ -83,8 +88,8 @@ $preguntas = [
     ],
     [
         'pregunta' => '¿Cuál es la capital de Australia?',
-        'opciones' => ['Sídney', 'Canberra', 'Melbourne'],
-        'correcta' => 1
+        'opciones' => ['Sídney', 'Melbourne', 'Canberra'],
+        'correcta' => 2
     ],
     [
         'pregunta' => '¿Cual es el continente mas grande del mundo?',
@@ -93,8 +98,8 @@ $preguntas = [
     ],
     [
         'pregunta' => '¿Qué científico propuso la teoría de la relatividad?',
-        'opciones' => ['Isaac Newton', 'Albert Einstein', 'Nikola Tesla'],
-        'correcta' => 1
+        'opciones' => ['Isaac Newton', 'Nikola Tesla', 'Albert Einstein'],
+        'correcta' => 2
     ],
     [
         'pregunta' => '¿Cuál es el río más largo del mundo?',
@@ -108,8 +113,8 @@ $preguntas = [
     ],
     [
         'pregunta' => '¿Cuál es el país más grande del mundo en superficie?',
-        'opciones' => ['China', 'Rusia', 'Canadá'],
-        'correcta' => 1
+        'opciones' => ['China', 'Brasil', 'Rusia'],
+        'correcta' => 2
     ]
 ];
 ?>
@@ -147,53 +152,97 @@ $preguntas = [
             border-radius: 15px;
             padding: 20px;
             max-width: 600px;
+            height: 90vh;
             width: 100%;
             box-shadow: 0 0 20px rgba(255, 51, 0, 0.3);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            gap: 10px;
         }
 
         h1 {
             color: #ff3300;
             text-shadow: 0 0 10px rgba(255, 51, 0, 0.5);
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin: 0;
+            font-size: min(24px, 4vh);
+            flex-shrink: 0;
+        }
+
+        .descripcion-juego {
+            font-size: min(12px, 2vh);
+            color: #fff;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 1.3;
+            text-shadow: 0 0 5px rgba(255, 51, 0, 0.5);
+            text-align: center;
+            flex-shrink: 1;
+        }
+
+        .bomb-container {
+            position: relative;
+            width: min(100px, 20vh);
+            height: min(120px, 20vh);
+            margin: 0 auto;
+            flex-shrink: 1;
         }
 
         #timer {
-            font-size: 36px;
+            font-size: min(25px, 4vh);
             color: #ff3300;
-            margin: 20px 0;
+            margin: 0;
             text-shadow: 0 0 10px rgba(255, 51, 0, 0.5);
+            flex-shrink: 0;
         }
 
         #pregunta {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: min(15px, 2.5vh);
+            margin: 0;
             color: #fff;
-            line-height: 1.5;
+            line-height: 1.3;
+            padding: 0 10px;
+            flex-shrink: 1;
+        }
+
+        #opciones {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: min(10px, 2vh);
+            margin: 0;
+            padding: 0 10px;
+            flex-shrink: 1;
         }
 
         .opcion-btn {
             background: linear-gradient(45deg, #ff3300, #ff6600);
             border: none;
             color: white;
-            padding: 15px 25px;
-            margin: 10px;
+            padding: min(15px, 2vh) min(25px, 3vh);
             border-radius: 10px;
             cursor: pointer;
             width: 80%;
             max-width: 300px;
-            font-size: 14px;
+            font-size: min(14px, 2vh);
             transition: all 0.3s ease;
         }
 
-        .opcion-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(255, 51, 0, 0.5);
-        }
+        @media (max-height: 500px) {
+            #game-container {
+                padding: 10px;
+                gap: 5px;
+            }
 
-        .opcion-btn:active {
-            transform: scale(0.95);
+            .bomb-container {
+                width: min(80px, 15vh);
+                height: min(80px, 15vh);
+            }
+
+            .opcion-btn {
+                padding: min(8px, 1.5vh) min(15px, 2vh);
+            }
         }
 
         #modal {
@@ -238,44 +287,17 @@ $preguntas = [
             box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
         }
 
-        @media (max-width: 768px) {
-            #game-container {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            #timer {
-                font-size: 28px;
-            }
-
-            #pregunta {
-                font-size: 14px;
-            }
-
-            .opcion-btn {
-                padding: 10px 20px;
-                font-size: 12px;
-            }
-        }
-
-        .bomb-container {
-            position: relative;
-            width: 100px;
-            height: 150px;
-            margin: 20px auto;
-        }
-
         .bomb {
+            background-image: url("https://static8.depositphotos.com/1003603/981/i/450/depositphotos_9818013-stock-photo-radioactivity-symbol.jpg");  
+            background-size: cover;        /* Asegura que la imagen cubra todo el div */
+            background-position: center;   /* Centra la imagen */
+            background-repeat: no-repeat; 
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 60px;
             height: 60px;
-            background: #000;
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(255, 51, 0, 0.5);
         }
@@ -319,11 +341,34 @@ $preguntas = [
             margin-bottom: 20px;
             font-size: 15px;
         }
+
+        .opcion-btn.incorrect {
+            animation: shakeAndRed 0.5s;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+        }
+
+        @keyframes shakeAndRed {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        #timer.tiempo-restado {
+            color: #ff0000;
+            animation: tiempoRestado 0.5s;
+        }
+
+        @keyframes tiempoRestado {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
     <div id="game-container">
         <h1>EXPLOSIÓN</h1>
+        <p class="descripcion-juego"><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="bomb-container">
             <div class="fuse">
                 <div class="spark"></div>
@@ -360,18 +405,17 @@ $preguntas = [
                 const button = document.createElement('button');
                 button.className = 'opcion-btn';
                 button.textContent = opcion;
-                button.onclick = () => verificarRespuesta(index);
+                button.onclick = () => verificarRespuesta(index, button);
                 opcionesDiv.appendChild(button);
             });
         }
 
-        function verificarRespuesta(respuestaIndex) {
+        function verificarRespuesta(respuestaIndex, boton) {
             const pregunta = preguntas[preguntaActual];
             
             if (respuestaIndex === pregunta.correcta) {
-                tiempo += 15; // Aumentar 15 segundos por respuesta correcta
+                tiempo += 5;
                 actualizarTimer();
-                
                 preguntaActual++;
                 if (preguntaActual >= preguntas.length) {
                     finalizarJuego(true);
@@ -379,7 +423,16 @@ $preguntas = [
                     mostrarPregunta();
                 }
             } else {
-                tiempo -= 10; // Restar 10 segundos por respuesta incorrecta
+                // Efecto visual para respuesta incorrecta
+                boton.classList.add('incorrect');
+                setTimeout(() => boton.classList.remove('incorrect'), 500);
+                
+                // Efecto visual para la reducción de tiempo
+                tiempo -= 10;
+                const timerElement = document.getElementById('timer');
+                timerElement.classList.add('tiempo-restado');
+                setTimeout(() => timerElement.classList.remove('tiempo-restado'), 500);
+                
                 if (tiempo <= 0) {
                     finalizarJuego(false);
                 } else {
@@ -410,39 +463,43 @@ $preguntas = [
             const modalTitle = document.getElementById('modal-title');
             
             if (victoria) {
-                // Calcular puntos basados en el tiempo restante
                 const puntos = Math.ceil(tiempo / 10);
                 modalTitle.textContent = '¡Felicitaciones!';
                 
-                fetch(window.location.href, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'actualizarPuntaje',
-                        puntos: puntos
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        document.getElementById('modal-mensaje').innerHTML = 
-                            `¡Has escapado!<br>
-                            Puntos ganados: ${puntos}<br>
-                            Puntaje total: ${data.nuevoPuntaje}`;
-                    } else {
-                        document.getElementById('modal-mensaje').innerHTML = 
-                            `¡Has escapado!<br>
-                            Error al actualizar puntaje.`;
-                    }
-                    document.getElementById('modal').style.display = 'flex';
-                });
+                actualizarPuntajeYAvanzar(puntos);
             } else {
-                modalTitle.textContent = ''; // Sin título para mensaje de derrota
-                document.getElementById('modal-mensaje').textContent = 'El tiempo se ha acabado';
-                document.getElementById('modal').style.display = 'flex';
+                modalTitle.textContent = '';
+                document.getElementById('modal-mensaje').textContent = 'Haz explotado, suerte para la proxima.';
+                // Avanzar al siguiente juego incluso si perdió
+                actualizarPuntajeYAvanzar(0);
             }
+        }
+
+        function actualizarPuntajeYAvanzar(puntos) {
+            fetch(window.location.href, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'actualizarPuntaje',
+                    puntos: puntos
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('modal-mensaje').innerHTML = puntos > 0 ? 
+                        `¡Has escapado!<br>
+                        Puntos ganados: ${puntos}<br>
+                        Puntaje total: ${data.nuevoPuntaje}` :
+                        'Haz explotado, suerte para la proxima';
+                } else {
+                    document.getElementById('modal-mensaje').innerHTML = 
+                        'Error al actualizar puntaje.';
+                }
+                document.getElementById('modal').style.display = 'flex';
+            });
         }
 
         // Iniciar el juego
