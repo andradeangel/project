@@ -85,7 +85,7 @@ function obtenerNuevoPuntaje($jugadorId) {
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #ff3300;
             border-radius: 15px;
-            padding: 20px;
+            padding: 10px;
             max-width: 600px;
             width: 90%;
             box-shadow: 0 0 20px rgba(255, 51, 0, 0.3);
@@ -239,6 +239,32 @@ function obtenerNuevoPuntaje($jugadorId) {
                 margin: 10px 0;
             }
         }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .back-btn {
+            background: linear-gradient(45deg, #666666, #333333);
+            border: none;
+            padding: 15px 30px;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(12px, 2vw, 16px);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -252,7 +278,10 @@ function obtenerNuevoPuntaje($jugadorId) {
         
         <div class="controls">
             <div class="moves" id="moves">Movimientos: 0</div>
-            <button onclick="shufflePuzzle()" class="shuffle-btn">Mezclar</button>
+            <div class="buttons-container">
+                <button onclick="shufflePuzzle()" class="shuffle-btn">Mezclar</button>
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
+            </div>
         </div>
     </div>
 
@@ -372,8 +401,12 @@ function obtenerNuevoPuntaje($jugadorId) {
             });
         }
 
-        // Inicializar el juego
-        createPuzzle();
+        // Modificar la función de inicialización para mezclar automáticamente
+        window.onload = function() {
+            createPuzzle();
+            shufflePuzzle();
+            gameStarted = true; // Asegurarse de que el juego esté listo para jugar
+        };
     </script>
 </body>
 </html>
