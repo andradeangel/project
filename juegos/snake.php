@@ -19,12 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (isset($data['action']) && $data['action'] === 'actualizarPuntaje' && isset($data['score'])) {
         $score = $data['score'];
-        $puntos = 1; // puntuación base
+        $puntos = 0; // puntuación base
         
         if ($score >= 50) {
             $puntos = 5;
         } elseif ($score >= 30) {
             $puntos = 3;
+        } elseif ($score >= 20) {
+            $puntos = 2;
+        } elseif ($score >= 1) {
+            $puntos = 1;
         }
         
         $resultado = actualizarPuntaje($puntos);
@@ -65,12 +69,13 @@ function actualizarPuntaje($puntos) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
+    <link rel="icon" href="../images/ico.png">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            padding: 20px;
-            min-height: 100vh;
+            padding: 10px;
+            height: 100vh;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             font-family: 'Press Start 2P', cursive;
             display: flex;
@@ -78,11 +83,13 @@ function actualizarPuntaje($puntos) {
             align-items: center;
             color: #fff;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         #game-container {
+            text-align: center;
             width: min(95vw, 600px);
-            height: min(95vh, 800px);
+            height: calc(100vh - 20px);
             padding: 20px;
             background: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
@@ -91,7 +98,7 @@ function actualizarPuntaje($puntos) {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            overflow: hidden;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -99,6 +106,7 @@ function actualizarPuntaje($puntos) {
             text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
             font-size: clamp(16px, 4vw, 28px);
             margin: 0;
+            flex-shrink: 0;
         }
 
         .descripcion-juego {
@@ -106,30 +114,34 @@ function actualizarPuntaje($puntos) {
             font-size: clamp(8px, 2vw, 12px);
             line-height: 1.5;
             margin: 5px 0;
+            flex-shrink: 0;
         }
 
         #game-board {
-            width: min(90vw, 400px);
-            height: min(90vw, 400px);
+            width: min(90%, 400px);
+            height: min(90%, 400px);
             border: 2px solid #00ff88;
             background-color: #000;
             box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
-            margin: 10px auto;
+            margin: auto;
             border-radius: 8px;
+            flex-shrink: 1;
         }
 
-        #score, #timer {
+        #score {
             font-size: clamp(12px, 2.5vw, 16px);
             color: #00ff88;
             margin: 5px 0;
             text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+            flex-shrink: 0;
         }
 
         .controls-section {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
             margin-top: auto;
+            flex-shrink: 0;
         }
 
         #mobile-controls {
@@ -138,17 +150,18 @@ function actualizarPuntaje($puntos) {
             grid-template-rows: repeat(2, 1fr);
             gap: 8px;
             justify-content: center;
-            margin: 10px 0;
+            margin: 10px auto;
+            width: fit-content;
         }
 
         .control-button {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             background: rgba(0, 255, 136, 0.2);
             border: 2px solid #00ff88;
             border-radius: 50%;
             color: #fff;
-            font-size: 20px;
+            font-size: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -156,15 +169,12 @@ function actualizarPuntaje($puntos) {
             transition: all 0.3s ease;
         }
 
-        .control-button:active {
-            transform: scale(0.95);
-            background: rgba(0, 255, 136, 0.4);
-        }
-
         .button-container {
             display: flex;
             gap: 10px;
             justify-content: center;
+            margin-top: auto;
+            flex-shrink: 0;
         }
 
         .game-button {
@@ -192,14 +202,14 @@ function actualizarPuntaje($puntos) {
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
             body {
-                padding: 10px;
+                padding: 5px;
             }
 
             #game-container {
                 padding: 15px;
-                gap: 8px;
+                gap: 5px;
             }
 
             #mobile-controls {
@@ -207,8 +217,12 @@ function actualizarPuntaje($puntos) {
             }
 
             #game-board {
-                width: min(85vw, 300px);
-                height: min(85vw, 300px);
+                width: min(85%, 300px);
+                height: min(85%, 300px);
+            }
+
+            .button-container {
+                margin-top: 5px;
             }
         }
 
@@ -253,21 +267,19 @@ function actualizarPuntaje($puntos) {
         <h1>SNAKE GAME</h1>
         <p class="descripcion-juego"><?php echo htmlspecialchars($descripcion); ?></p>
         <div id="score">Puntuación: 0</div>
-        <div id="timer">Tiempo: 0s</div>
         <canvas id="game-board" width="400" height="400"></canvas>
+        <div id="mobile-controls">
+            <div></div>
+            <button class="control-button" onclick="handleMobileControl('ArrowUp')">↑</button>
+            <div></div>
+            <button class="control-button" onclick="handleMobileControl('ArrowLeft')">←</button>
+            <button class="control-button" onclick="handleMobileControl('ArrowDown')">↓</button>
+            <button class="control-button" onclick="handleMobileControl('ArrowRight')">→</button>
+        </div>
         <div class="button-container">
             <button id="restart-button" class="game-button">Reiniciar</button>
             <button id="back-button" class="game-button" onclick="window.location.href='../views/evento.php'">Volver</button>
         </div>
-    </div>
-
-    <div id="mobile-controls">
-        <div></div>
-        <button class="control-button" onclick="handleMobileControl('ArrowUp')">↑</button>
-        <div></div>
-        <button class="control-button" onclick="handleMobileControl('ArrowLeft')">←</button>
-        <button class="control-button" onclick="handleMobileControl('ArrowDown')">↓</button>
-        <button class="control-button" onclick="handleMobileControl('ArrowRight')">→</button>
     </div>
 
     <div id="winModal" class="modal">
@@ -282,7 +294,6 @@ function actualizarPuntaje($puntos) {
         const canvas = document.getElementById("game-board");
         const ctx = canvas.getContext("2d");
         const scoreDisplay = document.getElementById("score");
-        const timerDisplay = document.getElementById("timer");
         const restartButton = document.getElementById("restart-button");
 
         const gridSize = 20;
@@ -291,22 +302,16 @@ function actualizarPuntaje($puntos) {
         let food = { x: 5, y: 5 };
         let direction = { x: 0, y: 0 };
         let score = 0;
-        let time = 0;
         let gameInterval;
-        let timerInterval;
 
         function startGame() {
             clearInterval(gameInterval);
-            clearInterval(timerInterval);
             snake = [{ x: 10, y: 10 }];
             food = { x: 5, y: 5 };
             direction = { x: 0, y: 0 };
             score = 0;
-            time = 0;
             scoreDisplay.textContent = "Puntuación: 0";
-            timerDisplay.textContent = "Tiempo: 0s";
             gameInterval = setInterval(gameLoop, 100);
-            timerInterval = setInterval(updateTimer, 1000);
         }
 
         function gameLoop() {
@@ -408,7 +413,6 @@ function actualizarPuntaje($puntos) {
 
         function endGame() {
             clearInterval(gameInterval);
-            clearInterval(timerInterval);
             
             let puntos = 1;
             if (score >= 50) {
@@ -440,11 +444,6 @@ function actualizarPuntaje($puntos) {
                 }
                 document.getElementById('winModal').style.display = 'flex';
             });
-        }
-
-        function updateTimer() {
-            time++;
-            timerDisplay.textContent = "Tiempo: " + time + "s";
         }
 
         window.addEventListener("keydown", e => {

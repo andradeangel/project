@@ -2,30 +2,78 @@
 require_once("../database.php");
 custom_session_start('player_session');
 
-if (!isset($_SESSION['player_id'])) {
-    header("Location: ../index.php");
-    exit();
+// Crear o verificar token de acceso
+if (isset($_SESSION['player_id'])) {
+    // Jugador recién llegado: crear token y destruir sesión
+    $jugadorId = $_SESSION['player_id'];
+    $eventoId = $_SESSION['player_evento_id'];
+    
+    // Crear token único
+    $token = bin2hex(random_bytes(32));
+    
+    // Guardar token en la base de datos
+    $sql = "UPDATE jugadores SET token_acceso = ?, token_expiracion = DATE_ADD(NOW(), INTERVAL 24 HOUR) 
+            WHERE id = ? AND idEvento = ?";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("sii", $token, $jugadorId, $eventoId);
+    $stmt->execute();
+    
+    // Guardar token en cookie
+    setcookie('fin_juego_token', $token, time() + 86400, '/', '', true, true);
+    
+    // Destruir sesión después de crear el token
+    session_destroy();
+} else {
+    // Verificar acceso mediante token
+    $token = $_COOKIE['fin_juego_token'] ?? '';
+    
+    if (empty($token)) {
+        header("Location: ../index.php");
+        exit();
+    }
+    
+    // Verificar token en la base de datos
+    $sql = "SELECT j.id, j.idEvento FROM jugadores j 
+            WHERE j.token_acceso = ? AND j.token_expiracion > NOW()";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 0) {
+        header("Location: ../index.php");
+        exit();
+    }
+    
+    $jugadorData = $result->fetch_assoc();
+    $jugadorId = $jugadorData['id'];
+    $eventoId = $jugadorData['idEvento'];
 }
 
-$jugadorId = $_SESSION['player_id'];
-$eventoId = $_SESSION['player_evento_id'];
+// Prevenir navegación hacia atrás
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 // Establecer zona horaria
 date_default_timezone_set('America/La_Paz');
 
-// Actualizar estado del jugador actual a "Terminado"
-$sqlUpdateEstado = "UPDATE jugadores SET idEstado = 3 WHERE id = ?";
-$stmtUpdate = $conexion->prepare($sqlUpdateEstado);
-$stmtUpdate->bind_param("i", $jugadorId);
-$stmtUpdate->execute();
+// Verificar si el jugador ya completó todos sus juegos
+$sqlJugadorEstado = "SELECT idEstado, juego_actual, 
+    (SELECT COUNT(*) FROM juegos WHERE idEvento = ?) as total_juegos 
+    FROM jugadores WHERE id = ?";
+$stmtJugadorEstado = $conexion->prepare($sqlJugadorEstado);
+$stmtJugadorEstado->bind_param("ii", $eventoId, $jugadorId);
+$stmtJugadorEstado->execute();
+$jugadorEstado = $stmtJugadorEstado->get_result()->fetch_assoc();
 
-// Actualizar el tiempo de finalización si aún no está establecido
-$sqlUpdateTiempo = "UPDATE jugadores 
-                    SET tiempo_fin = CURRENT_TIMESTAMP 
-                    WHERE id = ? AND tiempo_fin IS NULL";
-$stmtUpdateTiempo = $conexion->prepare($sqlUpdateTiempo);
-$stmtUpdateTiempo->bind_param("i", $jugadorId);
-$stmtUpdateTiempo->execute();
+// Si el jugador ya completó todos los juegos, actualizar su estado
+if ($jugadorEstado['juego_actual'] >= $jugadorEstado['total_juegos'] && $jugadorEstado['idEstado'] != 3) {
+    $sqlUpdateEstado = "UPDATE jugadores SET idEstado = 3, tiempo_fin = CURRENT_TIMESTAMP WHERE id = ?";
+    $stmtUpdate = $conexion->prepare($sqlUpdateEstado);
+    $stmtUpdate->bind_param("i", $jugadorId);
+    $stmtUpdate->execute();
+}
 
 // Verificar si todos los jugadores han terminado
 $sqlJugadoresActivos = "SELECT COUNT(*) as total, 
@@ -43,24 +91,32 @@ $stmtEvento->bind_param("i", $eventoId);
 $stmtEvento->execute();
 $evento = $stmtEvento->get_result()->fetch_assoc();
 
-// Verificar si el tiempo ha terminado usando la zona horaria correcta
+// Verificar si el tiempo ha terminado
 $fechaActual = new DateTime('now', new DateTimeZone('America/La_Paz'));
 $fechaFin = new DateTime($evento['fechaFin'], new DateTimeZone('America/La_Paz'));
 $tiempoTerminado = $fechaActual >= $fechaFin;
 
 $todosTerminaron = $jugadores['total'] == $jugadores['terminados'] || $tiempoTerminado;
 
-// Si el jugador ha terminado o el tiempo se acabó, cerrar sesión
-if ($todosTerminaron || $tiempoTerminado) {
-    // Obtener el ID del evento antes de destruir la sesión
-    $eventoIdResumen = $eventoId;
+// Si el jugador ha completado todos los juegos, destruir su sesión individual
+if ($jugadorEstado['juego_actual'] >= 7 || $tiempoTerminado || $todosTerminaron) {
+    // Guardar temporalmente los datos necesarios antes de destruir la sesión
+    $eventoIdTemp = $eventoId;
+    $jugadorIdTemp = $jugadorId;
     
-    // Destruir la sesión
+    // Destruir la sesión del jugador
     unset($_SESSION['player_id']);
     unset($_SESSION['player_evento_id']);
     unset($_SESSION['player_name']);
     unset($_SESSION['jugador_actual']);
     unset($_SESSION['evento_actual']);
+    
+    // Establecer una cookie de "finalizado" para prevenir la navegación hacia atrás
+    setcookie('evento_completado', 'true', time() + (86400), '/'); // 24 horas de duración
+    
+    // Restaurar variables temporales para uso en esta página
+    $eventoId = $eventoIdTemp;
+    $jugadorId = $jugadorIdTemp;
 }
 
 // Obtener tabla de posiciones
@@ -140,6 +196,41 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
             font-size: xx-large
         }
     </style>
+    <!-- Agregar meta tags para prevenir caché -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        // Prevenir navegación hacia atrás de manera más agresiva
+        window.onload = function() {
+            if (window.history && window.history.pushState) {
+                window.history.pushState('forward', null, '');
+                window.history.forward();
+                
+                window.onpopstate = function(event) {
+                    window.history.pushState('forward', null, '');
+                    window.location.replace('../index.php');
+                };
+            }
+        }
+        
+        // Prevenir atajos de teclado para navegación
+        document.addEventListener('keydown', function(e) {
+            if ((e.keyCode == 116) || // F5
+                (e.keyCode == 82 && e.ctrlKey) || // Ctrl + R
+                (e.keyCode == 37 && e.altKey) || // Alt + Flecha izquierda
+                (e.keyCode == 39 && e.altKey)) { // Alt + Flecha derecha
+                e.preventDefault();
+            }
+        });
+
+        // Si se intenta salir de la página
+        window.onbeforeunload = function() {
+            if (!event.target.href) {
+                window.location.href = '../index.php';
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="container d-flex flex-column align-items-center">

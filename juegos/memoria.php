@@ -256,7 +256,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'https://i.pinimg.com/474x/20/78/27/2078277d2ee2fba144fb18acf676486b.jpg',
             'https://thumbs.dreamstime.com/b/bolivian-saltena-meat-pastries-traditional-savory-called-filled-thick-stew-which-popular-street-snack-bolivia-51131075.jpg',
             'https://adminweb.miteleferico.bo/uploads/NARANJA_009e523187.jpg',
-            'https://www.bolivar.com.bo/data/picture/2011/Hinchas_Miraflores_Bolivar_The_Strongest_LRZIMA20141029_0021_1.jpg',
+            'https://blog.ultracasas.com/wp-content/uploads/2019/02/tigre-vs-bolivar.jpg',
             'https://avianreport.com/wp-content/uploads/2023/05/condor-andino-450-550.x46230.webp',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ_KvHDAdtG_qZy_IdT7HiCvjm_H7OXhPHeYg9tyFrHFanzr2Ep2-54nPDFhmfO6h1enI&usqp=CAU'
         ];

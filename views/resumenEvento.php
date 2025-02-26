@@ -50,7 +50,7 @@ if (!$evento) {
 }
 
 // Obtener todos los jugadores del evento con sus detalles
-$sql = "SELECT j.id, j.nombres, j.puntaje, j.tiempo_fin,
+$sql = "SELECT j.id, j.nombres, j.puntaje, j.tiempo_fin, j.juego_actual,
         GROUP_CONCAT(
             CONCAT(
                 d.tipo, ':', 
@@ -87,6 +87,13 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
     <link rel="icon" href="../images/ico.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        h3{
+            margin-bottom: 10px;
+            text-transform: full-width;
+        }
+        p{
+            margin: 0;
+        }
         .resumen-container {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
@@ -164,6 +171,7 @@ error_log("Datos de jugadores: " . print_r($jugadores, true));
             <div class="resumen-container">
                 <h3><?php echo htmlspecialchars($jugador['nombres']); ?></h3>
                 <p>Puntaje Final: <?php echo $jugador['puntaje']; ?> llaves</p>
+                <p>Proceso: <?php echo max(0, ($jugador['juego_actual'] - 1)); ?>/6</p>
                 <p>Hora de Finalización: <?php 
                     if ($jugador['tiempo_fin']) {
                         echo date('H:i:s', strtotime($jugador['tiempo_fin']));
