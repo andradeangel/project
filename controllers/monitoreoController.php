@@ -61,7 +61,7 @@ class MonitoreoController {
             
             // Actualizar puntaje y juego actual del jugador
             $sql = "UPDATE jugadores 
-                    SET puntaje = puntaje + 1, 
+                    SET puntaje = puntaje + 10, 
                         juego_actual = juego_actual + 1 
                     WHERE id = ?";
             $stmt = $this->conexion->prepare($sql);

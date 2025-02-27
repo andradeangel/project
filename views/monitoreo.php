@@ -317,7 +317,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                                                         <strong>Código:</strong> <?php echo htmlspecialchars($evento['codigo']); ?><br>
                                                         <strong>Fecha Inicio:</strong> <?php echo formatearFecha($evento['fechaInicio']); ?><br>
                                                         <strong>Fecha Fin:</strong> <?php echo formatearFecha($evento['fechaFin']); ?><br>
-                                                        <strong>Estado:</strong> En proceso<br>
                                                         <strong>Capacidad:</strong> <?php echo $evento['jugadores_actuales']; ?>/<?php echo $evento['personas']; ?>
                                                     </p>
                                                     <button class="btn btn-danger" 

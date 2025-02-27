@@ -274,7 +274,7 @@ $_SESSION['current_game_description'] = $descripcion;
 </head>
 <body>
     <div class="card">
-        <h1>Reto: Cholitas en el Mercado de las Brujas</h1>
+        <h1>Reto: Cholitas en la Calle de las Paraguas 📷</h1>
         <p><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <img id="preview" src="" alt="'Preview de foto">
@@ -472,7 +472,7 @@ $_SESSION['current_game_description'] = $descripcion;
                         if (data.status === 'aprobado') {
                             let mensaje = `
                                 <p>¡Has completado el desafío exitosamente!</p>
-                                <p>Puntos ganados: +1</p>
+                                <p>Puntos ganados: +10</p>
                                 <p>Puntaje total: ${data.nuevoPuntaje}</p>
                             `;
                             showCustomMessage('¡Felicitaciones!', mensaje, () => {

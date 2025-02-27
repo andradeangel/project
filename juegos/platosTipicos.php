@@ -237,7 +237,7 @@ $_SESSION['current_game_description'] = $descripcion;
 </head>
 <body>
     <div class="card">
-        <h1>Reto: Platos Típicos Paceños</h1>
+        <h1>Reto: Platos Típicos Paceños🍽️</h1>
         <p class="card-text"><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <video id="preview" style="display: none;" controls></video>
@@ -373,7 +373,7 @@ $_SESSION['current_game_description'] = $descripcion;
                     if (data.status === 'aprobado') {
                         let mensaje = `
                             <p>¡Has completado el desafío exitosamente!</p>
-                            <p>Puntos ganados: +1</p>
+                            <p>Puntos ganados: +10</p>
                             <p>Puntaje total: ${data.nuevoPuntaje}</p>
                         `;
                         showCustomMessage('¡Felicitaciones!', mensaje, () => {

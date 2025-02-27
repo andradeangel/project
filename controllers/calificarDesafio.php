@@ -50,7 +50,7 @@ try {
         
         if ($stmt->execute()) {
             // Actualizar juego_actual del jugador
-            $sql = "UPDATE jugadores SET juego_actual = juego_actual + 1 WHERE id = ?";
+            $sql = "UPDATE jugadores SET juego_actual = juego_actual + 10 WHERE id = ?";
             $stmt = $conexion->prepare($sql);
             $stmt->bind_param("i", $desafio['jugador_id']);
             

@@ -73,14 +73,121 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-family: 'Press Start 2P', cursive;
             background-color: #1a1a1a;
             color: #fff;
+            overflow: hidden; /* Prevenir scroll */
         }
+        
         .container {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
+            box-sizing: border-box;
         }
+        
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            width: min(95vw, 600px);
+            height: calc(100vh - 20px);
+            box-sizing: border-box;
+            gap: 10px;
+        }
+
+        h1 {
+            font-size: clamp(16px, 4vw, 24px);
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .card-text {
+            font-size: clamp(8px, 2vw, 12px);
+            margin: 5px 0;
+            flex-shrink: 0;
+        }
+
+        #timer {
+            font-size: clamp(8px, 2vw, 11px);   
+            flex-shrink: 0;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr); /* Asegurar 4 filas de igual tamaño */
+            gap: 5px;
+            flex: 1;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+            margin: auto;
+            align-self: center;
+            overflow: hidden; /* Prevenir desbordamiento */
+        }
+
+        .card {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Usar altura completa de la celda del grid */
+            background-color: #4a4a4a;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            border-radius: 5px;
+            padding: 2px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: auto;
+            flex-shrink: 0;
+        }
+
+        #restart-button, .back-btn {
+            font-size: clamp(8px, 2vw, 10px);
+            padding: 8px 16px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 576px) {
+            .game-container {
+                padding: 10px;
+                gap: 5px;
+            }
+            
+            .game-board {
+                gap: 3px;
+                max-width: 100%;
+            }
+            
+            .card {
+                border-radius: 3px;
+            }
+            
+            .card img {
+                padding: 1px;
+            }
+        }
+
         .game-container {
             text-align: center;
             background-color: #2a2a2a;
@@ -90,35 +197,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             max-width: 100%;
             width: 450px;
         }
-        .game-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        .card {
-            width: 100%;
-            padding-bottom: 100%; /* Aspect ratio 1:1 */
-            background-color: #4a4a4a;
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-        .card:hover {
-            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.5);
-        }
         .card img {
             position: absolute;
-            top: 5%;
-            left: 5%;
-            width: 90%;
-            height: 90%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             display: none;
             border-radius: 5px;
+            padding: 5px; /* Agregar un pequeño padding interno */
+            box-sizing: border-box;
         }
         .card.flipped img {
             display: block;
@@ -161,7 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         h1 {
             font-size: 1.5rem;
-            margin-bottom: 1rem;
             text-shadow: 0 0 20px rgba(0, 255, 0, 0.5),
             0 0 20px rgba(0, 255, 0, 0.5),
             0 0 20px rgba(0, 255, 0, 0.5);
@@ -170,7 +258,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         @media (max-width: 576px) {
             .game-container {
                 padding: 10px;
-                width: 95%;
+                width: 90%;
+                height: 80%;
             }
             .game-board {
                 gap: 5px;
@@ -224,17 +313,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     
     <div class="container">
-        <div class="game-container" style="width: 600px;">
+        <div class="game-container">
             <h1>Memoria</h1>
-            <p class="card-text" style="font-size: 12px;"><?php echo htmlspecialchars($descripcion);?></p>
-            <div id="timer" class="mb-3" style="font-size: 11px; text-shadow: 0 0 20px rgba(0, 255, 0, 0.5),
-            0 0 20px rgba(0, 255, 0, 0.5),
-            0 0 20px rgba(0, 255, 0, 0.5);">Tiempo: 0s</div>
-            <div class="game-board mb-3">
+            <p class="card-text"><?php echo htmlspecialchars($descripcion);?></p>
+            <div id="timer">Tiempo: 0s</div>
+            <div class="game-board">
                 <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
             </div>
-            <button id="restart-button" class="btn reset-boton">Reiniciar Juego</button>
-            <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
+            <div class="button-container">
+                <button id="restart-button" class="btn reset-boton">Reiniciar Juego</button>
+                <button onclick="window.location.href='../views/evento.php'" class="back-btn">Volver</button>
+            </div>
         </div>
     </div>
 

@@ -256,7 +256,7 @@ if (isset($_SESSION['jugador_actual']['id'])) {
 <body>
   <div id="game-container">
     <!-- Título con estilo llamativo -->
-    <h1>Color Rush</h1>
+    <h1>Color Rush 🔴🟡🟢</h1>
     <!-- Descripción obtenida de la BD -->
     <p><?php echo $descripcion; ?></p>
     <!-- Mostrar "Ronda 0/5" inicialmente -->

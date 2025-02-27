@@ -264,7 +264,7 @@ $ganador = $todosTerminaron ? $posiciones[0]['nombres'] : null;
             <?php else: ?>
                 <h2 class="text-center my-2">¡Felicidades! Has completado todos los retos</h2>
                 <div id="countdown" class="text-center">
-                    <h4 style="margin: 0;">Tiempo restante del evento:</h4>
+                    <h4 style="margin: 0;">No salgas de la pagina, tiempo restante del evento:</h4>
                     <div id="timer" class="display-4"></div>
                 </div>
             <?php endif; ?>

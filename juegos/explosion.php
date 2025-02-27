@@ -367,7 +367,7 @@ $preguntas = [
 </head>
 <body>
     <div id="game-container">
-        <h1>EXPLOSIÓN</h1>
+        <h1>EXPLOSIÓN💣</h1>
         <p class="descripcion-juego"><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="bomb-container">
             <div class="fuse">

@@ -20,7 +20,7 @@ $_SESSION['current_game_description'] = $descripcion;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captura el teleférico</title>
+    <title>Selfie en teleférico</title>
     <link rel="icon" href="../images/ico.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -276,7 +276,7 @@ $_SESSION['current_game_description'] = $descripcion;
 </head>
 <body>
     <div class="card">
-        <h1>Reto: Selfie en el teleférico</h1>
+        <h1>Reto: Selfie en el teleférico🚠</h1>
         <p><?php echo htmlspecialchars($descripcion); ?></p>
         <div class="preview-container">
             <img id="preview" src="" alt="'Preview de la foto">
@@ -462,7 +462,7 @@ $_SESSION['current_game_description'] = $descripcion;
                         if (data.status === 'aprobado') {
                             let mensaje = `
                                 <p>¡Has completado el desafío exitosamente!</p>
-                                <p>Puntos ganados: +1</p>
+                                <p>Puntos ganados: +10</p>
                                 <p>Puntaje total: ${data.nuevoPuntaje}</p>
                             `;
                             showCustomMessage('¡Felicitaciones!', mensaje, () => {
