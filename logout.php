@@ -1,6 +1,12 @@
 <?php
 require_once("database.php");
+require_once("utils/logger.php");
 custom_session_start('admin_session');
+
+if (isset($_SESSION['admin_name'])) {
+    $nombreUsuario = $_SESSION['admin_name'];
+    log_activity("Cierre de sesión - Usuario: " . $nombreUsuario);
+}
 
 // Destruir la sesión
 session_unset();
@@ -23,5 +29,7 @@ echo "<script>
         history.go(1);
     };
 </script>";
+
+header("Location: views/login.php");
 exit();
 ?>

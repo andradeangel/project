@@ -8,8 +8,7 @@ function actualizarEstadosEventos($conexion) {
     try {
         $fechaActual = new DateTime();
         $fechaActualStr = $fechaActual->format("Y-m-d H:i:s");
-        
-        log_activity("Iniciando actualización de estados de eventos. Fecha actual: " . $fechaActualStr);
+
         // Eventos En Proceso que deben volver a Pendiente
         $sqlRetrocesoPendiente = "UPDATE eventos 
                                  SET idEstado = 1 
@@ -81,11 +80,6 @@ function actualizarEstadosEventos($conexion) {
                            WHERE e.idEstado = 3 
                            GROUP BY e.id";
         $result = $conexion->query($sqlVerificacion);
-        
-        while ($row = $result->fetch_assoc()) {
-            log_activity("Evento ID: {$row['id']}, Nombre: {$row['nombre']}, " .
-                        "Jugadores terminados: {$row['jugadores_terminados']}/{$row['total_jugadores']}");
-        }
 
     } catch (Exception $e) {
         log_activity("Error en actualización de estados: " . $e->getMessage(), 'error');

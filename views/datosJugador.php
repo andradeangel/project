@@ -18,7 +18,33 @@
             <div id="personal-data-container" class="">
                 <h2 class="text-light">Datos del jugador</h2>
                 <?php
-                    include("../controllers/datosJugadorController.php"); 
+                    include("../controllers/datosJugadorController.php");
+                    require_once("../database.php");
+                    require_once("../utils/logger.php");
+
+                    // Log cuando alguien accede al formulario
+                    log_activity("Acceso al formulario de registro de jugador");
+
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $nombres = $_POST['nombres'] ?? '';
+                        $edad = $_POST['edad'] ?? '';
+                        $genero = $_POST['genero'] ?? '';
+                        
+                        // ... código de validación y registro existente ...
+                        
+                        if ($stmt->execute()) {
+                            $_SESSION['jugador_actual'] = [
+                                'id' => $conexion->insert_id,
+                                'nombres' => $nombres
+                            ];
+                            
+                            // Log de registro exitoso
+                            log_activity("Registro exitoso de jugador - Nombre: $nombres, Edad: $edad, Evento ID: {$_SESSION['evento_actual']['id']}");
+                            
+                            header("Location: evento.php");
+                            exit();
+                        }
+                    }
                 ?>
                 <form class="mt-3" id="personal-data-form" method="POST" action="">
                     <div class="form-group">

@@ -1,11 +1,42 @@
 <?php
 require_once("../database.php");
+require_once("../utils/logger.php");
 custom_session_start('admin_session');
 
 // Verificar si ya existe una sesión activa
 if (isset($_SESSION['admin_id'])) {
     // Redirigir al panel de control si ya hay una sesión
     header("Location: eventos.php");
+    exit();
+}
+
+// Para el intento de inicio de sesión (antes de la validación)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $ci = $_POST['id'] ?? '';
+    $password = $_POST['password'] ?? '';
+    
+    // Mover el log aquí después de obtener el valor
+    log_activity("Intento de inicio de sesión - CI: " . $ci);
+    
+    // ... código de validación existente ...
+    
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
+        if (password_verify($password, $usuario['password'])) {
+            // Log de inicio de sesión exitoso (ya existe)
+            log_activity("Inicio de sesión exitoso - Usuario: " . $usuario['nombres'] . " " . $usuario['apellidos']);
+            
+            // ... código de sesión existente ...
+        }
+    }
+}
+
+// Para el cierre de sesión (agregar en la sección de logout)
+if (isset($_GET['logout'])) {
+    $nombreUsuario = $_SESSION['admin_name'] ?? 'Usuario desconocido';
+    log_activity("Cierre de sesión - Usuario: " . $nombreUsuario);
+    session_destroy();
+    header("Location: login.php");
     exit();
 }
 ?>

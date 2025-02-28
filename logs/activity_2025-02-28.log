@@ -1,0 +1,212 @@
+[2025-02-28 13:40:57] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:41:10] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:42:14] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:42:24] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:42:35] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:44:40] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:04] IP: 127.0.0.1 | Intento de inicio de sesión - CI: no proporcionado | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Administrador con ID 2 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:46:11] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:47:18] IP: 127.0.0.1 | Intento de ingreso a evento - Código: , CI:  | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 13:51:46] IP: 127.0.0.1 | Acceso al formulario de registro de jugador | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:11:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:54] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:54] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:54] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:54] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:12:54] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:01] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:01] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:01] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:01] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:01] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:13:44] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Administrador con ID 2 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:15:35] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:11] IP: 127.0.0.1 | Cierre de sesión - Usuario: Luis Angel | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:36] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:16:43] IP: 127.0.0.1 | Cierre de sesión - Usuario: Luis Angel | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:17:53] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:10] IP: 127.0.0.1 | Cierre de sesión - Usuario: Luis Angel | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:54] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:54] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:54] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:54] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:18:54] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:19:07] IP: 127.0.0.1 | Intento de ingreso a evento con código: AA0aaaa | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:19:18] IP: 127.0.0.1 | Acceso al formulario de registro de jugador | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:20:31] IP: 127.0.0.1 | Acceso al formulario de registro de jugador | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:21:07] IP: 127.0.0.1 | Acceso al formulario de registro de jugador | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:21:40] IP: 127.0.0.1 | Acceso al formulario de registro de jugador | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:32] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:34] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:34] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:34] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:34] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:34] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:40] IP: 127.0.0.1 | Cierre de sesión - Usuario: Luis Angel | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Administrador con ID 1 ha iniciado sesión exitosamente | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:29:48] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:25] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:25] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:25] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:25] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:25] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:56] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:56] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:56] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:56] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:30:56] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:26] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:26] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:26] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:26] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:26] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:56] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:56] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:56] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:56] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:31:56] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:10] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:10] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:10] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:10] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:10] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:12] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:12] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:12] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:12] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:12] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:13] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:13] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:13] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:13] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:13] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:43] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:43] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:43] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:43] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:32:43] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:33:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:34:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:35:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:36:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:37:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:46] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:46] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:46] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:46] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:38:46] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:16] IP: 127.0.0.1 | Eventos retrocedidos a Pendiente: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:16] IP: 127.0.0.1 | Eventos retrocedidos desde Finalizado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:16] IP: 127.0.0.1 | Eventos finalizados actualizados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:16] IP: 127.0.0.1 | Jugadores actualizados a terminado: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:16] IP: 127.0.0.1 | Eventos iniciados: 0 | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0
+[2025-02-28 14:39:37] IP: 127.0.0.1 | Cierre de sesión - Usuario: Luis Angel | Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0

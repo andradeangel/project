@@ -1,5 +1,6 @@
 <?php
 require_once("database.php");
+require_once("utils/logger.php");
 include("controllers/inicioController.php");
 ?>
 
@@ -40,5 +41,15 @@ include("controllers/inicioController.php");
             </div>
         </div>
     </div>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $codigoAcceso = $_POST['codigoAccess'] ?? '';
+        
+        log_activity("Intento de ingreso a evento con código: " . $codigoAcceso);
+        
+        // ... resto del código de validación ...
+    }
+    ?>
 </body>
 </html>
