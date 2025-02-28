@@ -118,8 +118,6 @@ if (isset($_SESSION['jugador_actual']['id'])) {
         justify-content: center;
         box-sizing: border-box;
     }
-
-    /* Asegurarse de que todos los elementos usen border-box */
     * {
         box-sizing: border-box;
     }
@@ -131,10 +129,11 @@ if (isset($_SESSION['jugador_actual']['id'])) {
     }
     p{
       font-size: 10px;
+      margin: 0;
     }
     #round-info, #click-info {
       font-size: 10px;
-      margin: 5px 0;
+      margin: 5px 0 0 0;
     }
     #progress-bar {
       width: 100%;
@@ -209,7 +208,7 @@ if (isset($_SESSION['jugador_actual']['id'])) {
 
         p, #round-info, #click-info {
             font-size: 8px;
-            margin: 2px 0;
+            margin: 2px 0 0 0;
         }
 
         .color-grid {
@@ -266,7 +265,7 @@ if (isset($_SESSION['jugador_actual']['id'])) {
       <div id="progress"></div>
     </div>
     <!-- Información de los colores presionados -->
-    <div id="click-info">Colores presionados: 0/0</div>
+    <div id="click-info" style="margin: 0;">Colores presionados: 0/0</div>
     <!-- Cuadro de colores: Matriz 5x5 (25 celdas) -->
     <div class="color-grid">
       <?php
