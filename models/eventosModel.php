@@ -116,7 +116,7 @@
     
     function eliminarEvento($conexion, $id) {
         // Primero, verificar si el evento ha sido jugado
-        $sqlCheck = "SELECT COUNT(*) as count FROM desafios WHERE evento_id = ?";
+        $sqlCheck = "SELECT COUNT(*) as count FROM jugadores WHERE idEvento = ?";
         $stmtCheck = $conexion->prepare($sqlCheck);
         $stmtCheck->bind_param("i", $id);
         $stmtCheck->execute();
@@ -124,19 +124,23 @@
         $rowCheck = $resultCheck->fetch_assoc();
 
         if ($rowCheck['count'] > 0) {
-            return ["success" => false, "message" => "No se puede eliminar este evento porque ya ha sido jugado."];
+            return ["success" => false, "message" => "No se puede eliminar este evento porque ya fue jugado"];
         }
 
-        // Si no ha sido jugado, proceder a eliminar el evento
-        $sql = "DELETE FROM eventos WHERE id = ?";
-        $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $id);
-        $success = $stmt->execute();
+        try {
+            // Si no ha sido jugado, proceder a eliminar el evento
+            $sql = "DELETE FROM eventos WHERE id = ?";
+            $stmt = $conexion->prepare($sql);
+            $stmt->bind_param("i", $id);
+            $success = $stmt->execute();
 
-        if ($success) {
-            return ["success" => true, "message" => "Evento eliminado con éxito"];
-        } else {
-            return ["success" => false, "message" => "Error al eliminar el evento: " . $stmt->error];
+            if ($success) {
+                return ["success" => true, "message" => "Evento eliminado con éxito"];
+            } else {
+                return ["success" => false, "message" => "No se puede eliminar este evento porque está siendo utilizado"];
+            }
+        } catch (Exception $e) {
+            return ["success" => false, "message" => "No se puede eliminar este evento porque está siendo utilizado"];
         }
     }
 

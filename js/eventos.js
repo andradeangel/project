@@ -198,14 +198,15 @@ function showConfirmationModal(eventId) {
                 },
                 dataType: 'json',
                 success: function(response) {
+                    showCustomMessage('Información', response.message);
                     if (response.success) {
-                        showCustomMessage('Éxito', 'Evento eliminado con éxito');
-                    } else {
-                        showCustomMessage('Error', response.message);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1500);
                     }
                 },
-                error: function(xhr, status, error) {
-                    showCustomMessage('Error', 'Error al eliminar el evento: ' + error);
+                error: function() {
+                    showCustomMessage('Error', 'No se puede eliminar este evento porque está siendo utilizado');
                 }
             });
         }
