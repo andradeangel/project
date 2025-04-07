@@ -140,6 +140,15 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
             background-color: #6c757d;
             color: white;
         }
+        .pin > pre{
+            font-size: .5rem;
+            color: yellow;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            filter: opacity(0.3);
+        }
     </style>
 </head>
 
@@ -329,6 +338,13 @@ $rol_usuario = $usuario['nombre_rol'] ?? 'Rol no definido';
     <!-- Overlay para el fondo oscuro -->
     <div id="modalOverlay" class="modal-overlay"></div>
 
+    <!-- Referencia personal-->
+    <div class="pin">
+        <pre>
+Desarrollado por Andrade Angel
+andradevelop@gmail.com
+</pre>
+    </div> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../js/sprints.js"></script>
     

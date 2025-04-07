@@ -210,6 +210,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             background-color: #6c757d;
             color: white;
         }
+        .pin > pre{
+            font-size: .5rem;
+            color: yellow;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            filter: opacity(0.3);
+        }
     </style>
 </head>
 
@@ -362,6 +371,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         </div>
     </div>
 
+    <!-- Referencia personal-->
+    <div class="pin">
+        <pre>
+Desarrollado por Andrade Angel
+andradevelop@gmail.com
+</pre>
+    </div> 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const logoutButton = document.querySelector('a[href="#"][onclick="showLogoutConfirm(event)"]');

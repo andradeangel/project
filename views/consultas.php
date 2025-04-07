@@ -200,6 +200,15 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
         .modal-title{
             margin-right: 10px;
         }
+        .pin > pre{
+            font-size: .5rem;
+            color: yellow;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            margin: 0;
+            filter: opacity(0.3);
+        }
     </style>
 </head>
 <body>
@@ -406,6 +415,13 @@ $eventos = $result->fetch_all(MYSQLI_ASSOC);
     <!-- Overlay para el fondo oscuro -->
     <div id="modalOverlay" class="modal-overlay"></div>
 
+    <!-- Referencia personal-->
+    <div class="pin">
+        <pre>
+Desarrollado por Andrade Angel
+andradevelop@gmail.com
+</pre>
+    </div> 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
